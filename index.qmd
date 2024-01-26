@@ -1,6 +1,6 @@
 ---
 title: "Sample Report - Data Science Capstone"
-author: "Student name"
+author: "Nikhitha Amireddy"
 date: '`r Sys.Date()`'
 format:
   html:
@@ -19,7 +19,7 @@ editor:
 
 ## Introduction
 
-### What is "mehtod"?
+### What is "Lasso Regression"?
 
 This is an introduction to Kernel regression, which is a non-parametric
 estimator that estimates the conditional expectation of two variables
