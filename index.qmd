@@ -97,3 +97,8 @@ ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total))
 ### Conclusion
 
 ## References
+
+Bradley Efron, Trevor Hastie, Iain Johnstone, Robert Tibshirani "Least angle regression," The Annals of Statistics, Ann. Statist. 32(2), 407-499, (April 2004)
+
+Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighborhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024). https://doi.org/10.1186/s12889-023-17252-9
+
