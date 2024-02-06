@@ -102,3 +102,6 @@ Bradley Efron, Trevor Hastie, Iain Johnstone, Robert Tibshirani "Least angle reg
 
 Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighborhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024). https://doi.org/10.1186/s12889-023-17252-9
 
+Andriopoulos, V.; Kornaros, M. LASSO Regression with Multiple Imputations for the Selection of Key Variables Affecting the Fatty Acid Profile of Nannochloropsis oculata. Mar. Drugs 2023, 21, 483. https://doi.org/10.3390/md21090483
+
+A. Jafar and M. Lee, "HypGB: High Accuracy GB Classifier for Predicting Heart Disease With HyperOpt HPO Framework and LASSO FS Method," in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. keywords: {Heart;Feature extraction;Cardiovascular diseases;Predictive models;Prediction algorithms;Optimization;Machine learning;Clinical diagnosis;Hyperparameter optimization;Cardiovascular disease;machine learning algorithms;hyperparameter optimization;redundant features;disease prediction;clinical data analysis},
