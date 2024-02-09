@@ -1,5 +1,5 @@
 ---
-title: "Sample Report - Data Science Capstone"
+title: "LASSO Regression Report - Data Science Capstone Project"
 author: "Nikhitha Amireddy"
 date: '`r Sys.Date()`'
 format:
@@ -22,13 +22,155 @@ editor:
 ### What is "Lasso Regression"?
 
 LASSO stands for Least Absolute Shrinkage and Selection Operator.
-Lasso regression is a regularization technique. It is used over regression methods for a more accurate prediction. This model uses shrinkage. Shrinkage is where data values are shrunk towards a central point as the mean. The lasso procedure encourages simple, sparse models (i.e. models with fewer parameters). This particular type of regression is well-suited for models showing high levels of multicollinearity or when you want to automate certain parts of model selection, like variable selection/parameter elimination. From the article [@annalsofstatistics], [@kasper2024].
-
-
+Lasso regression is a regularization technique. It is used over regression methods for a more accurate prediction. This model uses shrinkage. Shrinkage is where data values are shrunk towards a central point as the mean. The lasso procedure encourages simple, sparse models (i.e. models with fewer parameters). This particular type of regression is well-suited for models showing high levels of multicollinearity or when you want to automate certain parts of model selection, like variable selection/parameter elimination
++ZA.
 
 ### Related work
 
-This section is going to cover the literature review...
+## Week 2 Research Work:
+
+I have gone through some research papers and articles to understand more about Lasso Regression. These are few research papers and articles that I referred. 
+
+1) Nonlinear Analysis of the Effects of Socioeconomic, Demographic, and Technological Factors on the Number of Fatal Traffic Accidents [@safety10010011]
+
+Summary: This study applies Lasso polynomial regression to analyze the impact of socioeconomic, demographic, and technological factors on fatal traffic accidents, demonstrating the complex interplay between economic conditions and traffic safety.
+
+I took this research paper into consideration as I have learnt how the prediction analyzes can be done on the categorical variables using Lasso Regression with different approaches like feature selection (Lasso tends to shrink some coefficients to exactly zero, effectively performing feature selection), preventing overfitting etc.
+
+Resource Link: https://www.mdpi.com/2313-576X/10/1/11 
+
+2) Effect of Neighborhood and Individual-Level Socioeconomic Factors on Breast Cancer Screening Adherence[@38166942]
+
+Summary: Utilizing Lasso regression, this research identifies how neighborhood and individual-level socioeconomic factors influence breast cancer screening adherence, offering insights into health disparities and the importance of targeted healthcare policies.
+
+This study also taught me that always analyze and test not just through the statistical analysis but also the different approaches like to study the socioeconomic effects, all the variables in the problem statement or in the dataset (study population, study outcome, individual - level variables, neighborhood -level variable)
+
+Resource Link: https://link.springer.com/article/10.1186/s12889-023-17252-9
+
+## Week 3 Research work:
+
+"Least Angle Regression" (Efron et al., 2004) - My Insights and Application: [@annalsofstatistics]
+
+Deep Insights that I gained:
+I discovered the efficacy of Least Angle Regression (LARS), an algorithm well-suited for high-dimensional data, and how it can be adapted for LASSO.
+I found that LARS excels when dealing with thousands of predictors.
+My analysis showed that a modified version of LARS is equivalent to the LASSO solution.
+Application to the dataset(Return to Schooling):
+Efficient Feature Selection: In my project, LARS proved invaluable in selecting relevant features like grade76, exp76, and age76, crucial for predicting wage76. Its efficiency shone in managing the extensive list of predictors in our dataset.
+High-Dimensional Data Handling: The dataset I worked with, rich in demographic, educational, and work experience variables, benefitted greatly from LARS. It ensured manageable model complexity in this high-dimensional space.
+Adapting LARS for LASSO: I utilized LARS with a LASSO modification to enhance prediction accuracy and address overfitting, a key concern given the multicollinearity in variables like grade76, exp76, and age76.
+Computational Efficiency: The speed of LARS significantly expedited our model training and validation processes, a major advantage considering our dataset's size and the computational demand of traditional methods.
+Goals and Importance of This Study for Return to Schooling dataset:
+Paper's Goal: The paper aimed to propose an algorithm efficient for high-dimensional data, suitable for LASSO.
+Importance for dataset(Return to Schooling):
+LARS provided a rapid, scalable method for feature selection, a critical aspect for handling our large-scale dataset.
+It significantly enhanced the speed of our model training and validation.
+Scalability: Given our dataset's size and the necessity for swift processing, LARS was an ideal choice. Its efficiency ensures scalability as our data grows.
+Improved Model Accuracy: LARS's precise selection of significant variables boosted the predictive accuracy of our wage prediction model, leading to more dependable data-driven decisions.
+Resource Optimization: The computational efficiency of LARS allowed us to optimize resource usage, resulting in cost savings and faster data analysis turnaround.
+Flexibility in Model Selection: The similarity between modified LARS and LASSO provided flexibility in model choice, balancing feature selection and regularization, essential when dealing with varied impact predictors like exp76, black, and smsa76.
+Solution Methodology:
+LARS operates as a forward stepwise procedure, equitably approaching the fitted values.
+It adjusts predictor coefficients by taking the smallest steps to reduce the residual sum of squares.
+4. Results and Limitations:
+
+LARS outperformed standard methods like forward stepwise regression, especially in large datasets.
+Its efficiency might decline with an extremely high number of predictors (tens of thousands)
+Key Observations:
+Efficient Predictor Identification: LARS adeptly identified key predictors like grade76, exp76, age76, black, and south76, enhancing model interpretability.
+Handling Missing Data: LARS, coupled with suitable preprocessing, managed missing data more effectively than traditional regression methods.
+Limitation in High-Dimensional Data: While effective for large datasets, LARS' performance may diminish as predictor numbers soar. This is a future scalability concern.
+Speed vs. Precision Trade-off: LARS offers speed but sometimes at the expense of precision, necessitating more nuanced methods for complex variable interactions.
+Link: Least Angle Regression (https://projecteuclid.org/euclid.aos/1083178935Links to an external site. )
+
+ 
+
+Effect of neighborhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study [@kasper2024]
+
+Deeper Insights from the Breast Cancer Screening Study:
+
+I explored how individual, and neighborhood-level socioeconomic factors influence breast cancer screening adherence. This involved examining variables like age, race/ethnicity, and home ownership.
+In this study, LASSO was used to pinpoint the most relevant predictors from a vast array of variables, a technique I found particularly enlightening.
+Applying this to Return to Schooling dataset:
+Inspired by this approach, I integrated LASSO regularization into my logistic regression model. This helped me manage a complex array of variables in my wage prediction analysis.
+I used LASSO to narrow down numerous potential predictors, focusing on the most significant ones for my model.
+My analysis mirrored this study's use of LASSO, allowing me to effectively identify crucial predictors like grade76 and exp76 in determining wage76.
+The study's handling of mixed data types guided me in assessing the diverse factors in my dataset, enhancing my wage prediction model's accuracy.
+Goals and Importance for Return to Schooling dataset:
+
+Goal of the Paper: The study aimed to understand how socioeconomic factors at both individual and neighborhood levels influence breast cancer screening adherence. Its goal was to identify specific factors significantly influencing screening adherence to aid in developing targeted interventions.
+Importance for dataset(Return to Schooling)
+The methodology used in this study offered me insights into handling and analyzing complex datasets with multiple variables, akin to my project's dataset.
+It underscored the impact of socioeconomic factors, providing a perspective on considering external factors that might influence wage levels in my project.
+Analyzing complex datasets: The study demonstrated an effective way to analyze datasets with a mix of individual and regional predictors, directly relevant to my dataset.
+External factor consideration: Focusing on socioeconomic factors highlighted the importance of considering external influences in my analysis, enhancing the understanding of wage structure within different socioeconomic contexts.
+Targeted interventions: By identifying key factors influencing wages, I could help in developing targeted policies or initiatives, similar to the study's aim in improving breast cancer screening adherence.
+Predictive accuracy: Employing advanced statistical methods like LASSO enhanced the predictive accuracy of my model, ensuring decisions based on the most relevant variables.
+ Solution Approach that is relevant to dataset (Return to Schooling):
+
+I tackled the challenge of identifying key factors influencing wage levels by utilizing a blend of LASSO for variable reduction and logistic regression. This approach mirrored the breast cancer screening study's method of deciphering influential factors in screening adherence.
+The use of LASSO enabled me to focus on the most significant predictors, refining the feature selection for my wage prediction model.
+Results and Limitations from dataset (Return to Schooling) Prediction analysis:
+
+My analysis demonstrated that individual factors such as work experience (exp76) and education level (grade76), along with neighborhood-level socioeconomic indicators, significantly influenced wage levels.
+A key finding was the importance of individual-level factors like age, home renting, and overcrowding in determining wages, akin to their impact on screening adherence in the study.
+The LASSO method proved effective in my project for identifying significant predictors and handling multicollinearity, a common challenge in datasets with interconnected socioeconomic variables.
+My socioeconomic factor analysis echoed the study's findings, revealing insights into how regional and individual demographic factors interact to influence wages.
+Similar to the study's limitation, my analysis was cross-sectional, capturing data at a single point in time, which might not fully represent long-term wage trends or causality.
+Link: https://link.springer.com/article/10.1186/s12889-023-17252-9Links to an external site.
+
+##Week 4 Research work:
+
+Article 1: Exploring Algae's Fatty Acid with LASSO Regression [Title: LASSO Regression with Multiple Imputations for the Selection of Key Variables Affecting the Fatty Acid Profile of Nannochloropsis oculata] [@md21090483]
+ 
+Understanding the Research:
+
+This study explores what affects the oil composition of a specific type of algae, which is important for things like biofuel and nutrition supplements.
+By using LASSO regression, they pinpointed the most important factors that change the algae's oil profile.
+Why It Matters:
+
+Understanding these factors can help in producing better biofuels and nutritional products from algae.
+Shows how a complex problem can be untangled with the right mathematical tools.
+How They Did It:
+
+Gathered data on various conditions under which the algae grow.
+Applied LASSO regression to filter through the data and find out which conditions matter most.
+Key Findings:
+
+Found key factors that significantly affect the algae's fatty acid composition.
+This could help in optimizing algae farming for specific products.
+Limitations and Next Steps:
+
+This study is a steppingstone to more detailed research on how to best grow algae for different uses.
+Further research could explore how to apply these findings in commercial algae farming.
+Read More About It: Access ArticleLinks to an external site. (https://www.mdpi.com/1660-3397/21/9/483)
+
+ 
+
+Article 2: Predicting Heart Disease with Advanced Math Models [Title: High Accuracy GB Classifier for Predicting Heart Disease With HyperOpt HPO Framework and LASSO FS Method] [@10341221]
+
+Understanding the Research:
+
+This research develops a new way to guess if someone might get heart disease, using a fancy computer model.
+It combines a technique called LASSO, which is like a smart sieve for important information, with another method to make the guesswork even better.
+Why It Matters:
+
+Shows how cutting-edge computer methods can help doctors predict health problems before they happen.
+This can lead to better prevention and treatment plans for heart disease.
+How They Did It:
+
+They started with a lot of health data and used LASSO to figure out which bits of information were key.
+Then, they made a computer model that uses these key pieces to predict heart disease risk.
+Key Findings:
+
+The model they made is really good at predicting heart disease, thanks to picking out the right information with LASSO.
+This could mean earlier and more personalized care for people at risk of heart disease.
+Limitations and Next Steps:
+
+The model is promising, but it needs to be tested in real-world situations to see if it works as well in hospitals as it does in the computer.
+More studies could help make these predictions even more accurate.
+Read More About It: Access Article (https://ieeexplore.ieee.org/abstract/document/10341221/)
+
 
 ## Methods
 
@@ -98,10 +240,13 @@ ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total))
 
 ## References
 
-Bradley Efron, Trevor Hastie, Iain Johnstone, Robert Tibshirani "Least angle regression," The Annals of Statistics, Ann. Statist. 32(2), 407-499, (April 2004)
+1. Sohaee, N.; Bohluli, S. Nonlinear Analysis of the Effects of Socioeconomic, Demographic, and Technological Factors on the Number of Fatal Traffic Accidents. Safety 2024, 10, 11. https://doi.org/10.3390/safety10010011
 
-Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighborhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024). https://doi.org/10.1186/s12889-023-17252-9
+2. Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighborhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024). https://doi.org/10.1186/s12889-023-17252-9
 
-Andriopoulos, V.; Kornaros, M. LASSO Regression with Multiple Imputations for the Selection of Key Variables Affecting the Fatty Acid Profile of Nannochloropsis oculata. Mar. Drugs 2023, 21, 483. https://doi.org/10.3390/md21090483
 
-A. Jafar and M. Lee, "HypGB: High Accuracy GB Classifier for Predicting Heart Disease With HyperOpt HPO Framework and LASSO FS Method," in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. keywords: {Heart;Feature extraction;Cardiovascular diseases;Predictive models;Prediction algorithms;Optimization;Machine learning;Clinical diagnosis;Hyperparameter optimization;Cardiovascular disease;machine learning algorithms;hyperparameter optimization;redundant features;disease prediction;clinical data analysis},
+3. Bradley Efron, Trevor Hastie, Iain Johnstone, Robert Tibshirani "Least angle regression," The Annals of Statistics, Ann. Statist. 32(2), 407-499, (April 2004) 
+
+4. Andriopoulos, V.; Kornaros, M. LASSO Regression with Multiple Imputations for the Selection of Key Variables Affecting the Fatty Acid Profile of Nannochloropsis oculata. Mar. Drugs 2023, 21, 483. https://doi.org/10.3390/md21090483
+
+5. A. Jafar and M. Lee, "HypGB: High Accuracy GB Classifier for Predicting Heart Disease With HyperOpt HPO Framework and LASSO FS Method," in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. keywords: {Heart;Feature extraction;Cardiovascular diseases;Predictive models;Prediction algorithms;Optimization;Machine learning;Clinical diagnosis;Hyperparameter optimization;Cardiovascular disease;machine learning algorithms;hyperparameter optimization;redundant features;disease prediction;clinical data analysis}
