@@ -119,7 +119,8 @@ My socioeconomic factor analysis echoed the study's findings, revealing insights
 Similar to the study's limitation, my analysis was cross-sectional, capturing data at a single point in time, which might not fully represent long-term wage trends or causality.
 Link: https://link.springer.com/article/10.1186/s12889-023-17252-9Links to an external site.
 
-##Week 4 Research work:
+
+## Week 4 Research work:
 
 Article 1: Exploring Algae's Fatty Acid with LASSO Regression [Title: LASSO Regression with Multiple Imputations for the Selection of Key Variables Affecting the Fatty Acid Profile of Nannochloropsis oculata] [@md21090483]
  
