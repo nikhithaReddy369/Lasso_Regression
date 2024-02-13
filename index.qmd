@@ -1,6 +1,6 @@
 ---
 title: "LASSO Regression Report - Data Science Capstone Project"
-author: "Nikhitha Amireddy"
+author: "Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam"
 date: '`r Sys.Date()`'
 format:
   html:
