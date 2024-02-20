@@ -1,5 +1,5 @@
 ---
-title: "Lasso Regression"
+title: "Unveiling Wage Predictions with LASSO-Enhanced Logistic Regression"
 author: "Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam"
 date: '`r Sys.Date()`'
 format:
