@@ -1,5 +1,5 @@
 ---
-title: "Unveiling Wage Predictions with LASSO-Enhanced Logistic Regression"
+title: "Innovative Data Exploration with LASSO: Unveiling Patterns in Earnings and Education"
 author: "Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam"
 date: '`r Sys.Date()`'
 format:
@@ -19,7 +19,10 @@ editor:
 
 ## Introduction
 
+LASSO, Least Absolute Shrinkage and Selection Operator, is a penalized linear regression method that reduces the number of variables in the model, useful for avoiding overfitting. It works by minimizing the residual sum of squares subject to the sum of the absolute value of the coefficients being less than a constant, simplifying the model and potentially improving prediction accuracy.
+
 In 1996, Robert Tibshirani introduced LASSO regression to further the discussion about variable selection [@Tibshirani1996]. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. in 2004 [@Efron2004]. LASSO regression has particularly become a key instrument with which to insight the complex dynamics underlying socioeconomic trends, public health outcomes, and environmental studies—hence, significantly enriching the toolset available to the data scientist [@Belloni2013], [@Park2008]. Logistic regression is further extended by integration with the capabilities of LASSO, offering a refined method in prediction for the categorical outcomes [@Li2022]. This synergy provides a response to long-term barriers to predictive modeling such as overfitting and multicollinearity with a scope of applications in, in particular, economic forecasting and health diagnostics, amongst many more [@Sauerbrei2015].
+
 The 21st century continues, and the data revolution heightens. A dataset in relation to the augmented domain complexity continues to pervade. Here, LASSO regression does not exist just as a statistical tool but as an innovation beacon assisting researchers with precision and simplicity within the dynamic landscape [@Chintalapudi2022]. The introduction of logistic regression into the area of LASSO has been especially dynamic, providing a nuanced approach to modeling of categorical outcomes [@Simon2013]. This is necessary for areas from epidemiology to finance [@Friedman2010]. This thus places this combination as a great leap forward in the direction of data-driven insights aimed at action, where traditional analytical methods might possibly face challenges of interpretation, firmly situating logistic regression with LASSO among the basic constitutions of modern statistical analysis and predictive modeling [@Hastie2009]. Indeed, the way of LASSO development has been marked by a series of important developments that pinpoint the historical trajectory, including the emergence of Least Angle Regression by Efron and colleagues in pointing out the potential, influence, and continued utility in research [@Zhou2022; @Witten2010]. This cutting-edge technology is used throughout a wide spectrum of industries with the goal of dismantling complex data structures and, eventually, extracting meaningful patterns from trends as socioeconomic, public health, and environmental studies. LASSO regression adapted for logistic models was one of the best steps to ward off the impediments towards modeling categorical data with more precision [@Tibshirani2012].
 
 
@@ -29,68 +32,65 @@ The 21st century continues, and the data revolution heightens. A dataset in rela
 
 The versatility of LASSO regression is reflected in the extensive literature discussing its various applications. Notably, LASSO regression has made significant contributions to economics. For example, Zhou et al. (2022) used the LASSO model to investigate what determines the growth of quality of life in China and found that the LASSO model is a good tool for selecting important economic predictors out of a large number of regressors [@Zhou2022]. Thus, it makes important improvements on economic models useful for economic policy stakeholders and researchers in how to promote economic growth. The technique has also been critical for important developments in the area of bioinformatics. Lu, et al. (2011) showed how LASSO regression can be applied to constructing predictive models — based on gene expressions and other high-throughput data — to understand the relationships between gene expressions and multiple phenotypes, which are critical for understanding genetic pathways and cell systems [@Lu2011]. In this example, the LASSO regression was used to build a microRNA-target regulatory network, which provides insight into gene regulation mechanisms, as well as applications in personalized medicine and in the understanding of genetic diseases [@Musoro2014].
 LASSO regression has expedited the processing and analysis of large datasets in the environmental and energy sectors. Wang et al. (2017) detailed its use in predicting ship fuel consumption for diminished environmental impact and increased fuel efficiency in maritime operations [@Wang2017]. LASSO regression aids in selecting the most informative variables that influence fuel usage and empowers the maritime industry's sustainability and operational performance efforts. LASSO regression has been a meaningful addition to the analysis of multi-factorial diseases and health outcomes in public health research. In an analysis of dietary intakes for breast cancer, McEligot et al. (2020) showed that logistic LASSO can handle high-dimensional data to uncover the key drivers of health, and this has broad applicability in public health for unraveling and prioritizing the risk factors for a variety of illnesses [@McEligot2020]. His role as a facilitator for the development of machine learning models (especially in feature selection) has been pivotal to improving the accuracy of those predictions as LASSO was proving its worthiness time and time again. Muthukrishnan and Rohini (2016) showcased this by demonstrating the ability of LASSO regression “to select the relevant feature attributes of predictive modelling for machine learning” [@Muthukrishnan2016].
-After gaining prominence within the traditional domain, the applications of LASSO regression have extended into new spheres such as financial modeling, where it assists analysts in singling out influential market predictors from large datasets characterized by volatility and noise, eventually translating into forecasts and investment strategies [@Friedman2010; @Hastie2015]. The adaptability and precision of LASSO regression within financial analysis underline its growing promise and popularity. Another field where LASSO regression's ability to parse through voluminous climate variable datasets to extract critical indicators of environmental change has been crucial is climate research and sustainability studies. The power of this application is not only a testament to the adaptability but also reflects the urgency in deploying LASSO regression in the face of challenges such as global warming and biodiversity loss, where parsing through complex environmental patterns becomes critical to devising strategies to mitigate its devastating impacts [@Chintalapudi2022; @Li2022]. Digital health technologies have opened a trove of opportunities for LASSO regression to analyze the complex interplay between individual lifestyle factors, genetic predispositions, and health outcomes. The inclusion of LASSO in this field of research is an acknowledgement that it is uniquely suited to handle complex, multidimensional data that is needed to understand and generate personalized medicine or public health interventions—a frontier of healthcare that holds promise for applications where LASSO's valuable data-driven insights can be channeled to address bespoke health solutions [@Simon2013; @Park2008].
+After gaining prominence within the traditional domain, the applications of LASSO regression have extended into new spheres such as financial modeling, where it assists analysts in singling out influential market predictors from large datasets characterized by volatility and noise, eventually translating into forecasts and investment strategies [@Friedman2010; @Hastie2015]. The adaptability and precision of LASSO regression within financial analysis underline its growing promise and popularity. Another field where LASSO regression's ability to parse through voluminous climate variable datasets to extract critical indicators of environmental change has been crucial is climate research and sustainability studies. The power of this application is not only a testament to the adaptability but also reflects the urgency in deploying LASSO regression in the face of challenges such as global warming and biodiversity loss, where parsing through complex environmental patterns becomes critical to devising strategies to mitigate its devastating impacts [@Chintalapudi2022; @Li2022]. Digital health technologies have opened a trove of opportunities for LASSO regression to analyze the complex interplay between individual lifestyle factors, genetic predispositions, and health outcomes. The inclusion of LASSO in this field of research is an acknowledgement that it is uniquely suited to handle complex, multidimensional data that is needed to understand and generate personalized medicine or public health interventions—a frontier of healthcare that holds promise for applications where LASSO's valuable data-driven insights can be channeled to address bespoke health solutions [@Simon2013; @Park2008] and Sohaee and Bohluli (2024b)[@2024b] employ Lasso polynomial regression to analyze the intricate relationship between socioeconomic, demographic, and technological factors and fatal traffic accidents, demonstrating its effectiveness in handling categorical variables and preventing overfitting. In their study on breast cancer screening adherence (Sohaee and Bohluli 2024a)[@2024a], they utilize Lasso regression to identify significant predictors from various socioeconomic factors, highlighting health disparities and advocating for targeted healthcare policies. Both studies underscore the importance of advanced statistical techniques, such as Lasso regression, in understanding complex datasets to inform policy decisions and improve outcomes in transportation safety and healthcare.
+Efron et al. (2004)[@annalsofstatistics] introduced Least Angle Regression (LARS) as adept for high-dimensional data analysis, emphasizing its suitability for large datasets with thousands of predictors. LARS enables efficient feature selection and model building, particularly when adapted for Lasso regression. By combining LARS with Lasso, researchers can select relevant features, manage high-dimensional data, and improve prediction accuracy while mitigating multicollinearity and overfitting concerns. [@10341221] research introduced a novel approach to predicting heart disease by leveraging a sophisticated computer model. By integrating LASSO, a technique akin to a smart sieve for crucial information, with other methods, the accuracy of predictions is enhanced. It showcases how advanced computer methods can assist doctors in foreseeing health issues preemptively, potentially leading to improved prevention and treatment strategies for heart disease. Researchers analyzed extensive health data, identifying key factors using LASSO, and developed a highly effective predictive model. This could translate to earlier and personalized care for individuals at risk of heart disease, promising significant advancements in healthcare.
+
 Indeed, these and many more diverse applications are a testament to the potency of LASSO regression as a powerful tool in the arsenal of researchers and practitioners across disciplines, as they grapple with increasingly high-resolution and large datasets. By simplifying complex models and identifying important predictors from large datasets, LASSO regression has cemented itself as an essential part of modern statistical analysis and predictive modeling [@Belloni2013; @Zou2005; @Witten2010; @Tibshirani2012].
 
 
 
 ## Methods
 
-The common non-parametric regression model is
-$Y_i = m(X_i) + \varepsilon_i$, where $Y_i$ can be defined as the sum of
-the regression function value $m(x)$ for $X_i$. Here $m(x)$ is unknown
-and $\varepsilon_i$ some errors. With the help of this definition, we
-can create the estimation for local averaging i.e. $m(x)$ can be
-estimated with the product of $Y_i$ average and $X_i$ is near to $x$. In
-other words, this means that we are discovering the line through the
-data points with the help of surrounding data points. The estimation
-formula is printed below [@R-base]:
+## Analysis of the dataset and Results
 
-$$
-M_n(x) = \sum_{i=1}^{n} W_n (X_i) Y_i  \tag{1}
-$$ $W_n(x)$ is the sum of weights that belongs to all real numbers.
-Weights are positive numbers and small if $X_i$ is far from $x$.
+## Dataset RetSchool
 
-Another equation:
+```{r}
+library(readr)
+data_RetSchool <- read_csv("RetSchool.csv")
+print(data_RetSchool, n = 10)
+summary(data_RetSchool)
+```
 
-$$
-y_i = \beta_0 + \beta_1 X_1 +\varepsilon_i
-$$
+The choice of a dataset like "RetSchool.csv":
 
-## Analysis and Results
+The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
+
+This dataset provides a rich collection of socio-economic and demographic information about individuals, focusing on their wages, education levels, work experience, and other personal and family background characteristics.Here's an overview of the dataset and the key variables it includes:
+
+## Key Variables:
+
+•	wage76: The wage of individuals in 1976, providing insight into the economic status and disparities within the population.
+
+•	grade76: The highest grade completed by 1976, indicating the educational attainment and its distribution among individuals.
+
+•	exp76: Work experience in years by 1976, shedding light on the labor market engagement and its impact on wages.
+
+•	black: A binary variable indicating whether an individual is black, offering a lens into the racial composition of the dataset.
+
+•	south76: Indicates whether an individual lived in the South in 1976, allowing for regional analysis and its impact on socio-economic outcomes.
+
+•	smsa76: A binary variable indicating residence in a Standard Metropolitan Statistical Area (SMSA) in 1976, relevant for urban versus rural disparities.
+
+•	region: Categorical variable representing different regions, useful for understanding geographic influences on economic and educational outcomes.
+
+•	momdad14, sinmom14: Variables indicating living situations at age 14, which can be crucial for studies on family structure and its effects on individual development.
+
+•	daded, momed: Education levels of dad and mom, respectively, providing data on family background and its potential influence on educational attainment.
+
+•	age76: Age of individuals in 1976, necessary for demographic analyses and understanding the age distribution of the workforce.
+
+•	col4: An unspecified indicator variable, the context of which would need clarification for meaningful analysis.
+
+## Insights and Implications from the dataset
+
+The RetSchool dataset offers a comprehensive view of the interplay between education, work experience, and wages, highlighting the positive correlation between educational attainment and economic outcomes. It also underscores the significant impact of demographic factors such as race, region, and family background on these outcomes.
+The diversity in educational attainment, work experience, and wages across different demographic groups suggests the presence of underlying socio-economic disparities. The dataset allows for an exploration of how early-life conditions, including family structure and parental education, affect later-life economic success.
+
 
 ### Data and Visualization
 
-A study was conducted to determine how...
-
-```{r, warning=FALSE, echo=T, message=FALSE}
-# loading packages 
-library(tidyverse)
-library(knitr)
-library(ggthemes)
-library(ggrepel)
-library(dslabs)
-```
-
-```{r, warning=FALSE, echo=TRUE}
-# Load Data
-kable(head(murders))
-
-ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total)) 
-
-  ggplot1 + geom_point(aes(col=region), size = 4) +
-  geom_text_repel(aes(label=abb)) +
-  scale_x_log10() +
-  scale_y_log10() +
-  geom_smooth(formula = "y~x", method=lm,se = F)+
-  xlab("Populations in millions (log10 scale)") + 
-  ylab("Total number of murders (log10 scale)") +
-  ggtitle("US Gun Murders in 2010") +
-  scale_color_discrete(name = "Region")+
-      theme_bw()
-  
-
-```
+Next week [Week 7] a detailed description about the dataset and visualization of results and analysis will be added
 
 ### Statistical Modeling
 
@@ -102,27 +102,59 @@ ggplot1 = murders %>% ggplot(mapping = aes(x=population/10^6, y=total))
 
 ## References
 
-1.	1.	Chunli Zhoua, X. L. (2022). "Influencing factors of the high-quality economic development in China based on LASSO model." Energy Reports, 8, 1055–1065.
+1.Chunli Zhoua, X. L. (2022). "Influencing factors of the high-quality economic development in China based on LASSO model." Energy Reports, 8, 1055–1065.
+
 2.	Yiming Lu, Y. Z. (2011). "A Lasso regression model for the construction of microRNA-target regulatory networks." Bioinformatics, pages 2406–2413.
+
 3.	Shengzheng Wang, B. J. (2017). "Predicting ship fuel consumption based on LASSO regression." Marine Pollution Bulletin, Elsevier, 1361-9209.
+
 4.	Archana J. McEligot, V. P. (2020). "Logistic LASSO Regression for Dietary Intakes and Breast Cancer." Nutrients, 12, 2652.
 5.	Muthukrishnan R, R. R. (2016). "LASSO: A Feature Selection Technique In Predictive Modeling For Machine Learning." IEEE International Conference on Advances in Computer Applications (ICACA), 978-1-5090-3770-4.
+
 6.	Efron, B., Hastie, T., Johnstone, I., & Tibshirani, R. (2004). "Least angle regression." Annals of Statistics, 32(2), 407-499.
+
 7.	Tibshirani, R. (1996). "Regression shrinkage and selection via the lasso." Journal of the Royal Statistical Society: Series B (Methodological), 58(1), 267-288.
+
 8.	Musoro, J.Z., et al. (2014). "Validation of prediction models based on lasso regression with multiply imputed data." BMC Medical Research Methodology.
+
 9.	Chintalapudi, N., et al. (2022). "LASSO Regression Modeling on Prediction of Medical Terms among Seafarers’ Health Documents Using Tidy Text Mining." Bioengineering.
+
 10.	Li, Y., et al. (2022). "Applying logistic LASSO regression for the diagnosis of atypical Crohn's disease." Scientific Reports.
+
 11.	Hastie, T., Tibshirani, R., Friedman, J. (2009). "The Elements of Statistical Learning: Data Mining, Inference, and Prediction." This book provides foundational knowledge on statistical learning techniques, including LASSO.
+
 12.	Simon, N., et al. (2013). "Regularization Paths for Cox’s Proportional Hazards Model via Coordinate Descent." Journal of Statistical Software. This paper discusses extensions of LASSO for survival analysis.
+
 13.	Friedman, J., Hastie, T., Tibshirani, R. (2010). "Regularization Paths for Generalized Linear Models via Coordinate Descent." Journal of Statistical Software. This work extends LASSO to a broader class of models.
+
 14.	Zou, H., Hastie, T. (2005). "Regularization and variable selection via the elastic net." Journal of the Royal Statistical Society: Series B. This paper introduces the Elastic Net, a significant extension of LASSO.
+
 15.	Meinshausen, N., Bühlmann, P. (2006). "High-dimensional graphs and variable selection with the Lasso." Annals of Statistics. This study explores the use of LASSO for variable selection in high-dimensional graphs.
+
 16.	Tibshirani, R., et al. (2012). "Strong rules for discarding predictors in lasso-type problems." Journal of the Royal Statistical Society: Series B. This paper discusses computational techniques to enhance LASSO's efficiency.
+
 17.	Park, M.Y., Hastie, T. (2008). "Penalized logistic regression for detecting gene interactions." Biostatistics. This study applies LASSO in a genetic context to detect interactions.
+
 18.	Belloni, A., Chernozhukov, V. (2013). "Least squares after model selection in high-dimensional sparse models." Bernoulli. This paper addresses post-model selection inference, relevant for LASSO applications.
+
 19.	Witten, Daniela M., and Robert Tibshirani. "A Framework for Feature Selection in Clustering." Journal of the American Statistical Association, vol. 105, no. 490, 2010, pp. 713-726.
+
 20.	Sauerbrei, Willi, et al. "On Stability Issues in Deriving Multivariable Regression Models." Biometrical Journal, vol. 57, no. 4, 2015, pp. 531-555.
+
 21.	Zhao, Peng, and Bin Yu. "On Model Selection Consistency of Lasso." Journal of Machine Learning Research, vol. 7, Nov. 2006, pp. 2541-2563.
+
 22.	Fan, Jianqing, and Jinchi Lv. "Nonconcave Penalized Likelihood with NP-Dimensionality." IEEE Transactions on Information Theory, vol. 57, no. 8, 2011, pp. 5467-5484.
+
 23.	Hastie, Trevor, et al. "Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares." Journal of Machine Learning Research, vol. 16, 2015, pp. 3367-3402.
+
+24. Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighbourhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024). 
+
+25. Sohaee, N.; Bohluli, S. Nonlinear Analysis of the Effects of Socioeconomic, Demographic, and Technological Factors on the Number of Fatal Traffic Accidents. Safety 2024, 10, 11. https://doi.org/10.3390/safety10010011 
+
+26. Bradley 	Efron. Trevor 	Hastie. Iain 	Johnstone. Robert Tibshirani. "Least angle regression." Ann. Statist. 32 (2) 407 - 499, April 2004. https://doi.org/10.1214/009053604000000067 
+
+27. A. Jafar and M. Lee, "HypGB: High Accuracy GB Classifier for Predicting Heart Disease with HyperOpt HPO Framework and LASSO FS Method," in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. 
+ 
+28.RetSchool Dataset: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html,
+https://vincentarelbundock.github.io/Rdatasets/articles/data.html
 
