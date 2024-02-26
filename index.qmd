@@ -21,7 +21,7 @@ editor:
 
 LASSO, Least Absolute Shrinkage and Selection Operator, is a penalized linear regression method that reduces the number of variables in the model, useful for avoiding overfitting. It works by minimizing the residual sum of squares subject to the sum of the absolute value of the coefficients being less than a constant, simplifying the model and potentially improving prediction accuracy.
 
-In 1996, Robert Tibshirani introduced LASSO regression to further the discussion about variable selection [@Tibshirani1996]. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. in 2004 [@Efron2004]. 
+In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004]  in 2004. 
 
 LASSO regression has particularly become a key instrument with which to insight the complex dynamics underlying socioeconomic trends, public health outcomes, and environmental studies—hence, significantly enriching the toolset available to the data scientist [@Belloni2013], [@Park2008]. Logistic regression is further extended by integration with the capabilities of LASSO, offering a refined method in prediction for the categorical outcomes [@Li2022]. This synergy provides a response to long-term barriers to predictive modeling such as overfitting and multicollinearity with a scope of applications in, in particular, economic forecasting and health diagnostics, amongst many more [@Sauerbrei2015].
 
@@ -34,14 +34,14 @@ Indeed, the way of LASSO development has been marked by a series of important de
 
 ## Literature Review
 
-The versatility of LASSO regression is reflected in the extensive literature discussing its various applications. Notably, LASSO regression has made significant contributions to economics. For example, Zhou et al. (2022) used the LASSO model to investigate what determines the growth of quality of life in China and found that the LASSO model is a good tool for selecting important economic predictors out of a large number of regressors [@Zhou2022]. Thus, it makes important improvements on economic models useful for economic policy stakeholders and researchers in how to promote economic growth. The technique has also been critical for important developments in the area of bioinformatics. 
+The versatility of LASSO regression is reflected in the extensive literature discussing its various applications. Notably, LASSO regression has made significant contributions to economics. For example, Zhou et al. (2022)[@Zhou2022] used the LASSO model to investigate what determines the growth of quality of life in China and found that the LASSO model is a good tool for selecting important economic predictors out of a large number of regressors. Thus, it makes important improvements on economic models useful for economic policy stakeholders and researchers in how to promote economic growth. The technique has also been critical for important developments in the area of bioinformatics. 
 
-Lu, et al. (2011) showed how LASSO regression can be applied to constructing predictive models — based on gene expressions and other high-throughput data — to understand the relationships between gene expressions and multiple phenotypes, which are critical for understanding genetic pathways and cell systems [@Lu2011]. In this example, the LASSO regression was used to build a microRNA-target regulatory network, which provides insight into gene regulation mechanisms, as well as applications in personalized medicine and in the understanding of genetic diseases [@Musoro2014].
-LASSO regression has expedited the processing and analysis of large datasets in the environmental and energy sectors. Wang et al. (2017) detailed its use in predicting ship fuel consumption for diminished environmental impact and increased fuel efficiency in maritime operations [@Wang2017].
+Lu, et al. (2011) [@Lu2011] showed how LASSO regression can be applied to constructing predictive models — based on gene expressions and other high-throughput data — to understand the relationships between gene expressions and multiple phenotypes, which are critical for understanding genetic pathways and cell systems. In this example, the LASSO regression was used to build a microRNA-target regulatory network, which provides insight into gene regulation mechanisms, as well as applications in personalized medicine and in the understanding of genetic diseases [@Musoro2014].
+LASSO regression has expedited the processing and analysis of large datasets in the environmental and energy sectors. Wang et al. (2017) [@Wang2017] detailed its use in predicting ship fuel consumption for diminished environmental impact and increased fuel efficiency in maritime operations.
 
-LASSO regression aids in selecting the most informative variables that influence fuel usage and empowers the maritime industry's sustainability and operational performance efforts. LASSO regression has been a meaningful addition to the analysis of multi-factorial diseases and health outcomes in public health research. In an analysis of dietary intakes for breast cancer, McEligot et al. (2020) showed that logistic LASSO can handle high-dimensional data to uncover the key drivers of health, and this has broad applicability in public health for unraveling and prioritizing the risk factors for a variety of illnesses [@McEligot2020]. His role as a facilitator for the development of machine learning models (especially in feature selection) has been pivotal to improving the accuracy of those predictions as LASSO was proving its worthiness time and time again.
+LASSO regression aids in selecting the most informative variables that influence fuel usage and empowers the maritime industry's sustainability and operational performance efforts. LASSO regression has been a meaningful addition to the analysis of multi-factorial diseases and health outcomes in public health research. In an analysis of dietary intakes for breast cancer, McEligot et al. (2020) [@McEligot2020] showed that logistic LASSO can handle high-dimensional data to uncover the key drivers of health, and this has broad applicability in public health for unraveling and prioritizing the risk factors for a variety of illnesses. His role as a facilitator for the development of machine learning models (especially in feature selection) has been pivotal to improving the accuracy of those predictions as LASSO was proving its worthiness time and time again.
 
-Muthukrishnan and Rohini (2016) showcased this by demonstrating the ability of LASSO regression “to select the relevant feature attributes of predictive modelling for machine learning” [@Muthukrishnan2016].
+Muthukrishnan and Rohini (2016) [@Muthukrishnan2016] showcased this by demonstrating the ability of LASSO regression “to select the relevant feature attributes of predictive modelling for machine learning”.
 After gaining prominence within the traditional domain, the applications of LASSO regression have extended into new spheres such as financial modeling, where it assists analysts in singling out influential market predictors from large datasets characterized by volatility and noise, eventually translating into forecasts and investment strategies [@Friedman2010; @Hastie2015]. The adaptability and precision of LASSO regression within financial analysis underline its growing promise and popularity. Another field where LASSO regression's ability to parse through voluminous climate variable datasets to extract critical indicators of environmental change has been crucial is climate research and sustainability studies. The power of this application is not only a testament to the adaptability but also reflects the urgency in deploying LASSO regression in the face of challenges such as global warming and biodiversity loss, where parsing through complex environmental patterns becomes critical to devising strategies to mitigate its devastating impacts [@Chintalapudi2022; @Li2022]. 
 
 Digital health technologies have opened a trove of opportunities for LASSO regression to analyze the complex interplay between individual lifestyle factors, genetic predispositions, and health outcomes. The inclusion of LASSO in this field of research is an acknowledgement that it is uniquely suited to handle complex, multidimensional data that is needed to understand and generate personalized medicine or public health interventions—a frontier of healthcare that holds promise for applications where LASSO's valuable data-driven insights can be channeled to address bespoke health solutions [@Simon2013; @Park2008] and Sohaee and Bohluli (2024b)[@2024b] employ Lasso polynomial regression to analyze the intricate relationship between socioeconomic, demographic, and technological factors and fatal traffic accidents, demonstrating its effectiveness in handling categorical variables and preventing overfitting. In their study on breast cancer screening adherence (Sohaee and Bohluli 2024a)[@2024a], they utilized Lasso regression to identify significant predictors from various socioeconomic factors, highlighting health disparities and advocating for targeted healthcare policies. Both studies underscore the importance of advanced statistical techniques, such as Lasso regression, in understanding complex datasets to inform policy decisions and improve outcomes in transportation safety and healthcare.
@@ -58,16 +58,16 @@ Indeed, these and many more diverse applications are a testament to the potency 
 
 ## Dataset RetSchool
 
+The choice of a dataset like "RetSchool.csv":
+
+The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
+
 ```{r}
 library(readr)
 data_RetSchool <- read_csv("RetSchool.csv")
 print(data_RetSchool, n = 10)
 summary(data_RetSchool)
 ```
-
-The choice of a dataset like "RetSchool.csv":
-
-The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
 
 This dataset provides a rich collection of socio-economic and demographic information about individuals, focusing on their wages, education levels, work experience, and other personal and family background characteristics.Here's an overview of the dataset and the key variables it includes:
 
@@ -103,7 +103,164 @@ The diversity in educational attainment, work experience, and wages across diffe
 
 ### Data and Visualization
 
-Next week [Week 7] a detailed description about the dataset and visualization of results and analysis will be added
+```{r}
+library(ggplot2)
+library(patchwork)
+
+data_RetSchool <- read.csv("RetSchool.csv")
+
+# Create the 'LivingSituationAt14' column based on existing data
+
+data_RetSchool$LivingSituationAt14 <- ifelse(data_RetSchool$momdad14 == 1, 'Both Parents', 
+                                   ifelse(data_RetSchool$sinmom14 == 1, 'Single Mom', 'Other'))
+data_RetSchool$LivingSituationAt14 <- factor(data_RetSchool$LivingSituationAt14)
+
+
+```
+
+
+```{r}
+library(ggplot2)
+library(patchwork)
+
+# Summary Statistics Plots
+# Histograms and density plots for wage76, grade76, and exp76
+p_wage_hist <- ggplot(data_RetSchool, aes(x = wage76)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+  geom_density(alpha = .2, fill = "#FF6666") +
+  labs(title = "Distribution of wage76")
+
+p_grade_hist <- ggplot(data_RetSchool, aes(x = grade76)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+  geom_density(alpha = .2, fill = "#FF6666") +
+  labs(title = "Distribution of grade76")
+
+p_exp_hist <- ggplot(data_RetSchool, aes(x = exp76)) +
+  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
+  geom_density(alpha = .2, fill = "#FF6666") +
+  labs(title = "Distribution of exp76")
+
+# Box plots for wage76, grade76, and exp76
+p_wage_box <- ggplot(data_RetSchool, aes(y = wage76)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(title = "Box Plot of wage76")
+
+p_grade_box <- ggplot(data_RetSchool, aes(y = grade76)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(title = "Box Plot of grade76")
+
+p_exp_box <- ggplot(data_RetSchool, aes(y = exp76)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(title = "Box Plot of exp76")
+
+# Combine the plots into a single layout
+summary_stats_layout <- (p_wage_hist | p_grade_hist | p_exp_hist) / 
+                        (p_wage_box | p_grade_box | p_exp_box) + 
+                        plot_annotation(title = "Summary Statistics of Key Numeric Variables")
+print(summary_stats_layout)
+```
+
+
+### Summary Statistics of Key Numeric Variables
+### Distribution and Box Plot Analysis:
+
+•	Wage in 1976 (wage76):
+o	The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data.
+o	The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.
+
+•	Education Level in 1976 (grade76):
+o	The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college).
+o	The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
+
+•	Work Experience in 1976 (exp76):
+o	The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience.
+o	The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
+
+These visualizations help in understanding the basic characteristics of the dataset, including the central tendency and variability of wages, education levels, and work experience among the individuals in 1976. The presence of skewness and outliers in these distributions indicates the diversity in the economic and educational background of the population studied.
+
+### Wage Distribution by Living Situation at Age 14:
+
+```{r}
+#Wage Distribution by Living Situation at Age 14
+p_wage_distribution <- ggplot(data_RetSchool, aes(x = wage76)) + geom_histogram(aes(y = after_stat(density)), bins = 20, fill = "skyblue", color = "black") + geom_density(alpha = 0.2, fill = "#FF6666") + facet_wrap(~ LivingSituationAt14, scales = "free_y") + labs(title = "Wage Distribution by Living Situation at Age 14", x = "Wage in 1976 (wage76)", y = "Density") + theme_minimal()
+#ggsave("wage_distribution_by_living_situation.png", p_wage_distribution, width = 12, height = 4)
+
+print(p_wage_distribution)
+```
+
+The faceted charts provide a comparison of wage distribution in 1976 (wage76) across different living situations at age 14, namely "Both Parents", "Single Mom", and "Other". Each facet represents a histogram of wage distribution for a specific living situation, allowing for direct comparison. Key insights:
+
+•	General Distribution: Across all living situations, the wage distribution is right-skewed, indicating a majority of individuals earning lower wages with a tail of higher earners.
+
+•	Differences in Distribution: While the overall shape of the distribution appears similar across different living situations, there are subtle differences in the spread and peaks of the distributions. This suggests that living situation at age 14 may have some influence on wage outcomes, but the effect is not starkly different when visualized this way.
+
+•	Variability: The presence of variability within each living situation category underscores the complexity of factors influencing wage, beyond just early life living conditions.
+
+Demographic Anaysis: 
+
+```{r}
+
+#Demographic Analysis Plots
+p_race <- ggplot(data_RetSchool, aes(x = as.factor(black))) + geom_bar(fill = "skyblue") + labs(title = "Distribution by Race", x = "Race (1=Black, 0=Not Black)", y = "Count") + theme_minimal()
+
+p_region <- ggplot(data_RetSchool, aes(x = as.factor(region))) + geom_bar(fill = "lightgreen") + labs(title = "Distribution by Region", x = "Region", y = "Count") + theme_minimal()
+
+p_living_situation <- ggplot(data_RetSchool, aes(x = LivingSituationAt14)) + geom_bar(fill = "lightcoral") + labs(title = "Living Situation at Age 14", x = "Living Situation", y = "Count") + theme_minimal()
+#Combine the demographic plots into one figure
+
+demographic_plot <- (p_race | p_region | p_living_situation) + plot_layout(guides = 'collect') & theme(plot.title = element_text(hjust = 0.5))
+
+#ggsave("demographic_analysis.png", demographic_plot, width = 18, height = 6)
+
+print(demographic_plot)
+
+```
+ 
+Demographic Analysis:
+ The bar charts provide insights into the demographic composition of the dataset based on race, region, and living situation at age 14.
+ 
+Distribution by Race:
+•	The dataset includes a larger number of individuals who are not black compared to those who are black. This distribution is crucial for understanding the racial composition of the study population and assessing the representativeness of the dataset across different racial groups.
+
+Distribution by Region:
+•	The participants are spread across different regions, with varying counts in each. The diversity in region distribution can help analyze regional influences on wages, education, and other factors of interest.
+
+Living Situation at Age 14:
+•	A significant portion of the participants lived with both parents at age 14, with fewer living with a single mom, and a small number categorized under "Other" living situations. This demographic information can be valuable for studies examining the impact of early family environment on education and economic outcomes.
+
+Comprehensive Demographic Composition:
+•	The combined demographic analysis elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
+
+###Dataset Summary:
+
+The dataset and its visualizations offer a wealth of insights into the socio-economic characteristics of individuals, focusing on aspects such as wages, education, work experience, race, regional distribution, and living situations at age 14. 
+
+Here's a comprehensive summary of the insights derived from the data and visual analyses:
+1. Wage, Education, and Experience Distribution:
+•	Wages in 1976 are right-skewed, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This skewness highlights economic disparities within the population.
+•	Education Levels show a multimodal distribution, with peaks at certain levels likely representing significant milestones in the education system. This suggests the presence of standard education paths followed by the population.
+•	Work Experience also exhibits a right-skewed distribution, with many individuals having lower levels of experience. This reflects the younger or less experienced portion of the workforce.
+
+2. Education and Wage Relationship:
+•	There is a positive correlation between education level and wages, suggesting that higher education levels are associated with higher earning potential. However, the wide range in wages at any given education level underscores the influence of other factors, such as field of study, industry, and geographic location, on wages.
+
+3. Work Experience and Wage Relationship:
+•	A positive trend indicates that individuals with more work experience tend to have higher wages, aligning with the expectation that experience contributes to skill development and higher pay. However, the increase in wages appears to plateau beyond a certain level of experience, hinting at a ceiling effect in certain jobs or industries.
+
+4. Demographic Analysis:
+•	Race: The dataset reveals a larger number of non-black individuals compared to black individuals, providing a crucial perspective on the racial composition of the study population.
+•	Region: The participants are spread across different regions, with variable counts, indicating regional diversity that could influence economic outcomes.
+•	Living Situation at Age 14: A significant portion of the participants lived with both parents at age 14, suggesting a predominant family structure. The differences in living situations may have implications for educational and economic outcomes.
+
+5. Correlation Matrix Insights:
+•	The correlation matrix provides a nuanced understanding of how different variables interact. Notably, education level and work experience show positive correlations with wages, but the strength of these relationships varies, highlighting the multifaceted nature of wage determination.
+
+6. Comprehensive Demographic Composition:
+•	The combined demographic analysis elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
+
+###Summary:
+The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
+
 
 ### Statistical Modeling
 
