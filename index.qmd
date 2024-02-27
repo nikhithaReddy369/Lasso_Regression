@@ -57,11 +57,15 @@ Indeed, these and many more diverse applications are a testament to the potency 
 ## Analysis of the dataset and Results
 
 ## Dataset RetSchool 
-(https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html) from R datasets (https://vincentarelbundock.github.io/Rdatasets/articles/data.html)
+
+RetSchool from R datasets:
+[https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html)
+
+[https://vincentarelbundock.github.io/Rdatasets/articles/data.html](https://vincentarelbundock.github.io/Rdatasets/articles/data.html) 
 
 The choice of a dataset like "RetSchool.csv":
 
-The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
+This dataset provides a thorough overview of the socioeconomic environment in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
 
 ## Data Description
 
