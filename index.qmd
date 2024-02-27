@@ -56,7 +56,8 @@ Indeed, these and many more diverse applications are a testament to the potency 
 
 ## Analysis of the dataset and Results
 
-## Dataset RetSchool (https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html) from R datasets (https://vincentarelbundock.github.io/Rdatasets/articles/data.html)
+## Dataset RetSchool 
+(https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html) from R datasets (https://vincentarelbundock.github.io/Rdatasets/articles/data.html)
 
 The choice of a dataset like "RetSchool.csv":
 
