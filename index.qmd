@@ -56,11 +56,36 @@ Indeed, these and many more diverse applications are a testament to the potency 
 
 ## Analysis of the dataset and Results
 
-## Dataset RetSchool
+## Dataset RetSchool (https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html) from R datasets (https://vincentarelbundock.github.io/Rdatasets/articles/data.html)
 
 The choice of a dataset like "RetSchool.csv":
 
 The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
+
+## Data Description
+
+The dataset contains 5,225 entries and 18 columns, indicating a fairly large size in terms of the number of records. Here are some key points observed from the initial examination:
+
+•	Multiple Features: 
+
+There are 18 columns in total, which include a variety of variables such as education level (grade76), experience (exp76), race (black), region indicators (south76, smsa76, region, smsa66), family background (momdad14, sinmom14, nodaded, nomomed, daded, momed, famed), age (age76), and college education indicator (col4). 
+
+This variety suggests a potentially high-dimensional feature space, especially considering interactions or polynomial features could be explored.
+
+•	Missing Values: Some columns have missing values (wage76, grade76, exp76, south76), which LASSO regression can handle well if preprocessing steps include imputation or if the analysis focuses on available data.
+
+•	Binary and Continuous Variables: The dataset comprises both binary (e.g., black, momdad14, sinmom14, nodaded, nomomed, col4) and continuous variables (e.g., wage76, grade76, exp76, daded, momed, age76), suggesting that LASSO could be beneficial in handling a mix of variable types by identifying which variables contribute most to the prediction.
+Given these characteristics, LASSO regression is a strong candidate for several reasons:
+
+1.	Feature Selection: LASSO's ability to shrink coefficients of less relevant features to zero will help in identifying which variables are most predictive of the outcome, likely simplifying the model by excluding variables that do not contribute significantly.
+
+2.	Handling Multicollinearity: If variables such as education level and experience are highly correlated, LASSO can help in mitigating multicollinearity by selecting one or a few variables from a group of correlated variables, which enhances model stability and interpretability.
+
+3.	Model Interpretability: With many variables in play, reducing the model to only include significant predictors can make it easier to understand and explain, which is often crucial in research and policy analysis contexts.
+
+4.	Robustness to Overfitting: The regularization aspect of LASSO helps in preventing overfitting, making the model more generalizable to unseen data, which is particularly valuable in predictive modeling.
+
+
 
 ```{r}
 library(readr)
@@ -101,19 +126,15 @@ The RetSchool dataset offers a comprehensive view of the interplay between educa
 The diversity in educational attainment, work experience, and wages across different demographic groups suggests the presence of underlying socio-economic disparities. The dataset allows for an exploration of how early-life conditions, including family structure and parental education, affect later-life economic success.
 
 
-### Data and Visualization
+### Data and Visualization Week 7
 
 ```{r}
 library(ggplot2)
 library(patchwork)
 
+
 data_RetSchool <- read.csv("RetSchool.csv")
-
-# Create the 'LivingSituationAt14' column based on existing data
-
-data_RetSchool$LivingSituationAt14 <- ifelse(data_RetSchool$momdad14 == 1, 'Both Parents', 
-                                   ifelse(data_RetSchool$sinmom14 == 1, 'Single Mom', 'Other'))
-data_RetSchool$LivingSituationAt14 <- factor(data_RetSchool$LivingSituationAt14)
+data_RetSchool <- na.omit(data_RetSchool)
 
 
 ```
@@ -178,6 +199,15 @@ o	The box plot for exp76 shows the presence of outliers with exceptionally high 
 
 These visualizations help in understanding the basic characteristics of the dataset, including the central tendency and variability of wages, education levels, and work experience among the individuals in 1976. The presence of skewness and outliers in these distributions indicates the diversity in the economic and educational background of the population studied.
 
+```{r}
+# Create the 'LivingSituationAt14' column based on existing data
+
+data_RetSchool$LivingSituationAt14 <- ifelse(data_RetSchool$momdad14 == 1, 'Both Parents', 
+                                   ifelse(data_RetSchool$sinmom14 == 1, 'Single Mom', 'Other'))
+data_RetSchool$LivingSituationAt14 <- factor(data_RetSchool$LivingSituationAt14)
+
+```
+
 ### Wage Distribution by Living Situation at Age 14:
 
 ```{r}
@@ -196,7 +226,30 @@ The faceted charts provide a comparison of wage distribution in 1976 (wage76) ac
 
 •	Variability: The presence of variability within each living situation category underscores the complexity of factors influencing wage, beyond just early life living conditions.
 
-Demographic Anaysis: 
+
+### Correlation Matrix Plot
+
+```{r}
+
+# Correlation Matrix Plot
+library(corrplot)
+cor_matrix <- cor(na.omit(data_RetSchool[sapply(data_RetSchool, is.numeric)]))
+
+corrplot(cor_matrix, method = "color",
+addCoef.col = "black",  # Color of the correlation coefficients
+tl.col = "black",       # Color of the text labels
+tl.srt = 45,            # Rotation of text labels
+tl.cex = 0.7,           # Font size of text labels
+number.cex = 0.5,       # Font size of the correlation coefficients
+cl.cex = 0.7,           # Font size of the color legend
+addgrid.col = "white",  # Color of the grid lines
+tl.pos = "lt",          # Position of text labels (left and top sides)
+diag = FALSE)           # Remove the diagonal
+# Save the plot as a PNG file
+# Plot the correlation matrix with adjusted parameters
+```
+
+Demographic Analysis: 
 
 ```{r}
 
@@ -248,7 +301,7 @@ Here's a comprehensive summary of the insights derived from the data and visual 
 •	A positive trend indicates that individuals with more work experience tend to have higher wages, aligning with the expectation that experience contributes to skill development and higher pay. However, the increase in wages appears to plateau beyond a certain level of experience, hinting at a ceiling effect in certain jobs or industries.
 
 4. Demographic Analysis:
-•	Race: The dataset reveals a larger number of non-black individuals compared to black individuals, providing a crucial perspective on the racial composition of the study population.
+•	Race: The data set reveals a larger number of non-black individuals compared to black individuals, providing a crucial perspective on the racial composition of the study population.
 •	Region: The participants are spread across different regions, with variable counts, indicating regional diversity that could influence economic outcomes.
 •	Living Situation at Age 14: A significant portion of the participants lived with both parents at age 14, suggesting a predominant family structure. The differences in living situations may have implications for educational and economic outcomes.
 
@@ -258,7 +311,7 @@ Here's a comprehensive summary of the insights derived from the data and visual 
 6. Comprehensive Demographic Composition:
 •	The combined demographic analysis elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
 
-###Summary:
+### Summary:
 The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
 
 
