@@ -3456,7 +3456,11 @@ vertical-align: -.125em;
 <section id="methodology" class="level3">
 <h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
 <p>Data Source and Preparation:</p>
-<p>In this study, we leveraged the “RetSchool.csv” dataset, encompassing a diverse range of variables related to education, earnings, and professional experience, to conduct a comprehensive analysis. The dataset underwent a rigorous preparation phase to ensure its adequacy for the intricate process of predictive modeling. This preparation involved the exclusion of entries lacking essential data points in key response variables (namely, wage76, grade76, exp76) to uphold the dataset’s integrity. For variables missing data, we applied sophisticated imputation methods to preserve the dataset’s comprehensiveness, effectively reducing the risk of bias and information loss, a strategy recommended by Little and Rubin (2002)<span class="citation" data-cites="article798">(<a href="#ref-article798" role="doc-biblioref">Little and Rubin 2019</a>)</span>.</p>
+<p>This study adopts a rigorous approach to dissect the intricate relationships between a set of predictors and response variables—namely wage76, grade76, and exp76—within our dataset. The essence of our analysis pivots around meticulous data handling, the strategic application of LASSO regression for diverse outcomes, and a thorough exploration of interaction terms, subgroup analyses, and innovative techniques for managing missing data.</p>
+<p>A cornerstone of our methodology is the acknowledgement and mitigation of the challenges posed by missing data on the reliability of predictive modeling. In light of this, we have implemented two pivotal strategies:</p>
+<p>1.Dropping Rows with Missing Response Variables: To safeguard the robustness of our analysis, we ensured that all instances involving the key response variables wage76, grade76, and exp76 were complete. This selective exclusion is fundamental to precluding biased estimations that could compromise the integrity of our findings.</p>
+<p>2.Imputation of Missing Predictor Variables: In cases of absent predictor variables, we employed a nuanced imputation strategy tailored to the nature of the missing data. Specifically, for continuous variables, we imputed missing values with their median, while categorical variables saw imputation via the mode. This approach is designed to maintain the dataset’s structural coherence and optimize the utilization of available information for modeling purposes.</p>
+<p>These measures are essential for the robustness of the study’s findings, enabling a comprehensive analysis of the relationships between predictors and response variables.</p>
 <p>###Model Specification and Selection</p>
 <p>LASSO (Least Absolute Shrinkage and Selection Operator) regression was employed to predict three distinct response variables: wage76, grade76, and exp76. LASSO regression is particularly suited for scenarios with potential multicollinearity among predictors and for its capability in feature selection, shrinking less significant predictors’ coefficients to zero (Tibshirani, 1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>.</p>
 <p>###Model Performance Evaluation:</p>
@@ -3642,11 +3646,6 @@ col4         .       </code></pre>
 <p>Venturing into alternative methods for handling missing data, such as different imputation strategies or complete case analysis, could lead to notable variations in the performance of the predictive models.</p>
 <p>• Predictive Modeling for Categorical Outcomes:</p>
 <p>In cases dealing with categorical outcomes, like predicting whether an individual attends college, adapting LASSO regression for classification tasks could broaden its utility. This adaptation allows for the efficient handling of binary or multinomial outcomes, thus expanding the scope of LASSO regression to encompass a wider range of predictive scenarios.</p>
-<p>This study adopts a rigorous approach to dissect the intricate relationships between a set of predictors and response variables—namely wage76, grade76, and exp76—within our dataset. The essence of our analysis pivots around meticulous data handling, the strategic application of LASSO regression for diverse outcomes, and a thorough exploration of interaction terms, subgroup analyses, and innovative techniques for managing missing data.</p>
-<p>A cornerstone of our methodology is the acknowledgement and mitigation of the challenges posed by missing data on the reliability of predictive modeling. In light of this, we have implemented two pivotal strategies:</p>
-<p>1.Dropping Rows with Missing Response Variables: To safeguard the robustness of our analysis, we ensured that all instances involving the key response variables wage76, grade76, and exp76 were complete. This selective exclusion is fundamental to precluding biased estimations that could compromise the integrity of our findings.</p>
-<p>2.Imputation of Missing Predictor Variables: In cases of absent predictor variables, we employed a nuanced imputation strategy tailored to the nature of the missing data. Specifically, for continuous variables, we imputed missing values with their median, while categorical variables saw imputation via the mode. This approach is designed to maintain the dataset’s structural coherence and optimize the utilization of available information for modeling purposes.</p>
-<p>These measures are essential for the robustness of the study’s findings, enabling a comprehensive analysis of the relationships between predictors and response variables.</p>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
@@ -3727,9 +3726,6 @@ Jafar, Abbas, and Myungho Lee. 2023. <span>“HypGB: High Accuracy GB Classifier
 </div>
 <div id="ref-Li2022" class="csl-entry" role="listitem">
 Li, et al., Y. 2022. <span>“Applying Logistic LASSO Regression for the Diagnosis of Atypical Crohn’s Disease.”</span> <em>Scientific Reports</em>.
-</div>
-<div id="ref-article798" class="csl-entry" role="listitem">
-Little, Roderick, and Donald Rubin. 2019. <span>“Statistical Analysis with Missing Data, Third Edition,”</span> April. <a href="https://doi.org/10.1002/9781119482260">https://doi.org/10.1002/9781119482260</a>.
 </div>
 <div id="ref-Meinshausen2006" class="csl-entry" role="listitem">
 Meinshausen, N., and P. Bühlmann. 2006. <span>“High-Dimensional Graphs and Variable Selection with the Lasso.”</span> <em>Annals of Statistics</em>.
