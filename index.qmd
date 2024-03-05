@@ -332,17 +332,6 @@ LASSO (Least Absolute Shrinkage and Selection Operator) regression was employed 
 
 ###Model Performance Evaluation:
 
-Model efficacy was gauged through Mean Squared Error (MSE) and R-squared (R²) metrics. These measures provided insights into the model's predictive accuracy and the proportion of variance in the response variables explained by the model.
-o	For wage76, the model reported an MSE of 0.1491 and an R² of 0.2742, indicating a moderate predictive capability.
-
-o	In predicting grade76, the model achieved an MSE of approximately 3.09e-05 and an R² of approximately 0.99999552, showcasing a high degree of accuracy.
-
-o	The prediction of exp76 yielded an MSE of approximately 1.86e-05 and an R² of approximately 0.99999888, further demonstrating the model's predictive precision in certain contexts.
-
-Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)[@Tibshirani1996]. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model's performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).
-
-
-
 ```{r}
 data <- read.csv("RetSchool.csv")
 
@@ -404,6 +393,14 @@ results <- list(
 print(results)
 ```
 
+Model efficacy was gauged through Mean Squared Error (MSE) and R-squared (R²) metrics. These measures provided insights into the model's predictive accuracy and the proportion of variance in the response variables explained by the model.
+o	For wage76, the model reported an MSE of 0.1491 and an R² of 0.2742, indicating a moderate predictive capability.
+
+o	In predicting grade76, the model achieved an MSE of approximately 3.09e-05 and an R² of approximately 0.99999552, showcasing a high degree of accuracy.
+
+o	The prediction of exp76 yielded an MSE of approximately 1.86e-05 and an R² of approximately 0.99999888, further demonstrating the model's predictive precision in certain contexts.
+
+Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)[@Tibshirani1996]. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model's performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).
 
 ##Feature Selection
 
@@ -523,7 +520,7 @@ https://vincentarelbundock.github.io/Rdatasets/articles/data.html
 
 30.Tibshirani, R. (1996). "Regression Shrinkage and Selection via the Lasso." Journal of the Royal Statistical Society, Series B, 58(1), 267-288. Tibshirani's groundbreaking work on LASSO regression underpins our strategy for model selection and complexity reduction, ensuring precise and interpretable predictive modeling.
 
-31. Aiken, L. S., West, S. G., & Reno, R. R. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage.
+31.Aiken, L. S., West, S. G., & Reno, R. R. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage.
 
 32.James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning: with Applications in R. Springer.
 

@@ -3460,10 +3460,6 @@ vertical-align: -.125em;
 <p>###Model Specification and Selection</p>
 <p>LASSO (Least Absolute Shrinkage and Selection Operator) regression was employed to predict three distinct response variables: wage76, grade76, and exp76. LASSO regression is particularly suited for scenarios with potential multicollinearity among predictors and for its capability in feature selection, shrinking less significant predictors’ coefficients to zero (Tibshirani, 1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>.</p>
 <p>###Model Performance Evaluation:</p>
-<p>Model efficacy was gauged through Mean Squared Error (MSE) and R-squared (R²) metrics. These measures provided insights into the model’s predictive accuracy and the proportion of variance in the response variables explained by the model. o For wage76, the model reported an MSE of 0.1491 and an R² of 0.2742, indicating a moderate predictive capability.</p>
-<p>o In predicting grade76, the model achieved an MSE of approximately 3.09e-05 and an R² of approximately 0.99999552, showcasing a high degree of accuracy.</p>
-<p>o The prediction of exp76 yielded an MSE of approximately 1.86e-05 and an R² of approximately 0.99999888, further demonstrating the model’s predictive precision in certain contexts.</p>
-<p>Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model’s performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3626,6 +3622,10 @@ age76        3.049281
 col4         .       </code></pre>
 </div>
 </div>
+<p>Model efficacy was gauged through Mean Squared Error (MSE) and R-squared (R²) metrics. These measures provided insights into the model’s predictive accuracy and the proportion of variance in the response variables explained by the model. o For wage76, the model reported an MSE of 0.1491 and an R² of 0.2742, indicating a moderate predictive capability.</p>
+<p>o In predicting grade76, the model achieved an MSE of approximately 3.09e-05 and an R² of approximately 0.99999552, showcasing a high degree of accuracy.</p>
+<p>o The prediction of exp76 yielded an MSE of approximately 1.86e-05 and an R² of approximately 0.99999888, further demonstrating the model’s predictive precision in certain contexts.</p>
+<p>Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model’s performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).</p>
 <p>##Feature Selection</p>
 <p>The application of LASSO regression facilitated the identification of significant predictors for each response variable by reducing the coefficients of less relevant variables to zero. This process highlights the importance of variables such as parental education levels (daded, momed) in influencing the outcomes in specific scenarios.</p>
 <p>##Implications and Recommendations</p>
@@ -3686,9 +3686,7 @@ col4         .       </code></pre>
 <p>27.A. Jafar and M. Lee, “HypGB: High Accuracy GB Classifier for Predicting Heart Disease with HyperOpt HPO Framework and LASSO FS Method,” in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. 28.RetSchool Dataset: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html, https://vincentarelbundock.github.io/Rdatasets/articles/data.html</p>
 <p>29.Little, R.J.A., &amp; Rubin, D.B. (2002). Statistical Analysis with Missing Data. John Wiley &amp; Sons, Inc. “This seminal text provides foundational insights into the techniques and implications of handling missing data in statistical analysis, informing our methodology’s approach to imputation and data completeness”.</p>
 <p>30.Tibshirani, R. (1996). “Regression Shrinkage and Selection via the Lasso.” Journal of the Royal Statistical Society, Series B, 58(1), 267-288. Tibshirani’s groundbreaking work on LASSO regression underpins our strategy for model selection and complexity reduction, ensuring precise and interpretable predictive modeling.</p>
-<ol start="31" type="1">
-<li>Aiken, L. S., West, S. G., &amp; Reno, R. R. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage.</li>
-</ol>
+<p>31.Aiken, L. S., West, S. G., &amp; Reno, R. R. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage.</p>
 <p>32.James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2013). An Introduction to Statistical Learning: with Applications in R. Springer.</p>
 
 </section>
