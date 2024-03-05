@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam">
-<meta name="dcterms.date" content="2024-02-26">
+<meta name="dcterms.date" content="2024-03-04">
 
 <title>Innovative Data Exploration with LASSO: Unveiling Patterns in Earnings and Education</title>
 <style>
@@ -3114,7 +3114,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 26, 2024</p>
+      <p class="date">March 4, 2024</p>
     </div>
   </div>
   
@@ -3154,8 +3154,6 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="dataset-retschool">Dataset RetSchool</h2>
 <p>RetSchool from R datasets: <a href="https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html">https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html</a></p>
 <p><a href="https://vincentarelbundock.github.io/Rdatasets/articles/data.html">https://vincentarelbundock.github.io/Rdatasets/articles/data.html</a></p>
-<p>The choice of a dataset like “RetSchool.csv”:</p>
-<p>This dataset provides a thorough overview of the socioeconomic environment in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.</p>
 </section>
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
@@ -3171,6 +3169,8 @@ vertical-align: -.125em;
 <li><p>Model Interpretability: With many variables in play, reducing the model to only include significant predictors can make it easier to understand and explain, which is often crucial in research and policy analysis contexts.</p></li>
 <li><p>Robustness to Overfitting: The regularization aspect of LASSO helps in preventing overfitting, making the model more generalizable to unseen data, which is particularly valuable in predictive modeling.</p></li>
 </ol>
+<p>###The choice of a dataset like “RetSchool.csv”:</p>
+<p>This dataset provides a thorough overview of the socioeconomic environment in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3262,17 +3262,15 @@ vertical-align: -.125em;
 <section id="insights-and-implications-from-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="insights-and-implications-from-the-dataset">Insights and Implications from the dataset</h2>
 <p>The RetSchool dataset offers a comprehensive view of the interplay between education, work experience, and wages, highlighting the positive correlation between educational attainment and economic outcomes. It also underscores the significant impact of demographic factors such as race, region, and family background on these outcomes. The diversity in educational attainment, work experience, and wages across different demographic groups suggests the presence of underlying socio-economic disparities. The dataset allows for an exploration of how early-life conditions, including family structure and parental education, affect later-life economic success.</p>
-<section id="data-and-visualization-week-7" class="level3">
-<h3 class="anchored" data-anchor-id="data-and-visualization-week-7">Data and Visualization Week 7</h3>
+<section id="data-visualization-week-7" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization-week-7">Data Visualization: Week 7</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>data_RetSchool <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;RetSchool.csv&quot;</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data_RetSchool <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data_RetSchool)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data_RetSchool <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;RetSchool.csv&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data_RetSchool <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data_RetSchool)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
@@ -3429,14 +3427,17 @@ vertical-align: -.125em;
 </div>
 </div>
 </div>
-<p>Demographic Analysis: The bar charts provide insights into the demographic composition of the dataset based on race, region, and living situation at age 14.</p>
+<p>###Demographic Analysis:</p>
+<p>The bar charts provide insights into the demographic composition of the dataset based on race, region, and living situation at age 14.</p>
 <p>Distribution by Race: • The dataset includes a larger number of individuals who are not black compared to those who are black. This distribution is crucial for understanding the racial composition of the study population and assessing the representativeness of the dataset across different racial groups.</p>
 <p>Distribution by Region: • The participants are spread across different regions, with varying counts in each. The diversity in region distribution can help analyze regional influences on wages, education, and other factors of interest.</p>
 <p>Living Situation at Age 14: • A significant portion of the participants lived with both parents at age 14, with fewer living with a single mom, and a small number categorized under “Other” living situations. This demographic information can be valuable for studies examining the impact of early family environment on education and economic outcomes.</p>
 <p>Comprehensive Demographic Composition: • The combined demographic analysis elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.</p>
 <p>###Dataset Summary:</p>
 <p>The dataset and its visualizations offer a wealth of insights into the socio-economic characteristics of individuals, focusing on aspects such as wages, education, work experience, race, regional distribution, and living situations at age 14.</p>
-<p>Here’s a comprehensive summary of the insights derived from the data and visual analyses: 1. Wage, Education, and Experience Distribution: • Wages in 1976 are right-skewed, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This skewness highlights economic disparities within the population. • Education Levels show a multimodal distribution, with peaks at certain levels likely representing significant milestones in the education system. This suggests the presence of standard education paths followed by the population. • Work Experience also exhibits a right-skewed distribution, with many individuals having lower levels of experience. This reflects the younger or less experienced portion of the workforce.</p>
+<p>Here’s a comprehensive summary of the insights derived from the data and visual analyses: 1. Wage, Education, and Experience Distribution: • Wages in 1976 are right-skewed, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This skewness highlights economic disparities within the population.</p>
+<p>• Education Levels show a multimodal distribution, with peaks at certain levels likely representing significant milestones in the education system. This suggests the presence of standard education paths followed by the population.</p>
+<p>• Work Experience also exhibits a right-skewed distribution, with many individuals having lower levels of experience. This reflects the younger or less experienced portion of the workforce.</p>
 <ol start="2" type="1">
 <li><p>Education and Wage Relationship: • There is a positive correlation between education level and wages, suggesting that higher education levels are associated with higher earning potential. However, the wide range in wages at any given education level underscores the influence of other factors, such as field of study, industry, and geographic location, on wages.</p></li>
 <li><p>Work Experience and Wage Relationship: • A positive trend indicates that individuals with more work experience tend to have higher wages, aligning with the expectation that experience contributes to skill development and higher pay. However, the increase in wages appears to plateau beyond a certain level of experience, hinting at a ceiling effect in certain jobs or industries.</p></li>
@@ -3448,6 +3449,204 @@ vertical-align: -.125em;
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary:</h3>
 <p>The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.</p>
+</section>
+<section id="week-8" class="level3">
+<h3 class="anchored" data-anchor-id="week-8">WEEK 8</h3>
+</section>
+<section id="methodology" class="level3">
+<h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
+<p>Data Source and Preparation:</p>
+<p>In this study, we leveraged the “RetSchool.csv” dataset, encompassing a diverse range of variables related to education, earnings, and professional experience, to conduct a comprehensive analysis. The dataset underwent a rigorous preparation phase to ensure its adequacy for the intricate process of predictive modeling. This preparation involved the exclusion of entries lacking essential data points in key response variables (namely, wage76, grade76, exp76) to uphold the dataset’s integrity. For variables missing data, we applied sophisticated imputation methods to preserve the dataset’s comprehensiveness, effectively reducing the risk of bias and information loss, a strategy recommended by Little and Rubin (2002)<span class="citation" data-cites="article798">(<a href="#ref-article798" role="doc-biblioref">Little and Rubin 2019</a>)</span>.</p>
+<p>###Model Specification and Selection</p>
+<p>LASSO (Least Absolute Shrinkage and Selection Operator) regression was employed to predict three distinct response variables: wage76, grade76, and exp76. LASSO regression is particularly suited for scenarios with potential multicollinearity among predictors and for its capability in feature selection, shrinking less significant predictors’ coefficients to zero (Tibshirani, 1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>.</p>
+<p>###Model Performance Evaluation:</p>
+<p>Model efficacy was gauged through Mean Squared Error (MSE) and R-squared (R²) metrics. These measures provided insights into the model’s predictive accuracy and the proportion of variance in the response variables explained by the model. o For wage76, the model reported an MSE of 0.1491 and an R² of 0.2742, indicating a moderate predictive capability.</p>
+<p>o In predicting grade76, the model achieved an MSE of approximately 3.09e-05 and an R² of approximately 0.99999552, showcasing a high degree of accuracy.</p>
+<p>o The prediction of exp76 yielded an MSE of approximately 1.86e-05 and an R² of approximately 0.99999888, further demonstrating the model’s predictive precision in certain contexts.</p>
+<p>Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model’s performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;RetSchool.csv&quot;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># For data manipulation and visualization</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret) <span class="co"># For modeling and machine learning</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(recipes) <span class="co"># For preprocessing</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet) <span class="co"># For LASSO regression</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function to run scenarios</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>run_scenario <span class="ot">&lt;-</span> <span class="cf">function</span>(data, target, scenario_name) {</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure the target variable is not in the set of predictors</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  predictors <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(data), target)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dropping rows where the target is missing</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  data_scenario <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data[, <span class="fu">c</span>(predictors, target)])</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Preprocessing steps</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  preprocess <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(target, <span class="st">&quot;~ .&quot;</span>)), <span class="at">data =</span> data_scenario) <span class="sc">%&gt;%</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_impute_mean</span>(<span class="fu">all_numeric_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_impute_mode</span>(<span class="fu">all_nominal_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_scale</span>(<span class="fu">all_numeric_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>())</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Splitting the data into training and testing sets</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>training_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_scenario[[target]], <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  train_data <span class="ot">&lt;-</span> data_scenario[training_indices, ]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> data_scenario[<span class="sc">-</span>training_indices, ]</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit the preprocessing steps</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  prepped_data <span class="ot">&lt;-</span> <span class="fu">prep</span>(preprocess, <span class="at">training =</span> train_data)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Preprocessing training and testing data</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  train_processed <span class="ot">&lt;-</span> <span class="fu">bake</span>(prepped_data, <span class="at">new_data =</span> train_data)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  test_processed <span class="ot">&lt;-</span> <span class="fu">bake</span>(prepped_data, <span class="at">new_data =</span> test_data)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Model training with LASSO</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  lasso_model <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.formula</span>(<span class="fu">paste</span>(target, <span class="st">&quot;~ .&quot;</span>)), <span class="at">data =</span> train_processed,</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;glmnet&quot;</span>,</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">5</span>),</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuneGrid =</span> <span class="fu">expand.grid</span>(<span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="fl">0.001</span>, <span class="fl">0.1</span>, <span class="at">length =</span> <span class="dv">10</span>))</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predicting and evaluating the model</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_model, <span class="at">newdata =</span> test_processed)</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((predictions <span class="sc">-</span> test_processed[[target]])<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  r2 <span class="ot">&lt;-</span> <span class="fu">cor</span>(predictions, test_processed[[target]], <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">Scenario =</span> scenario_name, <span class="at">MSE =</span> mse, <span class="at">R2 =</span> r2, <span class="at">Coefficients =</span> <span class="fu">coef</span>(lasso_model<span class="sc">$</span>finalModel, lasso_model<span class="sc">$</span>bestTune<span class="sc">$</span>lambda))</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming &#39;data&#39; has been properly loaded</span></span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_scenario</span>(data, <span class="st">&quot;wage76&quot;</span>, <span class="st">&quot;Predicting wage76&quot;</span>),</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_scenario</span>(data, <span class="st">&quot;grade76&quot;</span>, <span class="st">&quot;Predicting grade76&quot;</span>),</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_scenario</span>(data, <span class="st">&quot;exp76&quot;</span>, <span class="st">&quot;Predicting exp76&quot;</span>)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[[1]]$Scenario
+[1] &quot;Predicting wage76&quot;
+
+[[1]]$MSE
+[1] 0.1317703
+
+[[1]]$R2
+[1] 0.2993766
+
+[[1]]$Coefficients
+18 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                       s1
+(Intercept) -2.903974e-02
+rownames     .           
+grade76      8.656366e-02
+exp76        .           
+black       -7.956846e-02
+south76     -6.068522e-02
+smsa76       6.595130e-02
+region      -1.948163e-04
+smsa66       5.160555e-03
+momdad14     1.469037e-02
+sinmom14     3.124181e-03
+nodaded     -5.887872e-05
+nomomed      3.711276e-03
+daded       -2.378949e-03
+momed        2.625149e-02
+famed        1.796523e-02
+age76        1.188539e-01
+col4         7.934128e-03
+
+
+[[2]]
+[[2]]$Scenario
+[1] &quot;Predicting grade76&quot;
+
+[[2]]$MSE
+[1] 0.006125702
+
+[[2]]$R2
+[1] 0.9998617
+
+[[2]]$Coefficients
+18 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                      s1
+(Intercept) -5.176394086
+rownames     .          
+wage76       0.003646241
+exp76       -4.041394075
+black        .          
+south76      .          
+smsa76       .          
+region       .          
+smsa66       .          
+momdad14     .          
+sinmom14     .          
+nodaded      .          
+nomomed      .          
+daded        .          
+momed        .          
+famed       -0.007532045
+age76        3.011123968
+col4         .          
+
+
+[[3]]
+[[3]]$Scenario
+[1] &quot;Predicting exp76&quot;
+
+[[3]]$MSE
+[1] 0.01745959
+
+[[3]]$R2
+[1] 0.9999924
+
+[[3]]$Coefficients
+18 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
+                   s1
+(Intercept) -5.638656
+rownames     .       
+wage76       .       
+grade76     -2.560698
+black        .       
+south76      .       
+smsa76       .       
+region       .       
+smsa66       .       
+momdad14     .       
+sinmom14     .       
+nodaded      .       
+nomomed      .       
+daded        .       
+momed        .       
+famed        .       
+age76        3.049281
+col4         .       </code></pre>
+</div>
+</div>
+<p>##Feature Selection</p>
+<p>The application of LASSO regression facilitated the identification of significant predictors for each response variable by reducing the coefficients of less relevant variables to zero. This process highlights the importance of variables such as parental education levels (daded, momed) in influencing the outcomes in specific scenarios.</p>
+<p>##Implications and Recommendations</p>
+<p>The study’s findings emphasize the critical importance of careful variable selection and the pivotal role of data quality in the success of predictive modeling efforts. While LASSO regression demonstrated high accuracy in certain instances, its performance was notably variable, contingent on the response variable in question and the dataset’s characteristics. Based on these insights, we propose several avenues for further analysis, including the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows</p>
+<p>• Integration of Multiple Response Variables:</p>
+<p>By crafting a composite score to serve as a novel response variable, researchers can gain deeper insights into the dynamics between education, professional experience, and wage levels.</p>
+<p>• Enhanced Cross-Validation and Parameter Optimization:</p>
+<p>Implementing a variety of cross-validation methods and fine-tuning the regularization parameter specific to LASSO could significantly improve both the accuracy of the model and the precision in selecting relevant features.</p>
+<p>• Incorporation of Interaction Terms:</p>
+<p>The introduction of interaction terms among predictors may reveal intricate relationships that simple linear models fail to capture, offering a more nuanced understanding of the data.</p>
+<p>• Focused Subgroup Analysis:</p>
+<p>Dissecting the dataset into specific subgroups and analyzing these segments can uncover unique patterns and influential factors that differ across various demographics.</p>
+<p>• Innovative Approaches to Missing Data:</p>
+<p>Venturing into alternative methods for handling missing data, such as different imputation strategies or complete case analysis, could lead to notable variations in the performance of the predictive models.</p>
+<p>• Predictive Modeling for Categorical Outcomes:</p>
+<p>In cases dealing with categorical outcomes, like predicting whether an individual attends college, adapting LASSO regression for classification tasks could broaden its utility. This adaptation allows for the efficient handling of binary or multinomial outcomes, thus expanding the scope of LASSO regression to encompass a wider range of predictive scenarios.</p>
+<p>This study adopts a rigorous approach to dissect the intricate relationships between a set of predictors and response variables—namely wage76, grade76, and exp76—within our dataset. The essence of our analysis pivots around meticulous data handling, the strategic application of LASSO regression for diverse outcomes, and a thorough exploration of interaction terms, subgroup analyses, and innovative techniques for managing missing data.</p>
+<p>A cornerstone of our methodology is the acknowledgement and mitigation of the challenges posed by missing data on the reliability of predictive modeling. In light of this, we have implemented two pivotal strategies:</p>
+<p>1.Dropping Rows with Missing Response Variables: To safeguard the robustness of our analysis, we ensured that all instances involving the key response variables wage76, grade76, and exp76 were complete. This selective exclusion is fundamental to precluding biased estimations that could compromise the integrity of our findings.</p>
+<p>2.Imputation of Missing Predictor Variables: In cases of absent predictor variables, we employed a nuanced imputation strategy tailored to the nature of the missing data. Specifically, for continuous variables, we imputed missing values with their median, while categorical variables saw imputation via the mode. This approach is designed to maintain the dataset’s structural coherence and optimize the utilization of available information for modeling purposes.</p>
+<p>These measures are essential for the robustness of the study’s findings, enabling a comprehensive analysis of the relationships between predictors and response variables.</p>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
@@ -3484,8 +3683,13 @@ vertical-align: -.125em;
 <p>24.Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighbourhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024).</p>
 <p>25.Sohaee, N.; Bohluli, S. Nonlinear Analysis of the Effects of Socioeconomic, Demographic, and Technological Factors on the Number of Fatal Traffic Accidents. Safety 2024, 10, 11. https://doi.org/10.3390/safety10010011</p>
 <p>26.Bradley Efron. Trevor Hastie. Iain Johnstone. Robert Tibshirani. “Least angle regression.” Ann. Statist. 32 (2) 407 - 499, April 2004. https://doi.org/10.1214/009053604000000067</p>
-<p>27.A. Jafar and M. Lee, “HypGB: High Accuracy GB Classifier for Predicting Heart Disease with HyperOpt HPO Framework and LASSO FS Method,” in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225.</p>
-<p>28.RetSchool Dataset: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html, https://vincentarelbundock.github.io/Rdatasets/articles/data.html</p>
+<p>27.A. Jafar and M. Lee, “HypGB: High Accuracy GB Classifier for Predicting Heart Disease with HyperOpt HPO Framework and LASSO FS Method,” in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. 28.RetSchool Dataset: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html, https://vincentarelbundock.github.io/Rdatasets/articles/data.html</p>
+<p>29.Little, R.J.A., &amp; Rubin, D.B. (2002). Statistical Analysis with Missing Data. John Wiley &amp; Sons, Inc. “This seminal text provides foundational insights into the techniques and implications of handling missing data in statistical analysis, informing our methodology’s approach to imputation and data completeness”.</p>
+<p>30.Tibshirani, R. (1996). “Regression Shrinkage and Selection via the Lasso.” Journal of the Royal Statistical Society, Series B, 58(1), 267-288. Tibshirani’s groundbreaking work on LASSO regression underpins our strategy for model selection and complexity reduction, ensuring precise and interpretable predictive modeling.</p>
+<ol start="31" type="1">
+<li>Aiken, L. S., West, S. G., &amp; Reno, R. R. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage.</li>
+</ol>
+<p>32.James, G., Witten, D., Hastie, T., &amp; Tibshirani, R. (2013). An Introduction to Statistical Learning: with Applications in R. Springer.</p>
 
 </section>
 
@@ -3525,6 +3729,9 @@ Jafar, Abbas, and Myungho Lee. 2023. <span>“HypGB: High Accuracy GB Classifier
 </div>
 <div id="ref-Li2022" class="csl-entry" role="listitem">
 Li, et al., Y. 2022. <span>“Applying Logistic LASSO Regression for the Diagnosis of Atypical Crohn’s Disease.”</span> <em>Scientific Reports</em>.
+</div>
+<div id="ref-article798" class="csl-entry" role="listitem">
+Little, Roderick, and Donald Rubin. 2019. <span>“Statistical Analysis with Missing Data, Third Edition,”</span> April. <a href="https://doi.org/10.1002/9781119482260">https://doi.org/10.1002/9781119482260</a>.
 </div>
 <div id="ref-Meinshausen2006" class="csl-entry" role="listitem">
 Meinshausen, N., and P. Bühlmann. 2006. <span>“High-Dimensional Graphs and Variable Selection with the Lasso.”</span> <em>Annals of Statistics</em>.
