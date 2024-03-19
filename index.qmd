@@ -319,10 +319,9 @@ LASSO Regression (Least Absolute Shrinkage and Selection Operator) is employed f
 
 1.	Standard Lasso Regression: The basic form of Lasso regression adds a regularization term to the cost function, which is the absolute value of the magnitude of the coefficients. The equation for the Lasso regression is given by:
 
-$$L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣$$
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣
 
 where,
-
 yiyi is the observed outcome, 
 xijxij are the predictor variables, 
 βjβj are the coefficients, 
@@ -332,13 +331,13 @@ pp is the number of predictors, and
 
 2.	Elastic Net: A hybrid of Lasso and Ridge regression methods, Elastic Net adds both L1 and L2 regularization terms to the cost function. It is particularly useful when there are multiple features correlated with each other. The equation for Elastic Net is:
 
-$$L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2$$
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2
 
 where λ1λ1 controls the L1 penalty (Lasso) and λ2λ2 controls the L2 penalty (Ridge).
 
 3.	Adaptive Lasso: The Adaptive Lasso modifies the regularization term by applying weights to each of the coefficients, which allows for different shrinkage levels across coefficients. This variation aims to achieve the consistency of variable selection. The equation is:
 
-$$L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣$$
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣
 
 where wjwj are weights applied to each coefficient.
 
@@ -348,7 +347,7 @@ where wjwj are weights applied to each coefficient.
 
 The equation for Group Lasso is:
 
-$$L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2$$
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2
 
 where GG is the number of groups, pgpg is the size of group gg, and ∣∣βg∣∣2∣∣βg∣∣2 is the L2 norm of the coefficients in group gg.
 
@@ -356,7 +355,7 @@ where GG is the number of groups, pgpg is the size of group gg, and ∣∣βg∣
 
 The objective function of the LASSO model is as follows:
 
-$$minβ{12N∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}minβ{2N1∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}$$
+minβ{12N∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}minβ{2N1∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}
 
 • yiyi : Response variables
 
