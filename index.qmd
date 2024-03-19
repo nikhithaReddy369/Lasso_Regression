@@ -30,8 +30,6 @@ The 21st century continues, and the data revolution heightens. A dataset in rela
 Indeed, the way of LASSO development has been marked by a series of important developments that pinpoint the historical trajectory, including the emergence of Least Angle Regression by Efron and colleagues in pointing out the potential, influence, and continued utility in research [@Zhou2022; @Witten2010]. This cutting-edge technology is used throughout a wide spectrum of industries with the goal of dismantling complex data structures and, eventually, extracting meaningful patterns from trends as socioeconomic, public health, and environmental studies. LASSO regression adapted for logistic models was one of the best steps to ward off the impediments towards modeling categorical data with more precision [@Tibshirani2012].
 
 
-
-
 ## Literature Review
 
 The versatility of LASSO regression is reflected in the extensive literature discussing its various applications. Notably, LASSO regression has made significant contributions to economics. For example, Zhou et al. (2022)[@Zhou2022] used the LASSO model to investigate what determines the growth of quality of life in China and found that the LASSO model is a good tool for selecting important economic predictors out of a large number of regressors. Thus, it makes important improvements on economic models useful for economic policy stakeholders and researchers in how to promote economic growth. The technique has also been critical for important developments in the area of bioinformatics. 
@@ -51,19 +49,13 @@ Efron et al. (2004)[@annalsofstatistics] introduced Least Angle Regression (LARS
 Indeed, these and many more diverse applications are a testament to the potency of LASSO regression as a powerful tool in the arsenal of researchers and practitioners across disciplines, as they grapple with increasingly high-resolution and large datasets. By simplifying complex models and identifying important predictors from large datasets, LASSO regression has cemented itself as an essential part of modern statistical analysis and predictive modeling [@Belloni2013; @Zou2005; @Witten2010; @Tibshirani2012].
 
 
+## Data Description and Analysis
 
-## Methods
-
-## Analysis of the dataset and Results
-
-## Dataset RetSchool 
-
+## Dataset
 RetSchool from R datasets:
 [https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html)
 
 [https://vincentarelbundock.github.io/Rdatasets/articles/data.html](https://vincentarelbundock.github.io/Rdatasets/articles/data.html) 
-
-## Data Description
 
 The dataset contains 5,225 entries and 18 columns, indicating a fairly large size in terms of the number of records. Here are some key points observed from the initial examination:
 
@@ -130,7 +122,7 @@ The RetSchool dataset offers a comprehensive view of the interplay between educa
 The diversity in educational attainment, work experience, and wages across different demographic groups suggests the presence of underlying socio-economic disparities. The dataset allows for an exploration of how early-life conditions, including family structure and parental education, affect later-life economic success.
 
 
-### Data Visualization: Week 7
+### Data Visualization
 
 ```{r}
 library(ggplot2)
@@ -317,139 +309,97 @@ Here's a comprehensive summary of the insights derived from the data and visual 
 ### Summary:
 The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
 
+##Methods
 
-### WEEK 8
+Predictive Modeling and Feature Selection
 
-### Methodology
+##LASSO Regression
 
-Data Source and Preparation:
+LASSO Regression (Least Absolute Shrinkage and Selection Operator) is employed for its dual capability of prediction and feature selection. This penalty term is applied to prevent overfitting and enforce the model to consider only the most important features, potentially reducing the number of variables upon which the given solution is dependent. Below are the different types of Lasso regression and their respective equations:
 
-This study adopts a rigorous approach to dissect the intricate relationships between a set of predictors and response variables—namely wage76, grade76, and exp76—within our dataset. The essence of our analysis pivots around meticulous data handling, the strategic application of LASSO regression for diverse outcomes, and a thorough exploration of interaction terms, subgroup analyses, and innovative techniques for managing missing data.
+1.	Standard Lasso Regression: The basic form of Lasso regression adds a regularization term to the cost function, which is the absolute value of the magnitude of the coefficients. The equation for the Lasso regression is given by:
 
-A cornerstone of our methodology is the acknowledgement and mitigation of the challenges posed by missing data on the reliability of predictive modeling. In light of this, we have implemented two pivotal strategies:
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣
 
-1.Dropping Rows with Missing Response Variables: To safeguard the robustness of our analysis, we ensured that all instances involving the key response variables wage76, grade76, and exp76 were complete. This selective exclusion is fundamental to precluding biased estimations that could compromise the integrity of our findings.
+where,
 
+yiyi is the observed outcome, 
+xijxij are the predictor variables, 
+βjβj are the coefficients, 
+nn is the number of observations, 
+pp is the number of predictors, and 
+λλ is the regularization parameter that controls the amount of shrinkage applied to the coefficients.
 
-2.Imputation of Missing Predictor Variables: In cases of absent predictor variables, we employed a nuanced imputation strategy tailored to the nature of the missing data. Specifically, for continuous variables, we imputed missing values with their median, while categorical variables saw imputation via the mode. This approach is designed to maintain the dataset's structural coherence and optimize the utilization of available information for modeling purposes.
+2.	Elastic Net: A hybrid of Lasso and Ridge regression methods, Elastic Net adds both L1 and L2 regularization terms to the cost function. It is particularly useful when there are multiple features correlated with each other. The equation for Elastic Net is:
 
-###Predictive Modeling and Feature Selection
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2
 
-###LASSO Regression
+where λ1λ1 controls the L1 penalty (Lasso) and λ2λ2 controls the L2 penalty (Ridge).
 
-LASSO Regression, standing for Least Absolute Shrinkage and Selection Operator, serves a dual purpose in this study: prediction and feature selection. The model is elegantly formulated to balance predictive accuracy with model simplicity, automatically selecting a subset of predictors that contribute most significantly to the outcome.
+3.	Adaptive Lasso: The Adaptive Lasso modifies the regularization term by applying weights to each of the coefficients, which allows for different shrinkage levels across coefficients. This variation aims to achieve the consistency of variable selection. The equation is:
+
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣
+
+where wjwj are weights applied to each coefficient.
+
+4.	LassoCV: LassoCV is not a different type of Lasso regression per se but a method used in practice to find the optimal value of the λλ regularization parameter through cross-validation.
+
+5.	Group Lasso: This variation of Lasso is designed for scenarios where predictor variables can be grouped into clusters. The regularization term is modified to penalize the group of coefficients together rather than individually. 
+
+The equation for Group Lasso is:
+
+L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2
+
+where GG is the number of groups, pgpg is the size of group gg, and ∣∣βg∣∣2∣∣βg∣∣2 is the L2 norm of the coefficients in group gg.
 
 ###Model Formulation
 
-The essence of the LASSO model is captured in its objective function:
+The objective function of the LASSO model is as follows:
 
-minβ{2N1∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}
+minβ{12N∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}minβ{2N1∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}
 
-Here, yi represents the response variables, xij the predictor variables, βj the coefficients, N the number of observations, p the number of predictors, and λ the regularization parameter. The choice of λ plays a critical role in the model's ability to select relevant features and predict outcomes effectively.
+•	yiyi: Response variables
 
+•	xijxij: Predictor variables
+
+•	βjβj: Coefficients
+
+•	NN: Number of observations
+
+•	pp: Number of predictors
+
+•	λλ: Regularization parameter
+
+The choice of λλ is crucial for the model's ability to effectively select relevant features and predict outcomes.
 
 ###Model Performance and Feature Selection
 
-The study's findings reveal that LASSO regression's predictive accuracy varies across different scenarios. For instance, while the model shows moderate accuracy in predicting wage76, it excels in predicting grade76 and exp76. This indicates a strong predictive relationship for certain variables, showcasing the model's effectiveness in feature selection and prediction.
+Our analysis demonstrates LASSO regression's varying predictive accuracy across different scenarios, indicating its effectiveness in feature selection and prediction for specific variables.
 
-These measures are essential for the robustness of the study's findings, enabling a comprehensive analysis of the relationships between predictors and response variables.
+###Methods Techniques
 
-```{r}
-data <- read.csv("RetSchool.csv")
+1.	The inclusion of mathematical models, such as the LASSO regression formula, provides a theoretical underpinning for our predictive modeling. It's essential to understand the role of each component in the equation, from the regularization parameter (λλ) that penalizes the absolute size of coefficients, thereby achieving feature selection, to the objective of minimizing prediction error.
 
-library(tidyverse) # For data manipulation and visualization
-library(caret) # For modeling and machine learning
-library(recipes) # For preprocessing
-library(glmnet) # For LASSO regression
-
-# Define the function to run scenarios
-run_scenario <- function(data, target, scenario_name) {
-  # Ensure the target variable is not in the set of predictors
-  predictors <- setdiff(names(data), target)
-  
-  # Dropping rows where the target is missing
-  data_scenario <- na.omit(data[, c(predictors, target)])
-  
-  # Preprocessing steps
-  preprocess <- recipe(as.formula(paste(target, "~ .")), data = data_scenario) %>%
-    step_impute_mean(all_numeric_predictors(), -all_outcomes()) %>%
-    step_impute_mode(all_nominal_predictors(), -all_outcomes()) %>%
-    step_dummy(all_nominal_predictors(), -all_outcomes()) %>%
-    step_scale(all_numeric_predictors(), -all_outcomes())
-  
-  # Splitting the data into training and testing sets
-  set.seed(0)
-training_indices <- createDataPartition(data_scenario[[target]], p = 0.8, list = FALSE)
-  train_data <- data_scenario[training_indices, ]
-  test_data <- data_scenario[-training_indices, ]
-  
-  # Fit the preprocessing steps
-  prepped_data <- prep(preprocess, training = train_data)
-  
-  # Preprocessing training and testing data
-  train_processed <- bake(prepped_data, new_data = train_data)
-  test_processed <- bake(prepped_data, new_data = test_data)
-  
-  # Model training with LASSO
-  lasso_model <- train(
-    as.formula(paste(target, "~ .")), data = train_processed,
-    method = "glmnet",
-    trControl = trainControl("cv", number = 5),
-    tuneGrid = expand.grid(alpha = 1, lambda = seq(0.001, 0.1, length = 10))
-  )
-  
-  # Predicting and evaluating the model
-  predictions <- predict(lasso_model, newdata = test_processed)
-  mse <- mean((predictions - test_processed[[target]])^2)
-  r2 <- cor(predictions, test_processed[[target]], use = "complete.obs")^2
-  
-  list(Scenario = scenario_name, MSE = mse, R2 = r2, Coefficients = coef(lasso_model$finalModel, lasso_model$bestTune$lambda))
-}
-# Assuming 'data' has been properly loaded
-results <- list(
-  run_scenario(data, "wage76", "Predicting wage76"),
-  run_scenario(data, "grade76", "Predicting grade76"),
-  run_scenario(data, "exp76", "Predicting exp76")
-)
-
-print(results)
-```
-
-
-###Model Performance Evaluation:
-
-Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)[@Tibshirani1996]. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model's performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).
+2.	While Mean Squared Error (MSE) and R-squared (R²) are critical for assessing model performance, our methodology extends beyond these metrics. We explore interaction terms, subgroup analyses, and innovative approaches to manage missing data—each contributing uniquely to the depth and robustness of our analysis.
 
 ###Implications and Recommendations
-
-The study's findings emphasize the critical importance of careful variable selection and the pivotal role of data quality in the success of predictive modeling efforts. While LASSO regression demonstrated high accuracy in certain instances, its performance was notably variable, contingent on the response variable in question and the dataset's characteristics. Based on these insights, we propose several avenues for further analysis, including the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows
-
-
-###Integration of Multiple Response Variables: 
-
-By crafting a composite score to serve as a novel response variable, researchers can gain deeper insights into the dynamics between education, professional experience, and wage levels.
-
-###Enhanced Cross-Validation and Parameter Optimization: 
-
-Implementing a variety of cross-validation methods and fine-tuning the regularization parameter specific to LASSO could significantly improve both the accuracy of the model and the precision in selecting relevant features.
-
-###Incorporation of Interaction Terms: 
-
-The introduction of interaction terms among predictors may reveal intricate relationships that simple linear models fail to capture, offering a more nuanced understanding of the data.
-
-###Focused Subgroup Analysis: 
-
-Dissecting the dataset into specific subgroups and analyzing these segments can uncover unique patterns and influential factors that differ across various demographics.
-
-###Predictive Modeling for Categorical Outcomes: 
-
-In cases dealing with categorical outcomes, like predicting whether an individual attends college, adapting LASSO regression for classification tasks could broaden its utility. This adaptation allows for the efficient handling of binary or multinomial outcomes, thus expanding the scope of LASSO regression to encompass a wider range of predictive scenarios.
+Our findings underscore the importance of meticulous variable selection and the critical role of data quality in predictive modeling success. The variable performance of LASSO regression, depending on the response variable and dataset characteristics, highlights the need for continued exploration of modeling techniques, including composite score development, cross-validation enhancements, and the integration of interaction terms.
 
 
-### WEEK 9
 
+### Methodology
 
-Week 9 analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows
+In this study, we delve into the complex interplay between various predictors and response variables—specifically wage76, grade76, and exp76—utilizing a rigorous data preparation and analysis methodology. A fundamental aspect of our methodology is the acknowledgment and mitigation of the challenges posed by missing data, which significantly impacts the reliability of predictive modeling. To address this, we have adopted two primary strategies:
+
+1.	Dropping Rows with Missing Response Variables: 
+
+Ensuring that our analysis only includes instances with complete data for the key response variables wage76, grade76, and exp76, we aim to prevent biased estimations that could compromise the integrity of our findings.
+
+2.	Imputation of Missing Predictor Variables: 
+
+For missing predictor variables, we employed nuanced imputation strategies tailored to the nature of the missing data. Specifically, continuous variables had missing values imputed with their median, while categorical variables were imputed using the mode. This approach helps maintain the dataset’s structural integrity and optimizes the available information for modeling.
+
+This analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows
 
 1)Integration of Multiple Response Variables
 2)Cross-Validation in LASSO Regression
@@ -509,13 +459,117 @@ The synergy between logistic regression and LASSO regularization proves invaluab
 
 The efficacy and clarity logistic regression with LASSO brings to predicting categorical outcomes render it a favored approach among researchers and practitioners alike, particularly in disciplines eager to decipher the determinants influencing categorical phenomena. Concentrating on pivotal predictors while discarding superfluous ones enhances the model's interpretability, facilitating deeper insights into the driving forces behind observed outcomes.
 
+
+
 ### Statistical Modeling
 
-WEEK 10-12
+This analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, alternative approaches to handling missing data as follows
+
+1)Integration of Multiple Response Variables
+2)Cross-Validation in LASSO Regression
+
+### 1) Integration of Multiple Response Variables:
+
+The methodology involved standardizing key variables (wage76, grade76, exp76) and creating a composite score to serve as the response variable. This composite score aimed to encapsulate the combined influence of education, experience, and wages on the subjects' outcomes.
+
+To ensure the model's robustness and identify the most predictive features while mitigating overfitting, we performed cross-validation. Specifically, we utilized a range of lambda values to determine the optimal degree of regularization. 
+This approach not only enhances model accuracy but also aids in discerning the most significant predictors among the variables considered.
 
 ```{r}
+# Load necessary libraries
+library(readr)
+library(dplyr)
+library(caret)
+library(glmnet)
 
+data_RetSchool <- read_csv("RetSchool.csv")
+
+data_standardized <- data_RetSchool %>%
+  mutate_at(vars(wage76, grade76, exp76), ~scale(.) %>% as.vector())
+
+# Create a composite score (average of standardized scores)
+# Ensure NA values are handled appropriately by using rowMeans with na.rm = TRUE
+data_standardized <- data_standardized %>%
+  mutate(composite_score = rowMeans(select(., wage76, grade76, exp76), na.rm = TRUE))
+
+# Prepare the dataset for LASSO regression
+# Drop 'rownames' if it exists as a column; adjust based on actual data structure
+X_composite <- select(data_standardized, -c(wage76, grade76, exp76, composite_score))
+y_composite <- data_standardized$composite_score
+y_composite[is.na(y_composite)] <- mean(y_composite, na.rm = TRUE)  # Impute missing values in 'y_composite'
+
+# Splitting the data
+set.seed(0)
+trainIndex <- createDataPartition(y_composite, p = 0.8, list = FALSE)
+X_train_composite <- X_composite[trainIndex, ]
+X_test_composite <- X_composite[-trainIndex, ]
+y_train_composite <- y_composite[trainIndex]
+y_test_composite <- y_composite[-trainIndex]
+
+# Impute missing values for training and testing data
+# Choosing median for imputation; you can use a different method if preferred
+preProcessImpute <- preProcess(X_train_composite, method = c("medianImpute"))
+
+X_train_preprocessed_composite <- predict(preProcessImpute, X_train_composite)
+X_test_preprocessed_composite <- predict(preProcessImpute, X_test_composite)
+
+# Further preprocessing for LASSO Regression: centering and scaling
+preProcessScale <- preProcess(X_train_preprocessed_composite, method = c("center", "scale"))
+
+X_train_preprocessed_composite <- predict(preProcessScale, X_train_preprocessed_composite)
+X_test_preprocessed_composite <- predict(preProcessScale, X_test_preprocessed_composite)
+
+# Model Training with LASSO
+lambda_seq <- 10^seq(2, -2, length.out = 100)
+set.seed(0)
+cv_lasso <- cv.glmnet(as.matrix(X_train_preprocessed_composite), y_train_composite, alpha = 1, lambda = lambda_seq)
+best_lambda <- cv_lasso$lambda.min
+
+# Optimize lambda using cross-validation
+lasso_best <- glmnet(as.matrix(X_train_preprocessed_composite), y_train_composite, alpha = 1, lambda = best_lambda)
+
+# Model Prediction and Evaluation
+predictions <- predict(lasso_best, newx = as.matrix(X_test_preprocessed_composite), s = best_lambda)
+mse_composite <- mean((y_test_composite - predictions)^2)
+r2_composite <- summary(lm(predictions ~ y_test_composite))$r.squared
+coefficients <- coef(lasso_best, s = best_lambda)
+coefficient_values <- as.vector(coefficients[-1, ])
+
+# Output the MSE and R^2 values along with non-zero coefficients of the LASSO model
+list(
+  mse_composite = mse_composite, 
+  r2_composite = r2_composite, 
+  coefficients =  coefficient_values # Extract and convert coefficients to numeric
+)
 ```
+
+###Model Performance Insights from Integration of Multiple Response Variables:
+
+
+The LASSO regression model demonstrated a Mean Squared Error (MSE) of 0.1037442 and an R² value of 0.4241031. These metrics suggest a moderate level of predictive accuracy, indicating that the model is capable of explaining approximately 42.4% of the variance in the composite score from the standardized variables of wages, grades, and experience in 1976.
+
+The coefficients resulting from the model reveal insights into the relative importance and influence of each predictor on the composite score. Notably, several predictors have been completely omitted from the model (coefficients shrunk to zero), highlighting LASSO's feature selection capability. Significant predictors include:
+
+A negative coefficient for the second and third predictors (-0.029097511, -0.075627659), suggesting an inverse relationship with the composite outcome. This might indicate that as these variables increase, the composite score tends to decrease, all else being equal.
+
+The 14th predictor shows a substantial positive coefficient (0.272041535), indicating a strong positive influence on the composite score. This could be interpreted as this variable significantly contributing to an increase in the composite outcome.
+
+Other variables exhibit smaller positive and negative coefficients, denoting their varied contributions to the model.
+
+
+### 2) Cross-Validation in LASSO Regression
+
+K-fold cross-validation emerged as a pivotal method in validating the LASSO model's performance. By systematically rotating the validation set across different subsets of the data, this technique provides a comprehensive assessment of the model's predictive capability. The iterative process of training and validating across K folds not only identifies the most effective lambda value but also underscores the model's reliability and robustness in various scenarios.
+
+###Composite Score: A Holistic Approach to Modeling
+
+Introducing a composite score as the response variable stands as a hallmark of this study's innovative approach. This decision underscores an intent to capture the collective impact of critical factors such as education, experience, and wages, rather than evaluating them in isolation. Such a multifaceted approach enables a more holistic understanding of these variables' interrelations and their cumulative effect on outcomes.
+
+###Coefficients and Their Implications
+
+The model's coefficients reveal the direction and magnitude of each predictor's influence on the composite score. Notably, the most substantial positive impact was observed for the coefficient corresponding to the 14th predictor, with a value of 0.280500409, suggesting a significant positive relationship with the composite outcome. Conversely, the third predictor exhibited a notably negative relationship, with a coefficient of -0.088595610. These findings highlight the diverse effects of individual predictors, underscoring the complexity of the underlying relationships.
+
+
 
 ### Conclusion
 

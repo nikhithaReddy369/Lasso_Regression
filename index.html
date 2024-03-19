@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam">
-<meta name="dcterms.date" content="2024-03-11">
+<meta name="dcterms.date" content="2024-03-18">
 
 <title>Innovative Data Exploration with LASSO: Unveiling Patterns in Earnings and Education</title>
 <style>
@@ -3114,7 +3114,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 11, 2024</p>
+      <p class="date">March 18, 2024</p>
     </div>
   </div>
   
@@ -3144,19 +3144,13 @@ vertical-align: -.125em;
 <p>Efron et al. (2004)<span class="citation" data-cites="annalsofstatistics">(<a href="#ref-annalsofstatistics" role="doc-biblioref">Bradley Efron 2014</a>)</span> introduced Least Angle Regression (LARS) as adept for high-dimensional data analysis, emphasizing its suitability for large datasets with thousands of predictors. LARS enables efficient feature selection and model building, particularly when adapted for Lasso regression. By combining LARS with Lasso, researchers can select relevant features, manage high-dimensional data, and improve prediction accuracy while mitigating multicollinearity and overfitting concerns. <span class="citation" data-cites="10341221">(<a href="#ref-10341221" role="doc-biblioref">Jafar and Lee 2023</a>)</span> research introduced a novel approach to predicting heart disease by leveraging a sophisticated computer model. By integrating LASSO, a technique akin to a smart sieve for crucial information, with other methods, the accuracy of predictions is enhanced. It showcases how advanced computer methods can assist doctors in foreseeing health issues preemptively, potentially leading to improved prevention and treatment strategies for heart disease. Researchers analyzed extensive health data, identifying key factors using LASSO, and developed a highly effective predictive model. This could translate to earlier and personalized care for individuals at risk of heart disease, promising significant advancements in healthcare.</p>
 <p>Indeed, these and many more diverse applications are a testament to the potency of LASSO regression as a powerful tool in the arsenal of researchers and practitioners across disciplines, as they grapple with increasingly high-resolution and large datasets. By simplifying complex models and identifying important predictors from large datasets, LASSO regression has cemented itself as an essential part of modern statistical analysis and predictive modeling <span class="citation" data-cites="Belloni2013 Zou2005 Witten2010 Tibshirani2012">(<a href="#ref-Belloni2013" role="doc-biblioref">Belloni and Chernozhukov 2013</a>; <a href="#ref-Zou2005" role="doc-biblioref">Zou and Hastie 2005</a>; <a href="#ref-Witten2010" role="doc-biblioref">Witten and Tibshirani 2010</a>; <a href="#ref-Tibshirani2012" role="doc-biblioref">et al. Tibshirani R. 2012</a>)</span>.</p>
 </section>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="data-description-and-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="data-description-and-analysis">Data Description and Analysis</h2>
 </section>
-<section id="analysis-of-the-dataset-and-results" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-of-the-dataset-and-results">Analysis of the dataset and Results</h2>
-</section>
-<section id="dataset-retschool" class="level2">
-<h2 class="anchored" data-anchor-id="dataset-retschool">Dataset RetSchool</h2>
+<section id="dataset" class="level2">
+<h2 class="anchored" data-anchor-id="dataset">Dataset</h2>
 <p>RetSchool from R datasets: <a href="https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html">https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html</a></p>
 <p><a href="https://vincentarelbundock.github.io/Rdatasets/articles/data.html">https://vincentarelbundock.github.io/Rdatasets/articles/data.html</a></p>
-</section>
-<section id="data-description" class="level2">
-<h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
 <p>The dataset contains 5,225 entries and 18 columns, indicating a fairly large size in terms of the number of records. Here are some key points observed from the initial examination:</p>
 <p>• Multiple Features:</p>
 <p>There are 18 columns in total, which include a variety of variables such as education level (grade76), experience (exp76), race (black), region indicators (south76, smsa76, region, smsa66), family background (momdad14, sinmom14, nodaded, nomomed, daded, momed, famed), age (age76), and college education indicator (col4).</p>
@@ -3262,8 +3256,8 @@ vertical-align: -.125em;
 <section id="insights-and-implications-from-the-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="insights-and-implications-from-the-dataset">Insights and Implications from the dataset</h2>
 <p>The RetSchool dataset offers a comprehensive view of the interplay between education, work experience, and wages, highlighting the positive correlation between educational attainment and economic outcomes. It also underscores the significant impact of demographic factors such as race, region, and family background on these outcomes. The diversity in educational attainment, work experience, and wages across different demographic groups suggests the presence of underlying socio-economic disparities. The dataset allows for an exploration of how early-life conditions, including family structure and parental education, affect later-life economic success.</p>
-<section id="data-visualization-week-7" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization-week-7">Data Visualization: Week 7</h3>
+<section id="data-visualization" class="level3">
+<h3 class="anchored" data-anchor-id="data-visualization">Data Visualization</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3449,207 +3443,64 @@ vertical-align: -.125em;
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary:</h3>
 <p>The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.</p>
-</section>
-<section id="week-8" class="level3">
-<h3 class="anchored" data-anchor-id="week-8">WEEK 8</h3>
+<p>##Methods</p>
+<p>Predictive Modeling and Feature Selection</p>
+<p>##LASSO Regression</p>
+<p>LASSO Regression (Least Absolute Shrinkage and Selection Operator) is employed for its dual capability of prediction and feature selection. This penalty term is applied to prevent overfitting and enforce the model to consider only the most important features, potentially reducing the number of variables upon which the given solution is dependent. Below are the different types of Lasso regression and their respective equations:</p>
+<ol type="1">
+<li>Standard Lasso Regression: The basic form of Lasso regression adds a regularization term to the cost function, which is the absolute value of the magnitude of the coefficients. The equation for the Lasso regression is given by:</li>
+</ol>
+<p>L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣</p>
+<p>where,</p>
+<p>yiyi is the observed outcome, xijxij are the predictor variables, βjβj are the coefficients, nn is the number of observations, pp is the number of predictors, and λλ is the regularization parameter that controls the amount of shrinkage applied to the coefficients.</p>
+<ol start="2" type="1">
+<li>Elastic Net: A hybrid of Lasso and Ridge regression methods, Elastic Net adds both L1 and L2 regularization terms to the cost function. It is particularly useful when there are multiple features correlated with each other. The equation for Elastic Net is:</li>
+</ol>
+<p>L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ1∑j=1p∣βj∣+λ2∑j=1pβj2</p>
+<p>where λ1λ1 controls the L1 penalty (Lasso) and λ2λ2 controls the L2 penalty (Ridge).</p>
+<ol start="3" type="1">
+<li>Adaptive Lasso: The Adaptive Lasso modifies the regularization term by applying weights to each of the coefficients, which allows for different shrinkage levels across coefficients. This variation aims to achieve the consistency of variable selection. The equation is:</li>
+</ol>
+<p>L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑j=1pwj∣βj∣</p>
+<p>where wjwj are weights applied to each coefficient.</p>
+<ol start="4" type="1">
+<li><p>LassoCV: LassoCV is not a different type of Lasso regression per se but a method used in practice to find the optimal value of the λλ regularization parameter through cross-validation.</p></li>
+<li><p>Group Lasso: This variation of Lasso is designed for scenarios where predictor variables can be grouped into clusters. The regularization term is modified to penalize the group of coefficients together rather than individually.</p></li>
+</ol>
+<p>The equation for Group Lasso is:</p>
+<p>L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2L(β)=∑i=1n(yi−β0−∑j=1pβjxij)2+λ∑g=1Gpg∣∣βg∣∣2</p>
+<p>where GG is the number of groups, pgpg is the size of group gg, and ∣∣βg∣∣2∣∣βg∣∣2 is the L2 norm of the coefficients in group gg.</p>
+<p>###Model Formulation</p>
+<p>The objective function of the LASSO model is as follows:</p>
+<p>minβ{12N∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}minβ{2N1∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}</p>
+<p>• yiyi: Response variables</p>
+<p>• xijxij: Predictor variables</p>
+<p>• βjβj: Coefficients</p>
+<p>• NN: Number of observations</p>
+<p>• pp: Number of predictors</p>
+<p>• λλ: Regularization parameter</p>
+<p>The choice of λλ is crucial for the model’s ability to effectively select relevant features and predict outcomes.</p>
+<p>###Model Performance and Feature Selection</p>
+<p>Our analysis demonstrates LASSO regression’s varying predictive accuracy across different scenarios, indicating its effectiveness in feature selection and prediction for specific variables.</p>
+<p>###Methods Techniques</p>
+<ol type="1">
+<li><p>The inclusion of mathematical models, such as the LASSO regression formula, provides a theoretical underpinning for our predictive modeling. It’s essential to understand the role of each component in the equation, from the regularization parameter (λλ) that penalizes the absolute size of coefficients, thereby achieving feature selection, to the objective of minimizing prediction error.</p></li>
+<li><p>While Mean Squared Error (MSE) and R-squared (R²) are critical for assessing model performance, our methodology extends beyond these metrics. We explore interaction terms, subgroup analyses, and innovative approaches to manage missing data—each contributing uniquely to the depth and robustness of our analysis.</p></li>
+</ol>
+<p>###Implications and Recommendations Our findings underscore the importance of meticulous variable selection and the critical role of data quality in predictive modeling success. The variable performance of LASSO regression, depending on the response variable and dataset characteristics, highlights the need for continued exploration of modeling techniques, including composite score development, cross-validation enhancements, and the integration of interaction terms.</p>
 </section>
 <section id="methodology" class="level3">
 <h3 class="anchored" data-anchor-id="methodology">Methodology</h3>
-<p>Data Source and Preparation:</p>
-<p>This study adopts a rigorous approach to dissect the intricate relationships between a set of predictors and response variables—namely wage76, grade76, and exp76—within our dataset. The essence of our analysis pivots around meticulous data handling, the strategic application of LASSO regression for diverse outcomes, and a thorough exploration of interaction terms, subgroup analyses, and innovative techniques for managing missing data.</p>
-<p>A cornerstone of our methodology is the acknowledgement and mitigation of the challenges posed by missing data on the reliability of predictive modeling. In light of this, we have implemented two pivotal strategies:</p>
-<p>1.Dropping Rows with Missing Response Variables: To safeguard the robustness of our analysis, we ensured that all instances involving the key response variables wage76, grade76, and exp76 were complete. This selective exclusion is fundamental to precluding biased estimations that could compromise the integrity of our findings.</p>
-<p>2.Imputation of Missing Predictor Variables: In cases of absent predictor variables, we employed a nuanced imputation strategy tailored to the nature of the missing data. Specifically, for continuous variables, we imputed missing values with their median, while categorical variables saw imputation via the mode. This approach is designed to maintain the dataset’s structural coherence and optimize the utilization of available information for modeling purposes.</p>
-<p>###Predictive Modeling and Feature Selection</p>
-<p>###LASSO Regression</p>
-<p>LASSO Regression, standing for Least Absolute Shrinkage and Selection Operator, serves a dual purpose in this study: prediction and feature selection. The model is elegantly formulated to balance predictive accuracy with model simplicity, automatically selecting a subset of predictors that contribute most significantly to the outcome.</p>
-<p>###Model Formulation</p>
-<p>The essence of the LASSO model is captured in its objective function:</p>
-<p>minβ{2N1∑i=1N(yi−β0−∑j=1pβjxij)2+λ∑j=1p∣βj∣}</p>
-<p>Here, yi represents the response variables, xij the predictor variables, βj the coefficients, N the number of observations, p the number of predictors, and λ the regularization parameter. The choice of λ plays a critical role in the model’s ability to select relevant features and predict outcomes effectively.</p>
-<p>###Model Performance and Feature Selection</p>
-<p>The study’s findings reveal that LASSO regression’s predictive accuracy varies across different scenarios. For instance, while the model shows moderate accuracy in predicting wage76, it excels in predicting grade76 and exp76. This indicates a strong predictive relationship for certain variables, showcasing the model’s effectiveness in feature selection and prediction.</p>
-<p>These measures are essential for the robustness of the study’s findings, enabling a comprehensive analysis of the relationships between predictors and response variables.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;RetSchool.csv&quot;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># For data manipulation and visualization</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret) <span class="co"># For modeling and machine learning</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(recipes) <span class="co"># For preprocessing</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet) <span class="co"># For LASSO regression</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function to run scenarios</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>run_scenario <span class="ot">&lt;-</span> <span class="cf">function</span>(data, target, scenario_name) {</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Ensure the target variable is not in the set of predictors</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  predictors <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(data), target)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dropping rows where the target is missing</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  data_scenario <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(data[, <span class="fu">c</span>(predictors, target)])</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Preprocessing steps</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  preprocess <span class="ot">&lt;-</span> <span class="fu">recipe</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(target, <span class="st">&quot;~ .&quot;</span>)), <span class="at">data =</span> data_scenario) <span class="sc">%&gt;%</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_impute_mean</span>(<span class="fu">all_numeric_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_impute_mode</span>(<span class="fu">all_nominal_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">step_scale</span>(<span class="fu">all_numeric_predictors</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>())</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Splitting the data into training and testing sets</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>training_indices <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(data_scenario[[target]], <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  train_data <span class="ot">&lt;-</span> data_scenario[training_indices, ]</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  test_data <span class="ot">&lt;-</span> data_scenario[<span class="sc">-</span>training_indices, ]</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Fit the preprocessing steps</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  prepped_data <span class="ot">&lt;-</span> <span class="fu">prep</span>(preprocess, <span class="at">training =</span> train_data)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Preprocessing training and testing data</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  train_processed <span class="ot">&lt;-</span> <span class="fu">bake</span>(prepped_data, <span class="at">new_data =</span> train_data)</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  test_processed <span class="ot">&lt;-</span> <span class="fu">bake</span>(prepped_data, <span class="at">new_data =</span> test_data)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Model training with LASSO</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>  lasso_model <span class="ot">&lt;-</span> <span class="fu">train</span>(</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.formula</span>(<span class="fu">paste</span>(target, <span class="st">&quot;~ .&quot;</span>)), <span class="at">data =</span> train_processed,</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;glmnet&quot;</span>,</span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> <span class="fu">trainControl</span>(<span class="st">&quot;cv&quot;</span>, <span class="at">number =</span> <span class="dv">5</span>),</span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">tuneGrid =</span> <span class="fu">expand.grid</span>(<span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> <span class="fu">seq</span>(<span class="fl">0.001</span>, <span class="fl">0.1</span>, <span class="at">length =</span> <span class="dv">10</span>))</span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Predicting and evaluating the model</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_model, <span class="at">newdata =</span> test_processed)</span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>  mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((predictions <span class="sc">-</span> test_processed[[target]])<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  r2 <span class="ot">&lt;-</span> <span class="fu">cor</span>(predictions, test_processed[[target]], <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">Scenario =</span> scenario_name, <span class="at">MSE =</span> mse, <span class="at">R2 =</span> r2, <span class="at">Coefficients =</span> <span class="fu">coef</span>(lasso_model<span class="sc">$</span>finalModel, lasso_model<span class="sc">$</span>bestTune<span class="sc">$</span>lambda))</span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming &#39;data&#39; has been properly loaded</span></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_scenario</span>(data, <span class="st">&quot;wage76&quot;</span>, <span class="st">&quot;Predicting wage76&quot;</span>),</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_scenario</span>(data, <span class="st">&quot;grade76&quot;</span>, <span class="st">&quot;Predicting grade76&quot;</span>),</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_scenario</span>(data, <span class="st">&quot;exp76&quot;</span>, <span class="st">&quot;Predicting exp76&quot;</span>)</span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[[1]]
-[[1]]$Scenario
-[1] &quot;Predicting wage76&quot;
-
-[[1]]$MSE
-[1] 0.1317703
-
-[[1]]$R2
-[1] 0.2993766
-
-[[1]]$Coefficients
-18 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-                       s1
-(Intercept) -2.903974e-02
-rownames     .           
-grade76      8.656366e-02
-exp76        .           
-black       -7.956846e-02
-south76     -6.068522e-02
-smsa76       6.595130e-02
-region      -1.948163e-04
-smsa66       5.160555e-03
-momdad14     1.469037e-02
-sinmom14     3.124181e-03
-nodaded     -5.887872e-05
-nomomed      3.711276e-03
-daded       -2.378949e-03
-momed        2.625149e-02
-famed        1.796523e-02
-age76        1.188539e-01
-col4         7.934128e-03
-
-
-[[2]]
-[[2]]$Scenario
-[1] &quot;Predicting grade76&quot;
-
-[[2]]$MSE
-[1] 0.006125702
-
-[[2]]$R2
-[1] 0.9998617
-
-[[2]]$Coefficients
-18 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-                      s1
-(Intercept) -5.176394086
-rownames     .          
-wage76       0.003646241
-exp76       -4.041394075
-black        .          
-south76      .          
-smsa76       .          
-region       .          
-smsa66       .          
-momdad14     .          
-sinmom14     .          
-nodaded      .          
-nomomed      .          
-daded        .          
-momed        .          
-famed       -0.007532045
-age76        3.011123968
-col4         .          
-
-
-[[3]]
-[[3]]$Scenario
-[1] &quot;Predicting exp76&quot;
-
-[[3]]$MSE
-[1] 0.01745959
-
-[[3]]$R2
-[1] 0.9999924
-
-[[3]]$Coefficients
-18 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-                   s1
-(Intercept) -5.638656
-rownames     .       
-wage76       .       
-grade76     -2.560698
-black        .       
-south76      .       
-smsa76       .       
-region       .       
-smsa66       .       
-momdad14     .       
-sinmom14     .       
-nodaded      .       
-nomomed      .       
-daded        .       
-momed        .       
-famed        .       
-age76        3.049281
-col4         .       </code></pre>
-</div>
-</div>
-<p>###Model Performance Evaluation:</p>
-<p>Our analytical approach employed the LASSO (Least Absolute Shrinkage and Selection Operator) regression technique, renowned for its efficacy in handling multicollinearity and its prowess in selecting relevant features by diminishing the coefficients of lesser variables to zero, as elucidated by Tibshirani (1996)<span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">R. Tibshirani 1996</a>)</span>. The performance of the LASSO regression models was meticulously evaluated using the Mean Squared Error (MSE) and R-squared (R²) metrics to assess predictive accuracy and the variance explained by the models, respectively. The model’s performance varied across different response variables: it exhibited moderate accuracy in predicting wage76 (MSE = 0.1491, R² = 0.2742), exceptional precision in forecasting grade76 (MSE ≈ 3.09e-05, R² ≈ 0.99999552), and similarly high accuracy for exp76 (MSE ≈ 1.86e-05, R² ≈ 0.99999888).</p>
-<p>###Implications and Recommendations</p>
-<p>The study’s findings emphasize the critical importance of careful variable selection and the pivotal role of data quality in the success of predictive modeling efforts. While LASSO regression demonstrated high accuracy in certain instances, its performance was notably variable, contingent on the response variable in question and the dataset’s characteristics. Based on these insights, we propose several avenues for further analysis, including the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows</p>
-<p>###Integration of Multiple Response Variables:</p>
-<p>By crafting a composite score to serve as a novel response variable, researchers can gain deeper insights into the dynamics between education, professional experience, and wage levels.</p>
-<p>###Enhanced Cross-Validation and Parameter Optimization:</p>
-<p>Implementing a variety of cross-validation methods and fine-tuning the regularization parameter specific to LASSO could significantly improve both the accuracy of the model and the precision in selecting relevant features.</p>
-<p>###Incorporation of Interaction Terms:</p>
-<p>The introduction of interaction terms among predictors may reveal intricate relationships that simple linear models fail to capture, offering a more nuanced understanding of the data.</p>
-<p>###Focused Subgroup Analysis:</p>
-<p>Dissecting the dataset into specific subgroups and analyzing these segments can uncover unique patterns and influential factors that differ across various demographics.</p>
-<p>###Predictive Modeling for Categorical Outcomes:</p>
-<p>In cases dealing with categorical outcomes, like predicting whether an individual attends college, adapting LASSO regression for classification tasks could broaden its utility. This adaptation allows for the efficient handling of binary or multinomial outcomes, thus expanding the scope of LASSO regression to encompass a wider range of predictive scenarios.</p>
-</section>
-<section id="week-9" class="level3">
-<h3 class="anchored" data-anchor-id="week-9">WEEK 9</h3>
-<p>Week 9 analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows</p>
+<p>In this study, we delve into the complex interplay between various predictors and response variables—specifically wage76, grade76, and exp76—utilizing a rigorous data preparation and analysis methodology. A fundamental aspect of our methodology is the acknowledgment and mitigation of the challenges posed by missing data, which significantly impacts the reliability of predictive modeling. To address this, we have adopted two primary strategies:</p>
+<ol type="1">
+<li>Dropping Rows with Missing Response Variables:</li>
+</ol>
+<p>Ensuring that our analysis only includes instances with complete data for the key response variables wage76, grade76, and exp76, we aim to prevent biased estimations that could compromise the integrity of our findings.</p>
+<ol start="2" type="1">
+<li>Imputation of Missing Predictor Variables:</li>
+</ol>
+<p>For missing predictor variables, we employed nuanced imputation strategies tailored to the nature of the missing data. Specifically, continuous variables had missing values imputed with their median, while categorical variables were imputed using the mode. This approach helps maintain the dataset’s structural integrity and optimizes the available information for modeling.</p>
+<p>This analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, the inclusion of interaction terms, subgroup analyses, alternative approaches to handling missing data, and the extension of LASSO regression to classification tasks for predicting categorical outcomes, such as college attendance as follows</p>
 <p>1)Integration of Multiple Response Variables 2)Cross-Validation in LASSO Regression 3)Subgroup Analysis: Assessing Variability Across Demographics 4)Interaction Terms: Unveiling Complex Relationships 5)Different Handling of Missing Data 6)Logistic Regression with LASSO for Categorical Outcome Prediction</p>
 </section>
 <section id="integration-of-multiple-response-variables" class="level3">
@@ -3690,7 +3541,109 @@ col4         .       </code></pre>
 </section>
 <section id="statistical-modeling" class="level3">
 <h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
-<p>WEEK 10-12</p>
+<p>This analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, alternative approaches to handling missing data as follows</p>
+<p>1)Integration of Multiple Response Variables 2)Cross-Validation in LASSO Regression</p>
+</section>
+<section id="integration-of-multiple-response-variables-1" class="level3">
+<h3 class="anchored" data-anchor-id="integration-of-multiple-response-variables-1">1) Integration of Multiple Response Variables:</h3>
+<p>The methodology involved standardizing key variables (wage76, grade76, exp76) and creating a composite score to serve as the response variable. This composite score aimed to encapsulate the combined influence of education, experience, and wages on the subjects’ outcomes.</p>
+<p>To ensure the model’s robustness and identify the most predictive features while mitigating overfitting, we performed cross-validation. Specifically, we utilized a range of lambda values to determine the optimal degree of regularization. This approach not only enhances model accuracy but also aids in discerning the most significant predictors among the variables considered.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>data_RetSchool <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;RetSchool.csv&quot;</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>data_standardized <span class="ot">&lt;-</span> data_RetSchool <span class="sc">%&gt;%</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(wage76, grade76, exp76), <span class="sc">~</span><span class="fu">scale</span>(.) <span class="sc">%&gt;%</span> <span class="fu">as.vector</span>())</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a composite score (average of standardized scores)</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure NA values are handled appropriately by using rowMeans with na.rm = TRUE</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>data_standardized <span class="ot">&lt;-</span> data_standardized <span class="sc">%&gt;%</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">composite_score =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., wage76, grade76, exp76), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the dataset for LASSO regression</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop &#39;rownames&#39; if it exists as a column; adjust based on actual data structure</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>X_composite <span class="ot">&lt;-</span> <span class="fu">select</span>(data_standardized, <span class="sc">-</span><span class="fu">c</span>(wage76, grade76, exp76, composite_score))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>y_composite <span class="ot">&lt;-</span> data_standardized<span class="sc">$</span>composite_score</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>y_composite[<span class="fu">is.na</span>(y_composite)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y_composite, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Impute missing values in &#39;y_composite&#39;</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Splitting the data</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(y_composite, <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>X_train_composite <span class="ot">&lt;-</span> X_composite[trainIndex, ]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>X_test_composite <span class="ot">&lt;-</span> X_composite[<span class="sc">-</span>trainIndex, ]</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>y_train_composite <span class="ot">&lt;-</span> y_composite[trainIndex]</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>y_test_composite <span class="ot">&lt;-</span> y_composite[<span class="sc">-</span>trainIndex]</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute missing values for training and testing data</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Choosing median for imputation; you can use a different method if preferred</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>preProcessImpute <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(X_train_composite, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;medianImpute&quot;</span>))</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>X_train_preprocessed_composite <span class="ot">&lt;-</span> <span class="fu">predict</span>(preProcessImpute, X_train_composite)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>X_test_preprocessed_composite <span class="ot">&lt;-</span> <span class="fu">predict</span>(preProcessImpute, X_test_composite)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Further preprocessing for LASSO Regression: centering and scaling</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>preProcessScale <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(X_train_preprocessed_composite, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>))</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>X_train_preprocessed_composite <span class="ot">&lt;-</span> <span class="fu">predict</span>(preProcessScale, X_train_preprocessed_composite)</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>X_test_preprocessed_composite <span class="ot">&lt;-</span> <span class="fu">predict</span>(preProcessScale, X_test_preprocessed_composite)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Training with LASSO</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>lambda_seq <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>cv_lasso <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(<span class="fu">as.matrix</span>(X_train_preprocessed_composite), y_train_composite, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> lambda_seq)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>best_lambda <span class="ot">&lt;-</span> cv_lasso<span class="sc">$</span>lambda.min</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize lambda using cross-validation</span></span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>lasso_best <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(<span class="fu">as.matrix</span>(X_train_preprocessed_composite), y_train_composite, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> best_lambda)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Prediction and Evaluation</span></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_best, <span class="at">newx =</span> <span class="fu">as.matrix</span>(X_test_preprocessed_composite), <span class="at">s =</span> best_lambda)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>mse_composite <span class="ot">&lt;-</span> <span class="fu">mean</span>((y_test_composite <span class="sc">-</span> predictions)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>r2_composite <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(predictions <span class="sc">~</span> y_test_composite))<span class="sc">$</span>r.squared</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>coefficients <span class="ot">&lt;-</span> <span class="fu">coef</span>(lasso_best, <span class="at">s =</span> best_lambda)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>coefficient_values <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(coefficients[<span class="sc">-</span><span class="dv">1</span>, ])</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the MSE and R^2 values along with non-zero coefficients of the LASSO model</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">mse_composite =</span> mse_composite, </span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">r2_composite =</span> r2_composite, </span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">coefficients =</span>  coefficient_values <span class="co"># Extract and convert coefficients to numeric</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$mse_composite
+[1] 0.1037442
+
+$r2_composite
+[1] 0.4241031
+
+$coefficients
+ [1]  0.0000000000 -0.0184384060 -0.0714407815  0.0388512923  0.0024343450
+ [6]  0.0027462841  0.0037453349  0.0000000000  0.0000000000 -0.0001288775
+[11]  0.0104044144  0.0328897896 -0.0188708361  0.2407472544  0.0000000000</code></pre>
+</div>
+</div>
+<p>###Model Performance Insights from Integration of Multiple Response Variables:</p>
+<p>The LASSO regression model demonstrated a Mean Squared Error (MSE) of 0.1037442 and an R² value of 0.4241031. These metrics suggest a moderate level of predictive accuracy, indicating that the model is capable of explaining approximately 42.4% of the variance in the composite score from the standardized variables of wages, grades, and experience in 1976.</p>
+<p>The coefficients resulting from the model reveal insights into the relative importance and influence of each predictor on the composite score. Notably, several predictors have been completely omitted from the model (coefficients shrunk to zero), highlighting LASSO’s feature selection capability. Significant predictors include:</p>
+<p>A negative coefficient for the second and third predictors (-0.029097511, -0.075627659), suggesting an inverse relationship with the composite outcome. This might indicate that as these variables increase, the composite score tends to decrease, all else being equal.</p>
+<p>The 14th predictor shows a substantial positive coefficient (0.272041535), indicating a strong positive influence on the composite score. This could be interpreted as this variable significantly contributing to an increase in the composite outcome.</p>
+<p>Other variables exhibit smaller positive and negative coefficients, denoting their varied contributions to the model.</p>
+</section>
+<section id="cross-validation-in-lasso-regression-1" class="level3">
+<h3 class="anchored" data-anchor-id="cross-validation-in-lasso-regression-1">2) Cross-Validation in LASSO Regression</h3>
+<p>K-fold cross-validation emerged as a pivotal method in validating the LASSO model’s performance. By systematically rotating the validation set across different subsets of the data, this technique provides a comprehensive assessment of the model’s predictive capability. The iterative process of training and validating across K folds not only identifies the most effective lambda value but also underscores the model’s reliability and robustness in various scenarios.</p>
+<p>###Composite Score: A Holistic Approach to Modeling</p>
+<p>Introducing a composite score as the response variable stands as a hallmark of this study’s innovative approach. This decision underscores an intent to capture the collective impact of critical factors such as education, experience, and wages, rather than evaluating them in isolation. Such a multifaceted approach enables a more holistic understanding of these variables’ interrelations and their cumulative effect on outcomes.</p>
+<p>###Coefficients and Their Implications</p>
+<p>The model’s coefficients reveal the direction and magnitude of each predictor’s influence on the composite score. Notably, the most substantial positive impact was observed for the coefficient corresponding to the 14th predictor, with a value of 0.280500409, suggesting a significant positive relationship with the composite outcome. Conversely, the third predictor exhibited a notably negative relationship, with a coefficient of -0.088595610. These findings highlight the diverse effects of individual predictors, underscoring the complexity of the underlying relationships.</p>
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
