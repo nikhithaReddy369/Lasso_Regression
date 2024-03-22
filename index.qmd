@@ -590,11 +590,166 @@ The LASSO regression model, tuned via rigorous K-fold cross-validation, achieved
 
 The selection of the optimal regularization parameter, λ (lambda), was critical in this context. The best lambda value identified was 0.0007330395, indicating a balance between minimizing model complexity and maximizing predictive accuracy. This fine-tuning process is vital for mitigating overfitting and ensuring the model's generalization across unseen data.
 
+### WEEK 11
+
+### 3) Subgroup Analysis: Assessing Variability Across Demographics
+
+Exploring subgroup analysis and incorporating interaction terms offer avenues to assess variability across demographics and unveil complex relationships that a singular model approach might overlook.
+
+This study also embarked on a subgroup analysis, focusing on the impact of racial background on outcomes. This involved conducting separate LASSO regressions for individuals identified as black and non-black, aiming to uncover distinct patterns and the model's predictive accuracy within these demographic cohorts.
+
+```{r}
+# Calculate 'composite_score'
+data$composite_score <- rowMeans(data[, c('wage76', 'grade76', 'exp76')], na.rm = TRUE)
+
+# Impute missing 'composite_score' values with the mean of the existing values
+data$composite_score[is.na(data$composite_score)] <- mean(data$composite_score, na.rm = TRUE)
+
+# Now, proceed with splitting the dataset into subgroups
+subgroup_black <- data[data$black == 1, ]
+subgroup_non_black <- data[data$black == 0, ]
+```
+
+```{r}
+# Define a function to perform LASSO analysis
+perform_lasso_analysis <- function(subgroup) {
+  # Assuming 'subgroup' dataframe only contains numeric predictors after removing specified columns
+  # Impute missing values in predictors if any (simple mean imputation)
+  imputed_subgroup <- subgroup
+  for(col_name in names(imputed_subgroup)) {
+    if(col_name != "composite_score" && col_name != "black") { # Exclude non-predictor columns
+      imputed_subgroup[[col_name]][is.na(imputed_subgroup[[col_name]])] <- mean(imputed_subgroup[[col_name]], na.rm = TRUE)
+    }
+  }
+  
+  # Prepare the dataset for LASSO regression
+  X <- select(imputed_subgroup, -c(wage76, grade76, exp76, rownames, composite_score, black))
+  y <- imputed_subgroup$composite_score
+  if(any(is.na(y))) {
+    stop("y contains missing values after imputation.")
+  }
+  
+  # Splitting the data
+  set.seed(0)
+  trainIndex <- createDataPartition(y, p = 0.8, list = TRUE)[[1]]
+  X_train <- X[trainIndex, ]
+  X_test <- X[-trainIndex, ]
+  y_train <- y[trainIndex]
+  y_test <- y[-trainIndex]
+  
+  # LASSO regression with cross-validation
+  set.seed(0)
+  cv_lasso <- cv.glmnet(as.matrix(X_train), y_train, alpha = 1)
+  best_lambda <- cv_lasso$lambda.min
+  
+  lasso_best <- glmnet(as.matrix(X_train), y_train, alpha = 1, lambda = best_lambda)
+  
+  # Prediction and evaluation
+  predictions <- predict(lasso_best, newx = as.matrix(X_test), s = best_lambda)
+  mse <- mean((y_test - predictions)^2)
+  r2 <- cor(y_test, predictions)^2
+  
+  return(list(mse = mse, r2 = r2))
+}
+
+results_black <- perform_lasso_analysis(subgroup_black)
+results_non_black <- perform_lasso_analysis(subgroup_non_black)
+
+# Assuming results_black and results_non_black are correctly populated
+results <- list(
+  black = results_black,
+  non_black = results_non_black
+)
+
+print(results)
+```
+###Results and Interpretation from the analysis of Subgroup Analysis (Assessing Variability Across Demographics)
+
+Subgroup 1 (Black): The analysis for the black subgroup yielded an MSE of 1.30435 and an R² of 0.2659, indicating a moderate level of predictive accuracy. This suggests that the model explains approximately 26.59% of the variance in the composite score for this subgroup, highlighting a reasonable fit with room for improvement.
+
+Subgroup 2 (Non-Black): For the non-black subgroup, the model showed an improved fit with an MSE of 1.69913 and an R² of 0.4007. This result suggests that nearly 40.07% of the variance in the composite score is accounted for, indicating a better predictive accuracy compared to the black subgroup.
+
+These findings from subgroup analysis illuminate the importance of considering demographic variables in predictive models. By examining the influence of racial background, the study identifies varying levels of model performance across different groups, providing valuable insights into the factors driving these differences.
+
+
+### 4) Interaction Terms: Unveiling Complex Relationships
+
+The inclusion of interaction terms in regression models is a strategic method to capture the dependent and non-linear relationships between variables. By creating new predictors that represent the product of pairs of original predictors, the model gains the ability to assess the combined effects of two variables on the response.
+
+This approach is grounded in the seminal work of Aiken, West, and Reno (1991), who highlighted the significance of interaction terms in enhancing the explanatory power of statistical models.
+
+```{r}
+data_standardized <- data %>%
+  mutate_at(vars(wage76, grade76, exp76), ~scale(.) %>% as.vector())
+
+# Create a composite score (average of standardized scores)
+# Ensure NA values are handled appropriately by using rowMeans with na.rm = TRUE
+data_standardized <- data_standardized %>%
+  mutate(composite_score = rowMeans(select(., wage76, grade76, exp76), na.rm = TRUE))
+
+# Prepare the dataset for LASSO regression
+# Drop 'rownames' if it exists as a column; adjust based on actual data structure
+X_composite <- select(data_standardized, -c(wage76, grade76, exp76, composite_score))
+y_composite <- data_standardized$composite_score
+y_composite[is.na(y_composite)] <- mean(y_composite, na.rm = TRUE)  # Impute missing values in 'y_composite'
+
+# Splitting the data
+set.seed(0)
+trainIndex <- createDataPartition(y_composite, p = 0.8, list = FALSE)
+X_train_composite <- X_composite[trainIndex, ]
+X_test_composite <- X_composite[-trainIndex, ]
+y_train_composite <- y_composite[trainIndex]
+y_test_composite <- y_composite[-trainIndex]
+
+
+X_train_df <- as.data.frame(X_train_preprocessed_composite)
+X_test_df <- as.data.frame(X_test_preprocessed_composite)
+
+# Create interaction terms for training data
+# This automatically includes original terms and their interactions, similar to PolynomialFeatures with degree=2 and interaction_only=True in Python
+X_train_interact <- model.matrix(~ .^2, data = X_train_df, response = y_train_composite)[,-1] # Removing intercept
+
+# For LASSO, we need a matrix format
+X_train_interact <- as.matrix(X_train_interact)
+
+# Similar steps for test data
+X_test_interact <- model.matrix(~ .^2, data = X_test_df, response = y_test_composite)[,-1] # Removing intercept
+X_test_interact <- as.matrix(X_test_interact)
+```
+
+```{r}
+set.seed(0) # For reproducibility
+# Fit LASSO model with interaction terms
+cv_lasso_interact <- cv.glmnet(X_train_interact, y_train_composite, alpha = 1, type.measure = "mse")
+
+# Best lambda from cross-validation
+best_lambda_interact <- cv_lasso_interact$lambda.min
+
+# Fit the model using the best lambda
+lasso_best_interact <- glmnet(X_train_interact, y_train_composite, alpha = 1, lambda = best_lambda_interact)
+
+
+# Predict on the test set
+predictions_interact <- predict(lasso_best_interact, newx = X_test_interact, s = best_lambda_interact)
+
+# Calculate MSE and R2
+mse_interact <- mean((y_test_composite - predictions_interact)^2)
+r2_interact <- cor(y_test_composite, predictions_interact)^2 # Squared correlation as an R2 approximation
+
+# Extracting non-zero coefficients
+coef_interact <- as.numeric(coef(lasso_best_interact, s = best_lambda_interact)[-1]) # Excluding intercept
+
+# Output the MSE, R^2, and coefficients
+list(mse_interact = mse_interact, r2_interact = r2_interact, coefficients = coef_interact)
+
+
+```
+### Model Performance Insights from analysis of Interaction Terms(Unveiling Complex Relationships)
+
+The investigation into interaction terms revealed their substantial influence on the composite score, which integrates the effects of education, experience, and wages. The analysis demonstrated that certain interactions notably enhanced the model's explanatory capacity, as evidenced by an improved R² of 0.5461776. This increase in R² underscores the value of considering interaction terms in predictive modeling, offering deeper insights into the complex interplay between predictors.
+
 ### Transitioning to Next Methodologies
 Building on the foundational insights garnered from LASSO regression and its cross-validation, we proceed to explore additional methodologies. This progression is motivated by the intent to delve deeper into the data's structure, uncovering more complex relationships and enhancing our model's predictive accuracy.
-
-### Subgroup Analysis and Interaction Terms
-Exploring subgroup analysis and incorporating interaction terms offer avenues to assess variability across demographics and unveil complex relationships that a singular model approach might overlook.
 
 ### Handling Missing Data Differently
 Given the notable impact of missing data on model performance, exploring alternative strategies for handling missing data can provide a more robust foundation for our analysis.

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam">
-<meta name="dcterms.date" content="2024-03-19">
+<meta name="dcterms.date" content="2024-03-22">
 
 <title>Innovative Data Exploration with LASSO: Unveiling Patterns in Earnings and Education</title>
 <style>
@@ -3253,7 +3253,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 19, 2024</p>
+      <p class="date">March 22, 2024</p>
     </div>
   </div>
   
@@ -3905,13 +3905,221 @@ $coefficients
 <p>The LASSO regression model, tuned via rigorous K-fold cross-validation, achieved a Mean Squared Error (MSE) of 0.1575524 and an R² value of 0.4173462. These metrics reflect the model’s moderate effectiveness in predicting the composite outcome, encapsulating the nuanced interplay among education, experience, and wages.</p>
 <p>The selection of the optimal regularization parameter, λ (lambda), was critical in this context. The best lambda value identified was 0.0007330395, indicating a balance between minimizing model complexity and maximizing predictive accuracy. This fine-tuning process is vital for mitigating overfitting and ensuring the model’s generalization across unseen data.</p>
 </section>
+<section id="week-11" class="level3">
+<h3 class="anchored" data-anchor-id="week-11">WEEK 11</h3>
+</section>
+<section id="subgroup-analysis-assessing-variability-across-demographics" class="level3">
+<h3 class="anchored" data-anchor-id="subgroup-analysis-assessing-variability-across-demographics">3) Subgroup Analysis: Assessing Variability Across Demographics</h3>
+<p>Exploring subgroup analysis and incorporating interaction terms offer avenues to assess variability across demographics and unveil complex relationships that a singular model approach might overlook.</p>
+<p>This study also embarked on a subgroup analysis, focusing on the impact of racial background on outcomes. This involved conducting separate LASSO regressions for individuals identified as black and non-black, aiming to uncover distinct patterns and the model’s predictive accuracy within these demographic cohorts.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate &#39;composite_score&#39;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>composite_score <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(data[, <span class="fu">c</span>(<span class="st">&#39;wage76&#39;</span>, <span class="st">&#39;grade76&#39;</span>, <span class="st">&#39;exp76&#39;</span>)], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Impute missing &#39;composite_score&#39; values with the mean of the existing values</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>composite_score[<span class="fu">is.na</span>(data<span class="sc">$</span>composite_score)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(data<span class="sc">$</span>composite_score, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, proceed with splitting the dataset into subgroups</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>subgroup_black <span class="ot">&lt;-</span> data[data<span class="sc">$</span>black <span class="sc">==</span> <span class="dv">1</span>, ]</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>subgroup_non_black <span class="ot">&lt;-</span> data[data<span class="sc">$</span>black <span class="sc">==</span> <span class="dv">0</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to perform LASSO analysis</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>perform_lasso_analysis <span class="ot">&lt;-</span> <span class="cf">function</span>(subgroup) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assuming &#39;subgroup&#39; dataframe only contains numeric predictors after removing specified columns</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Impute missing values in predictors if any (simple mean imputation)</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  imputed_subgroup <span class="ot">&lt;-</span> subgroup</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(col_name <span class="cf">in</span> <span class="fu">names</span>(imputed_subgroup)) {</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(col_name <span class="sc">!=</span> <span class="st">&quot;composite_score&quot;</span> <span class="sc">&amp;&amp;</span> col_name <span class="sc">!=</span> <span class="st">&quot;black&quot;</span>) { <span class="co"># Exclude non-predictor columns</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>      imputed_subgroup[[col_name]][<span class="fu">is.na</span>(imputed_subgroup[[col_name]])] <span class="ot">&lt;-</span> <span class="fu">mean</span>(imputed_subgroup[[col_name]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prepare the dataset for LASSO regression</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  X <span class="ot">&lt;-</span> <span class="fu">select</span>(imputed_subgroup, <span class="sc">-</span><span class="fu">c</span>(wage76, grade76, exp76, rownames, composite_score, black))</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> imputed_subgroup<span class="sc">$</span>composite_score</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">any</span>(<span class="fu">is.na</span>(y))) {</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">&quot;y contains missing values after imputation.&quot;</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Splitting the data</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(y, <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">TRUE</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>  X_train <span class="ot">&lt;-</span> X[trainIndex, ]</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>  X_test <span class="ot">&lt;-</span> X[<span class="sc">-</span>trainIndex, ]</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  y_train <span class="ot">&lt;-</span> y[trainIndex]</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  y_test <span class="ot">&lt;-</span> y[<span class="sc">-</span>trainIndex]</span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># LASSO regression with cross-validation</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  cv_lasso <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(<span class="fu">as.matrix</span>(X_train), y_train, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>  best_lambda <span class="ot">&lt;-</span> cv_lasso<span class="sc">$</span>lambda.min</span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  lasso_best <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(<span class="fu">as.matrix</span>(X_train), y_train, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> best_lambda)</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Prediction and evaluation</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>  predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_best, <span class="at">newx =</span> <span class="fu">as.matrix</span>(X_test), <span class="at">s =</span> best_lambda)</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a>  mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((y_test <span class="sc">-</span> predictions)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a>  r2 <span class="ot">&lt;-</span> <span class="fu">cor</span>(y_test, predictions)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">mse =</span> mse, <span class="at">r2 =</span> r2))</span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>results_black <span class="ot">&lt;-</span> <span class="fu">perform_lasso_analysis</span>(subgroup_black)</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>results_non_black <span class="ot">&lt;-</span> <span class="fu">perform_lasso_analysis</span>(subgroup_non_black)</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming results_black and results_non_black are correctly populated</span></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">black =</span> results_black,</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">non_black =</span> results_non_black</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$black
+$black$mse
+[1] 1.30435
+
+$black$r2
+            s1
+[1,] 0.2659794
+
+
+$non_black
+$non_black$mse
+[1] 1.69913
+
+$non_black$r2
+            s1
+[1,] 0.4007452</code></pre>
+</div>
+</div>
+<p>###Results and Interpretation from the analysis of Subgroup Analysis (Assessing Variability Across Demographics)</p>
+<p>Subgroup 1 (Black): The analysis for the black subgroup yielded an MSE of 1.30435 and an R² of 0.2659, indicating a moderate level of predictive accuracy. This suggests that the model explains approximately 26.59% of the variance in the composite score for this subgroup, highlighting a reasonable fit with room for improvement.</p>
+<p>Subgroup 2 (Non-Black): For the non-black subgroup, the model showed an improved fit with an MSE of 1.69913 and an R² of 0.4007. This result suggests that nearly 40.07% of the variance in the composite score is accounted for, indicating a better predictive accuracy compared to the black subgroup.</p>
+<p>These findings from subgroup analysis illuminate the importance of considering demographic variables in predictive models. By examining the influence of racial background, the study identifies varying levels of model performance across different groups, providing valuable insights into the factors driving these differences.</p>
+</section>
+<section id="interaction-terms-unveiling-complex-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="interaction-terms-unveiling-complex-relationships">4) Interaction Terms: Unveiling Complex Relationships</h3>
+<p>The inclusion of interaction terms in regression models is a strategic method to capture the dependent and non-linear relationships between variables. By creating new predictors that represent the product of pairs of original predictors, the model gains the ability to assess the combined effects of two variables on the response.</p>
+<p>This approach is grounded in the seminal work of Aiken, West, and Reno (1991), who highlighted the significance of interaction terms in enhancing the explanatory power of statistical models.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data_standardized <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(wage76, grade76, exp76), <span class="sc">~</span><span class="fu">scale</span>(.) <span class="sc">%&gt;%</span> <span class="fu">as.vector</span>())</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a composite score (average of standardized scores)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure NA values are handled appropriately by using rowMeans with na.rm = TRUE</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>data_standardized <span class="ot">&lt;-</span> data_standardized <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">composite_score =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(., wage76, grade76, exp76), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the dataset for LASSO regression</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop &#39;rownames&#39; if it exists as a column; adjust based on actual data structure</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>X_composite <span class="ot">&lt;-</span> <span class="fu">select</span>(data_standardized, <span class="sc">-</span><span class="fu">c</span>(wage76, grade76, exp76, composite_score))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>y_composite <span class="ot">&lt;-</span> data_standardized<span class="sc">$</span>composite_score</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>y_composite[<span class="fu">is.na</span>(y_composite)] <span class="ot">&lt;-</span> <span class="fu">mean</span>(y_composite, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Impute missing values in &#39;y_composite&#39;</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Splitting the data</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>)</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>trainIndex <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(y_composite, <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>X_train_composite <span class="ot">&lt;-</span> X_composite[trainIndex, ]</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>X_test_composite <span class="ot">&lt;-</span> X_composite[<span class="sc">-</span>trainIndex, ]</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>y_train_composite <span class="ot">&lt;-</span> y_composite[trainIndex]</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>y_test_composite <span class="ot">&lt;-</span> y_composite[<span class="sc">-</span>trainIndex]</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>X_train_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X_train_preprocessed_composite)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>X_test_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(X_test_preprocessed_composite)</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interaction terms for training data</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a><span class="co"># This automatically includes original terms and their interactions, similar to PolynomialFeatures with degree=2 and interaction_only=True in Python</span></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>X_train_interact <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> .<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> X_train_df, <span class="at">response =</span> y_train_composite)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># Removing intercept</span></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co"># For LASSO, we need a matrix format</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>X_train_interact <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_train_interact)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Similar steps for test data</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>X_test_interact <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> .<span class="sc">^</span><span class="dv">2</span>, <span class="at">data =</span> X_test_df, <span class="at">response =</span> y_test_composite)[,<span class="sc">-</span><span class="dv">1</span>] <span class="co"># Removing intercept</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>X_test_interact <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(X_test_interact)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0</span>) <span class="co"># For reproducibility</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit LASSO model with interaction terms</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>cv_lasso_interact <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(X_train_interact, y_train_composite, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">type.measure =</span> <span class="st">&quot;mse&quot;</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Best lambda from cross-validation</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>best_lambda_interact <span class="ot">&lt;-</span> cv_lasso_interact<span class="sc">$</span>lambda.min</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model using the best lambda</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>lasso_best_interact <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(X_train_interact, y_train_composite, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">lambda =</span> best_lambda_interact)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict on the test set</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>predictions_interact <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_best_interact, <span class="at">newx =</span> X_test_interact, <span class="at">s =</span> best_lambda_interact)</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate MSE and R2</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>mse_interact <span class="ot">&lt;-</span> <span class="fu">mean</span>((y_test_composite <span class="sc">-</span> predictions_interact)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>r2_interact <span class="ot">&lt;-</span> <span class="fu">cor</span>(y_test_composite, predictions_interact)<span class="sc">^</span><span class="dv">2</span> <span class="co"># Squared correlation as an R2 approximation</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting non-zero coefficients</span></span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>coef_interact <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(lasso_best_interact, <span class="at">s =</span> best_lambda_interact)[<span class="sc">-</span><span class="dv">1</span>]) <span class="co"># Excluding intercept</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the MSE, R^2, and coefficients</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">mse_interact =</span> mse_interact, <span class="at">r2_interact =</span> r2_interact, <span class="at">coefficients =</span> coef_interact)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$mse_interact
+[1] 0.08166412
+
+$r2_interact
+            s1
+[1,] 0.5461776
+
+$coefficients
+  [1]  0.000000e+00 -2.891930e-02 -6.082939e-02  4.662280e-02  1.495629e-02
+  [6]  0.000000e+00  1.482770e-02  0.000000e+00  0.000000e+00  0.000000e+00
+ [11]  2.194997e-02  2.803570e-02 -1.282752e-02  2.525823e-01  1.762892e-03
+ [16]  0.000000e+00 -8.339160e-03  0.000000e+00  0.000000e+00  1.170861e-03
+ [21] -3.998890e-03  0.000000e+00 -8.117246e-04  0.000000e+00 -2.352610e-03
+ [26]  0.000000e+00  0.000000e+00 -1.539694e-02  0.000000e+00 -2.287732e-02
+ [31] -1.281400e-02  0.000000e+00  0.000000e+00 -1.428471e-03  0.000000e+00
+ [36] -8.356974e-03  0.000000e+00 -1.816894e-03  0.000000e+00  0.000000e+00
+ [41] -2.526572e-02  0.000000e+00  0.000000e+00  9.960838e-03  5.998587e-03
+ [46]  1.835218e-04 -6.443570e-03 -6.716116e-03  0.000000e+00  3.885480e-03
+ [51]  1.621044e-02  0.000000e+00  3.449328e-02  8.031121e-03 -2.117532e-04
+ [56] -2.200425e-02  6.974720e-03  3.049119e-03  0.000000e+00  5.602483e-03
+ [61]  2.052990e-04  0.000000e+00 -1.853597e-02  1.100027e-01  4.084650e-03
+ [66]  0.000000e+00 -4.248904e-04  3.402132e-04 -4.983888e-03  1.564676e-03
+ [71] -9.856970e-03 -8.672407e-04  0.000000e+00 -2.291280e-03 -4.491750e-03
+ [76]  0.000000e+00  1.781604e-03  0.000000e+00  5.708160e-03  0.000000e+00
+ [81] -2.075026e-03  0.000000e+00 -4.218697e-02  0.000000e+00 -1.202352e-03
+ [86]  0.000000e+00  0.000000e+00  0.000000e+00  1.900482e-03  0.000000e+00
+ [91]  0.000000e+00  0.000000e+00  0.000000e+00 -2.542601e-03 -3.883072e-03
+ [96]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 -1.668102e-03
+[101]  0.000000e+00  0.000000e+00  0.000000e+00 -9.208549e-03  0.000000e+00
+[106]  7.081857e-04  0.000000e+00  0.000000e+00 -8.853176e-05  5.742573e-03
+[111]  0.000000e+00  5.770887e-03  0.000000e+00 -7.049583e-04  0.000000e+00
+[116]  0.000000e+00  0.000000e+00 -2.054004e-02  0.000000e+00 -3.573928e-03</code></pre>
+</div>
+</div>
+</section>
+<section id="model-performance-insights-from-analysis-of-interaction-termsunveiling-complex-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="model-performance-insights-from-analysis-of-interaction-termsunveiling-complex-relationships">Model Performance Insights from analysis of Interaction Terms(Unveiling Complex Relationships)</h3>
+<p>The investigation into interaction terms revealed their substantial influence on the composite score, which integrates the effects of education, experience, and wages. The analysis demonstrated that certain interactions notably enhanced the model’s explanatory capacity, as evidenced by an improved R² of 0.5461776. This increase in R² underscores the value of considering interaction terms in predictive modeling, offering deeper insights into the complex interplay between predictors.</p>
+</section>
 <section id="transitioning-to-next-methodologies" class="level3">
 <h3 class="anchored" data-anchor-id="transitioning-to-next-methodologies">Transitioning to Next Methodologies</h3>
 <p>Building on the foundational insights garnered from LASSO regression and its cross-validation, we proceed to explore additional methodologies. This progression is motivated by the intent to delve deeper into the data’s structure, uncovering more complex relationships and enhancing our model’s predictive accuracy.</p>
-</section>
-<section id="subgroup-analysis-and-interaction-terms" class="level3">
-<h3 class="anchored" data-anchor-id="subgroup-analysis-and-interaction-terms">Subgroup Analysis and Interaction Terms</h3>
-<p>Exploring subgroup analysis and incorporating interaction terms offer avenues to assess variability across demographics and unveil complex relationships that a singular model approach might overlook.</p>
 </section>
 <section id="handling-missing-data-differently" class="level3">
 <h3 class="anchored" data-anchor-id="handling-missing-data-differently">Handling Missing Data Differently</h3>
