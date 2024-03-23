@@ -590,30 +590,37 @@ The LASSO regression model, tuned via rigorous K-fold cross-validation, achieved
 
 The selection of the optimal regularization parameter, λ (lambda), was critical in this context. The best lambda value identified was 0.0007330395, indicating a balance between minimizing model complexity and maximizing predictive accuracy. This fine-tuning process is vital for mitigating overfitting and ensuring the model's generalization across unseen data.
 
-### WEEK 11
-
 ### 3) Subgroup Analysis: Assessing Variability Across Demographics
 
 Exploring subgroup analysis and incorporating interaction terms offer avenues to assess variability across demographics and unveil complex relationships that a singular model approach might overlook.
 
-This study also embarked on a subgroup analysis, focusing on the impact of racial background on outcomes. This involved conducting separate LASSO regressions for individuals identified as black and non-black, aiming to uncover distinct patterns and the model's predictive accuracy within these demographic cohorts.
+This study also embarked on a subgroup analysis, focusing on the impact of racial background on outcomes. This involved conducting separate LASSO regressions for individuals identified as black and non-black, aiming to uncover distinct patterns and the model's predictive accuracy within these demographic charts.
+
+### Data Preparation
 
 ```{r}
+# Load necessary libraries
+library(readr)
+library(dplyr)
+library(caret)
+library(glmnet)
+
 # Calculate 'composite_score'
 data$composite_score <- rowMeans(data[, c('wage76', 'grade76', 'exp76')], na.rm = TRUE)
 
 # Impute missing 'composite_score' values with the mean of the existing values
 data$composite_score[is.na(data$composite_score)] <- mean(data$composite_score, na.rm = TRUE)
 
-# Now, proceed with splitting the dataset into subgroups
+# Splitting the dataset into subgroups
 subgroup_black <- data[data$black == 1, ]
 subgroup_non_black <- data[data$black == 0, ]
 ```
 
+### LASSO Analysis On Both subgroup
+
 ```{r}
 # Define a function to perform LASSO analysis
 perform_lasso_analysis <- function(subgroup) {
-  # Assuming 'subgroup' dataframe only contains numeric predictors after removing specified columns
   # Impute missing values in predictors if any (simple mean imputation)
   imputed_subgroup <- subgroup
   for(col_name in names(imputed_subgroup)) {
@@ -623,11 +630,8 @@ perform_lasso_analysis <- function(subgroup) {
   }
   
   # Prepare the dataset for LASSO regression
-  X <- select(imputed_subgroup, -c(wage76, grade76, exp76, rownames, composite_score, black))
+  X <- select(imputed_subgroup, -c(wage76, grade76, exp76, composite_score, black))
   y <- imputed_subgroup$composite_score
-  if(any(is.na(y))) {
-    stop("y contains missing values after imputation.")
-  }
   
   # Splitting the data
   set.seed(0)
@@ -655,19 +659,63 @@ perform_lasso_analysis <- function(subgroup) {
 results_black <- perform_lasso_analysis(subgroup_black)
 results_non_black <- perform_lasso_analysis(subgroup_non_black)
 
-# Assuming results_black and results_non_black are correctly populated
+# Capture the results for visualization
 results <- list(
   black = results_black,
   non_black = results_non_black
 )
-
-print(results)
 ```
+
+
+```{r}
+library(tibble)
+
+results_df <- tibble(
+  Group = names(results),
+  MSE = sapply(results, function(x) x$mse),
+  R2 = sapply(results, function(x) x$r2)
+)
+
+
+print(results_df)
+```
+
+
+### MSE Comparison Bar Chart
+
+MSE Comparison Bar Chart: This will compare the Mean Squared Error (MSE) between the black and non-black subgroups.
+```{r}
+library(ggplot2)
+
+# Assuming 'results_df' is already in your environment
+ggplot(results_df, aes(x = Group, y = MSE, fill = Group)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Comparison of MSE Across Subgroups",
+       x = "Group",
+       y = "Mean Squared Error (MSE)")
+```
+
+###R² Comparison Bar Chart
+
+R2  Comparison Bar Chart: This will compare the R² (coefficient of determination) values, indicating the proportion of variance for the composite score that's predictable from the independent variables, between the black and non-black subgroups.
+
+```{r}
+ggplot(results_df, aes(x = Group, y = R2, fill = Group)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Comparison of R² Across Subgroups",
+       x = "Group",
+       y = "Coefficient of Determination (R²)")
+```
+
+
+
 ###Results and Interpretation from the analysis of Subgroup Analysis (Assessing Variability Across Demographics)
 
 Subgroup 1 (Black): The analysis for the black subgroup yielded an MSE of 1.30435 and an R² of 0.2659, indicating a moderate level of predictive accuracy. This suggests that the model explains approximately 26.59% of the variance in the composite score for this subgroup, highlighting a reasonable fit with room for improvement.
 
-Subgroup 2 (Non-Black): For the non-black subgroup, the model showed an improved fit with an MSE of 1.69913 and an R² of 0.4007. This result suggests that nearly 40.07% of the variance in the composite score is accounted for, indicating a better predictive accuracy compared to the black subgroup.
+Subgroup 2 (Non-Black): For the non-black subgroup, the model showed an improved fit with an MSE of 1.705985 and an R² of 0.3978475	. This result suggests that nearly 40.07% of the variance in the composite score is accounted for, indicating a better predictive accuracy compared to the black subgroup.
 
 These findings from subgroup analysis illuminate the importance of considering demographic variables in predictive models. By examining the influence of racial background, the study identifies varying levels of model performance across different groups, providing valuable insights into the factors driving these differences.
 
@@ -717,6 +765,9 @@ X_test_interact <- model.matrix(~ .^2, data = X_test_df, response = y_test_compo
 X_test_interact <- as.matrix(X_test_interact)
 ```
 
+
+
+
 ```{r}
 set.seed(0) # For reproducibility
 # Fit LASSO model with interaction terms
@@ -732,6 +783,12 @@ lasso_best_interact <- glmnet(X_train_interact, y_train_composite, alpha = 1, la
 # Predict on the test set
 predictions_interact <- predict(lasso_best_interact, newx = X_test_interact, s = best_lambda_interact)
 
+```
+
+### Visualizing Predicted vs. Actual Composite Scores
+
+
+```{r}
 # Calculate MSE and R2
 mse_interact <- mean((y_test_composite - predictions_interact)^2)
 r2_interact <- cor(y_test_composite, predictions_interact)^2 # Squared correlation as an R2 approximation
@@ -744,6 +801,36 @@ list(mse_interact = mse_interact, r2_interact = r2_interact, coefficients = coef
 
 
 ```
+
+### Visualizing the Most Significant Coefficients
+
+```{r}
+coef_names <- rownames(coef(lasso_best_interact, s = best_lambda_interact))[-1]
+
+# Create a data frame for plotting
+coef_df <- data.frame(
+  Term = coef_names,
+  Coefficient = coef_interact
+)
+
+# Filter to show the top 10 coefficients by magnitude
+top_coef_df <- coef_df %>%
+  arrange(desc(abs(Coefficient))) %>%
+  head(10)
+
+# Bar plot of coefficients
+ggplot(top_coef_df, aes(x = reorder(Term, Coefficient), y = Coefficient, fill = Coefficient > 0)) +
+  geom_bar(stat = "identity") +
+  coord_flip() + # Flip coordinates for horizontal bars
+  labs(title = "Top 10 Most Significant Coefficients",
+       x = "",
+       y = "Coefficient Value") +
+  theme_minimal() +
+  scale_fill_manual(values = c("true" = "blue", "false" = "red"), name = "Coefficient\nSign") +
+  guides(fill = guide_legend(reverse = TRUE))
+```
+
+
 ### Model Performance Insights from analysis of Interaction Terms(Unveiling Complex Relationships)
 
 The investigation into interaction terms revealed their substantial influence on the composite score, which integrates the effects of education, experience, and wages. The analysis demonstrated that certain interactions notably enhanced the model's explanatory capacity, as evidenced by an improved R² of 0.5461776. This increase in R² underscores the value of considering interaction terms in predictive modeling, offering deeper insights into the complex interplay between predictors.
