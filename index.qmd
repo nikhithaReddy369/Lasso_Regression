@@ -6,8 +6,8 @@ format:
   html:
     code-fold: true
 course: STA 6257 - Advanced Statistical Modeling
-bibliography: references.bib # file contains bibtex for references
-#always_allow_html: true # this allows to get PDF with HTML features
+#bibliography: references.bib # file contains bibtex for references
+always_allow_html: true # this allows to get PDF with HTML features
 self-contained: true
 execute: 
   warning: false
@@ -406,15 +406,19 @@ The dataset paints a detailed picture of the socio-economic landscape in 1976, e
 ## Statistical Modeling
 
 This analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, and alternative approaches to handling missing data. The methodology involves:
-
+  
 1. Integration of Multiple Response Variables
 2. Cross-Validation in LASSO Regression
+3. Subgroup Analysis
+4. Interaction Terms
+5. Dropping rows with any missing data
+6. Logistic Regression with LASSO for Categorical Outcome Prediction
 
-### Integration of Multiple Response Variables
+### 1. LASSO Regression for Composite Score Prediction
 
-The methodology involved standardizing key variables (`wage76`, `grade76`, `exp76`) and creating a composite score to serve as the response variable. This score aims to encapsulate the combined influence of education, experience, and wages on the subjects' outcomes.
+Model Used: LASSO regression was employed to predict a composite score created from standardized wage76, grade76, and exp76 variables.
 
-To ensure the model's robustness and identify the most predictive features while mitigating overfitting, we performed cross-validation. Specifically, we utilized a range of lambda values to determine the optimal degree of regularization. This approach not only enhances model accuracy but also aids in discerning the most significant predictors among the variables considered.
+Rationale: LASSO (Least Absolute Shrinkage and Selection Operator) regression was chosen for its ability to perform variable selection and regularization. By penalizing the absolute size of the regression coefficients, LASSO helps in reducing overfitting and identifying the most significant predictors.
 
 
 ```{r}
@@ -501,30 +505,18 @@ ggplot() +
   ggtitle("Predicted vs Actual Composite Scores")
 
 ```
-The LASSO regression model demonstrated a MSE of r mse_composite and an R² value of r r2_composite, suggesting a moderate level of predictive accuracy. The model is capable of explaining approximately 42.4% of the variance in the composite score from the standardized variables of wages, grades, and experience in 1976.
+Results: The optimal lambda value identified through cross-validation minimized the mean squared error (MSE) and improved the model's predictive accuracy. The model explained approximately 42.4% of the variance in the composite score, indicating a moderate level of predictive accuracy.
 
-### Insights from Model Coefficients
+### 2. Enhanced Cross-Validation in LASSO Regression
+Model Used: LASSO regression, tuned through K-fold cross-validation.
 
-The model's coefficients provide insights into the predictors' relative importance. Notable observations include:
+Rationale: The LASSO regression model was utilized for its ability to perform both variable selection and regularization. The inclusion of K-fold cross-validation serves to identify the optimal lambda (λ) value that balances model complexity and accuracy, effectively addressing overfitting concerns and enhancing model reliability.
 
-Negative coefficients for certain predictors, indicating an inverse relationship with the composite score.
-A significant positive coefficient for the 14th predictor, suggesting a strong positive influence on the composite score.
-These insights highlight the model's capability to identify the most significant predictors while effectively managing dimensionality and potential overfitting through regularization.
+Cross-Validation Process: K-fold cross-validation systematically divides the dataset into K subsets, or "folds." The model is trained on K-1 folds and validated on the remaining fold, iterating through all K combinations. This process allows for the evaluation of the model's performance across diverse subsets of the data, offering a comprehensive assessment of its predictive capabilities.
 
-
-### Enhanced Cross-Validation in LASSO Regression Section:
-
-K-fold cross-validation emerged as a pivotal method in validating the LASSO model's performance. By systematically rotating the validation set across different subsets of the data, this technique provides a comprehensive assessment of the model's predictive capability. The iterative process of training and validating across K folds not only identifies the most effective lambda value but also underscores the model's reliability and robustness in various scenarios.
+Optimal Lambda Selection: The lambda parameter controls the degree of LASSO's penalty on the model's coefficients, with a higher lambda enforcing greater sparsity (more coefficients set to zero). The cross-validation process seeks to find the lambda value that minimizes prediction error, striking a balance between simplicity and predictive power.
 
 
-### Composite Score: A Holistic Approach to Modeling
-
-Introducing a composite score as the response variable stands as a hallmark of this study's innovative approach. This decision underscores an intent to capture the collective impact of critical factors such as education, experience, and wages, rather than evaluating them in isolation. Such a multifaceted approach enables a more holistic understanding of these variables' interrelations and their cumulative effect on outcomes.
-
-
-### Coefficients and Their Implications
-
-The model's coefficients reveal the direction and magnitude of each predictor's influence on the composite score. Notably, the most substantial positive impact was observed for the coefficient corresponding to the 14th predictor, with a value of 0.280500409, suggesting a significant positive relationship with the composite outcome. Conversely, the third predictor exhibited a notably negative relationship, with a coefficient of -0.088595610. These findings highlight the diverse effects of individual predictors, underscoring the complexity of the underlying relationships.
 
 ### R Code for Analysis and Visualization
 
@@ -585,42 +577,32 @@ legend("topright", legend = c(paste("Optimal lambda:", round(cv_lasso$lambda.min
 
 ```
 
-### Model Performance and Insights from Cross-Validation
-The LASSO regression model, tuned via rigorous K-fold cross-validation, achieved a Mean Squared Error (MSE) of 0.1575524 and an R² value of 0.4173462. These metrics reflect the model's moderate effectiveness in predicting the composite outcome, encapsulating the nuanced interplay among education, experience, and wages.
+Results: The LASSO regression model, after cross-validation, demonstrated an MSE of 0.1575524 and an R² value of 0.4173462. These metrics signify the model's moderate success in capturing the relationship between the predictors (standardized wage76, grade76, exp76) and the composite outcome. The optimal lambda value identified was 0.0007330395, indicating an effective balance was found.
 
-The selection of the optimal regularization parameter, λ (lambda), was critical in this context. The best lambda value identified was 0.0007330395, indicating a balance between minimizing model complexity and maximizing predictive accuracy. This fine-tuning process is vital for mitigating overfitting and ensuring the model's generalization across unseen data.
 
-### 3) Subgroup Analysis: Assessing Variability Across Demographics
 
-The investigation employed subgroup analysis and the inclusion of interaction terms as strategies to explore demographic variability and elucidate complex variable interactions that might be obscured in a generalized model framework.
+### 3. Subgroup Analysis by Racial Background
 
-Particularly, the study conducted a focused subgroup analysis on the influence of racial background on observed outcomes. This was achieved by performing distinct LASSO regressions for subjects classified as black and non-black, with the objective of identifying unique patterns and assessing the model's forecasting accuracy within these demographic categories.
+Model Used: Separate LASSO regressions were conducted for individuals identified as black and non-black.
 
-### Data Preparation
+Rationale: Subgroup analysis allowed for the exploration of the model's performance across different demographic groups, potentially uncovering distinct patterns and predictors of importance within each subgroup.
 
 ```{r}
-# Load necessary libraries
-library(readr)
-library(dplyr)
-library(caret)
-library(glmnet)
-
 # Calculate 'composite_score'
 data$composite_score <- rowMeans(data[, c('wage76', 'grade76', 'exp76')], na.rm = TRUE)
 
 # Impute missing 'composite_score' values with the mean of the existing values
 data$composite_score[is.na(data$composite_score)] <- mean(data$composite_score, na.rm = TRUE)
 
-# Splitting the dataset into subgroups
+# Now, proceed with splitting the dataset into subgroups
 subgroup_black <- data[data$black == 1, ]
 subgroup_non_black <- data[data$black == 0, ]
 ```
 
-### LASSO Analysis On Both Subgroup
-
 ```{r}
 # Define a function to perform LASSO analysis
 perform_lasso_analysis <- function(subgroup) {
+  # Assuming 'subgroup' dataframe only contains numeric predictors after removing specified columns
   # Impute missing values in predictors if any (simple mean imputation)
   imputed_subgroup <- subgroup
   for(col_name in names(imputed_subgroup)) {
@@ -630,8 +612,11 @@ perform_lasso_analysis <- function(subgroup) {
   }
   
   # Prepare the dataset for LASSO regression
-  X <- select(imputed_subgroup, -c(wage76, grade76, exp76, composite_score, black))
+  X <- select(imputed_subgroup, -c(wage76, grade76, exp76, rownames, composite_score, black))
   y <- imputed_subgroup$composite_score
+  if(any(is.na(y))) {
+    stop("y contains missing values after imputation.")
+  }
   
   # Splitting the data
   set.seed(0)
@@ -659,70 +644,25 @@ perform_lasso_analysis <- function(subgroup) {
 results_black <- perform_lasso_analysis(subgroup_black)
 results_non_black <- perform_lasso_analysis(subgroup_non_black)
 
-# Capture the results for visualization
+# Assuming results_black and results_non_black are correctly populated
 results <- list(
   black = results_black,
   non_black = results_non_black
 )
+
+print(results)
 ```
+Subgroup 1 (Black): The analysis for the black subgroup yielded an MSE of 1.30435 and an R² of 0.2659, indicating a moderate level of predictive accuracy. This suggests that the model explains approximately 26.59% of the variance in the composite score for this subgroup, highlighting a reasonable fit with room for improvement.
+
+Subgroup 2 (Non-Black): For the non-black subgroup, the model showed an improved fit with an MSE of 1.69913 and an R² of 0.4007. This result suggests that nearly 40.07% of the variance in the composite score is accounted for, indicating a better predictive accuracy compared to the black subgroup.
+
+Results: The model demonstrated different levels of predictive accuracy across subgroups, with the non-black subgroup showing a better fit. This highlights the importance of considering demographic factors in predictive models.
 
 
-```{r}
-library(tibble)
+### 4. Incorporation of Interaction Terms
+Model Used: LASSO regression with interaction terms.
 
-results_df <- tibble(
-  Group = names(results),
-  MSE = sapply(results, function(x) x$mse),
-  R2 = sapply(results, function(x) x$r2)
-)
-
-
-print(results_df)
-```
-
-
-### MSE Comparison Bar Chart
-
-MSE Comparison Bar Chart: This will compare the Mean Squared Error (MSE) between the black and non-black subgroups.
-```{r}
-library(ggplot2)
-
-# Assuming 'results_df' is already in your environment
-ggplot(results_df, aes(x = Group, y = MSE, fill = Group)) +
-  geom_bar(stat = "identity", show.legend = FALSE) +
-  theme_minimal() +
-  labs(title = "Comparison of MSE Across Subgroups",
-       x = "Group",
-       y = "Mean Squared Error (MSE)")
-```
-
-###R² Comparison Bar Chart
-
-R2  Comparison Bar Chart: This will compare the R² (coefficient of determination) values, indicating the proportion of variance for the composite score that's predictable from the independent variables, between the black and non-black subgroups.
-
-```{r}
-ggplot(results_df, aes(x = Group, y = R2, fill = Group)) +
-  geom_bar(stat = "identity", show.legend = FALSE) +
-  theme_minimal() +
-  labs(title = "Comparison of R² Across Subgroups",
-       x = "Group",
-       y = "Coefficient of Determination (R²)")
-```
-
-
-
-### Analytical Insight and Interpretation of Subgroup Analysis
-
-The subgroup analyses reveal divergent model performance metrics across racial categories, with the analysis for the black subgroup reporting an MSE of 1.30435 and an R² of 0.2659. These results indicate a moderate predictive accuracy, elucidating that the model accounts for approximately 26.59% of the variance in the composite score within this subgroup, suggesting potential areas for enhancement.
-
-Conversely, the non-black subgroup analysis demonstrated a more robust model fit, evidenced by an MSE of 1.705985 and an R² of 0.3978475. This implies that the model successfully captures nearly 40.07% of the variance in the composite score for this demographic, showcasing superior predictive accuracy relative to the black subgroup.
-
-This nuanced subgroup analysis underscores the criticality of integrating demographic considerations into predictive modeling, enabling the identification of differential impacts of racial backgrounds on the model's efficacy and offering insightful perspectives on underlying variability drivers.
-
-
-### 4) Interaction Terms: Elucidating Complex Variable Relationships
-
-The incorporation of interaction terms into the regression model represents a strategic approach to capture the nuanced and potentially non-linear relationships among variables. This methodology, founded on the pioneering work of Aiken, West, and Reno (1991), facilitates the exploration of the synergistic effects of variable pairs on the outcome variable, thereby enriching the model's descriptive and predictive capacities.
+Rationale: Interaction terms were included to capture the combined effects of pairs of predictors, providing insights into the non-additive relationships between variables.
 
 ```{r}
 data_standardized <- data %>%
@@ -763,9 +703,6 @@ X_test_interact <- model.matrix(~ .^2, data = X_test_df, response = y_test_compo
 X_test_interact <- as.matrix(X_test_interact)
 ```
 
-
-
-
 ```{r}
 set.seed(0) # For reproducibility
 # Fit LASSO model with interaction terms
@@ -781,12 +718,6 @@ lasso_best_interact <- glmnet(X_train_interact, y_train_composite, alpha = 1, la
 # Predict on the test set
 predictions_interact <- predict(lasso_best_interact, newx = X_test_interact, s = best_lambda_interact)
 
-```
-
-### Visualizing Predicted vs. Actual Composite Scores
-
-
-```{r}
 # Calculate MSE and R2
 mse_interact <- mean((y_test_composite - predictions_interact)^2)
 r2_interact <- cor(y_test_composite, predictions_interact)^2 # Squared correlation as an R2 approximation
@@ -799,53 +730,163 @@ list(mse_interact = mse_interact, r2_interact = r2_interact, coefficients = coef
 
 
 ```
+Results: The inclusion of interaction terms significantly improved the model's explanatory power, as evidenced by an increased R² value. This underscores the complexity of the relationships between predictors.
 
-### Visualizing the Most Significant Coefficients
+
+
+### 5. Approach to Missing Data: Dropping Rows
+
+Model Used: LASSO regression on a dataset with dropped rows containing any missing data.
+
+Rationale: Dropping rows with missing data was employed as a straightforward approach to ensure the integrity of the model input.
+
+
 
 ```{r}
-coef_names <- rownames(coef(lasso_best_interact, s = best_lambda_interact))[-1]
+data_drop_na <- na.omit(data)
 
-# Create a data frame for plotting
-coef_df <- data.frame(
-  Term = coef_names,
-  Coefficient = coef_interact
-)
+# Standardizing the variables 'wage76', 'grade76', and 'exp76'
+preProcess_scale <- preProcess(data_drop_na[,c('wage76', 'grade76', 'exp76')], method = 'scale')
+data_drop_na[,c('wage76', 'grade76', 'exp76')] <- predict(preProcess_scale, data_drop_na[,c('wage76', 'grade76', 'exp76')])
 
-# Filter to show the top 10 coefficients by magnitude
-top_coef_df <- coef_df %>%
-  arrange(desc(abs(Coefficient))) %>%
-  head(10)
+# Creating a composite score
+data_drop_na$composite_score <- rowMeans(data_drop_na[,c('wage76', 'grade76', 'exp76')])
 
-# Bar plot of coefficients
-ggplot(top_coef_df, aes(x = reorder(Term, Coefficient), y = Coefficient, fill = Coefficient > 0)) +
-  geom_bar(stat = "identity") +
-  coord_flip() + # Flip coordinates for horizontal bars
-  labs(title = "Top 10 Most Significant Coefficients",
-       x = "",
-       y = "Coefficient Value") +
-  theme_minimal() +
-  scale_fill_manual(values = c("true" = "blue", "false" = "red"), name = "Coefficient\nSign") +
-  guides(fill = guide_legend(reverse = TRUE))
+# Preparing the dataset
+X_drop_na <- data_drop_na %>% select(-c('wage76', 'grade76', 'exp76', 'rownames', 'composite_score'))
+y_drop_na <- data_drop_na$composite_score
+
+# Splitting the data
+set.seed(0)
+trainIndex <- createDataPartition(y_drop_na, p = .8, 
+                                  list = FALSE, 
+                                  times = 1)
+X_train_drop_na <- X_drop_na[trainIndex, ]
+X_test_drop_na <- X_drop_na[-trainIndex, ]
+y_train_drop_na <- y_drop_na[trainIndex]
+y_test_drop_na <- y_drop_na[-trainIndex]
+
+# No imputation needed here
+
+# Fitting LASSO regression
+# Note: LASSO requires matrix inputs, and 'y' should be a vector
+model_lasso_drop_na <- cv.glmnet(as.matrix(X_train_drop_na), y_train_drop_na, alpha = 1)
+y_pred_drop_na <- predict(model_lasso_drop_na, s = "lambda.min", newx = as.matrix(X_test_drop_na))
+
+# Calculating MSE and R^2
+mse_drop_na <- mean((y_test_drop_na - y_pred_drop_na)^2)
+r2_drop_na <- cor(y_test_drop_na, y_pred_drop_na)^2
+
+# Results for dropping rows with missing data
+list(mse_drop_na, r2_drop_na)
 ```
-
-
-### Enhancing Predictive Accuracy through Interaction Terms
-
-The exploration of interaction terms significantly augmented the model's explicative power regarding the composite outcome of education, experience, and wages. This was notably reflected in an enhanced R² of 0.5461776, indicating a substantial improvement in the model's ability to explain the variance of the outcome variable. This amplification of the model's predictive accuracy underscores the utility of incorporating interaction terms, which offer profound insights into the intricate dynamics among predictors.
-
-### Transitioning to Next Methodologies
-Building on the foundational insights garnered from LASSO regression and its cross-validation, we proceed to explore additional methodologies. This progression is motivated by the intent to delve deeper into the data's structure, uncovering more complex relationships and enhancing our model's predictive accuracy.
-
-### Handling Missing Data Differently
-Given the notable impact of missing data on model performance, exploring alternative strategies for handling missing data can provide a more robust foundation for our analysis.
-
-### Logistic Regression with LASSO for Categorical Outcomes
-To complement our continuous outcome analysis with LASSO, employing logistic regression with LASSO for categorical outcome prediction will broaden our analytical scope, offering insights into different aspects of the data.
+Results: While this approach may reduce the available data, it simplifies the analysis and ensures that the model is trained on complete cases only.
 
 
 
+### 6. Logistic Regression with LASSO for Categorical Outcome
 
-### Conclusion
+Model Used: Logistic regression with LASSO regularization was applied to predict a binary outcome derived from wage76.
+
+Rationale: This model was selected for its ability to handle binary outcomes and perform feature selection simultaneously, identifying key predictors of wage being above or below the median.
+
+
+
+```{r}
+data <- readr::read_csv("RetSchool.csv", show_col_types = FALSE)
+data <- na.omit(data)
+library(caret)
+library(glmnet)
+library(pROC)
+
+# Imputing missing values and creating a binary outcome based on median value
+median_wage <- median(data$wage76, na.rm = TRUE)
+data$wage76_imputed <- ifelse(is.na(data$wage76), median_wage, data$wage76)
+data$wage76_binary <- ifelse(data$wage76_imputed > median_wage, 1, 0)
+
+# Preparing the dataset for logistic regression
+X_wage_binary <- data %>%
+  select(-wage76, -wage76_imputed, -rownames, -wage76_binary) %>%
+  as.data.frame()
+y_wage_binary <- data$wage76_binary
+
+# Splitting the data
+set.seed(0)
+list <- createDataPartition(y_wage_binary, p = 0.8, list = TRUE)
+trainIndex <- list[[1]]
+X_train_wage_binary <- X_wage_binary[trainIndex, ]
+X_test_wage_binary <- X_wage_binary[-trainIndex, ]
+y_train_wage_binary <- y_wage_binary[trainIndex]
+y_test_wage_binary <- y_wage_binary[-trainIndex]
+
+# Preprocessing the data (example, standardize)
+preProcess_model <- preProcess(X_train_wage_binary, method = c("center", "scale"))
+X_train_preprocessed_wage_binary <- predict(preProcess_model, X_train_wage_binary)
+X_test_preprocessed_wage_binary <- predict(preProcess_model, X_test_wage_binary)
+
+# Logistic regression with LASSO (L1 regularization)
+X_train_matrix <- model.matrix(~ ., data = X_train_preprocessed_wage_binary)[, -1] # Removing intercept column
+X_test_matrix <- model.matrix(~ ., data = X_test_preprocessed_wage_binary)[, -1]
+
+cv_fit <- cv.glmnet(X_train_matrix, y_train_wage_binary, alpha = 1, family = "binomial")
+
+# Predicting on the test set
+y_pred_probs <- predict(cv_fit, newx = X_test_matrix, type = "response", s = "lambda.min")
+y_pred_wage_binary <- ifelse(y_pred_probs > 0.5, 1, 0)
+
+# Evaluating the model
+conf_matrix <- table(y_test_wage_binary, y_pred_wage_binary)
+roc_curve <- roc(y_test_wage_binary, y_pred_probs[,1])
+auc_value <- auc(roc_curve)
+
+# Outputting results
+cat("Confusion Matrix:\n")
+print(conf_matrix)
+cat("\nAUC:", auc_value, "\n")
+
+
+```
+Results: The AUC (Area Under the Curve) from the ROC (Receiver Operating Characteristic) analysis provided a measure of the model's ability to distinguish between the two wage categories, showcasing its predictive performance.
+
+
+### Results and Analysis Summary:
+### 1. LASSO Regression for Composite Score Prediction:
+
+Results: The model explained approximately 42.4% of the variance in the composite score, highlighting its moderate effectiveness in predicting the combined influence of wages, education, and experience.
+Analysis: The selection of the optimal regularization parameter, λ, was crucial for achieving a balance between model complexity and accuracy, demonstrating the utility of LASSO in reducing overfitting and identifying significant predictors.
+### 2. Enhanced Cross-Validation in LASSO Regression:
+
+Results: Achieved an MSE of 0.1575524 and an R² value of 0.4173462, indicating moderate predictive accuracy.
+Analysis: The systematic application of K-fold cross-validation helped in fine-tuning the λ value, ensuring the model's reliability and robustness across different data subsets.
+### 3. Subgroup Analysis by Racial Background:
+
+Results: Variations in model performance across subgroups were observed, with non-black individuals showing a better model fit.
+Analysis: This underscores the significance of demographic factors in predictive models and highlights the potential for targeted interventions.
+### 4. Incorporation of Interaction Terms:
+
+Results: The inclusion of interaction terms significantly improved the model's explanatory power, evidenced by an increased R² value.
+Analysis: This approach elucidated the complex interplay between predictors, offering deeper insights into the relationships within the data.
+### 5. Approach to Missing Data - Dropping Rows:
+
+Results & Analysis: Simplifying the analysis by ensuring the model is trained on complete cases only. While this approach may limit the data used, it maintains the integrity of the model input.
+### 6. Logistic Regression with LASSO for Categorical Outcome Prediction:
+
+Results: The model's performance in distinguishing between wage categories was quantified by the AUC value, showcasing predictive performance.
+Analysis: This model effectively handled binary outcomes and performed feature selection, identifying key predictors of wage classification.
+
+
+### Detailed Summary:
+The comprehensive application of statistical modeling techniques, including LASSO regression and logistic regression with LASSO, provided a nuanced understanding of the factors influencing education, experience, and wages. The analysis revealed the importance of variable selection, regularization, and the consideration of demographic subgroups and interaction terms in capturing the complex relationships within the data. Cross-validation played a critical role in validating the models' performance, ensuring their generalizability and reliability.
+
+The subgroup analysis offered valuable insights into how predictive accuracy varies across demographic lines, highlighting the need for models to consider such factors. Meanwhile, the incorporation of interaction terms shed light on the nuanced interdependencies between variables, significantly enriching the analysis.
+
+By addressing missing data through row omission and employing logistic regression for binary outcome prediction, the analysis maintained methodological rigor and provided a clear picture of the predictive capabilities of the models used.
+
+### Conclusion:
+This statistical modeling endeavor illustrates the power of combining various analytical techniques to uncover the multifaceted influences on educational and economic outcomes. The findings not only enhance our understanding of these influences but also underscore the importance of methodological flexibility and rigor in statistical analysis.
+
+Moving forward, these results can inform policy-making, educational programming, and further research, ultimately contributing to more informed decisions and targeted interventions.
+
 
 ## References
 
