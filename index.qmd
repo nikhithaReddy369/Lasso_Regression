@@ -135,7 +135,7 @@ p_education <- ggplot(df_clean, aes(x = grade76)) +
 p_education
 ```
 
-• Education Level in 1976 (grade76): The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). o The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
+• Education Level in 1976 (grade76): The distribution of grade76 shows a multi-model pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). o The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
 
 ```{r work-distribution, fig.cap="Figure 3: Work Experience Distribution in 1976"}
 
