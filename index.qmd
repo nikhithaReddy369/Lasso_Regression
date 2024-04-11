@@ -21,954 +21,347 @@ editor:
 
 LASSO, Least Absolute Shrinkage and Selection Operator, is a penalized linear regression method that reduces the number of variables in the model, useful for avoiding overfitting. It works by minimizing the residual sum of squares subject to the sum of the absolute value of the coefficients being less than a constant, simplifying the model and potentially improving prediction accuracy.
 
-In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004]  in 2004. 
+In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009\]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004] in 2004.
 
 LASSO regression has particularly become a key instrument with which to insight the complex dynamics underlying socioeconomic trends, public health outcomes, and environmental studies—hence, significantly enriching the toolset available to the data scientist [@Belloni2013], [@Park2008]. Logistic regression is further extended by integration with the capabilities of LASSO, offering a refined method in prediction for the categorical outcomes [@Li2022]. This synergy provides a response to long-term barriers to predictive modeling such as overfitting and multicollinearity with a scope of applications in, in particular, economic forecasting and health diagnostics, amongst many more [@Sauerbrei2015].
 
-The 21st century continues, and the data revolution heightens. A dataset in relation to the augmented domain complexity continues to pervade. Here, LASSO regression does not exist just as a statistical tool but as an innovation beacon assisting researchers with precision and simplicity within the dynamic landscape [@Chintalapudi2022]. The introduction of logistic regression into the area of LASSO has been especially dynamic, providing a nuanced approach to modeling of categorical outcomes [@Simon2013]. This is necessary for areas from epidemiology to finance [@Friedman2010]. This thus places this combination as a great leap forward in the direction of data-driven insights aimed at action, where traditional analytical methods might possibly face challenges of interpretation, firmly situating logistic regression with LASSO among the basic constitutions of modern statistical analysis and predictive modeling [@Hastie2009]. 
+The 21st century continues, and the data revolution heightens. A dataset in relation to the augmented domain complexity continues to pervade. Here, LASSO regression does not exist just as a statistical tool but as an innovation beacon assisting researchers with precision and simplicity within the dynamic landscape [@Chintalapudi2022]. The introduction of logistic regression into the area of LASSO has been especially dynamic, providing a nuanced approach to modeling of categorical outcomes [@Simon2013]. This is necessary for areas from epidemiology to finance [@Friedman2010]. This thus places this combination as a great leap forward in the direction of data-driven insights aimed at action, where traditional analytical methods might possibly face challenges of interpretation, firmly situating logistic regression with LASSO among the basic constitutions of modern statistical analysis and predictive modeling [@Hastie2009].
 
-Indeed, the way of LASSO development has been marked by a series of important developments that pinpoint the historical trajectory, including the emergence of Least Angle Regression by Efron and colleagues in pointing out the potential, influence, and continued utility in research [@Zhou2022; @Witten2010]. This cutting-edge technology is used throughout a wide spectrum of industries with the goal of dismantling complex data structures and, eventually, extracting meaningful patterns from trends as socioeconomic, public health, and environmental studies. LASSO regression adapted for logistic models was one of the best steps to ward off the impediments towards modeling categorical data with more precision [@Tibshirani2012].
-
+Indeed, the way of LASSO development has been marked by a series of important developments that pinpoint the historical trajectory, including the emergence of Least Angle Regression by Efron and colleagues in pointing out the potential, influence, and continued utility in research [@Zhou2022]. This cutting-edge technology is used throughout a wide spectrum of industries with the goal of dismantling complex data structures and, eventually, extracting meaningful patterns from trends as socioeconomic, public health, and environmental studies. LASSO regression adapted for logistic models was one of the best steps to ward off the impediments towards modeling categorical data with more precision [@Tibshirani2012].
 
 ## Literature Review
 
-The versatility of LASSO regression is reflected in the extensive literature discussing its various applications. Notably, LASSO regression has made significant contributions to economics. For example, Zhou et al. (2022)[@Zhou2022] used the LASSO model to investigate what determines the growth of quality of life in China and found that the LASSO model is a good tool for selecting important economic predictors out of a large number of regressors. Thus, it makes important improvements on economic models useful for economic policy stakeholders and researchers in how to promote economic growth. The technique has also been critical for important developments in the area of bioinformatics. 
+The versatility of LASSO regression is reflected in the extensive literature discussing its various applications. Notably, LASSO regression has made significant contributions to economics. For example, Zhou et al. (2022)[@Zhou2022] used the LASSO model to investigate what determines the growth of quality of life in China and found that the LASSO model is a good tool for selecting important economic predictors out of a large number of regressors. Thus, it makes important improvements on economic models useful for economic policy stakeholders and researchers in how to promote economic growth. The technique has also been critical for important developments in the area of bioinformatics.
 
-Lu, et al. (2011) [@Lu2011] showed how LASSO regression can be applied to constructing predictive models — based on gene expressions and other high-throughput data — to understand the relationships between gene expressions and multiple phenotypes, which are critical for understanding genetic pathways and cell systems. In this example, the LASSO regression was used to build a microRNA-target regulatory network, which provides insight into gene regulation mechanisms, as well as applications in personalized medicine and in the understanding of genetic diseases [@Musoro2014].
-LASSO regression has expedited the processing and analysis of large datasets in the environmental and energy sectors. Wang et al. (2017) [@Wang2017] detailed its use in predicting ship fuel consumption for diminished environmental impact and increased fuel efficiency in maritime operations.
+Lu, et al. (2011) [@Lu2011] showed how LASSO regression can be applied to constructing predictive models — based on gene expressions and other high-throughput data — to understand the relationships between gene expressions and multiple phenotypes, which are critical for understanding genetic pathways and cell systems. In this example, the LASSO regression was used to build a microRNA-target regulatory network, which provides insight into gene regulation mechanisms, as well as applications in personalized medicine and in the understanding of genetic diseases [@Musoro2014]. LASSO regression has expedited the processing and analysis of large datasets in the environmental and energy sectors. Wang et al. (2017) [@Wang2017] detailed its use in predicting ship fuel consumption for diminished environmental impact and increased fuel efficiency in maritime operations.
 
 LASSO regression aids in selecting the most informative variables that influence fuel usage and empowers the maritime industry's sustainability and operational performance efforts. LASSO regression has been a meaningful addition to the analysis of multi-factorial diseases and health outcomes in public health research. In an analysis of dietary intakes for breast cancer, McEligot et al. (2020) [@McEligot2020] showed that logistic LASSO can handle high-dimensional data to uncover the key drivers of health, and this has broad applicability in public health for unraveling and prioritizing the risk factors for a variety of illnesses. His role as a facilitator for the development of machine learning models (especially in feature selection) has been pivotal to improving the accuracy of those predictions as LASSO was proving its worthiness time and time again.
 
-Muthukrishnan and Rohini (2016) [@Muthukrishnan2016] showcased this by demonstrating the ability of LASSO regression “to select the relevant feature attributes of predictive modelling for machine learning”.
-After gaining prominence within the traditional domain, the applications of LASSO regression have extended into new spheres such as financial modeling, where it assists analysts in singling out influential market predictors from large datasets characterized by volatility and noise, eventually translating into forecasts and investment strategies [@Friedman2010; @Hastie2015]. The adaptability and precision of LASSO regression within financial analysis underline its growing promise and popularity. Another field where LASSO regression's ability to parse through voluminous climate variable datasets to extract critical indicators of environmental change has been crucial is climate research and sustainability studies. The power of this application is not only a testament to the adaptability but also reflects the urgency in deploying LASSO regression in the face of challenges such as global warming and biodiversity loss, where parsing through complex environmental patterns becomes critical to devising strategies to mitigate its devastating impacts [@Chintalapudi2022; @Li2022]. 
+Muthukrishnan and Rohini (2016) [@Muthukrishnan2016] showcased this by demonstrating the ability of LASSO regression “to select the relevant feature attributes of predictive modelling for machine learning”. After gaining prominence within the traditional domain, the applications of LASSO regression have extended into new spheres such as financial modeling, where it assists analysts in singling out influential market predictors from large datasets characterized by volatility and noise, eventually translating into forecasts and investment strategies [@Friedman2010]. The adaptability and precision of LASSO regression within financial analysis underline its growing promise and popularity. Another field where LASSO regression's ability to parse through voluminous climate variable datasets to extract critical indicators of environmental change has been crucial is climate research and sustainability studies. The power of this application is not only a testament to the adaptability but also reflects the urgency in deploying LASSO regression in the face of challenges such as global warming and biodiversity loss, where parsing through complex environmental patterns becomes critical to devising strategies to mitigate its devastating impacts [@Chintalapudi2022].
 
-Digital health technologies have opened a trove of opportunities for LASSO regression to analyze the complex interplay between individual lifestyle factors, genetic predispositions, and health outcomes. The inclusion of LASSO in this field of research is an acknowledgement that it is uniquely suited to handle complex, multidimensional data that is needed to understand and generate personalized medicine or public health interventions—a frontier of healthcare that holds promise for applications where LASSO's valuable data-driven insights can be channeled to address bespoke health solutions [@Simon2013; @Park2008] and Sohaee and Bohluli (2024b)[@2024b] employ Lasso polynomial regression to analyze the intricate relationship between socioeconomic, demographic, and technological factors and fatal traffic accidents, demonstrating its effectiveness in handling categorical variables and preventing overfitting. In their study on breast cancer screening adherence (Sohaee and Bohluli 2024a)[@2024a], they utilized Lasso regression to identify significant predictors from various socioeconomic factors, highlighting health disparities and advocating for targeted healthcare policies. Both studies underscore the importance of advanced statistical techniques, such as Lasso regression, in understanding complex datasets to inform policy decisions and improve outcomes in transportation safety and healthcare.
+Digital health technologies have opened a trove of opportunities for LASSO regression to analyze the complex interplay between individual lifestyle factors, genetic predispositions, and health outcomes. The inclusion of LASSO in this field of research is an acknowledgement that it is uniquely suited to handle complex, multidimensional data that is needed to understand and generate personalized medicine or public health interventions—a frontier of healthcare that holds promise for applications where LASSO's valuable data-driven insights can be channeled to address bespoke health solutions [@Simon2013] and Sohaee and Bohluli (2024b)[@2024b] employ Lasso polynomial regression to analyze the intricate relationship between socioeconomic, demographic, and technological factors and fatal traffic accidents, demonstrating its effectiveness in handling categorical variables and preventing overfitting. In their study on breast cancer screening adherence (Sohaee and Bohluli 2024a)[@2024a], they utilized Lasso regression to identify significant predictors from various socioeconomic factors, highlighting health disparities and advocating for targeted healthcare policies. Both studies underscore the importance of advanced statistical techniques, such as Lasso regression, in understanding complex datasets to inform policy decisions and improve outcomes in transportation safety and healthcare.
 
 Efron et al. (2004)[@annalsofstatistics] introduced Least Angle Regression (LARS) as adept for high-dimensional data analysis, emphasizing its suitability for large datasets with thousands of predictors. LARS enables efficient feature selection and model building, particularly when adapted for Lasso regression. By combining LARS with Lasso, researchers can select relevant features, manage high-dimensional data, and improve prediction accuracy while mitigating multicollinearity and overfitting concerns. [@10341221] research introduced a novel approach to predicting heart disease by leveraging a sophisticated computer model. By integrating LASSO, a technique akin to a smart sieve for crucial information, with other methods, the accuracy of predictions is enhanced. It showcases how advanced computer methods can assist doctors in foreseeing health issues preemptively, potentially leading to improved prevention and treatment strategies for heart disease. Researchers analyzed extensive health data, identifying key factors using LASSO, and developed a highly effective predictive model. This could translate to earlier and personalized care for individuals at risk of heart disease, promising significant advancements in healthcare.
 
 Indeed, these and many more diverse applications are a testament to the potency of LASSO regression as a powerful tool in the arsenal of researchers and practitioners across disciplines, as they grapple with increasingly high-resolution and large datasets. By simplifying complex models and identifying important predictors from large datasets, LASSO regression has cemented itself as an essential part of modern statistical analysis and predictive modeling [@Belloni2013; @Zou2005; @Witten2010; @Tibshirani2012].
 
+## Methodology
 
-## Methods
+### LASSO Regression
 
-### Predictive Modeling and Feature Selection
+LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced by Robert Tibshirani in 1996, extends traditional linear regression by introducing a penalty on the size of coefficients. This regularization technique is invaluable in scenarios with numerous potential predictors, some of which might not significantly impact the outcome variable. [@Tibshirani1996]
 
-In our study, we employ LASSO Regression (Least Absolute Shrinkage and Selection Operator) as a cornerstone for both predictive modeling and feature selection. This approach not only facilitates prediction but also imposes a penalty on the magnitude of regression coefficients, thereby enhancing feature selection through sparsity.
+#### Mathematical Formulation
 
-#### LASSO Regression Variants and Equations
+The objective function of LASSO regression is described as follows:
 
-- **Standard LASSO Regression:**
+$$
+\min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
+$$
 
-  The Standard LASSO regression introduces a regularization term (`λ`) to the cost function, which penalizes the absolute value of the coefficients. The objective function is defined as:
-  
-  $$ L(\beta) = \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| $$
+where $y_i$ represents the observed outcomes, $x_{ij}$ denotes the predictor variables, $\beta_j$ are the coefficients, $n$ is the number of observations, $p$ represents the number of predictors, and $\lambda$ is the regularization parameter controlling the degree of shrinkage applied to the coefficients.
 
-  where \(y_i\) represents the observed outcomes, \(x_{ij}\) the predictor variables, \(\beta_j\) the coefficients, \(n\) the number of observations, \(p\) the number of predictors, and \(\lambda\) the regularization parameter controlling the degree of shrinkage applied to the coefficients.
+The first term of the objective function is the residual sum of squares (RSS), measuring the model's fit to the data. The second term, the LASSO penalty, imposes a cost on model complexity by penalizing the absolute value of the coefficients. The regularization parameter, $\lambda$, crucially balances fitting the data well (minimizing RSS) and maintaining model simplicity by penalizing large coefficients[@Tibshirani1996; @Zhao2006].
 
-- **Elastic Net:**
+##### Role of the Regularization Parameter ($\lambda$)
 
-  Elastic Net is a blend of Lasso and Ridge regression, incorporating both L1 and L2 regularization terms to the cost function, beneficial for dealing with correlated predictors. The Elastic Net objective function is:
-  
-  $$ L(\beta) = \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda_1 \sum_{j=1}^{p} |\beta_j| + \lambda_2 \sum_{j=1}^{p} \beta_j^2 $$
+The selection of $\lambda$ is critical in LASSO regression. When $\lambda = 0$, LASSO regression becomes ordinary least squares regression, with no penalty on coefficient size. As $\lambda$ increases, the penalty's impact grows, driving more coefficients to zero and simplifying the model. This attribute makes LASSO particularly effective for variable selection, as it can identify and eliminate irrelevant predictors by setting their coefficients to zero[@Zhao2006].
 
-- **Adaptive Lasso:**
+-   **Bias-Variance Trade-off**: A small $\lambda$ results in low bias but high variance, as the model fits closely to the training data, which may lead to overfitting. Conversely, a larger $\lambda$ increases bias but reduces variance by simplifying the model, potentially causing underfitting.
+-   **Model Selection and Cross-Validation**: The optimal $\lambda$ value is usually determined through cross-validation. K-fold cross-validation is a common method to assess the model's predictive performance across a range of $\lambda$ values, selecting the $\lambda$ that minimizes cross-validation error [@Friedman2010].
 
-  Adaptive Lasso varies the penalty across coefficients by introducing weights, aiming for variable selection consistency. Its equation is:
-  
-  $$ L(\beta) = \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} w_j |\beta_j| $$
+##### Computational Considerations
 
-- **Group Lasso:**
+LASSO regression's implementation computationally hinges on numerical optimization techniques, as the penalty term's absolute value renders the optimization problem non-differentiable at zero. Algorithms such as coordinate descent are commonly used to solve the LASSO optimization challenge, particularly with high-dimensional data.
 
-  Designed for scenarios with clustered predictor variables, Group Lasso penalizes groups of coefficients collectively. Its formulation is:
-  
-  $$ L(\beta) = \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{g=1}^{G} p_g ||\beta_g||_2 $$
+##### Advantages of LASSO Regression
 
-### Model Formulation
+The amalgamation of feature selection and regularization underpins LASSO's utility for models prioritizing prediction accuracy and simplicity. Its applications span various fields, including biomedical research, financial modeling, and social sciences, attesting to its versatility and efficacy in predictive analytics [@Hastie2009; @Meinshausen2006].
 
-The overarching objective of LASSO and its variants is to minimize the discrepancy between observed outcomes and model predictions, incorporating a penalty term that enforces coefficient sparsity.
+-   **Feature Selection**: By reducing some coefficients to exactly zero, LASSO achieves automatic feature selection, highlighting significant predictors [@Park2008].
+-   **Model Interpretability**: Simplifying the model by removing irrelevant variables improves interpretability, making LASSO-regressed models more comprehensible [@Belloni2013].
+-   **Mitigation of Multicollinearity**: LASSO effectively addresses multicollinearity among predictors by selecting a single variable from a group of highly correlated variables, thereby alleviating this concern [@Efron2004].
 
-$$ \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\} $$
+## Data Set Description
 
-### Detailed Methodological Techniques
+The `RetSchool` dataset, accessible from [R datasets](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html), encompasses a rich array of variables aimed at exploring the determinants of wages in 1976. This section delves into the dataset through sophisticated visualizations and best practices in data analysis, focusing exclusively on dataset characteristics without discussing specific modeling techniques like LASSO regression.
 
-1. **Integration of Multiple Response Variables:**
+### Initial Data Exploration and Cleaning
 
-   Utilizes a composite score to encapsulate multiple dimensions of phenomena.
+Initial exploration of the `RetSchool` dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.
 
-   $$ C = w_1 S_1 + w_2 S_2 + \ldots + w_k S_k $$
-
-2. **Cross-Validation in LASSO Regression:**
-
-   Employs systematic data partitioning to identify the optimal \(λ\).
-
-   $$ CV(\lambda) = \frac{1}{K} \sum_{k=1}^{K} MSE_k(\lambda) $$
-
-3. **Subgroup Analysis:**
-
-   Investigates the variability of effects across demographics.
-
-   $$ y = \beta_0 + \beta_1 x + \beta_2 z + \beta_3 (x \times z) + \epsilon $$
-
-4. **Interaction Terms:**
-
-   Explores the conditional effects between variables.
-
-   $$ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 (x_1 \times x_2) + \epsilon $$
-
-5. **Handling Missing Data:**
-
-   Adopts strategies such as imputation.
-
-   $$ \hat{y} = \frac{1}{m} \sum_{i=1}^{m} \hat{y}_i $$
-
-6. **Logistic Regression with LASSO:**
-
-   Enhances categorical outcome prediction through feature selection.
-
-   $$ \log \left( \frac{p}{1-p} \right) = \beta_0 + \lambda \sum_{j=1}^{p} |\beta_j| + \sum_{j=1}^{p} \beta_j x_{ij} $$
-
-
-### Implications and Recommendations
-
-The inclusion of equations and detailed explanations underscores the technical foundation of our methodology, illuminating the mechanisms through which LASSO regression and related techniques facilitate predictive modeling and feature selection. By rigorously applying these methods, our study aims to achieve a nuanced understanding of the dataset, guiding future research and practice in statistical modeling.
-
-
-
-## Analysis and Results
-
-## Data Description: 
-
-RetSchool from R datasets:
-[https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html)
-
-The dataset contains 5,225 entries and 18 columns, indicating a fairly large size in terms of the number of records. Here are some key points observed from the initial examination:
-
-•	Multiple Features: 
-
-There are 18 columns in total, which include a variety of variables such as education level (grade76), experience (exp76), race (black), region indicators (south76, smsa76, region, smsa66), family background (momdad14, sinmom14, nodaded, nomomed, daded, momed, famed), age (age76), and college education indicator (col4). 
-
-This variety suggests a potentially high-dimensional feature space, especially considering interactions or polynomial features could be explored.
-
-•	Missing Values: Some columns have missing values (wage76, grade76, exp76, south76), which LASSO regression can handle well if preprocessing steps include imputation or if the analysis focuses on available data.
-
-•	Binary and Continuous Variables: The dataset comprises both binary (e.g., black, momdad14, sinmom14, nodaded, nomomed, col4) and continuous variables (e.g., wage76, grade76, exp76, daded, momed, age76), suggesting that LASSO could be beneficial in handling a mix of variable types by identifying which variables contribute most to the prediction.
-Given these characteristics, LASSO regression is a strong candidate for several reasons:
-
-1.	Feature Selection: LASSO's ability to shrink coefficients of less relevant features to zero will help in identifying which variables are most predictive of the outcome, likely simplifying the model by excluding variables that do not contribute significantly.
-
-2.	Handling Multicollinearity: If variables such as education level and experience are highly correlated, LASSO can help in mitigating multicollinearity by selecting one or a few variables from a group of correlated variables, which enhances model stability and interpretability.
-
-3.	Model Interpretability: With many variables in play, reducing the model to only include significant predictors can make it easier to understand and explain, which is often crucial in research and policy analysis contexts.
-
-4.	Robustness to Overfitting: The regularization aspect of LASSO helps in preventing overfitting, making the model more generalizable to unseen data, which is particularly valuable in predictive modeling.
-
-#### The choice of a dataset like "RetSchool.csv":
-
-This dataset provides a thorough overview of the socioeconomic environment in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
-
-
-```{r}
-library(readr)
-data_RetSchool <- read_csv("RetSchool.csv")
-print(data_RetSchool, n = 10)
-summary(data_RetSchool)
-```
-
-This dataset provides a rich collection of socio-economic and demographic information about individuals, focusing on their wages, education levels, work experience, and other personal and family background characteristics.Here's an overview of the dataset and the key variables it includes:
-
-#### Key Variables:
-
-•	wage76: The wage of individuals in 1976, providing insight into the economic status and disparities within the population.
-
-•	grade76: The highest grade completed by 1976, indicating the educational attainment and its distribution among individuals.
-
-•	exp76: Work experience in years by 1976, shedding light on the labor market engagement and its impact on wages.
-
-•	black: A binary variable indicating whether an individual is black, offering a lens into the racial composition of the dataset.
-
-•	south76: Indicates whether an individual lived in the South in 1976, allowing for regional analysis and its impact on socio-economic outcomes.
-
-•	smsa76: A binary variable indicating residence in a Standard Metropolitan Statistical Area (SMSA) in 1976, relevant for urban versus rural disparities.
-
-•	region: Categorical variable representing different regions, useful for understanding geographic influences on economic and educational outcomes.
-
-•	momdad14, sinmom14: Variables indicating living situations at age 14, which can be crucial for studies on family structure and its effects on individual development.
-
-•	daded, momed: Education levels of dad and mom, respectively, providing data on family background and its potential influence on educational attainment.
-
-•	age76: Age of individuals in 1976, necessary for demographic analyses and understanding the age distribution of the workforce.
-
-•	col4: An unspecified indicator variable, the context of which would need clarification for meaningful analysis.
-
-#### Insights and Implications from the dataset
-
-The RetSchool dataset offers a comprehensive view of the interplay between education, work experience, and wages, highlighting the positive correlation between educational attainment and economic outcomes. It also underscores the significant impact of demographic factors such as race, region, and family background on these outcomes.
-The diversity in educational attainment, work experience, and wages across different demographic groups suggests the presence of underlying socio-economic disparities. The dataset allows for an exploration of how early-life conditions, including family structure and parental education, affect later-life economic success.
-
-
-#### Data Visualization
-
-```{r}
+```{r setup, include=FALSE}
+library(tidyverse)
 library(ggplot2)
-library(patchwork)
-data_RetSchool <- read.csv("RetSchool.csv")
-data_RetSchool <- na.omit(data_RetSchool)
-```
-
-
-```{r}
-library(ggplot2)
-library(patchwork)
-
-# Summary Statistics Plots
-# Histograms and density plots for wage76, grade76, and exp76
-p_wage_hist <- ggplot(data_RetSchool, aes(x = wage76)) +
-  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
-  geom_density(alpha = .2, fill = "#FF6666") +
-  labs(title = "Distribution of wage76")
-
-p_grade_hist <- ggplot(data_RetSchool, aes(x = grade76)) +
-  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
-  geom_density(alpha = .2, fill = "#FF6666") +
-  labs(title = "Distribution of grade76")
-
-p_exp_hist <- ggplot(data_RetSchool, aes(x = exp76)) +
-  geom_histogram(bins = 30, fill = "skyblue", color = "black") +
-  geom_density(alpha = .2, fill = "#FF6666") +
-  labs(title = "Distribution of exp76")
-
-# Box plots for wage76, grade76, and exp76
-p_wage_box <- ggplot(data_RetSchool, aes(y = wage76)) +
-  geom_boxplot(fill = "lightgreen") +
-  labs(title = "Box Plot of wage76")
-
-p_grade_box <- ggplot(data_RetSchool, aes(y = grade76)) +
-  geom_boxplot(fill = "lightgreen") +
-  labs(title = "Box Plot of grade76")
-
-p_exp_box <- ggplot(data_RetSchool, aes(y = exp76)) +
-  geom_boxplot(fill = "lightgreen") +
-  labs(title = "Box Plot of exp76")
-
-# Combine the plots into a single layout
-summary_stats_layout <- (p_wage_hist | p_grade_hist | p_exp_hist) / 
-                        (p_wage_box | p_grade_box | p_exp_box) + 
-                        plot_annotation(title = "Summary Statistics of Key Numeric Variables")
-print(summary_stats_layout)
-```
-
-
-#### Summary Statistics of Key Numeric Variables
-#### Distribution and Box Plot Analysis:
-
-•	Wage in 1976 (wage76):
-o	The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data.
-o	The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.
-
-•	Education Level in 1976 (grade76):
-o	The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college).
-o	The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
-
-•	Work Experience in 1976 (exp76):
-o	The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience.
-o	The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
-
-These visualizations help in understanding the basic characteristics of the dataset, including the central tendency and variability of wages, education levels, and work experience among the individuals in 1976. The presence of skewness and outliers in these distributions indicates the diversity in the economic and educational background of the population studied.
-
-```{r}
-# Create the 'LivingSituationAt14' column based on existing data
-
-data_RetSchool$LivingSituationAt14 <- ifelse(data_RetSchool$momdad14 == 1, 'Both Parents', 
-                                   ifelse(data_RetSchool$sinmom14 == 1, 'Single Mom', 'Other'))
-data_RetSchool$LivingSituationAt14 <- factor(data_RetSchool$LivingSituationAt14)
-
-```
-
-#### Wage Distribution by Living Situation at Age 14:
-
-```{r}
-#Wage Distribution by Living Situation at Age 14
-p_wage_distribution <- ggplot(data_RetSchool, aes(x = wage76)) + geom_histogram(aes(y = after_stat(density)), bins = 20, fill = "skyblue", color = "black") + geom_density(alpha = 0.2, fill = "#FF6666") + facet_wrap(~ LivingSituationAt14, scales = "free_y") + labs(title = "Wage Distribution by Living Situation at Age 14", x = "Wage in 1976 (wage76)", y = "Density") + theme_minimal()
-#ggsave("wage_distribution_by_living_situation.png", p_wage_distribution, width = 12, height = 4)
-
-print(p_wage_distribution)
-```
-
-The faceted charts provide a comparison of wage distribution in 1976 (wage76) across different living situations at age 14, namely "Both Parents", "Single Mom", and "Other". Each facet represents a histogram of wage distribution for a specific living situation, allowing for direct comparison. Key insights:
-
-•	General Distribution: Across all living situations, the wage distribution is right-skewed, indicating a majority of individuals earning lower wages with a tail of higher earners.
-
-•	Differences in Distribution: While the overall shape of the distribution appears similar across different living situations, there are subtle differences in the spread and peaks of the distributions. This suggests that living situation at age 14 may have some influence on wage outcomes, but the effect is not starkly different when visualized this way.
-
-•	Variability: The presence of variability within each living situation category underscores the complexity of factors influencing wage, beyond just early life living conditions.
-
-
-#### Correlation Matrix Plot
-
-```{r}
-
-# Correlation Matrix Plot
 library(corrplot)
-cor_matrix <- cor(na.omit(data_RetSchool[sapply(data_RetSchool, is.numeric)]))
-
-corrplot(cor_matrix, method = "color",
-addCoef.col = "black",  # Color of the correlation coefficients
-tl.col = "black",       # Color of the text labels
-tl.srt = 45,            # Rotation of text labels
-tl.cex = 0.7,           # Font size of text labels
-number.cex = 0.5,       # Font size of the correlation coefficients
-cl.cex = 0.7,           # Font size of the color legend
-addgrid.col = "white",  # Color of the grid lines
-tl.pos = "lt",          # Position of text labels (left and top sides)
-diag = FALSE)           # Remove the diagonal
-```
-
-#### Demographic Analysis: 
-
-```{r}
-
-#Demographic Analysis Plots
-p_race <- ggplot(data_RetSchool, aes(x = as.factor(black))) + geom_bar(fill = "skyblue") + labs(title = "Distribution by Race", x = "Race (1=Black, 0=Not Black)", y = "Count") + theme_minimal()
-
-p_region <- ggplot(data_RetSchool, aes(x = as.factor(region))) + geom_bar(fill = "lightgreen") + labs(title = "Distribution by Region", x = "Region", y = "Count") + theme_minimal()
-
-p_living_situation <- ggplot(data_RetSchool, aes(x = LivingSituationAt14)) + geom_bar(fill = "lightcoral") + labs(title = "Living Situation at Age 14", x = "Living Situation", y = "Count") + theme_minimal()
-#Combine the demographic plots into one figure
-
-demographic_plot <- (p_race | p_region | p_living_situation) + plot_layout(guides = 'collect') & theme(plot.title = element_text(hjust = 0.5))
-
-print(demographic_plot)
+library(gridExtra)
+df <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/RetSchool.csv", show_col_types = FALSE)
+df_clean <- df %>%
+  mutate(
+    grade76 = ifelse(is.na(grade76), median(grade76, na.rm = TRUE), grade76),
+    exp76 = ifelse(is.na(exp76), median(exp76, na.rm = TRUE), exp76)
+  ) %>%
+  na.omit()
+cat("Rows after cleaning and imputation:", nrow(df_clean), "\n")
 
 ```
- 
 
-The bar charts provide insights into the demographic composition of the dataset based on race, region, and living situation at age 14.
- 
-Distribution by Race:
+Distribution of Key Variables Histograms and density plots provide a nuanced view of the distributions of wages, education, and experience.
 
-The dataset includes a larger number of individuals who are not black compared to those who are black. This distribution is crucial for understanding the racial composition of the study population and assessing the representativeness of the dataset across different racial groups.
+```{r wage-distribution, fig.cap="Figure 1: Wage Distribution in 1976"}
+library(ggplot2)
+library(patchwork)
 
-Distribution by Region:
+# Wage Distribution in 1976
+p_wage <- ggplot(df_clean, aes(x = wage76)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", color = "black") +
+  geom_density(color = "red", fill = "red", alpha = 0.2) +
+  labs(title = "Wage Distribution in 1976", x = "Wage", y = "Density") +
+  annotate("text", x = Inf, y = Inf, label = "Right-skewed distribution", hjust = 1.1, vjust = 2, size = 3, color = "darkred")
+p_wage
 
-The participants are spread across different regions, with varying counts in each. The diversity in region distribution can help analyze regional influences on wages, education, and other factors of interest.
+```
 
-Living Situation at Age 14:
+• Wage in 1976 (wage76): o The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data. o The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.
 
-A significant portion of the participants lived with both parents at age 14, with fewer living with a single mom, and a small number categorized under "Other" living situations. This demographic information can be valuable for studies examining the impact of early family environment on education and economic outcomes.
+```{r education-distribution, fig.cap="Figure 2: Education Level Distribution in 1976"}
 
-Comprehensive Demographic Composition:
+# Education Level Distribution in 1976
+p_education <- ggplot(df_clean, aes(x = grade76)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "green", color = "black") +
+  geom_density(color = "blue", fill = "blue", alpha = 0.2) +
+  labs(title = "Education Level Distribution in 1976", x = "Highest Grade Completed", y = "Density") +
+  annotate("text", x = Inf, y = Inf, label = "Multi-modal distribution", hjust = 1.1, vjust = 2, size = 3, color = "darkblue")
+p_education
+```
 
-The combined demographic analysis elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
+• Education Level in 1976 (grade76): o The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). o The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
 
-## Dataset Summary:
+```{r work-distribution, fig.cap="Figure 3: Work Experience Distribution in 1976"}
 
-The dataset and its visualizations offer a wealth of insights into the socio-economic characteristics of individuals, focusing on aspects such as wages, education, work experience, race, regional distribution, and living situations at age 14. 
+# Work Experience Distribution in 1976
+p_experience <- ggplot(df_clean, aes(x = exp76)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "orange", color = "black") +
+  geom_density(color = "purple", fill = "purple", alpha = 0.2) +
+  labs(title = "Work Experience Distribution in 1976", x = "Years of Experience", y = "Density") +
+  annotate("text", x = Inf, y = Inf, label = "Right-skewed distribution", hjust = 1.1, vjust = 2, size = 3, color = "darkmagenta")
+p_experience
 
-Here's a comprehensive summary of the insights derived from the data and visual analyses:
+```
 
-1. Wage, Education, and Experience Distribution:
+• Work Experience in 1976 (exp76): o The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. o The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
 
-Wages in 1976 are right-skewed, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This skewness highlights economic disparities within the population.
+### Correlation Matrix
+
+```{r correlation-matrix, fig.cap="Figure 4: Correlation Matrix of Selected Variables"}
+library(corrplot)
+
+# Calculate the correlation matrix on selected variables, omitting NAs
+cor_matrix <- cor(select(df_clean, wage76, grade76, exp76, age76) %>% na.omit())
+
+# Generate the correlation matrix plot
+corrplot(cor_matrix, method = "color", 
+         addCoef.col = "black",
+         type = "upper",
+         tl.col = "black",
+         tl.srt = 45,
+         tl.cex = 0.6,
+         number.cex = 0.6,
+         mar = c(0, 0, 2, 0))
 
 
-Education Levels show a multimodal distribution, with peaks at certain levels likely representing significant milestones in the education system. This suggests the presence of standard education paths followed by the population.
-
-Work Experience also exhibits a right-skewed distribution, with many individuals having lower levels of experience. This reflects the younger or less experienced portion of the workforce.
-
-2. Education and Wage Relationship:
-
-There is a positive correlation between education level and wages, suggesting that higher education levels are associated with higher earning potential. However, the wide range in wages at any given education level underscores the influence of other factors, such as field of study, industry, and geographic location, on wages.
-
-3. Work Experience and Wage Relationship:
-
-A positive trend indicates that individuals with more work experience tend to have higher wages, aligning with the expectation that experience contributes to skill development and higher pay. However, the increase in wages appears to plateau beyond a certain level of experience, hinting at a ceiling effect in certain jobs or industries.
-
-4. Demographic Analysis:
-
-Race: The data set reveals a larger number of non-black individuals compared to black individuals, providing a crucial perspective on the racial composition of the study population.
-
-Region: The participants are spread across different regions, with variable counts, indicating regional diversity that could influence economic outcomes.
-
-Living Situation at Age 14: A significant portion of the participants lived with both parents at age 14, suggesting a predominant family structure. The differences in living situations may have implications for educational and economic outcomes.
-
-5. Correlation Matrix Insights:
+```
 
 The correlation matrix provides a nuanced understanding of how different variables interact. Notably, education level and work experience show positive correlations with wages, but the strength of these relationships varies, highlighting the multifaceted nature of wage determination.
 
-6. Comprehensive Demographic Composition:
+### Demographic Distributions
+
+```{r demographic-distributions, fig.cap="Figure 5: Demographic Distributions"}
+# Create the 'LivingSituationAt14' column based on existing data
+
+df_clean <- df_clean %>%
+  mutate(LivingSituationAt14 = case_when(
+    momdad14 == 1 ~ "Both Parents",
+    sinmom14 == 1 ~ "Single Mom",
+    TRUE ~ "Other"
+  ))
+
+# Convert the new column to a factor for better plotting
+df_clean$LivingSituationAt14 <- factor(df_clean$LivingSituationAt14)
+
+# Race Distribution
+p_race <- ggplot(df_clean, aes(x = as.factor(black))) +
+  geom_bar(fill = "coral") +
+  labs(title = "Race Distribution", x = "Race (1 = Black, 0 = Other)", y = "Count")
+
+# Region Distribution
+p_region <- ggplot(df_clean, aes(x = as.factor(region))) +
+  geom_bar(fill = "lightgreen") +
+  labs(title = "Region Distribution", x = "Region", y = "Count")
+
+# Living Situation at Age 14
+p_living <- ggplot(df_clean, aes(x = LivingSituationAt14)) +
+  geom_bar(fill = "lightblue") +
+  labs(title = "Living Situation at Age 14", x = "Living Situation", y = "Count")
+
+# Combine the plots with patchwork and assign a collective title
+demographic_plots <- p_race + p_region + p_living + 
+  plot_layout(ncol = 3)
+
+print(demographic_plots)
+
+
+```
 
 The combined demographic analysis elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
 
-#### Summary
+### Comprehensive Data Set Insights
 
-The dataset paints a detailed picture of the socio-economic landscape in 1976, emphasizing the critical roles of education and work experience in determining wages, while also highlighting the influence of demographic factors. The insights suggest that while individual effort and achievement (as measured by education and experience) are important, background factors such as race, region, and early family environment also play significant roles in shaping economic outcomes.
+Our exploration of the RetSchool dataset through advanced visualizations reveals significant insights into the socio-economic landscape of 1976. Notably, the wage distribution underscores economic disparities, while the educational attainment distribution highlights the societal valuation of specific educational milestones. Work experience distribution and demographic analyses further enrich our understanding of the workforce's characteristics and the socio-economic factors influencing educational and economic outcomes.
 
-## Statistical Modeling
+## Data Preparation and Model Fitting
 
-This analysis includes the exploration of a composite score as a new response variable, the application of diverse cross-validation techniques and LASSO parameter adjustments, and alternative approaches to handling missing data. The methodology involves:
-  
-1. Integration of Multiple Response Variables
-2. Cross-Validation in LASSO Regression
-3. Subgroup Analysis
-4. Interaction Terms
-5. Dropping rows with any missing data
-6. Logistic Regression with LASSO for Categorical Outcome Prediction
+The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. \### Data Cleaning To ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.
 
-#### 1. LASSO Regression for Composite Score Prediction
-
-Model Used: LASSO regression was employed to predict a composite score created from standardized wage76, grade76, and exp76 variables.
-
-Rationale: LASSO (Least Absolute Shrinkage and Selection Operator) regression was chosen for its ability to perform variable selection and regularization. By penalizing the absolute size of the regression coefficients, LASSO helps in reducing overfitting and identifying the most significant predictors.
-
-
-```{r}
-# Load necessary libraries
-library(readr)
+```{r data-cleaning}
 library(dplyr)
+df <- read_csv("RetSchool.csv", show_col_types = FALSE)
+
+# Simple imputation for numerical columns
+df_clean <- df %>%
+  mutate_at(vars(grade76, exp76), ~ifelse(is.na(.), median(., na.rm = TRUE), .))
+
+df_filtered <- na.omit(df_clean)
+
+print(paste("Rows after cleaning and imputation:", nrow(df_filtered)))
+
+
+```
+
+### Feature Scaling
+
+Scaling ensures that all variables contribute equally to the model, preventing features with larger scales from dominating the model's fit. glmnet expects input features to be centered and scaled:
+
+```{r}
 library(caret)
+
+numeric_features <- select(df_filtered, where(is.numeric), -wage76)
+
+features <- data.matrix(numeric_features)
+
+# Scaling the features
+preProcValues <- preProcess(features, method = c("center", "scale"))
+features_scaled <- predict(preProcValues, features)
+
+
+```
+
+### Model Fitting with Cross-Validation
+
+Leveraging the glmnet package, we embarked on fitting a LASSO regression model to our dataset. A pivotal step in this process involved employing cross-validation techniques to meticulously identify the most suitable value for the regularization parameter, $\lambda$. This parameter is instrumental in fine-tuning the balance between model complexity and prediction accuracy, thereby mitigating the risk of overfitting. Through this methodical approach, we determined the optimal $\lambda$ to be approximately 0.00488, a value that significantly enhances the model's predictive reliability while ensuring simplicity.
+
+```{r lasso-model, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
 library(glmnet)
 
-data_RetSchool <- read_csv("RetSchool.csv")
+# Assuming df_filtered and features_scaled are already defined
+y <- df_filtered$wage76
+
+set.seed(123)
+cv_fit <- cv.glmnet(features_scaled, y, alpha = 1)
+
+# Plotting the cross-validation result
+plot(cv_fit)
 ```
 
-##### Data Standardization and Composite Score Creation:
-```{r}
-data_standardized <- data_RetSchool %>%
-  mutate_at(vars(wage76, grade76, exp76), ~scale(.) %>% as.vector()) %>%
-  mutate(composite_score = rowMeans(select(., wage76, grade76, exp76), na.rm = TRUE))
+### Explanation of the Cross-Validation Plot
 
-```
-This step involves standardizing the variables `wage76`, `grade76`, and `exp76` to have a mean of 0 and a standard deviation of 1. A composite score is then created as the average of these standardized scores to serve as a new response variable.
+The cross-validation plot serves as a crucial tool for visualizing how the choice of $\lambda$ influences our model's predictive accuracy. By plotting the mean squared error against the logarithm of $\lambda$ values, we gain insights into the model's performance dynamics across a spectrum of regularization strengths. Notably, the plot features two significant vertical lines:
 
-##### Visualizing the Standardized Variables and Composite Score:
-```{r}
-# Visualizing the distribution of standardized variables
-ggplot(data_standardized, aes(x = composite_score)) +
-  geom_histogram(bins = 30, fill = 'green', alpha = 0.7) +
-  ggtitle("Distribution of Composite Score")
-```
+-   A dotted line highlights the $\lambda$ value achieving the lowest cross-validation error within one standard error margin, suggesting an optimal balance between model complexity and accuracy. This "one standard error rule" helps in selecting a simpler model that still performs comparably to the best model found.
+-   Another line, often more solid, directly points to the $\lambda$ that corresponds to the absolute minimum cross-validation error, indicating the point of highest accuracy without regard to model simplicity.
 
-##### LASSO Regression Preparation and Execution:
-```{r}
-# Prepare the dataset for LASSO regression
-X_composite <- select(data_standardized, -c(wage76, grade76, exp76, composite_score))
-y_composite <- data_standardized$composite_score
-y_composite[is.na(y_composite)] <- mean(y_composite, na.rm = TRUE)
+In our analysis, this graphical representation was instrumental in pinpointing a $\lambda$ value of approximately 0.00488 as the sweet spot for our model. It ensures a judicious blend of complexity and accuracy, steering clear of overfitting while maintaining robust predictive performance.
 
-# Data partitioning
-set.seed(0)
-trainIndex <- createDataPartition(y_composite, p = 0.8, list = FALSE)
-X_train_composite <- X_composite[trainIndex, ]
-X_test_composite <- X_composite[-trainIndex, ]
-y_train_composite <- y_composite[trainIndex]
-y_test_composite <- y_composite[-trainIndex]
+### Model Coefficients and Interpretation
 
-# Imputation and scaling
-preProcessImpute <- preProcess(X_train_composite, method = c("medianImpute"))
-X_train_preprocessed_composite <- predict(preProcessImpute, X_train_composite)
-X_test_preprocessed_composite <- predict(preProcessImpute, X_test_composite)
-preProcessScale <- preProcess(X_train_preprocessed_composite, method = c("center", "scale"))
-X_train_preprocessed_composite <- predict(preProcessScale, X_train_preprocessed_composite)
-X_test_preprocessed_composite <- predict(preProcessScale, X_test_preprocessed_composite)
-
-# Model training with LASSO
-lambda_seq <- 10^seq(2, -2, length.out = 100)
-set.seed(0)
-cv_lasso <- cv.glmnet(as.matrix(X_train_preprocessed_composite), y_train_composite, alpha = 1, lambda = lambda_seq)
-best_lambda <- cv_lasso$lambda.min
-lasso_best <- glmnet(as.matrix(X_train_preprocessed_composite), y_train_composite, alpha = 1, lambda = best_lambda)
-
-```
-##### Visualizing the cross-validation results:
-```{r}
-plot(cv_lasso)
-
-```
-
-##### Model Performance Evaluation
-```{r}
-predictions <- predict(lasso_best, newx = as.matrix(X_test_preprocessed_composite), s = best_lambda)
-mse_composite <- mean((y_test_composite - predictions)^2)
-r2_composite <- summary(lm(predictions ~ y_test_composite))$r.squared
-coefficients <- coef(lasso_best, s = best_lambda)
-coefficient_values <- as.vector(coefficients[-1, ])
-
-list(mse_composite = mse_composite, r2_composite = r2_composite, coefficients = coefficient_values)
-
-```
-##### Predicted vs Actual Composite Scores Visualization:
-```{r}
-ggplot() +
-  geom_point(aes(x = y_test_composite, y = predictions), color = 'red') +
-  geom_line(aes(x = y_test_composite, y = y_test_composite), color = 'blue') +
-  xlab("Actual Composite Score") + ylab("Predicted Composite Score") +
-  ggtitle("Predicted vs Actual Composite Scores")
-
-```
-Results: The optimal lambda value identified through cross-validation minimized the mean squared error (MSE) and improved the model's predictive accuracy. The model explained approximately 42.4% of the variance in the composite score, indicating a moderate level of predictive accuracy.
-
-#### 2. Enhanced Cross-Validation in LASSO Regression
-Model Used: LASSO regression, tuned through K-fold cross-validation.
-
-Rationale: The LASSO regression model was utilized for its ability to perform both variable selection and regularization. The inclusion of K-fold cross-validation serves to identify the optimal lambda (λ) value that balances model complexity and accuracy, effectively addressing overfitting concerns and enhancing model reliability.
-
-Cross-Validation Process: K-fold cross-validation systematically divides the dataset into K subsets, or "folds." The model is trained on K-1 folds and validated on the remaining fold, iterating through all K combinations. This process allows for the evaluation of the model's performance across diverse subsets of the data, offering a comprehensive assessment of its predictive capabilities.
-
-Optimal Lambda Selection: The lambda parameter controls the degree of LASSO's penalty on the model's coefficients, with a higher lambda enforcing greater sparsity (more coefficients set to zero). The cross-validation process seeks to find the lambda value that minimizes prediction error, striking a balance between simplicity and predictive power.
-
-
-
-##### Analysis and Visualization
+After identifying the optimal $\lambda$, we can examine the model's coefficients to understand the influence of each predictor:
 
 ```{r}
-# Load necessary libraries
-library(dplyr)
-library(caret)
-library(readr)
-library(glmnet)
-library(ggplot2)
+coef_optimal <- coef(cv_fit, s = "lambda.min")
+coef_dense <- as.matrix(coef_optimal)
+coef_df <- data.frame(coef_dense)
 
-# Reading and preparing the data
-data <- read_csv("RetSchool.csv")
-data_standardized <- data %>%
-  mutate_at(vars(wage76, grade76, exp76), ~scale(.) %>% as.vector()) %>%
-  mutate(composite_score = rowMeans(select(., wage76, grade76, exp76), na.rm = TRUE))
-
-X_composite <- select(data_standardized, -c(wage76, grade76, exp76, composite_score))
-y_composite <- data_standardized$composite_score
-y_composite[is.na(y_composite)] <- mean(y_composite, na.rm = TRUE)
-
-# Data partitioning
-set.seed(0)
-trainIndex <- createDataPartition(y_composite, p = 0.8, list = FALSE)
-X_train_composite <- X_composite[trainIndex, ]
-X_test_composite <- X_composite[-trainIndex, ]
-y_train_composite <- y_composite[trainIndex]
-y_test_composite <- y_composite[-trainIndex]
-
-# Preprocessing: Imputation and scaling
-preProcessImpute <- preProcess(X_train_composite, method = c("medianImpute"))
-X_train_preprocessed_composite <- predict(preProcessImpute, X_train_composite)
-X_test_preprocessed_composite <- predict(preProcessImpute, X_test_composite)
-preProcessScale <- preProcess(X_train_preprocessed_composite, method = c("center", "scale"))
-X_train_preprocessed_composite <- predict(preProcessScale, X_train_preprocessed_composite)
-X_test_preprocessed_composite <- predict(preProcessScale, X_test_preprocessed_composite)
-
-# LASSO model training with cross-validation
-lambda_seq <- 10^seq(2, -2, length.out = 100)
-cv_lasso <- cv.glmnet(as.matrix(X_train_preprocessed_composite), y_train_composite, alpha = 1, lambda = lambda_seq)
-best_lambda <- cv_lasso$lambda.min
-
-# Model fitting with the optimal lambda
-lasso_best <- glmnet(as.matrix(X_train_preprocessed_composite), y_train_composite, alpha = 1, lambda = best_lambda)
-
-# Model prediction and evaluation
-predictions <- predict(lasso_best, newx = as.matrix(X_test_preprocessed_composite), s = best_lambda)
-mse_composite <- mean((y_test_composite - predictions)^2)
-r2_composite <- summary(lm(predictions ~ y_test_composite))$r.squared
-coefficients <- coef(lasso_best, s = best_lambda)
-coefficient_values <- as.vector(coefficients[-1, ])
-
-# Visualizing cross-validation results
-plot(cv_lasso$lambda, cv_lasso$cvm, log = "x", type = 'l', xlab = "Lambda", ylab = "Mean Squared Error",
-     main = "Cross-Validation Results for LASSO Regression")
-abline(v = cv_lasso$lambda.min, col = "red", lwd = 2, lty = 2)
-legend("topright", legend = c(paste("Optimal lambda:", round(cv_lasso$lambda.min, 5))), col = "red", lty = 2, lwd = 2)
+# Displaying coefficients
+print(coef_df)
 
 ```
 
-Results: The LASSO regression model, after cross-validation, demonstrated an MSE of 0.1575524 and an R² value of 0.4173462. These metrics signify the model's moderate success in capturing the relationship between the predictors (standardized wage76, grade76, exp76) and the composite outcome. The optimal lambda value identified was 0.0007330395, indicating an effective balance was found.
+Upon determining the optimal $\lambda$ value, a detailed examination of the model's coefficients provides us with valuable insights into the predictors' contributions towards estimating wages in 1976. The coefficients, represented in a sparse matrix, shed light on the relative importance and direction of each variable's effect:
 
+-   **Intercept (1.658013288)**: Sets the baseline wage prediction when all other predictors are at their mean values.
+-   **grade76 (0.083832188)**: Each additional year of education in 1976 is associated with an increase in wage, underscoring the value of education.
+-   **black (-0.071115786)**: Being black is associated with a decrease in wage compared to non-black individuals, highlighting potential racial disparities.
+-   **south76 (-0.059039330)**: Living in the South in 1976 is associated with a decrease in wage, possibly reflecting regional economic differences.
+-   **smsa76 (0.064270413)**: Living in a Standard Metropolitan Statistical Area (SMSA) in 1976 is associated with an increase in wage, indicating urban wage premiums.
+-   **smsa66 (0.006040491)**: Similarly, living in an SMSA in 1966 shows a smaller positive association with wages, suggesting long-term benefits of urban living.
+-   **momdad14 (0.008504452)**: Living with both parents at age 14 is mildly associated with higher wages, possibly reflecting benefits of a stable early home environment.
+-   **momed (0.010829506)**: Higher education levels of the mother are associated with higher wages, pointing to the influence of parental education.
+-   **age76 (0.117310381)**: Age in 1976 shows a strong positive correlation with wages, reflecting the typical accumulation of experience and skills over time.
+-   **col4 (0.007218061)**: Some indication that attending college is associated with higher wages, albeit with a smaller effect size. Variables such as **exp76**, **region**, **sinmom14**, **nodaded**, **nomomed**, **daded**, and **famed** have their coefficients shrunk to zero, indicating that within the context of this model and the data, these predictors do not have a significant impact on wage predictions. This outcome exemplifies the LASSO model's capacity for feature selection, focusing on predictors with meaningful contributions and simplifying the model by excluding those deemed less relevant.
 
+### Visualizing Coefficient Paths
 
-#### 3. Subgroup Analysis by Racial Background
-
-Model Used: Separate LASSO regressions were conducted for individuals identified as black and non-black.
-
-Rationale: Subgroup analysis allowed for the exploration of the model's performance across different demographic groups, potentially uncovering distinct patterns and predictors of importance within each subgroup.
+A pivotal aspect of understanding our LASSO regression model's intricacies involves examining how the predictor coefficients evolve across a range of $\lambda$ values. This exploration is facilitated through the visualization of coefficient paths:
 
 ```{r}
-# Calculate 'composite_score'
-data$composite_score <- rowMeans(data[, c('wage76', 'grade76', 'exp76')], na.rm = TRUE)
-
-# Impute missing 'composite_score' values with the mean of the existing values
-data$composite_score[is.na(data$composite_score)] <- mean(data$composite_score, na.rm = TRUE)
-
-# Now, proceed with splitting the dataset into subgroups
-subgroup_black <- data[data$black == 1, ]
-subgroup_non_black <- data[data$black == 0, ]
-```
-
-```{r}
-# Define a function to perform LASSO analysis
-perform_lasso_analysis <- function(subgroup) {
-  # Assuming 'subgroup' dataframe only contains numeric predictors after removing specified columns
-  # Impute missing values in predictors if any (simple mean imputation)
-  imputed_subgroup <- subgroup
-  for(col_name in names(imputed_subgroup)) {
-    if(col_name != "composite_score" && col_name != "black") { # Exclude non-predictor columns
-      imputed_subgroup[[col_name]][is.na(imputed_subgroup[[col_name]])] <- mean(imputed_subgroup[[col_name]], na.rm = TRUE)
-    }
-  }
-  
-  # Prepare the dataset for LASSO regression
-  X <- select(imputed_subgroup, -c(wage76, grade76, exp76, rownames, composite_score, black))
-  y <- imputed_subgroup$composite_score
-  if(any(is.na(y))) {
-    stop("y contains missing values after imputation.")
-  }
-  
-  # Splitting the data
-  set.seed(0)
-  trainIndex <- createDataPartition(y, p = 0.8, list = TRUE)[[1]]
-  X_train <- X[trainIndex, ]
-  X_test <- X[-trainIndex, ]
-  y_train <- y[trainIndex]
-  y_test <- y[-trainIndex]
-  
-  # LASSO regression with cross-validation
-  set.seed(0)
-  cv_lasso <- cv.glmnet(as.matrix(X_train), y_train, alpha = 1)
-  best_lambda <- cv_lasso$lambda.min
-  
-  lasso_best <- glmnet(as.matrix(X_train), y_train, alpha = 1, lambda = best_lambda)
-  
-  # Prediction and evaluation
-  predictions <- predict(lasso_best, newx = as.matrix(X_test), s = best_lambda)
-  mse <- mean((y_test - predictions)^2)
-  r2 <- cor(y_test, predictions)^2
-  
-  return(list(mse = mse, r2 = r2))
-}
-
-results_black <- perform_lasso_analysis(subgroup_black)
-results_non_black <- perform_lasso_analysis(subgroup_non_black)
-
-# Assuming results_black and results_non_black are correctly populated
-results <- list(
-  black = results_black,
-  non_black = results_non_black
-)
-
-print(results)
-```
-Subgroup 1 (Black): The analysis for the black subgroup yielded an MSE of 1.30435 and an R² of 0.2659, indicating a moderate level of predictive accuracy. This suggests that the model explains approximately 26.59% of the variance in the composite score for this subgroup, highlighting a reasonable fit with room for improvement.
-
-Subgroup 2 (Non-Black): For the non-black subgroup, the model showed an improved fit with an MSE of 1.69913 and an R² of 0.4007. This result suggests that nearly 40.07% of the variance in the composite score is accounted for, indicating a better predictive accuracy compared to the black subgroup.
-
-Results: The model demonstrated different levels of predictive accuracy across subgroups, with the non-black subgroup showing a better fit. This highlights the importance of considering demographic factors in predictive models.
-
-
-#### 4. Incorporation of Interaction Terms
-Model Used: LASSO regression with interaction terms.
-
-Rationale: Interaction terms were included to capture the combined effects of pairs of predictors, providing insights into the non-additive relationships between variables.
-
-```{r}
-data_standardized <- data %>%
-  mutate_at(vars(wage76, grade76, exp76), ~scale(.) %>% as.vector())
-
-# Create a composite score (average of standardized scores)
-# Ensure NA values are handled appropriately by using rowMeans with na.rm = TRUE
-data_standardized <- data_standardized %>%
-  mutate(composite_score = rowMeans(select(., wage76, grade76, exp76), na.rm = TRUE))
-
-# Prepare the dataset for LASSO regression
-# Drop 'rownames' if it exists as a column; adjust based on actual data structure
-X_composite <- select(data_standardized, -c(wage76, grade76, exp76, composite_score))
-y_composite <- data_standardized$composite_score
-y_composite[is.na(y_composite)] <- mean(y_composite, na.rm = TRUE)  # Impute missing values in 'y_composite'
-
-# Splitting the data
-set.seed(0)
-trainIndex <- createDataPartition(y_composite, p = 0.8, list = FALSE)
-X_train_composite <- X_composite[trainIndex, ]
-X_test_composite <- X_composite[-trainIndex, ]
-y_train_composite <- y_composite[trainIndex]
-y_test_composite <- y_composite[-trainIndex]
-
-
-X_train_df <- as.data.frame(X_train_preprocessed_composite)
-X_test_df <- as.data.frame(X_test_preprocessed_composite)
-
-# Create interaction terms for training data
-# This automatically includes original terms and their interactions, similar to PolynomialFeatures with degree=2 and interaction_only=True in Python
-X_train_interact <- model.matrix(~ .^2, data = X_train_df, response = y_train_composite)[,-1] # Removing intercept
-
-# For LASSO, we need a matrix format
-X_train_interact <- as.matrix(X_train_interact)
-
-# Similar steps for test data
-X_test_interact <- model.matrix(~ .^2, data = X_test_df, response = y_test_composite)[,-1] # Removing intercept
-X_test_interact <- as.matrix(X_test_interact)
-```
-
-```{r}
-set.seed(0) # For reproducibility
-# Fit LASSO model with interaction terms
-cv_lasso_interact <- cv.glmnet(X_train_interact, y_train_composite, alpha = 1, type.measure = "mse")
-
-# Best lambda from cross-validation
-best_lambda_interact <- cv_lasso_interact$lambda.min
-
-# Fit the model using the best lambda
-lasso_best_interact <- glmnet(X_train_interact, y_train_composite, alpha = 1, lambda = best_lambda_interact)
-
-
-# Predict on the test set
-predictions_interact <- predict(lasso_best_interact, newx = X_test_interact, s = best_lambda_interact)
-
-# Calculate MSE and R2
-mse_interact <- mean((y_test_composite - predictions_interact)^2)
-r2_interact <- cor(y_test_composite, predictions_interact)^2 # Squared correlation as an R2 approximation
-
-# Extracting non-zero coefficients
-coef_interact <- as.numeric(coef(lasso_best_interact, s = best_lambda_interact)[-1]) # Excluding intercept
-
-# Output the MSE, R^2, and coefficients
-list(mse_interact = mse_interact, r2_interact = r2_interact, coefficients = coef_interact)
-
+glmnet_fit <- glmnet(features_scaled, y, alpha = 1)
+plot(glmnet_fit, xvar = "lambda", label = TRUE)
 
 ```
-Results: The inclusion of interaction terms significantly improved the model's explanatory power, as evidenced by an increased R² value. This underscores the complexity of the relationships between predictors.
 
+This graph delineates each predictor's coefficient trajectory as we incrementally adjust $\lambda$, the regularization strength. Notably, the visualization reveals several key dynamics:
 
+-   As $\lambda$ escalates, the model increasingly penalizes coefficient magnitude, compelling the paths of numerous coefficients towards zero. This trend underscores LASSO's mechanism for enforcing sparsity and simplification within the model.
+-   Variables deemed peripheral or less impactful in predicting wages experience a swift contraction to zero. This rapid decline illustrates LASSO's effective discernment in distinguishing between essential and non-essential predictors, based on their contribution to model accuracy.
+-   In contrast, coefficients for variables with a robust association to wages—evident in their sustained deviation from zero—even at higher $\lambda$ values, affirm their fundamental role within the model. These paths not only highlight predictors integral to wage determination but also showcase the model's capacity to retain critical information despite the overarching pressure to simplify.
 
-#### 5. Approach to Missing Data: Dropping Rows
+## Results
 
-Model Used: LASSO regression on a dataset with dropped rows containing any missing data.
+The analysis conducted through LASSO regression, underpinned by meticulous data preparation and feature scaling, yielded compelling insights into the determinants of wages in 1976.
 
-Rationale: Dropping rows with missing data was employed as a straightforward approach to ensure the integrity of the model input.
+### Optimal Regularization Parameter
 
+The cross-validation process, pivotal for the model's integrity and predictiveness, identified an optimal regularization parameter ($\lambda$) of approximately 0.00488. This value signifies a balance, minimizing prediction error while avoiding overfitting, thereby ensuring the model's generalization capability.
 
+### Significant Predictors
 
-```{r}
-data_drop_na <- na.omit(data)
+The model's coefficients at this optimal $\lambda$ highlight significant predictors influencing wage levels:
 
-# Standardizing the variables 'wage76', 'grade76', and 'exp76'
-preProcess_scale <- preProcess(data_drop_na[,c('wage76', 'grade76', 'exp76')], method = 'scale')
-data_drop_na[,c('wage76', 'grade76', 'exp76')] <- predict(preProcess_scale, data_drop_na[,c('wage76', 'grade76', 'exp76')])
+-   **Education (grade76)**: Demonstrating a positive relationship, indicating that each additional year of education is associated with a wage increase, underscoring the premium on educational attainment.
+-   **Racial Background (black)**: Showing a negative association, reflecting wage disparities possibly tied to racial discrimination.
+-   **Geographical Factors**: Both living in the South (`south76`) and urban areas (`smsa76`) in 1976 influenced wages, with urban dwelling associated with higher wages, suggesting location-based economic opportunities.
+-   **Family Background and Age**: Variables like living with both parents at age 14 (`momdad14`) and the mother's education level (`momed`) were positively correlated with wages, along with `age76`, highlighting the role of familial support and the accrual of experience over time.
 
-# Creating a composite score
-data_drop_na$composite_score <- rowMeans(data_drop_na[,c('wage76', 'grade76', 'exp76')])
+Notably, variables such as `exp76`, `region`, and `famed`, among others, saw their coefficients reduced to zero, indicating their limited impact within the predictive framework of this model.
 
-# Preparing the dataset
-X_drop_na <- data_drop_na %>% select(-c('wage76', 'grade76', 'exp76', 'rownames', 'composite_score'))
-y_drop_na <- data_drop_na$composite_score
+## Conclusion
 
-# Splitting the data
-set.seed(0)
-trainIndex <- createDataPartition(y_drop_na, p = .8, 
-                                  list = FALSE, 
-                                  times = 1)
-X_train_drop_na <- X_drop_na[trainIndex, ]
-X_test_drop_na <- X_drop_na[-trainIndex, ]
-y_train_drop_na <- y_drop_na[trainIndex]
-y_test_drop_na <- y_drop_na[-trainIndex]
+This study's application of LASSO regression has elucidated the multifaceted nature of wage determinants in 1976, revealing the significant roles played by education, racial background, geographical location, and family background. The optimal $\lambda$ identified through cross-validation underscores the importance of balancing model complexity with predictive accuracy, a testament to the LASSO method's robustness.
 
-# No imputation needed here
+The findings not only contribute to our understanding of wage dynamics during the period but also underscore the value of regularization techniques like LASSO in distilling complex datasets to their most informative elements. Future research may build on this foundation, exploring additional variables, different time periods, or employing complementary analytical techniques to deepen our understanding of wage determinants.
 
-# Fitting LASSO regression
-# Note: LASSO requires matrix inputs, and 'y' should be a vector
-model_lasso_drop_na <- cv.glmnet(as.matrix(X_train_drop_na), y_train_drop_na, alpha = 1)
-y_pred_drop_na <- predict(model_lasso_drop_na, s = "lambda.min", newx = as.matrix(X_test_drop_na))
+## Recommendations
 
-# Calculating MSE and R^2
-mse_drop_na <- mean((y_test_drop_na - y_pred_drop_na)^2)
-r2_drop_na <- cor(y_test_drop_na, y_pred_drop_na)^2
+### Future studies should consider:
 
-# Results for dropping rows with missing data
-list(mse_drop_na, r2_drop_na)
-```
-Results: While this approach may reduce the available data, it simplifies the analysis and ensures that the model is trained on complete cases only.
+-   **Exploring Additional Variables:** Investigate other potential predictors not included in the current model to uncover more determinants of wage disparities.
+-   **Temporal Comparisons:** Conduct similar analyses for different time periods to observe changes in wage determinants over time, providing historical wage trend insights.
+-   **Employing Other Analytical Techniques:** Utilize complementary regression models or machine learning algorithms to validate findings and reveal additional insights.
 
 
 
-#### 6. Logistic Regression with LASSO for Categorical Outcome
 
-Model Used: Logistic regression with LASSO regularization was applied to predict a binary outcome derived from wage76.
 
-Rationale: This model was selected for its ability to handle binary outcomes and perform feature selection simultaneously, identifying key predictors of wage being above or below the median.
 
 
 
-```{r}
-data <- readr::read_csv("RetSchool.csv", show_col_types = FALSE)
-data <- na.omit(data)
-library(caret)
-library(glmnet)
-library(pROC)
-
-# Imputing missing values and creating a binary outcome based on median value
-median_wage <- median(data$wage76, na.rm = TRUE)
-data$wage76_imputed <- ifelse(is.na(data$wage76), median_wage, data$wage76)
-data$wage76_binary <- ifelse(data$wage76_imputed > median_wage, 1, 0)
-
-# Preparing the dataset for logistic regression
-X_wage_binary <- data %>%
-  select(-wage76, -wage76_imputed, -rownames, -wage76_binary) %>%
-  as.data.frame()
-y_wage_binary <- data$wage76_binary
-
-# Splitting the data
-set.seed(0)
-list <- createDataPartition(y_wage_binary, p = 0.8, list = TRUE)
-trainIndex <- list[[1]]
-X_train_wage_binary <- X_wage_binary[trainIndex, ]
-X_test_wage_binary <- X_wage_binary[-trainIndex, ]
-y_train_wage_binary <- y_wage_binary[trainIndex]
-y_test_wage_binary <- y_wage_binary[-trainIndex]
-
-# Preprocessing the data (example, standardize)
-preProcess_model <- preProcess(X_train_wage_binary, method = c("center", "scale"))
-X_train_preprocessed_wage_binary <- predict(preProcess_model, X_train_wage_binary)
-X_test_preprocessed_wage_binary <- predict(preProcess_model, X_test_wage_binary)
-
-# Logistic regression with LASSO (L1 regularization)
-X_train_matrix <- model.matrix(~ ., data = X_train_preprocessed_wage_binary)[, -1] # Removing intercept column
-X_test_matrix <- model.matrix(~ ., data = X_test_preprocessed_wage_binary)[, -1]
-
-cv_fit <- cv.glmnet(X_train_matrix, y_train_wage_binary, alpha = 1, family = "binomial")
-
-# Predicting on the test set
-y_pred_probs <- predict(cv_fit, newx = X_test_matrix, type = "response", s = "lambda.min")
-y_pred_wage_binary <- ifelse(y_pred_probs > 0.5, 1, 0)
-
-# Evaluating the model
-conf_matrix <- table(y_test_wage_binary, y_pred_wage_binary)
-roc_curve <- roc(y_test_wage_binary, y_pred_probs[,1])
-auc_value <- auc(roc_curve)
-
-# Outputting results
-cat("Confusion Matrix:\n")
-print(conf_matrix)
-cat("\nAUC:", auc_value, "\n")
-
-
-```
-Results: The AUC (Area Under the Curve) from the ROC (Receiver Operating Characteristic) analysis provided a measure of the model's ability to distinguish between the two wage categories, showcasing its predictive performance.
-
-
-### Results and Analysis Summary:
-### 1. LASSO Regression for Composite Score Prediction
-#### Methodology and Results:
-In this section, LASSO Regression was utilized to predict a composite score comprising wages, education, and experience. The model accounted for approximately 42.4% of the variance in the composite score, indicating a moderate level of effectiveness. The key to this model's performance was the optimal selection of the regularization parameter, λ, which balances model complexity against the risk of overfitting.
-
-#### Analysis:
-The effectiveness of LASSO Regression in this context underscores its utility in feature selection and complexity reduction. By penalizing the magnitude of coefficients, LASSO helps in identifying the most significant predictors while minimizing overfitting. This result is particularly relevant when dealing with high-dimensional data where multicollinearity might be an issue. The 42.4% variance explained suggests that while the model has moderate predictive power, there remains room for improvement, possibly through the exploration of additional predictors or alternative modeling techniques.
-
-### 2. Enhanced Cross-Validation in LASSO Regression
-####  Methodology and Results:
-The application of K-fold cross-validation refined the selection of λ, leading to a model with an MSE of 0.1575524 and an R² of 0.4173462. This process enhances the model's reliability and robustness by ensuring its performance across various data subsets.
-
-####  Analysis:
-Cross-validation is crucial in guarding against the over-optimistic interpretation of the model's predictive ability on a single data set. By systematically applying it, this study ensured that the λ parameter was not just optimal for a specific dataset but generalized well across different subsets. The reported MSE and R² values indicate a model of moderate predictive accuracy, reinforcing the importance of cross-validation in establishing the reliability of predictive models.
-
-### 3. Subgroup Analysis by Racial Background
-####  Methodology and Results:
-This analysis segment explored model performance across different racial subgroups, finding that non-black individuals exhibited a better model fit.
-
-####  Analysis:
-The variation in model performance by racial background emphasizes the influence of demographic factors on predictive models. This finding is critical for two reasons: firstly, it highlights potential disparities in the factors influencing wages, education, and experience across racial lines; secondly, it suggests that models which do not account for such subgroup differences might miss important nuances, leading to overgeneralized conclusions. The insight calls for the incorporation of demographic variables and possibly the development of tailored models for different subgroups to achieve better predictive accuracy and fairness.
-
-### 4. Incorporation of Interaction Terms
-####  Methodology and Results:
-Including interaction terms between predictors significantly enhanced the model's explanatory power, as evidenced by an increased R² value.
-
-#### Analysis:
-The improvement in model performance with the addition of interaction terms underlines the complex interdependencies among the predictors. This complexity is often overlooked in simpler models that assume independent effects of predictors on the outcome. Interaction terms allow for the modeling of these effects more realistically, providing deeper insights into how different factors might amplify or diminish each other's impacts. This finding is particularly relevant in fields where the interaction between variables is known to influence outcomes significantly, such as in economics and psychology.
-
-### 5. Approach to Missing Data - Dropping Rows
-#### Methodology and Results:
-The decision to handle missing data by excluding incomplete cases was aimed at preserving the integrity of the model input, at the potential cost of reducing the dataset size.
-
-#### Analysis:
-While dropping rows with missing data is a straightforward approach to ensure model reliability, it may lead to biased results if the missingness is not completely random. This method maintains simplicity and model integrity but might limit the analysis to a narrower dataset that may not be representative of the larger population. Future methodologies might consider imputation techniques to retain more data points without compromising the model's accuracy.
-
-### 6. Logistic Regression with LASSO for Categorical Outcome Prediction
-#### Methodology and Results:
-This segment employed logistic regression with LASSO to predict categorical wage outcomes, with the model's effectiveness quantified by the AUC value.
-
-#### Analysis:
-Logistic regression with LASSO combines the benefits of logistic regression for binary outcome prediction and LASSO's feature selection capabilities. The AUC value serves as a robust measure of the model's ability to distinguish between categories, in this case, wage levels. This model's strength lies in its feature selection, which is crucial for identifying key predictors among potentially many correlated variables in wage classification.
-
-### Conclusion
-The detailed analysis underscores the multifaceted approach taken in this study, employing LASSO regression and logistic regression with LASSO, enhanced by cross-validation, subgroup analysis, and strategic handling of missing data. Each methodological decision, from variable selection to model validation, contributed to a nuanced understanding of the complex dynamics influencing wages, education, and experience. Moving forward, these insights offer a foundation for further research, policy-making, and targeted interventions designed to address the identified factors more effectively.
-
-## References
-
-1.Chunli Zhoua, X. L. (2022). "Influencing factors of the high-quality economic development in China based on LASSO model." Energy Reports, 8, 1055–1065.
-
-2.Yiming Lu, Y. Z. (2011). "A Lasso regression model for the construction of microRNA-target regulatory networks." Bioinformatics, pages 2406–2413.
-
-3.Shengzheng Wang, B. J. (2017). "Predicting ship fuel consumption based on LASSO regression." Marine Pollution Bulletin, Elsevier, 1361-9209.
-
-4.Archana J. McEligot, V. P. (2020). "Logistic LASSO Regression for Dietary Intakes and Breast Cancer." Nutrients, 12, 2652.
-
-5.Muthukrishnan R, R. R. (2016). "LASSO: A Feature Selection Technique In Predictive Modeling For Machine Learning." IEEE International Conference on Advances in Computer Applications (ICACA), 978-1-5090-3770-4.
-
-6.Efron, B., Hastie, T., Johnstone, I., & Tibshirani, R. (2004). "Least angle regression." Annals of Statistics, 32(2), 407-499.
-
-7.Tibshirani, R. (1996). "Regression shrinkage and selection via the lasso." Journal of the Royal Statistical Society: Series B (Methodological), 58(1), 267-288.
-
-8.Musoro, J.Z., et al. (2014). "Validation of prediction models based on lasso regression with multiply imputed data." BMC Medical Research Methodology.
-
-9.Chintalapudi, N., et al. (2022). "LASSO Regression Modeling on Prediction of Medical Terms among Seafarers’ Health Documents Using Tidy Text Mining." Bioengineering.
-
-10.Li, Y., et al. (2022). "Applying logistic LASSO regression for the diagnosis of atypical Crohn's disease." Scientific Reports.
-
-11.Hastie, T., Tibshirani, R., Friedman, J. (2009). "The Elements of Statistical Learning: Data Mining, Inference, and Prediction." This book provides foundational knowledge on statistical learning techniques, including LASSO.
-
-12.Simon, N., et al. (2013). "Regularization Paths for Cox’s Proportional Hazards Model via Coordinate Descent." Journal of Statistical Software. This paper discusses extensions of LASSO for survival analysis.
-
-13.Friedman, J., Hastie, T., Tibshirani, R. (2010). "Regularization Paths for Generalized Linear Models via Coordinate Descent." Journal of Statistical Software. This work extends LASSO to a broader class of models.
-
-14.Zou, H., Hastie, T. (2005). "Regularization and variable selection via the elastic net." Journal of the Royal Statistical Society: Series B. This paper introduces the Elastic Net, a significant extension of LASSO.
-
-15.Meinshausen, N., Bühlmann, P. (2006). "High-dimensional graphs and variable selection with the Lasso." Annals of Statistics. This study explores the use of LASSO for variable selection in high-dimensional graphs.
-
-16.Tibshirani, R., et al. (2012). "Strong rules for discarding predictors in lasso-type problems." Journal of the Royal Statistical Society: Series B. This paper discusses computational techniques to enhance LASSO's efficiency.
-
-17.Park, M.Y., Hastie, T. (2008). "Penalized logistic regression for detecting gene interactions." Biostatistics. This study applies LASSO in a genetic context to detect interactions.
-
-18.Belloni, A., Chernozhukov, V. (2013). "Least squares after model selection in high-dimensional sparse models." Bernoulli. This paper addresses post-model selection inference, relevant for LASSO applications.
-
-19.Witten, Daniela M., and Robert Tibshirani. "A Framework for Feature Selection in Clustering." Journal of the American Statistical Association, vol. 105, no. 490, 2010, pp. 713-726.
-
-20.Sauerbrei, Willi, et al. "On Stability Issues in Deriving Multivariable Regression Models." Biometrical Journal, vol. 57, no. 4, 2015, pp. 531-555.
-
-21.Zhao, Peng, and Bin Yu. "On Model Selection Consistency of Lasso." Journal of Machine Learning Research, vol. 7, Nov. 2006, pp. 2541-2563.
-
-22.Fan, Jianqing, and Jinchi Lv. "Nonconcave Penalized Likelihood with NP-Dimensionality." IEEE Transactions on Information Theory, vol. 57, no. 8, 2011, pp. 5467-5484.
-
-23.Hastie, Trevor, et al. "Matrix Completion and Low-Rank SVD via Fast Alternating Least Squares." Journal of Machine Learning Research, vol. 16, 2015, pp. 3367-3402.
-
-24.Kasper, G., Momen, M., Sorice, K.A. et al. Effect of neighbourhood and individual-level socioeconomic factors on breast cancer screening adherence in a multi-ethnic study. BMC Public Health 24, 63 (2024). 
-
-25.Sohaee, N.; Bohluli, S. Nonlinear Analysis of the Effects of Socioeconomic, Demographic, and Technological Factors on the Number of Fatal Traffic Accidents. Safety 2024, 10, 11. https://doi.org/10.3390/safety10010011 
-
-26.Bradley 	Efron. Trevor 	Hastie. Iain 	Johnstone. Robert Tibshirani. "Least angle regression." Ann. Statist. 32 (2) 407 - 499, April 2004. https://doi.org/10.1214/009053604000000067 
-
-27.A. Jafar and M. Lee, "HypGB: High Accuracy GB Classifier for Predicting Heart Disease with HyperOpt HPO Framework and LASSO FS Method," in IEEE Access, vol. 11, pp. 138201-138214, 2023, doi: 10.1109/ACCESS.2023.3339225. 
-28.RetSchool Dataset: https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html,
-https://vincentarelbundock.github.io/Rdatasets/articles/data.html
-
-29.Little, R.J.A., & Rubin, D.B. (2002). Statistical Analysis with Missing Data. John Wiley & Sons, Inc. "This seminal text provides foundational insights into the techniques and implications of handling missing data in statistical analysis, informing our methodology's approach to imputation and data completeness".
-
-30.Tibshirani, R. (1996). "Regression Shrinkage and Selection via the Lasso." Journal of the Royal Statistical Society, Series B, 58(1), 267-288. Tibshirani's groundbreaking work on LASSO regression underpins our strategy for model selection and complexity reduction, ensuring precise and interpretable predictive modeling.
-
-31.Aiken, L. S., West, S. G., & Reno, R. R. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage.
-
-32.James, G., Witten, D., Hastie, T., & Tibshirani, R. (2013). An Introduction to Statistical Learning: with Applications in R. Springer.
-
-33.Hancock, Gregory R., and Ralph O. Mueller. "Rethinking Construct Reliability Within Latent Variable Systems." In Structural Equation Modeling: A Second Course, edited by Gregory R. Hancock and Ralph O. Mueller, 2nd ed., 303-324. Charlotte, NC: Information Age Publishing,2013.
-
-34.James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. An Introduction to Statistical Learning: with Applications in R. New York:Springer,2013.
-
-35.Sun, Xiaowei, Michael Borenstein, and Julian P.T. Higgins. "Are Subgroup Analyses Necessary? Examining the Controversy." Journal of Clinical Epidemiology 128 (2020):142-147.
-
-36.Aiken, Leona S., Stephen G. West, and Raymond R. Reno. Multiple Regression: Testing and Interpreting Interactions. Newbury Park,CA:Sage,1991.
-
-37.Little, Roderick J. A., and Donald B. Rubin. Statistical Analysis with Missing Data. Wiley, 2002.
-
-38. Hastie, Trevor, et al. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. 2nd ed.,Springer,2009.
