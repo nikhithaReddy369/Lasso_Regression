@@ -139,7 +139,7 @@ Before delving into data cleaning and modeling processes, it is essential to und
 
 This comprehensive overview of the dataset's key variables provides the groundwork for our in-depth analysis, aiming to illuminate the complex interplay between education, work experience, and socio-economic outcomes in 1976.
 
-###Data Cleaning and Exploration
+### Data Cleaning and Exploration
 
 Initial exploration of the `RetSchool` dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.
 
@@ -210,7 +210,11 @@ p_experience
 
 ```
 
-• Work Experience in 1976 (exp76): o The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. o The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
+**• Work Experience in 1976 (exp76):**
+
+The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. 
+
+The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
 
 ### Correlation Matrix
 
