@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nikhitha Amireddy, Ishrath Jahan, Sai Kumar Miryala, Muhammad Usman Aslam">
-<meta name="dcterms.date" content="2024-04-10">
+<meta name="dcterms.date" content="2024-04-11">
 
 <title>Innovative Data Exploration with LASSO: Unveiling Patterns in Earnings and Education</title>
 <style>
@@ -3253,7 +3253,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 10, 2024</p>
+      <p class="date">April 11, 2024</p>
     </div>
   </div>
   
@@ -3350,7 +3350,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>• Wage in 1976 (wage76): The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data. o The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.</p>
+<p><strong>• Wage in 1976 (wage76):</strong></p>
+<p>The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data.</p>
+<p>The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3371,7 +3373,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>• Education Level in 1976 (grade76): The distribution of grade76 shows a multi-model pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). o The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.</p>
+<p><strong>• Education Level in 1976 (grade76):</strong></p>
+<p>The distribution of grade76 shows a multi-model pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college).</p>
+<p>The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3392,7 +3396,9 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>• Work Experience in 1976 (exp76): The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. o The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.</p>
+<p><strong>• Work Experience in 1976 (exp76):</strong></p>
+<p>The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience.</p>
+<p>The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.</p>
 </section>
 <section id="correlation-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="correlation-matrix">Correlation Matrix</h3>
@@ -3481,7 +3487,7 @@ window.Quarto = {
 </section>
 <section id="data-preparation-and-model-fitting" class="level2">
 <h2 class="anchored" data-anchor-id="data-preparation-and-model-fitting">Data Preparation and Model Fitting</h2>
-<p>The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. ### Data Cleaning To ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.</p>
+<p>The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. Data cleaning to ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
