@@ -6,7 +6,7 @@ format:
   html:
     code-fold: true
 course: STA 6257 - Advanced Statistical Modeling
-#bibliography: references.bib # file contains bibtex for references
+bibliography: references.bib # file contains bibtex for references
 always_allow_html: true # this allows to get PDF with HTML features
 self-contained: true
 execute: 
@@ -21,7 +21,7 @@ editor:
 
 LASSO, Least Absolute Shrinkage and Selection Operator, is a penalized linear regression method that reduces the number of variables in the model, useful for avoiding overfitting. It works by minimizing the residual sum of squares subject to the sum of the absolute value of the coefficients being less than a constant, simplifying the model and potentially improving prediction accuracy.
 
-In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009\]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004] in 2004.
+In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004] in 2004.
 
 LASSO regression has particularly become a key instrument with which to insight the complex dynamics underlying socioeconomic trends, public health outcomes, and environmental studies—hence, significantly enriching the toolset available to the data scientist [@Belloni2013], [@Park2008]. Logistic regression is further extended by integration with the capabilities of LASSO, offering a refined method in prediction for the categorical outcomes [@Li2022]. This synergy provides a response to long-term barriers to predictive modeling such as overfitting and multicollinearity with a scope of applications in, in particular, economic forecasting and health diagnostics, amongst many more [@Sauerbrei2015].
 
@@ -122,7 +122,7 @@ p_wage
 
 ```
 
-• Wage in 1976 (wage76): o The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data. o The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.
+• Wage in 1976 (wage76):  The histogram for wage76 shows a right-skewed distribution, indicating that most individuals earned lower wages, with a few outliers earning significantly more. This pattern is typical for income data. o The box plot reveals a wide range of wages with several outliers on the higher end. The median wage is relatively low compared to the mean, further indicating the skewness towards lower wage values.
 
 ```{r education-distribution, fig.cap="Figure 2: Education Level Distribution in 1976"}
 
@@ -135,7 +135,7 @@ p_education <- ggplot(df_clean, aes(x = grade76)) +
 p_education
 ```
 
-• Education Level in 1976 (grade76): o The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). o The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
+• Education Level in 1976 (grade76): The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). o The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
 
 ```{r work-distribution, fig.cap="Figure 3: Work Experience Distribution in 1976"}
 
@@ -149,7 +149,7 @@ p_experience
 
 ```
 
-• Work Experience in 1976 (exp76): o The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. o The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
+• Work Experience in 1976 (exp76): The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. o The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
 
 ### Correlation Matrix
 
@@ -221,7 +221,7 @@ Our exploration of the RetSchool dataset through advanced visualizations reveals
 
 ## Data Preparation and Model Fitting
 
-The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. \### Data Cleaning To ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.
+The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. ### Data Cleaning To ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.
 
 ```{r data-cleaning}
 library(dplyr)
