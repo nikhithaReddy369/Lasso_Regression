@@ -105,29 +105,29 @@ The amalgamation of feature selection and regularization underpins LASSO's utili
 
 Before delving into data cleaning and modeling processes, it is essential to understand the key variables within the `RetSchool` dataset. These variables are pivotal for our analysis, offering insights into the socio-economic and educational landscape of 1976. This section outlines the significance of each variable, setting the stage for a nuanced exploration of factors influencing wages and educational outcomes.
 
-### Economic and Demographic Indicators
+**Economic and Demographic Indicators**
 
 -   **`wage76`**: Represents the wages of individuals in 1976, providing a direct measure of economic status. Analysis of this variable will allow us to uncover wage disparities and explore their relationship with other socio-economic factors.
 
 -   **`age76`**: Indicates the age of individuals in 1976, a fundamental demographic variable for analyzing the workforce's age distribution and its implications on wages.
 
-### Educational Variables
+**Educational Variables**
 
 -   **`grade76`**: Denotes the highest grade completed by individuals as of 1976, offering insight into the level of educational attainment and its correlation with economic success.
 
 -   **`col4`**: An indicator variable pertaining to college education. The precise meaning of this variable would require further clarification for meaningful analysis.
 
-### Work Experience
+**Work Experience**
 
 -   **`exp76`**: Measures the years of work experience by 1976, shedding light on the impact of labor market participation on wage levels.
 
-### Family Background and Structure
+**Family Background and Structure**
 
 -   **`momdad14`, `sinmom14`**: Provide information on the living situation of individuals at age 14, essential for understanding the influence of early family environment on future educational and economic outcomes.
 
 -   **`daded`, `momed`**: Reflect the education levels of the father and mother, respectively, key to exploring parental influence on the educational achievements and economic opportunities of their offspring.
 
-### Racial and Regional Characteristics
+**Racial and Regional Characteristics**
 
 -   **`black`**: A binary variable identifying individuals as black, enabling the analysis of racial disparities within the dataset.
 
