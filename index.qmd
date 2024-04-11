@@ -16,12 +16,11 @@ editor:
   markdown: 
     wrap: 72
 ---
-
 ## Introduction
 
 LASSO, Least Absolute Shrinkage and Selection Operator, is a penalized linear regression method that reduces the number of variables in the model, useful for avoiding overfitting. It works by minimizing the residual sum of squares subject to the sum of the absolute value of the coefficients being less than a constant, simplifying the model and potentially improving prediction accuracy.
 
-In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004] in 2004.
+In 1996, Robert Tibshirani [@Tibshirani1996] introduced LASSO regression to further the discussion about variable selection. This provided a new and sophisticated solution for the problems in the course of predictive modeling, especially when it came to big and complex datasets. It is therefore important that the model remains parsimonious in nature, explains easily interpretable phenomena, and reduces the risks associated with overfitting by applying a penalty to the absolute values of regression coefficients [@Zhao2006], [@Fan2011]. This innovation was therefore taken up by many scientific disciplines, characterizing the beginning of an era where high-dimensional datasets could be probed with more depth for complexities with better clarity [@Meinshausen2006] @Hastie2009\]. The popularity of LASSO regression has risen with the birth of Least Angle Regression by Efron et al. [@Efron2004] in 2004.
 
 LASSO regression has particularly become a key instrument with which to insight the complex dynamics underlying socioeconomic trends, public health outcomes, and environmental studies—hence, significantly enriching the toolset available to the data scientist [@Belloni2013], [@Park2008]. Logistic regression is further extended by integration with the capabilities of LASSO, offering a refined method in prediction for the categorical outcomes [@Li2022]. This synergy provides a response to long-term barriers to predictive modeling such as overfitting and multicollinearity with a scope of applications in, in particular, economic forecasting and health diagnostics, amongst many more [@Sauerbrei2015].
 
@@ -59,9 +58,15 @@ $$
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
 $$
 
-where $y_i$ represents the observed outcomes, $x_{ij}$ denotes the predictor variables, $\beta_j$ are the coefficients, $n$ is the number of observations, $p$ represents the number of predictors, and $\lambda$ is the regularization parameter controlling the degree of shrinkage applied to the coefficients.
+This formulation cleverly balances the fidelity to the data, represented by the residual sum of squares (RSS), and model complexity, controlled by the LASSO penalty term. The regularization parameter, $\lambda$, is pivotal in this balance, dictating the extent of shrinkage applied to the coefficients [@Zhao2006; @Friedman2010].
 
-The first term of the objective function is the residual sum of squares (RSS), measuring the model's fit to the data. The second term, the LASSO penalty, imposes a cost on model complexity by penalizing the absolute value of the coefficients. The regularization parameter, $\lambda$, crucially balances fitting the data well (minimizing RSS) and maintaining model simplicity by penalizing large coefficients[@Tibshirani1996; @Zhao2006].
+##### The Shrinkage Effect and Its Merits
+
+The essence of LASSO's power lies in its ability to perform coefficient shrinkage and feature selection simultaneously. This dual capability not only aids in model simplification but also in addressing multicollinearity and enhancing predictive performance. - **Feature Selection**: Critical in high-dimensional datasets, where irrelevant predictors can obscure true relationships [@Meinshausen2006]. - **Regularization**: Shields against overfitting, a common pitfall in model fitting, especially in the realm of complex datasets [@Hastie2009].
+
+##### Choosing $\lambda$
+
+The choice of $\lambda$ plays a pivotal role in the behavior of the LASSO model. It balances the trade-off between fitting the data well and keeping the model simple. Cross-validation is commonly used to select an optimal $\lambda$ that minimizes prediction error.
 
 ##### Role of the Regularization Parameter ($\lambda$)
 
@@ -69,6 +74,20 @@ The selection of $\lambda$ is critical in LASSO regression. When $\lambda = 0$, 
 
 -   **Bias-Variance Trade-off**: A small $\lambda$ results in low bias but high variance, as the model fits closely to the training data, which may lead to overfitting. Conversely, a larger $\lambda$ increases bias but reduces variance by simplifying the model, potentially causing underfitting.
 -   **Model Selection and Cross-Validation**: The optimal $\lambda$ value is usually determined through cross-validation. K-fold cross-validation is a common method to assess the model's predictive performance across a range of $\lambda$ values, selecting the $\lambda$ that minimizes cross-validation error [@Friedman2010].
+
+##### Beyond Mathematical Formulation: LASSO in Practice
+
+While LASSO's theoretical appeal is undeniable, its real-world applications underscore its practical significance. From enhancing predictive models in healthcare to enabling financial risk assessment, LASSO's utility spans across domains. Its ability to discern the signal from the noise makes it a go-to method in the toolkit of data scientists and researchers.
+
+###### Advantages Over Alternative Methods
+
+Compared to other regularization techniques like Ridge regression or the Elastic Net, LASSO stands out for its feature selection capability. Unlike Ridge, which only shrinks coefficients, LASSO can set them to zero, effectively choosing a simpler model. This aspect is particularly useful in scenarios where interpretability is as crucial as predictive accuracy [@Zou2005].
+
+##### LASSO: Bridging Theory and Application
+
+The discussion of LASSO would be incomplete without acknowledging its foundational role in modern data analysis. By offering a robust framework for dealing with high-dimensional data, LASSO facilitates the extraction of meaningful insights, ensuring that the models we build are not just statistical artifacts but true reflections of the underlying phenomena.
+
+In essence, LASSO regression embodies the confluence of statistical elegance and practical applicability. Its continued relevance in statistical modeling and predictive analysis is a testament to its foundational importance in navigating the complexities of modern data landscapes.
 
 ##### Computational Considerations
 
@@ -82,11 +101,45 @@ The amalgamation of feature selection and regularization underpins LASSO's utili
 -   **Model Interpretability**: Simplifying the model by removing irrelevant variables improves interpretability, making LASSO-regressed models more comprehensible [@Belloni2013].
 -   **Mitigation of Multicollinearity**: LASSO effectively addresses multicollinearity among predictors by selecting a single variable from a group of highly correlated variables, thereby alleviating this concern [@Efron2004].
 
-## Data Set Description
+## Exploring the Dataset: Key Variables
 
-The `RetSchool` dataset, accessible from [R datasets](https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/RetSchool.html), encompasses a rich array of variables aimed at exploring the determinants of wages in 1976. This section delves into the dataset through sophisticated visualizations and best practices in data analysis, focusing exclusively on dataset characteristics without discussing specific modeling techniques like LASSO regression.
+Before delving into data cleaning and modeling processes, it is essential to understand the key variables within the `RetSchool` dataset. These variables are pivotal for our analysis, offering insights into the socio-economic and educational landscape of 1976. This section outlines the significance of each variable, setting the stage for a nuanced exploration of factors influencing wages and educational outcomes.
 
-### Initial Data Exploration and Cleaning
+### Economic and Demographic Indicators
+
+-   **`wage76`**: Represents the wages of individuals in 1976, providing a direct measure of economic status. Analysis of this variable will allow us to uncover wage disparities and explore their relationship with other socio-economic factors.
+
+-   **`age76`**: Indicates the age of individuals in 1976, a fundamental demographic variable for analyzing the workforce's age distribution and its implications on wages.
+
+### Educational Variables
+
+-   **`grade76`**: Denotes the highest grade completed by individuals as of 1976, offering insight into the level of educational attainment and its correlation with economic success.
+
+-   **`col4`**: An indicator variable pertaining to college education. The precise meaning of this variable would require further clarification for meaningful analysis.
+
+### Work Experience
+
+-   **`exp76`**: Measures the years of work experience by 1976, shedding light on the impact of labor market participation on wage levels.
+
+### Family Background and Structure
+
+-   **`momdad14`, `sinmom14`**: Provide information on the living situation of individuals at age 14, essential for understanding the influence of early family environment on future educational and economic outcomes.
+
+-   **`daded`, `momed`**: Reflect the education levels of the father and mother, respectively, key to exploring parental influence on the educational achievements and economic opportunities of their offspring.
+
+### Racial and Regional Characteristics
+
+-   **`black`**: A binary variable identifying individuals as black, enabling the analysis of racial disparities within the dataset.
+
+-   **`south76`**: Indicates whether individuals lived in the South in 1976, important for regional analyses and their socio-economic implications.
+
+-   **`region`**: Categorizes individuals based on geographic regions, useful for understanding how regional factors influence economic and educational outcomes.
+
+-   **`smsa76`**: Identifies residence within a Standard Metropolitan Statistical Area (SMSA) in 1976, relevant for examining urban vs. rural disparities.
+
+This comprehensive overview of the dataset's key variables provides the groundwork for our in-depth analysis, aiming to illuminate the complex interplay between education, work experience, and socio-economic outcomes in 1976.
+
+###Data Cleaning and Exploration
 
 Initial exploration of the `RetSchool` dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.
 
@@ -141,7 +194,7 @@ p_education
 
 **• Education Level in 1976 (grade76):**
 
-The distribution of grade76 shows a multi-model pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). 
+The distribution of grade76 shows a multi-modal pattern, suggesting concentrations of individuals at specific education levels. The peaks likely represent completion of certain education milestones (e.g., high school, some college). 
 
 The box plot indicates a relatively normal distribution with a few outliers, suggesting most individuals had a similar level of education, with a median around high school completion.
 
@@ -157,11 +210,7 @@ p_experience
 
 ```
 
-**• Work Experience in 1976 (exp76):**
-
-The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. 
-
-The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
+• Work Experience in 1976 (exp76): o The histogram for exp76 also exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals having high levels of experience. o The box plot for exp76 shows the presence of outliers with exceptionally high experience levels, and a median experience level that indicates the majority had moderate to low work experience.
 
 ### Correlation Matrix
 
@@ -233,79 +282,173 @@ Our exploration of the RetSchool dataset through advanced visualizations reveals
 
 ## Data Preparation and Model Fitting
 
-The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. Data cleaning to ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.
+The dataset of interest captures various potential predictors of wages in 1976, encompassing education levels, work experience, and demographic variables such as race and geographic location. Effective modeling requires meticulous data preparation to ensure the quality and comparability of the input data. \#### Data Cleaning To ensure the integrity and accuracy of our predictive model, we first tackled the issue of missing data—a factor that can significantly skew predictions if left unaddressed. Our approach to managing missing values was multifaceted, tailored to the nature and extent of the missingness within our dataset. This included strategies such as imputation for numerical columns, where missing entries were replaced with the median value of the respective column, and outright removal of rows where data remained incomplete. Through these careful cleaning and imputation steps, we refined our dataset down to 3,078 observations , each fully equipped with the necessary information for a robust analysis.
 
-```{r data-cleaning}
+```{r data-cleaning, message=FALSE, warning=FALSE}
 library(dplyr)
+library(ggplot2)
+library(readr)
+
+# Load the dataset
 df <- read_csv("RetSchool.csv", show_col_types = FALSE)
 
-# Simple imputation for numerical columns
+# Initial dataset size
+initial_count <- nrow(df)
+
+# Simple imputation for numerical columns with missing values replaced by median
 df_clean <- df %>%
-  mutate_at(vars(grade76, exp76), ~ifelse(is.na(.), median(., na.rm = TRUE), .))
+  mutate(
+    grade76 = ifelse(is.na(grade76), median(grade76, na.rm = TRUE), grade76),
+    exp76 = ifelse(is.na(exp76), median(exp76, na.rm = TRUE), exp76)
+  ) %>%
+  na.omit() # Remove rows with any remaining missing values
 
-df_filtered <- na.omit(df_clean)
+# Count after cleaning
+cleaned_count <- nrow(df_clean)
 
-print(paste("Rows after cleaning and imputation:", nrow(df_filtered)))
+# Print the initial and cleaned dataset sizes
+cat("Initial rows:", initial_count, "\n")
+cat("Rows after cleaning and imputation:", cleaned_count, "\n")
+# Define the response variable y
+y <- df_clean$wage76
+```
 
+After the cleaning process, our dataset was reduced from 5225 to 3078 observations, illustrating the substantial impact of addressing missing data. \#### Visualizing the Impact of Data Cleaning To visualize how data cleaning influenced the dataset, we compare the distribution of wages (wage76) before and after the cleaning process. This comparison aids in understanding the implications of our data cleaning strategy, especially the effect of median imputation on the distribution.
+
+```{r data-cleaning-visualization, fig.cap="Comparison of Wage Distribution Before and After Data Cleaning"}
+# Plotting the distribution of wage76 before cleaning
+p_before <- ggplot(df, aes(x = wage76)) +
+  geom_histogram(bins = 30, fill = "skyblue", alpha = 0.7) +
+  labs(title = "Wage Distribution Before Cleaning", x = "Wage in 1976", y = "Frequency")
+
+# Plotting the distribution of wage76 after cleaning
+p_after <- ggplot(df_clean, aes(x = wage76)) +
+  geom_histogram(bins = 30, fill = "lightgreen", alpha = 0.7) +
+  labs(title = "Wage Distribution After Cleaning", x = "Wage in 1976", y = "Frequency")
+
+# Arrange the plots side by side for comparison
+library(patchwork)
+p_before + p_after + plot_layout(ncol = 2)
 
 ```
 
-### Feature Scaling
+This side-by-side comparison offers a visual insight into the changes in the wage distribution due to our data cleaning efforts, specifically highlighting the effects of imputing missing values with the median. The visualization emphasizes the importance of careful data preprocessing to ensure that subsequent analyses are based on reliable and robust data.
+
+#### Feature Scaling
 
 Scaling ensures that all variables contribute equally to the model, preventing features with larger scales from dominating the model's fit. glmnet expects input features to be centered and scaled:
 
-```{r}
+```{r feature-scaling, message=FALSE, warning=FALSE}
 library(caret)
 
-numeric_features <- select(df_filtered, where(is.numeric), -wage76)
+# Selecting only numeric features and excluding the target variable 'wage76'
+numeric_features <- select(df_clean, where(is.numeric), -wage76)
 
+# Converting the selected features into a matrix, as required by glmnet
 features <- data.matrix(numeric_features)
 
-# Scaling the features
+# Scaling the features using the preProcess function from the caret package
 preProcValues <- preProcess(features, method = c("center", "scale"))
 features_scaled <- predict(preProcValues, features)
 
+# Displaying the effect of scaling on the first few rows of the features
+head(features_scaled)
+
 
 ```
 
-### Model Fitting with Cross-Validation
+#### Visualization of Feature Scaling
 
-Leveraging the glmnet package, we embarked on fitting a LASSO regression model to our dataset. A pivotal step in this process involved employing cross-validation techniques to meticulously identify the most suitable value for the regularization parameter, $\lambda$. This parameter is instrumental in fine-tuning the balance between model complexity and prediction accuracy, thereby mitigating the risk of overfitting. Through this methodical approach, we determined the optimal $\lambda$ to be approximately 0.00488, a value that significantly enhances the model's predictive reliability while ensuring simplicity.
+To visualize the impact of feature scaling, we compare the distributions of a select variable before and after scaling. This comparison highlights the importance of scaling in bringing all features to a common scale, ensuring fairness in the model's consideration of each feature's contribution.
 
-```{r lasso-model, echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+```{r}
+# Selecting a feature for comparison
+feature_name <- "exp76" # Example feature
+
+# Plotting the distribution before scaling
+p_before_scaling <- ggplot(df_clean, aes_string(x = feature_name)) +
+  geom_histogram(binwidth = 1, fill = "#F8766D", alpha = 0.7) +
+  labs(title = paste("Distribution of", feature_name, "Before Scaling"), x = feature_name, y = "Frequency")
+
+# Extracting the scaled values for the selected feature
+scaled_feature <- features_scaled[,feature_name]
+
+# Plotting the distribution after scaling
+p_after_scaling <- ggplot(data.frame(scaled_feature), aes(x = scaled_feature)) +
+  geom_histogram(binwidth = 0.5, fill = "#00BFC4", alpha = 0.7) +
+  labs(title = paste("Distribution of", feature_name, "After Scaling"), x = paste(feature_name, "(scaled)"), y = "Frequency")
+
+# Arranging the plots side by side for comparison
+p_before_scaling + p_after_scaling + plot_layout(ncol = 2)
+
+
+```
+
+The before-and-after comparison of the feature scaling process underscores the transformation that occurs when features are normalized. This transformation is pivotal for models like LASSO regression, which rely on regularization techniques sensitive to the scale of the input variables.
+
+## Cross-Validation in LASSO Regression
+
+Cross-validation is a pivotal technique in LASSO regression for identifying the optimal regularization parameter, $\lambda$, which moderates the coefficient shrinkage intensity. This mechanism is essential to achieve a model that is appropriately complex to capture the underlying data patterns without succumbing to overfitting or underfitting.
+
+### The Cross-Validation Process
+
+In mathematical terms, cross-validation involves dividing the dataset into $k$ equally sized segments, or "folds." The model is trained on $k-1$ of these folds, with the remaining fold serving as the validation set to gauge model performance. This cycle is executed $k$ times, each time with a different fold as the validation set. The cross-validation error (CVE) for each $\lambda$ is aggregated across all folds, and the $\lambda$ that minimizes this cumulative error is selected as the optimal choice.
+
+The cross-validation error for a given $\lambda$ is expressed as:
+
+$$
+CVE(\lambda) = \frac{1}{k} \sum_{i=1}^{k} MSE_i(\lambda)
+$$
+
+Here, $MSE_i(\lambda)$ represents the mean squared error on the $i^{th}$ fold, calculated as the average of the squared differences between the observed values and the model predictions, parameterized by $\lambda$.
+
+### Visualizing the Impact of $\lambda$ on Cross-Validation Error
+
+Let's explore the cross-validation outcomes to comprehend how different $\lambda$ values impact model efficacy.
+
+```{r, echo=TRUE, fig.cap="Figure: Cross-Validation Curve"}
 library(glmnet)
 
-# Assuming df_filtered and features_scaled are already defined
-y <- df_filtered$wage76
+# Perform 10-fold cross-validation
+set.seed(123) # For reproducibility
+cv_outcome <- cv.glmnet(features_scaled, y, alpha = 1, nfolds = 10)
 
-set.seed(123)
-cv_fit <- cv.glmnet(features_scaled, y, alpha = 1)
+# Display the optimal lambda values
+cat("Optimal lambda (lambda.min):", cv_outcome$lambda.min, "\\n\\n")
+cat("Lambda.1se (within one standard error):", cv_outcome$lambda.1se, "\\n\\n")
 
-# Plotting the cross-validation result
-plot(cv_fit)
+# Plot the cross-validation curve
+plot(cv_outcome)
+title("Cross-Validation Curve")
 ```
 
-### Explanation of the Cross-Validation Plot
+The plot delineates how the prediction error evolves with varying $\lambda$ values, highlighting two critical points:
 
-The cross-validation plot serves as a crucial tool for visualizing how the choice of $\lambda$ influences our model's predictive accuracy. By plotting the mean squared error against the logarithm of $\lambda$ values, we gain insights into the model's performance dynamics across a spectrum of regularization strengths. Notably, the plot features two significant vertical lines:
+-   **Optimal** $\lambda$ (lambda.min): `{r} cv_outcome$lambda.min`. This value minimizes cross-validation error, suggesting an optimal balance between model simplicity and predictive accuracy.
 
--   A dotted line highlights the $\lambda$ value achieving the lowest cross-validation error within one standard error margin, suggesting an optimal balance between model complexity and accuracy. This "one standard error rule" helps in selecting a simpler model that still performs comparably to the best model found.
--   Another line, often more solid, directly points to the $\lambda$ that corresponds to the absolute minimum cross-validation error, indicating the point of highest accuracy without regard to model simplicity.
+-   $\lambda$ within one standard error (Lambda.1se): `{r} cv_outcome$lambda.1se`. Represents a more cautious $\lambda$ choice, potentially yielding a simpler model with a slight increase in error, favoring robustness.
 
-In our analysis, this graphical representation was instrumental in pinpointing a $\lambda$ value of approximately 0.00488 as the sweet spot for our model. It ensures a judicious blend of complexity and accuracy, steering clear of overfitting while maintaining robust predictive performance.
-
-### Model Coefficients and Interpretation
+#### Model Coefficients and Interpretation
 
 After identifying the optimal $\lambda$, we can examine the model's coefficients to understand the influence of each predictor:
 
-```{r}
-coef_optimal <- coef(cv_fit, s = "lambda.min")
-coef_dense <- as.matrix(coef_optimal)
-coef_df <- data.frame(coef_dense)
+```{r coefficients-table, echo=FALSE}
+library(knitr)
 
-# Displaying coefficients
-print(coef_df)
+coef_optimal <- coef(cv_outcome, s = "lambda.min")
+coef_matrix <- as.matrix(coef_optimal)
 
+# Convert the matrix to a data frame
+coef_df <- as.data.frame(coef_matrix, stringsAsFactors = FALSE)
+
+# Add variable names as a new column
+coef_df$Variable <- rownames(coef_df)
+
+# Rename the coefficient column for clarity
+names(coef_df)[1] <- "Coefficient"
+
+# Use knitr::kable() to create a Markdown table
+kable(coef_df, caption = "Optimal Coefficients from LASSO Regression", align = 'l', format = "markdown")
 ```
 
 Upon determining the optimal $\lambda$ value, a detailed examination of the model's coefficients provides us with valuable insights into the predictors' contributions towards estimating wages in 1976. The coefficients, represented in a sparse matrix, shed light on the relative importance and direction of each variable's effect:
@@ -320,22 +463,6 @@ Upon determining the optimal $\lambda$ value, a detailed examination of the mode
 -   **momed (0.010829506)**: Higher education levels of the mother are associated with higher wages, pointing to the influence of parental education.
 -   **age76 (0.117310381)**: Age in 1976 shows a strong positive correlation with wages, reflecting the typical accumulation of experience and skills over time.
 -   **col4 (0.007218061)**: Some indication that attending college is associated with higher wages, albeit with a smaller effect size. Variables such as **exp76**, **region**, **sinmom14**, **nodaded**, **nomomed**, **daded**, and **famed** have their coefficients shrunk to zero, indicating that within the context of this model and the data, these predictors do not have a significant impact on wage predictions. This outcome exemplifies the LASSO model's capacity for feature selection, focusing on predictors with meaningful contributions and simplifying the model by excluding those deemed less relevant.
-
-### Visualizing Coefficient Paths
-
-A pivotal aspect of understanding our LASSO regression model's intricacies involves examining how the predictor coefficients evolve across a range of $\lambda$ values. This exploration is facilitated through the visualization of coefficient paths:
-
-```{r}
-glmnet_fit <- glmnet(features_scaled, y, alpha = 1)
-plot(glmnet_fit, xvar = "lambda", label = TRUE)
-
-```
-
-This graph delineates each predictor's coefficient trajectory as we incrementally adjust $\lambda$, the regularization strength. Notably, the visualization reveals several key dynamics:
-
--   As $\lambda$ escalates, the model increasingly penalizes coefficient magnitude, compelling the paths of numerous coefficients towards zero. This trend underscores LASSO's mechanism for enforcing sparsity and simplification within the model.
--   Variables deemed peripheral or less impactful in predicting wages experience a swift contraction to zero. This rapid decline illustrates LASSO's effective discernment in distinguishing between essential and non-essential predictors, based on their contribution to model accuracy.
--   In contrast, coefficients for variables with a robust association to wages—evident in their sustained deviation from zero—even at higher $\lambda$ values, affirm their fundamental role within the model. These paths not only highlight predictors integral to wage determination but also showcase the model's capacity to retain critical information despite the overarching pressure to simplify.
 
 ## Results
 
@@ -356,12 +483,6 @@ The model's coefficients at this optimal $\lambda$ highlight significant predict
 
 Notably, variables such as `exp76`, `region`, and `famed`, among others, saw their coefficients reduced to zero, indicating their limited impact within the predictive framework of this model.
 
-## Conclusion
-
-This study's application of LASSO regression has elucidated the multifaceted nature of wage determinants in 1976, revealing the significant roles played by education, racial background, geographical location, and family background. The optimal $\lambda$ identified through cross-validation underscores the importance of balancing model complexity with predictive accuracy, a testament to the LASSO method's robustness.
-
-The findings not only contribute to our understanding of wage dynamics during the period but also underscore the value of regularization techniques like LASSO in distilling complex datasets to their most informative elements. Future research may build on this foundation, exploring additional variables, different time periods, or employing complementary analytical techniques to deepen our understanding of wage determinants.
-
 ## Recommendations
 
 ### Future studies should consider:
@@ -370,10 +491,21 @@ The findings not only contribute to our understanding of wage dynamics during th
 -   **Temporal Comparisons:** Conduct similar analyses for different time periods to observe changes in wage determinants over time, providing historical wage trend insights.
 -   **Employing Other Analytical Techniques:** Utilize complementary regression models or machine learning algorithms to validate findings and reveal additional insights.
 
+## Conclusion
+
+This study's application of LASSO regression has elucidated the multifaceted nature of wage determinants in 1976, revealing the significant roles played by education, racial background, geographical location, and family background. The optimal $\lambda$ identified through cross-validation underscores the importance of balancing model complexity with predictive accuracy, a testament to the LASSO method's robustness.
+
+The findings not only contribute to our understanding of wage dynamics during the period but also underscore the value of regularization techniques like LASSO in distilling complex datasets to their most informative elements. Future research may build on this foundation, exploring additional variables, different time periods, or employing complementary analytical techniques to deepen our understanding of wage determinants.
 
 
 
-## References
+
+
+
+
+
+
+
 
 
 
