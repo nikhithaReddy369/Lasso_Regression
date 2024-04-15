@@ -47,14 +47,6 @@ LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced b
 
 **Mathematical Formulation**
 
-## Methodology
-
-**LASSO Regression**
-
-LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced by Robert Tibshirani in 1996, extends traditional linear regression by introducing a penalty on the size of coefficients. This regularization technique is particularly valuable in scenarios with many potential predictors, some of which might not significantly impact the outcome variable. [@Tibshirani1996]
-
-**Mathematical Formulation**
-
 The objective function of LASSO regression can be described by the following equation:
 
 $$
