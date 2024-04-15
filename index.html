@@ -3509,6 +3509,12 @@ window.Quarto = {
 <p><strong>LASSO Regression</strong></p>
 <p>LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced by Robert Tibshirani in 1996, extends traditional linear regression by introducing a penalty on the size of coefficients. This regularization technique is particularly valuable in scenarios with many potential predictors, some of which might not significantly impact the outcome variable. <span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">Tibshirani 1996</a>)</span></p>
 <p><strong>Mathematical Formulation</strong></p>
+</section>
+<section id="methodology-1" class="level2">
+<h2 class="anchored" data-anchor-id="methodology-1">Methodology</h2>
+<p><strong>LASSO Regression</strong></p>
+<p>LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced by Robert Tibshirani in 1996, extends traditional linear regression by introducing a penalty on the size of coefficients. This regularization technique is particularly valuable in scenarios with many potential predictors, some of which might not significantly impact the outcome variable. <span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">Tibshirani 1996</a>)</span></p>
+<p><strong>Mathematical Formulation</strong></p>
 <p>The objective function of LASSO regression can be described by the following equation:</p>
 <p><span class="math display">\[
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
@@ -3520,8 +3526,6 @@ window.Quarto = {
 <li><strong>Feature Selection</strong>: This is particularly critical in high-dimensional datasets where irrelevant predictors can obscure true relationships. By selectively shrinking coefficients to zero, LASSO highlights the most relevant predictors, thereby clarifying the model’s structure <span class="citation" data-cites="Meinshausen2006">(<a href="#ref-Meinshausen2006" role="doc-biblioref">Meinshausen and Bühlmann 2006</a>)</span>.</li>
 <li><strong>Regularization</strong>: LASSO helps prevent overfitting—a common issue in complex dataset modeling—through its regularization capability that adjusts coefficients based on their significance <span class="citation" data-cites="Hastie2009">(<a href="#ref-Hastie2009" role="doc-biblioref">T. Hastie, Tibshirani, and Friedman 2009</a>)</span>.</li>
 </ul>
-<p><strong>Choosing (<span class="math inline">\(\lambda\)</span>)</strong></p>
-<p>The choice of (<span class="math inline">\(\lambda\)</span>) plays a pivotal role in the behavior of the LASSO model, balancing the trade-off between fitting the data accurately and maintaining a simple model. Cross-validation is commonly utilized to select an optimal (<span class="math inline">\(\lambda\)</span>) that minimizes prediction error, enhancing both the reliability and accuracy of the model predictions.</p>
 <p><strong>Role of the Regularization Parameter (<span class="math inline">\(\lambda\)</span>)</strong></p>
 <p>The selection of (<span class="math inline">\(\lambda\)</span>) is critical in LASSO regression:</p>
 <ul>
@@ -3534,8 +3538,6 @@ window.Quarto = {
 <p>While LASSO’s theoretical appeal is undeniable, its real-world applications underscore its practical significance. LASSO has been pivotal in enhancing predictive models in healthcare and enabling financial risk assessment, among other fields. Its ability to discern the signal from the noise makes it a go-to method in the toolkit of data scientists and researchers.</p>
 <p><strong>LASSO: Bridging Theory and Application</strong></p>
 <p>LASSO plays a foundational role in modern data analysis by providing a robust framework for dealing with high-dimensional data. This methodology facilitates the extraction of meaningful insights, ensuring that the models we build are not just statistical artifacts but true reflections of the underlying phenomena.</p>
-<p><strong>Computational Considerations</strong></p>
-<p>LASSO regression’s implementation computationally hinges on numerical optimization techniques, as the penalty term’s absolute value makes the optimization problem non-differentiable at zero. Algorithms such as coordinate descent are commonly used to solve the LASSO optimization challenge, especially with high-dimensional data.</p>
 <p><strong>Advantages of LASSO Regression</strong></p>
 <p>The combination of feature selection and regularization underpins LASSO’s utility for models that prioritize prediction accuracy and simplicity. Its applications span various fields, including biomedical research, financial modeling, and social sciences, attesting to its versatility and efficacy in predictive analytics <span class="citation" data-cites="Hastie2009 Meinshausen2006">(<a href="#ref-Hastie2009" role="doc-biblioref">T. Hastie, Tibshirani, and Friedman 2009</a>; <a href="#ref-Meinshausen2006" role="doc-biblioref">Meinshausen and Bühlmann 2006</a>)</span>.</p>
 <ul>

@@ -47,6 +47,14 @@ LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced b
 
 **Mathematical Formulation**
 
+## Methodology
+
+**LASSO Regression**
+
+LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced by Robert Tibshirani in 1996, extends traditional linear regression by introducing a penalty on the size of coefficients. This regularization technique is particularly valuable in scenarios with many potential predictors, some of which might not significantly impact the outcome variable. [@Tibshirani1996]
+
+**Mathematical Formulation**
+
 The objective function of LASSO regression can be described by the following equation:
 
 $$
@@ -62,9 +70,6 @@ The power of LASSO regression lies in its dual capability to perform coefficient
 -   **Feature Selection**: This is particularly critical in high-dimensional datasets where irrelevant predictors can obscure true relationships. By selectively shrinking coefficients to zero, LASSO highlights the most relevant predictors, thereby clarifying the model’s structure [@Meinshausen2006].
 -   **Regularization**: LASSO helps prevent overfitting—a common issue in complex dataset modeling—through its regularization capability that adjusts coefficients based on their significance [@Hastie2009].
 
-**Choosing ($\lambda$)**
-
-The choice of ($\lambda$) plays a pivotal role in the behavior of the LASSO model, balancing the trade-off between fitting the data accurately and maintaining a simple model. Cross-validation is commonly utilized to select an optimal ($\lambda$) that minimizes prediction error, enhancing both the reliability and accuracy of the model predictions.
 
 **Role of the Regularization Parameter ($\lambda$)**
 
@@ -85,10 +90,6 @@ While LASSO's theoretical appeal is undeniable, its real-world applications unde
 **LASSO: Bridging Theory and Application**
 
 LASSO plays a foundational role in modern data analysis by providing a robust framework for dealing with high-dimensional data. This methodology facilitates the extraction of meaningful insights, ensuring that the models we build are not just statistical artifacts but true reflections of the underlying phenomena.
-
-**Computational Considerations**
-
-LASSO regression's implementation computationally hinges on numerical optimization techniques, as the penalty term's absolute value makes the optimization problem non-differentiable at zero. Algorithms such as coordinate descent are commonly used to solve the LASSO optimization challenge, especially with high-dimensional data.
 
 **Advantages of LASSO Regression**
 
@@ -128,6 +129,7 @@ y & : \text{The dependent variable.} \\
 \end{align*}
 ```
 Through this comparative analysis, we highlight the strengths of Lasso Regression, particularly in scenarios involving high-dimensional data where feature selection becomes crucial. The ability of Lasso to reduce coefficient estimates to zero effectively simplifies the model, enhancing interpretability and potentially improving prediction accuracy when compared to MLR, which does not inherently feature any form of regularization or feature selection.
+
 
 ## Analysis and Results
 
@@ -391,6 +393,7 @@ These findings align with the established practices in statistical learning, whe
 **Model Coefficients and Interpretation**
 
 Our LASSO regression model, selected through rigorous regularization parameter optimization, offers a clear picture of the factors influencing wages in 1976. This model effectively zeroes out less significant predictors, enhancing clarity and focus in our analysis [Figure 6](#fig:optimal-coefficients-visualization).
+
 
 ```{r optimal-coefficients-visualization, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Figure 6: Visualization of LASSO Coefficients"}
 library(knitr)
