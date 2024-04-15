@@ -62,6 +62,9 @@ The power of LASSO regression lies in its dual capability to perform coefficient
 -   **Feature Selection**: This is particularly critical in high-dimensional datasets where irrelevant predictors can obscure true relationships. By selectively shrinking coefficients to zero, LASSO highlights the most relevant predictors, thereby clarifying the model’s structure [@Meinshausen2006].
 -   **Regularization**: LASSO helps prevent overfitting—a common issue in complex dataset modeling—through its regularization capability that adjusts coefficients based on their significance [@Hastie2009].
 
+**Choosing ($\lambda$)**
+
+The choice of ($\lambda$) plays a pivotal role in the behavior of the LASSO model, balancing the trade-off between fitting the data accurately and maintaining a simple model. Cross-validation is commonly utilized to select an optimal ($\lambda$) that minimizes prediction error, enhancing both the reliability and accuracy of the model predictions.
 
 **Role of the Regularization Parameter ($\lambda$)**
 
@@ -82,6 +85,10 @@ While LASSO's theoretical appeal is undeniable, its real-world applications unde
 **LASSO: Bridging Theory and Application**
 
 LASSO plays a foundational role in modern data analysis by providing a robust framework for dealing with high-dimensional data. This methodology facilitates the extraction of meaningful insights, ensuring that the models we build are not just statistical artifacts but true reflections of the underlying phenomena.
+
+**Computational Considerations**
+
+LASSO regression's implementation computationally hinges on numerical optimization techniques, as the penalty term's absolute value makes the optimization problem non-differentiable at zero. Algorithms such as coordinate descent are commonly used to solve the LASSO optimization challenge, especially with high-dimensional data.
 
 **Advantages of LASSO Regression**
 
@@ -160,6 +167,10 @@ Before delving into the application of LASSO regression, it is essential to unde
 
 -   **`smsa76`**: Identifies residence within a Standard Metropolitan Statistical Area (SMSA) in 1976. This variable is relevant for examining urban versus rural disparities.
 
+**Data Cleaning and Exploration**
+
+Initial exploration of the `RetSchool` dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(ggplot2)
@@ -175,8 +186,95 @@ df_clean <- df %>%
 cat("Rows after cleaning and imputation:", nrow(df_clean), "\n")
 # Define the response variable y
 y <- df_clean$wage76
+```
+
+**Distribution of Key Variables**
+
+The distribution of wages is a crucial aspect of understanding economic status and disparities within the `RetSchool` dataset.
+
+As seen in [Figure 1](#fig:work-distribution), the histogram for `exp76` exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals possessing high levels of experience. This distribution indicates that while the workforce predominantly consists of less experienced individuals, there are notable exceptions with significantly high experience levels.
+
+```{r work-distribution, fig.cap="Figure 1: Work Experience Distribution in 1976"}
+
+# Work Experience Distribution in 1976
+p_experience <- ggplot(df_clean, aes(x = exp76)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "orange", color = "black") +
+  geom_density(color = "purple", fill = "purple", alpha = 0.2) +
+  labs(title = "Work Experience Distribution in 1976", x = "Years of Experience", y = "Density") +
+  annotate("text", x = Inf, y = Inf, label = "Right-skewed distribution", hjust = 1.1, vjust = 2, size = 3, color = "darkmagenta")
+p_experience
 
 ```
+
+**Correlation Matrix**
+
+Understanding the relationships among key variables can provide insights into the factors that influence wage disparities.
+
+```{r correlation-matrix, fig.cap="Figure 2: Correlation Matrix of Selected Variables"}
+library(corrplot)
+
+# Calculate the correlation matrix on selected variables, omitting NAs
+cor_matrix <- cor(select(df_clean, wage76, grade76, exp76, age76) %>% na.omit())
+
+# Generate the correlation matrix plot
+corrplot(cor_matrix, method = "color", 
+         addCoef.col = "black",
+         type = "upper",
+         tl.col = "black",
+         tl.srt = 45,
+         tl.cex = 0.6,
+         number.cex = 0.6,
+         mar = c(0, 0, 2, 0))
+
+
+```
+
+The correlation matrix, as shown in [Figure 2](#fig:correlation-matrix), provides a nuanced understanding of how different variables such as education level and work experience interact with wages, highlighting the multifaceted nature of wage determination.
+
+**Demographic Distributions**
+
+Analyzing demographic variables helps to identify the structural and social factors influencing education and economic outcomes.
+
+```{r demographic-distributions, fig.cap="Figure 3: Demographic Distributions"}
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+
+# Assuming df_clean has already been prepared and loaded
+# Create the 'LivingSituationAt14' column based on existing data
+df_clean <- df_clean %>%
+  mutate(LivingSituationAt14 = case_when(
+    momdad14 == 1 ~ "Both Parents",
+    sinmom14 == 1 ~ "Single Mom",
+    TRUE ~ "Other"
+  ))
+
+# Convert the new column to a factor for better plotting
+df_clean$LivingSituationAt14 <- factor(df_clean$LivingSituationAt14)
+
+# Plotting race distribution
+p_race <- ggplot(df_clean, aes(x = as.factor(black))) +
+  geom_bar(fill = "coral") +
+  labs(title = "Race Distribution", x = "Race (1 = Black, 0 = Other)", y = "Count")
+
+# Plotting region distribution
+p_region <- ggplot(df_clean, aes(x = as.factor(region))) +
+  geom_bar(fill = "lightgreen") +
+  labs(title = "Region Distribution", x = "Region", y = "Count")
+
+# Plotting living situation at age 14
+p_living <- ggplot(df_clean, aes(x = LivingSituationAt14)) +
+  geom_bar(fill = "lightblue") +
+  labs(title = "Living Situation at Age 14", x = "Living Situation", y = "Count")
+
+# Combine the plots with patchwork
+demographic_plots <- p_race + p_region + p_living + 
+  plot_layout(ncol = 3)
+
+print(demographic_plots)
+```
+
+The combined demographic analysis, as shown in [Figure 3](#fig:demographic-distributions), elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
 
 **Why LASSO for the RetSchool Dataset?**
 
@@ -223,9 +321,8 @@ Feature scaling is a critical step in the preprocessing phase, particularly when
 To illustrate the importance of this process, we examine how the distribution of a key variable, `exp76`, changes before and after feature scaling. This comparison vividly shows the effect of scaling on the model’s ability to equitably penalize all predictors.
 
 ```{r data-feature-visualization, fig.cap="Figure 4: Distribution of Feature 'exp76' Before and After Scaling"}
-library(ggplot2)
-library(patchwork)
-feature_name <- "exp76" 
+# Selecting a feature for comparison
+feature_name <- "exp76" # Example feature
 
 # Plotting the distribution before scaling
 p_before_scaling <- ggplot(df_clean, aes_string(x = feature_name)) +
@@ -233,18 +330,13 @@ p_before_scaling <- ggplot(df_clean, aes_string(x = feature_name)) +
   labs(title = paste("Distribution of", feature_name, "Before Scaling"), x = feature_name, y = "Frequency")
 
 # Extracting the scaled values for the selected feature
-scaled_feature <- features_scaled[, feature_name]
+scaled_feature <- features_scaled[,feature_name]
 
 # Plotting the distribution after scaling
-p_after_scaling <- ggplot(data.frame(scaled_feature = scaled_feature), aes(x = scaled_feature)) +
+p_after_scaling <- ggplot(data.frame(scaled_feature), aes(x = scaled_feature)) +
   geom_histogram(binwidth = 0.5, fill = "#00BFC4", alpha = 0.7) +
   labs(title = paste("Distribution of", feature_name, "After Scaling"), x = paste(feature_name, "(scaled)"), y = "Frequency")
-
-# Combining the plots side by side using patchwork
-combined_plot <- p_before_scaling + p_after_scaling + plot_layout(ncol = 2)
-
-# Print the combined plot
-print(combined_plot)
+p_before_scaling + p_after_scaling + plot_layout(ncol = 2)
 
 
 ```
@@ -363,6 +455,10 @@ Several variables demonstrated minimal to no influence on wages, exemplifying La
 
 Upon determining the significant and non-significant predictors through Lasso Regression, we further explored these findings by comparing them with the results obtained from Multiple Linear Regression (MLR). This comparison not only illuminates the differences in predictive power between the two models but also underscores the regularization effect of Lasso, which minimizes the influence of variables that do not significantly impact the dependent variable.
 
+**Significant Predictors of Wages**
+
+The following analysis compares the coefficients from both models, revealing the predictors that significantly impact wage levels. This comparison not only highlights the predictive power of each model but also emphasizes the regularization effect of LASSO in reducing the influence of less significant variables:
+
 ```{r mlr-model}
 library(glmnet)
 library(caret)
@@ -401,7 +497,14 @@ coefficients_comparison <- data.frame(
   Coefficient_MLR = as.numeric(matching_mlr_coefs),
   Coefficient_LASSO = as.numeric(non_zero_lasso)
 )
+
+# Display the comparison using knitr
+kable(coefficients_comparison, format = "html", caption = "Comparison of MLR and LASSO Coefficients", align = 'c') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, font_size = 12) %>%
+  scroll_box(width = "100%", height = "500px")
 ```
+
+The table elucidates the influence of various predictors on wages, identified by both modeling approaches. LASSO, in particular, emphasizes key aspects of educational attainment, racial disparities, and geographic factors, showcasing its strength in handling complex datasets with interrelated predictors..
 
 **Visual Comparison of Model Outcomes**
 
@@ -469,3 +572,19 @@ LASSO regression demonstrates exceptional capabilities in:
 The insights garnered from this investigation not only deepen our comprehension of historical economic conditions but also arm policymakers with effective tools to address current and future economic disparities. The capacity of LASSO to handle complex, high-dimensional datasets secures its ongoing relevance in economic research and establishes it as a fundamental technique for data-driven policy development.
 
 This thorough application of LASSO regression underscores its essential role in contemporary econometrics, promising a future where data-driven insights catalyze more equitable economic development.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
