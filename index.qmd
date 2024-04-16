@@ -17,6 +17,8 @@ editor:
     wrap: 72
 ---
 
+[Slides](Presentation.html)
+
 ## Introduction
 
 LASSO, or Least Absolute Shrinkage and Selection Operator, is a refined
