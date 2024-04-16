@@ -19,97 +19,228 @@ editor:
 
 ## Introduction
 
-LASSO, or Least Absolute Shrinkage and Selection Operator, is a refined linear regression method introduced by Robert Tibshirani in 1996 [@Tibshirani1996]. This technique incorporates a penalty on the absolute values of regression coefficients, effectively reducing the risk of overfitting by eliminating less significant variables. LASSO's ability to maintain model parsimony while enhancing interpretability makes it particularly valuable in handling large and complex datasets across various fields, including socioeconomic studies, public health, and environmental research [@Zhao2006; @Fan2011].
+LASSO, or Least Absolute Shrinkage and Selection Operator, is a refined
+linear regression method introduced by Robert Tibshirani in 1996
+[@Tibshirani1996]. This technique incorporates a penalty on the absolute
+values of regression coefficients, effectively reducing the risk of
+overfitting by eliminating less significant variables. LASSO's ability
+to maintain model parsimony while enhancing interpretability makes it
+particularly valuable in handling large and complex datasets across
+various fields, including socioeconomic studies, public health, and
+environmental research [@Zhao2006; @Fan2011].
 
-The development of LASSO has been influenced significantly by advancements such as Least Angle Regression (LARS) by Efron et al. [@Efron2004], which further highlights the method's capability in feature selection and regularization. This innovation has led to LASSO's widespread adoption in disciplines requiring a clear interpretation of intricate data dynamics, such as economic forecasting and health diagnostics [@Hastie2009; @Belloni2013].
+The development of LASSO has been influenced significantly by
+advancements such as Least Angle Regression (LARS) by Efron et al.
+[@Efron2004], which further highlights the method's capability in
+feature selection and regularization. This innovation has led to LASSO's
+widespread adoption in disciplines requiring a clear interpretation of
+intricate data dynamics, such as economic forecasting and health
+diagnostics [@Hastie2009; @Belloni2013].
 
-Moreover, the integration of logistic regression with LASSO has opened new avenues for modeling categorical outcomes, enhancing the predictive accuracy and interpretability in various applications from epidemiology to finance [@Simon2013; @Li2022]. As the complexity of datasets increases in the 21st century, LASSO remains a cornerstone in the toolkit of data scientists, aiding in the precise and simplified exploration of multifaceted data landscapes [@Chintalapudi2022; @Friedman2010].
+Moreover, the integration of logistic regression with LASSO has opened
+new avenues for modeling categorical outcomes, enhancing the predictive
+accuracy and interpretability in various applications from epidemiology
+to finance [@Simon2013; @Li2022]. As the complexity of datasets
+increases in the 21st century, LASSO remains a cornerstone in the
+toolkit of data scientists, aiding in the precise and simplified
+exploration of multifaceted data landscapes [@Chintalapudi2022;
+@Friedman2010].
 
 ## Literature Review
 
-LASSO regression's versatility is evident from its extensive use in multiple fields. In economics, Zhou et al. (2022)[@Zhou2022] demonstrated its effectiveness in selecting pivotal economic predictors, aiding stakeholders in strategic decision-making . In bioinformatics, Lu et al. (2011)[@Lu2011; @Musoro2014] applied LASSO regression to construct models based on gene expressions, significantly advancing our understanding of genetic pathways and diseases.
+LASSO regression's versatility is evident from its extensive use in
+multiple fields. In economics, Zhou et al. (2022)[@Zhou2022]
+demonstrated its effectiveness in selecting pivotal economic predictors,
+aiding stakeholders in strategic decision-making . In bioinformatics, Lu
+et al. (2011)[@Lu2011; @Musoro2014] applied LASSO regression to
+construct models based on gene expressions, significantly advancing our
+understanding of genetic pathways and diseases.
 
-Environmental studies have also benefited from LASSO regression, as illustrated by Wang et al. (2017)[@Wang2017], who used it to predict fuel consumption in maritime operations, thereby supporting sustainability efforts in the maritime industry.  Public health research has seen similar advancements, with McEligot et al. (2020)[@McEligot2020] using logistic LASSO to identify dietary factors influencing breast cancer risk, showcasing its capability to handle high-dimensional data effectively.
+Environmental studies have also benefited from LASSO regression, as
+illustrated by Wang et al. (2017)[@Wang2017], who used it to predict
+fuel consumption in maritime operations, thereby supporting
+sustainability efforts in the maritime industry. Public health research
+has seen similar advancements, with McEligot et al.
+(2020)[@McEligot2020] using logistic LASSO to identify dietary factors
+influencing breast cancer risk, showcasing its capability to handle
+high-dimensional data effectively.
 
-The continuous evolution [@Muthukrishnan2016; @Friedman2010] of LASSO regression is marked by its increasing application in areas requiring robust statistical tools to analyze vast datasets and complex variables, reflecting its critical role in modern predictive modeling and data analysis.
+The continuous evolution [@Muthukrishnan2016; @Friedman2010] of LASSO
+regression is marked by its increasing application in areas requiring
+robust statistical tools to analyze vast datasets and complex variables,
+reflecting its critical role in modern predictive modeling and data
+analysis.
 
-To optimize the performance of our LASSO regression model, we employed k-fold cross-validation[@James2013]. This technique is essential for assessing how the model performs on unseen data, ensuring its reliability and generalizability. It involves dividing the dataset into several subsets, using each in turn to validate the model trained on the remaining data. This method helps in determining the optimal regularization parameter (lambda), which balances complexity and accuracy in the model [@Hastie2009].
+To optimize the performance of our LASSO regression model, we employed
+k-fold cross-validation[@James2013]. This technique is essential for
+assessing how the model performs on unseen data, ensuring its
+reliability and generalizability. It involves dividing the dataset into
+several subsets, using each in turn to validate the model trained on the
+remaining data. This method helps in determining the optimal
+regularization parameter (lambda), which balances complexity and
+accuracy in the model [@Hastie2009].
 
-After refining our LASSO model through cross-validation, we compared its performance with that of Multiple Linear Regression (MLR). This comparison is crucial to highlight the differences in how each model handles multicollinearity and overfitting [@Friedman2010]. By analyzing the coefficients and their significance in both models, we can demonstrate the effectiveness of LASSO's regularization in simplifying the model while retaining predictive power.
+After refining our LASSO model through cross-validation, we compared its
+performance with that of Multiple Linear Regression (MLR). This
+comparison is crucial to highlight the differences in how each model
+handles multicollinearity and overfitting [@Friedman2010]. By analyzing
+the coefficients and their significance in both models, we can
+demonstrate the effectiveness of LASSO's regularization in simplifying
+the model while retaining predictive power.
 
-Our comprehensive analysis underscores LASSO's utility in producing more parsimonious models compared to MLR, particularly in scenarios with numerous predictors and potential overfitting [@Tibshirani1996]. The results affirm the value of LASSO in modern statistical analysis and predictive modeling, as it not only enhances model interpretability but also ensures robustness against the complexities inherent in large datasets.
+Our comprehensive analysis underscores LASSO's utility in producing more
+parsimonious models compared to MLR, particularly in scenarios with
+numerous predictors and potential overfitting [@Tibshirani1996]. The
+results affirm the value of LASSO in modern statistical analysis and
+predictive modeling, as it not only enhances model interpretability but
+also ensures robustness against the complexities inherent in large
+datasets.
 
 ## Methodology
 
 **LASSO Regression**
 
-LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced by Robert Tibshirani in 1996, extends traditional linear regression by introducing a penalty on the size of coefficients. This regularization technique is particularly valuable in scenarios with many potential predictors, some of which might not significantly impact the outcome variable. [@Tibshirani1996]
+LASSO (Least Absolute Shrinkage and Selection Operator) regression,
+introduced by Robert Tibshirani in 1996, extends traditional linear
+regression by introducing a penalty on the size of coefficients. This
+regularization technique is particularly valuable in scenarios with many
+potential predictors, some of which might not significantly impact the
+outcome variable. [@Tibshirani1996]
 
 **Mathematical Formulation**
 
-The objective function of LASSO regression can be described by the following equation:
+The objective function of LASSO regression can be described by the
+following equation:
 
 $$
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
 $$
 
-This formulation balances the fidelity to the data, represented by the Residual Sum of Squares (RSS), and the complexity of the model, controlled by the LASSO penalty term. The regularization parameter, $\lambda$, plays a crucial role in this balance, dictating the extent of shrinkage applied to the coefficients [@Zhao2006; @Friedman2010].
+This formulation balances the fidelity to the data, represented by the
+Residual Sum of Squares (RSS), and the complexity of the model,
+controlled by the LASSO penalty term. The regularization parameter,
+$\lambda$, plays a crucial role in this balance, dictating the extent of
+shrinkage applied to the coefficients [@Zhao2006; @Friedman2010].
 
 **The Shrinkage Effect and Its Merits**
 
-The power of LASSO regression lies in its dual capability to perform coefficient shrinkage and feature selection simultaneously. This functionality aids in simplifying models and enhancing predictive performance by addressing multicollinearity.
+The power of LASSO regression lies in its dual capability to perform
+coefficient shrinkage and feature selection simultaneously. This
+functionality aids in simplifying models and enhancing predictive
+performance by addressing multicollinearity.
 
--   **Feature Selection**: This is particularly critical in high-dimensional datasets where irrelevant predictors can obscure true relationships. By selectively shrinking coefficients to zero, LASSO highlights the most relevant predictors, thereby clarifying the model’s structure [@Meinshausen2006].
--   **Regularization**: LASSO helps prevent overfitting—a common issue in complex dataset modeling—through its regularization capability that adjusts coefficients based on their significance [@Hastie2009].
+-   **Feature Selection**: This is particularly critical in
+    high-dimensional datasets where irrelevant predictors can obscure
+    true relationships. By selectively shrinking coefficients to zero,
+    LASSO highlights the most relevant predictors, thereby clarifying
+    the model’s structure [@Meinshausen2006].
+-   **Regularization**: LASSO helps prevent overfitting—a common issue
+    in complex dataset modeling—through its regularization capability
+    that adjusts coefficients based on their significance [@Hastie2009].
 
-
-**Role of the Regularization Parameter ($\lambda$)**
+**Role of the Regularization Parameter (**$\lambda$)
 
 The selection of ($\lambda$) is critical in LASSO regression:
 
--   When ( $\lambda$ = 0 ), LASSO regression reverts to ordinary least squares regression, applying no penalty on coefficient size.
+-   When ( $\lambda$ = 0 ), LASSO regression reverts to ordinary least
+    squares regression, applying no penalty on coefficient size.
 
--   As ($\lambda$) increases, the impact of the penalty also grows, driving more coefficients to zero and thereby simplifying the model. This makes LASSO particularly effective for variable selection as it can eliminate irrelevant predictors by setting their coefficients to zero [@Zhao2006].
+-   As ($\lambda$) increases, the impact of the penalty also grows,
+    driving more coefficients to zero and thereby simplifying the model.
+    This makes LASSO particularly effective for variable selection as it
+    can eliminate irrelevant predictors by setting their coefficients to
+    zero [@Zhao2006].
 
--   **Bias-Variance Trade-off**: A smaller ($\lambda$) generally results in low bias but high variance, as the model closely fits the training data, which may lead to overfitting. Conversely, a larger ($\lambda$) increases the bias but reduces variance by simplifying the model, which could potentially lead to underfitting.
+-   **Bias-Variance Trade-off**: A smaller ($\lambda$) generally results
+    in low bias but high variance, as the model closely fits the
+    training data, which may lead to overfitting. Conversely, a larger
+    ($\lambda$) increases the bias but reduces variance by simplifying
+    the model, which could potentially lead to underfitting.
 
--   **Model Selection and Cross-Validation**: The optimal ($\lambda$) value is typically determined through cross-validation. K-fold cross-validation is a common method to assess the model's predictive performance over a range of ($\lambda$) values, selecting the ($\lambda$) that minimizes cross-validation error [@Friedman2010].
+-   **Model Selection and Cross-Validation**: The optimal ($\lambda$)
+    value is typically determined through cross-validation. K-fold
+    cross-validation is a common method to assess the model's predictive
+    performance over a range of ($\lambda$) values, selecting the
+    ($\lambda$) that minimizes cross-validation error [@Friedman2010].
 
 **Beyond Mathematical Formulation: LASSO in Practice**
 
-While LASSO's theoretical appeal is undeniable, its real-world applications underscore its practical significance. LASSO has been pivotal in enhancing predictive models in healthcare and enabling financial risk assessment, among other fields. Its ability to discern the signal from the noise makes it a go-to method in the toolkit of data scientists and researchers.
+While LASSO's theoretical appeal is undeniable, its real-world
+applications underscore its practical significance. LASSO has been
+pivotal in enhancing predictive models in healthcare and enabling
+financial risk assessment, among other fields. Its ability to discern
+the signal from the noise makes it a go-to method in the toolkit of data
+scientists and researchers.
 
 **LASSO: Bridging Theory and Application**
 
-LASSO plays a foundational role in modern data analysis by providing a robust framework for dealing with high-dimensional data. This methodology facilitates the extraction of meaningful insights, ensuring that the models we build are not just statistical artifacts but true reflections of the underlying phenomena.
+LASSO plays a foundational role in modern data analysis by providing a
+robust framework for dealing with high-dimensional data. This
+methodology facilitates the extraction of meaningful insights, ensuring
+that the models we build are not just statistical artifacts but true
+reflections of the underlying phenomena.
 
 **Advantages of LASSO Regression**
 
-The combination of feature selection and regularization underpins LASSO's utility for models that prioritize prediction accuracy and simplicity. Its applications span various fields, including biomedical research, financial modeling, and social sciences, attesting to its versatility and efficacy in predictive analytics [@Hastie2009; @Meinshausen2006].
+The combination of feature selection and regularization underpins
+LASSO's utility for models that prioritize prediction accuracy and
+simplicity. Its applications span various fields, including biomedical
+research, financial modeling, and social sciences, attesting to its
+versatility and efficacy in predictive analytics [@Hastie2009;
+@Meinshausen2006].
 
--   **Feature Selection**: By reducing some coefficients to exactly zero, LASSO achieves automatic feature selection, highlighting significant predictors [@Park2008].
--   **Model Interpretability**: Simplifying the model by removing irrelevant variables improves interpretability, making LASSO-regressed models more comprehensible [@Belloni2013].
--   **Mitigation of Multicollinearity**: LASSO effectively addresses multicollinearity among predictors by selecting a single variable from a group of highly correlated variables, thereby alleviating this concern [@Efron2004].
+-   **Feature Selection**: By reducing some coefficients to exactly
+    zero, LASSO achieves automatic feature selection, highlighting
+    significant predictors [@Park2008].
+-   **Model Interpretability**: Simplifying the model by removing
+    irrelevant variables improves interpretability, making
+    LASSO-regressed models more comprehensible [@Belloni2013].
+-   **Mitigation of Multicollinearity**: LASSO effectively addresses
+    multicollinearity among predictors by selecting a single variable
+    from a group of highly correlated variables, thereby alleviating
+    this concern [@Efron2004].
 
 **Cross-Validation for Model Tuning**
 
-To ensure the robustness and generalizability of our LASSO regression model, we employed cross-validation techniques. Specifically, we utilized k-fold cross-validation, a method renowned for its efficacy in assessing model performance on unseen data. Mathematically, cross-validation involves partitioning the dataset into ( k ) subsets of equal size, known as "folds." The model is then trained on ( k-1 ) folds, with the remaining fold used as the validation set to evaluate model performance. This process is repeated ( k ) times, each with a different fold serving as the validation set, thereby allowing every data point to be used for both training and validation. The cross-validation error (CVE) for each regularization parameter ($\lambda$) is calculated across all folds, selecting the ($\lambda$) that minimizes the cumulative error as optimal. The equation for the CVE associated with a specific ($\lambda$) is given by:
+To ensure the robustness and generalizability of our LASSO regression
+model, we employed cross-validation techniques. Specifically, we
+utilized k-fold cross-validation, a method renowned for its efficacy in
+assessing model performance on unseen data. Mathematically,
+cross-validation involves partitioning the dataset into ( k ) subsets of
+equal size, known as "folds." The model is then trained on ( k-1 )
+folds, with the remaining fold used as the validation set to evaluate
+model performance. This process is repeated ( k ) times, each with a
+different fold serving as the validation set, thereby allowing every
+data point to be used for both training and validation. The
+cross-validation error (CVE) for each regularization parameter
+($\lambda$) is calculated across all folds, selecting the ($\lambda$)
+that minimizes the cumulative error as optimal. The equation for the CVE
+associated with a specific ($\lambda$) is given by:
 
 $$
 CVE(\lambda) = \frac{1}{k} \sum_{i=1}^{k} MSE_i(\lambda)
 $$
 
-where ( MSE_i(\lambda) ) denotes the mean squared error on the ( i\^{th} ) fold, defined as the mean of the squared differences between observed responses and predictions under ($\lambda$) [@Hastie2015; @Tibshirani2021].
+where ( MSE_i(\lambda) ) denotes the mean squared error on the ( i\^{th}
+) fold, defined as the mean of the squared differences between observed
+responses and predictions under ($\lambda$) [@Hastie2015;
+@Tibshirani2021].
 
 **Comparing Lasso Regression to Multiple Linear Regression**
 
-To contextualize the performance and utility of Lasso Regression, we juxtaposed it with Multiple Linear Regression (MLR). MLR models the relationship between a dependent variable and multiple independent variables through a linear equation:
+To contextualize the performance and utility of Lasso Regression, we
+juxtaposed it with Multiple Linear Regression (MLR). MLR models the
+relationship between a dependent variable and multiple independent
+variables through a linear equation:
 
 $$
 y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 $$
 
-This relationship quantifies the impact of each predictor, allowing for direct interpretation of each variable's influence on the dependent variable, holding other variables constant. The components of the model are defined as follows:
+This relationship quantifies the impact of each predictor, allowing for
+direct interpretation of each variable's influence on the dependent
+variable, holding other variables constant. The components of the model
+are defined as follows:
 
 ```{=tex}
 \begin{align*}
@@ -120,50 +251,87 @@ y & : \text{The dependent variable.} \\
 \epsilon & : \text{The error term, capturing the variability in } y \text{ not explained by the predictors.}
 \end{align*}
 ```
-Through this comparative analysis, we highlight the strengths of Lasso Regression, particularly in scenarios involving high-dimensional data where feature selection becomes crucial. The ability of Lasso to reduce coefficient estimates to zero effectively simplifies the model, enhancing interpretability and potentially improving prediction accuracy when compared to MLR, which does not inherently feature any form of regularization or feature selection.
-
+Through this comparative analysis, we highlight the strengths of Lasso
+Regression, particularly in scenarios involving high-dimensional data
+where feature selection becomes crucial. The ability of Lasso to reduce
+coefficient estimates to zero effectively simplifies the model,
+enhancing interpretability and potentially improving prediction accuracy
+when compared to MLR, which does not inherently feature any form of
+regularization or feature selection.
 
 ## Analysis and Results
 
 ### Data Description
 
-Before delving into the application of LASSO regression, it is essential to understand the key variables within the `RetSchool` dataset. These variables provide insights into the socio-economic and educational landscape of 1976, setting the stage for a nuanced exploration of factors influencing wages and educational outcomes.
+Before delving into the application of LASSO regression, it is essential
+to understand the key variables within the `RetSchool` dataset. These
+variables provide insights into the socio-economic and educational
+landscape of 1976, setting the stage for a nuanced exploration of
+factors influencing wages and educational outcomes.
 
 **Economic and Demographic Indicators**
 
--   **`wage76`**: Represents the wages of individuals in 1976. This variable provides a direct measure of economic status and allows for the analysis of wage disparities and their relationships with other socio-economic factors.
+-   **`wage76`**: Represents the wages of individuals in 1976. This
+    variable provides a direct measure of economic status and allows for
+    the analysis of wage disparities and their relationships with other
+    socio-economic factors.
 
--   **`age76`**: Indicates the age of individuals in 1976. This demographic variable is fundamental for analyzing the workforce's age distribution and its implications on wages.
+-   **`age76`**: Indicates the age of individuals in 1976. This
+    demographic variable is fundamental for analyzing the workforce's
+    age distribution and its implications on wages.
 
 **Educational Variables**
 
--   **`grade76`**: Denotes the highest grade completed by individuals as of 1976, offering insights into the level of educational attainment and its correlation with economic success.
+-   **`grade76`**: Denotes the highest grade completed by individuals as
+    of 1976, offering insights into the level of educational attainment
+    and its correlation with economic success.
 
--   **`col4`**: Serves as an indicator variable for college education. The precise implications of this variable would require further clarification for meaningful analysis.
+-   **`col4`**: Serves as an indicator variable for college education.
+    The precise implications of this variable would require further
+    clarification for meaningful analysis.
 
 **Work Experience**
 
--   **`exp76`**: Measures the years of work experience by 1976, shedding light on the impact of labor market participation on wage levels.
+-   **`exp76`**: Measures the years of work experience by 1976, shedding
+    light on the impact of labor market participation on wage levels.
 
 **Family Background and Structure**
 
--   **`momdad14`, `sinmom14`**: Provide information about the living situation of individuals at age 14. These variables are essential for understanding the influence of early family environment on future educational and economic outcomes.
+-   **`momdad14`, `sinmom14`**: Provide information about the living
+    situation of individuals at age 14. These variables are essential
+    for understanding the influence of early family environment on
+    future educational and economic outcomes.
 
--   **`daded`, `momed`**: Reflect the education levels of the father and mother, respectively. These variables are key to exploring parental influence on the educational achievements and economic opportunities of their offspring.
+-   **`daded`, `momed`**: Reflect the education levels of the father and
+    mother, respectively. These variables are key to exploring parental
+    influence on the educational achievements and economic opportunities
+    of their offspring.
 
 **Racial and Regional Characteristics**
 
--   **`black`**: A binary variable identifying individuals as black. This variable enables the analysis of racial disparities within the dataset.
+-   **`black`**: A binary variable identifying individuals as black.
+    This variable enables the analysis of racial disparities within the
+    dataset.
 
--   **`south76`**: Indicates whether individuals lived in the South in 1976. This variable is important for regional analyses and understanding their socio-economic implications.
+-   **`south76`**: Indicates whether individuals lived in the South
+    in 1976. This variable is important for regional analyses and
+    understanding their socio-economic implications.
 
--   **`region`**: Categorizes individuals based on geographic regions. This variable is useful for examining how regional factors influence economic and educational outcomes.
+-   **`region`**: Categorizes individuals based on geographic regions.
+    This variable is useful for examining how regional factors influence
+    economic and educational outcomes.
 
--   **`smsa76`**: Identifies residence within a Standard Metropolitan Statistical Area (SMSA) in 1976. This variable is relevant for examining urban versus rural disparities.
+-   **`smsa76`**: Identifies residence within a Standard Metropolitan
+    Statistical Area (SMSA) in 1976. This variable is relevant for
+    examining urban versus rural disparities.
 
 **Data Cleaning and Exploration**
 
-Initial exploration of the `RetSchool` dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.
+Initial exploration of the `RetSchool` dataset revealed a diverse range
+of variables, necessitating meticulous data cleaning to ensure accuracy
+in our subsequent analyses. Missing values were addressed through
+imputation or removal, refining our dataset for a comprehensive
+examination.
 
 ```{r setup, include=FALSE}
 library(tidyverse)
@@ -184,9 +352,15 @@ y <- df_clean$wage76
 
 **Distribution of Key Variables**
 
-The distribution of wages is a crucial aspect of understanding economic status and disparities within the `RetSchool` dataset.
+The distribution of wages is a crucial aspect of understanding economic
+status and disparities within the `RetSchool` dataset.
 
-As seen in [Figure 1](#fig:work-distribution), the histogram for `exp76` exhibits a right-skewed distribution, suggesting that a larger number of individuals had lower work experience, with fewer individuals possessing high levels of experience. This distribution indicates that while the workforce predominantly consists of less experienced individuals, there are notable exceptions with significantly high experience levels.
+As seen in [Figure 1](#fig:work-distribution), the histogram for `exp76`
+exhibits a right-skewed distribution, suggesting that a larger number of
+individuals had lower work experience, with fewer individuals possessing
+high levels of experience. This distribution indicates that while the
+workforce predominantly consists of less experienced individuals, there
+are notable exceptions with significantly high experience levels.
 
 ```{r work-distribution, fig.cap="Figure 1: Work Experience Distribution in 1976"}
 
@@ -202,7 +376,8 @@ p_experience
 
 **Correlation Matrix**
 
-Understanding the relationships among key variables can provide insights into the factors that influence wage disparities.
+Understanding the relationships among key variables can provide insights
+into the factors that influence wage disparities.
 
 ```{r correlation-matrix, fig.cap="Figure 2: Correlation Matrix of Selected Variables"}
 library(corrplot)
@@ -223,11 +398,15 @@ corrplot(cor_matrix, method = "color",
 
 ```
 
-The correlation matrix, as shown in [Figure 2](#fig:correlation-matrix), provides a nuanced understanding of how different variables such as education level and work experience interact with wages, highlighting the multifaceted nature of wage determination.
+The correlation matrix, as shown in [Figure 2](#fig:correlation-matrix),
+provides a nuanced understanding of how different variables such as
+education level and work experience interact with wages, highlighting
+the multifaceted nature of wage determination.
 
 **Demographic Distributions**
 
-Analyzing demographic variables helps to identify the structural and social factors influencing education and economic outcomes.
+Analyzing demographic variables helps to identify the structural and
+social factors influencing education and economic outcomes.
 
 ```{r demographic-distributions, fig.cap="Figure 3: Demographic Distributions"}
 library(ggplot2)
@@ -268,31 +447,79 @@ demographic_plots <- p_race + p_region + p_living +
 print(demographic_plots)
 ```
 
-The combined demographic analysis, as shown in [Figure 3](#fig:demographic-distributions), elucidates the complex interplay between race, region, and early family environment, offering valuable insights for targeted interventions and policies aimed at improving educational and economic opportunities.
+The combined demographic analysis, as shown in [Figure
+3](#fig:demographic-distributions), elucidates the complex interplay
+between race, region, and early family environment, offering valuable
+insights for targeted interventions and policies aimed at improving
+educational and economic opportunities.
 
 **Why LASSO for the RetSchool Dataset?**
 
-LASSO (Least Absolute Shrinkage and Selection Operator) regression emerges as a particularly apt choice for our analysis due to several compelling reasons:
+LASSO (Least Absolute Shrinkage and Selection Operator) regression
+emerges as a particularly apt choice for our analysis due to several
+compelling reasons:
 
--   **Feature Selection**: Initial dataset exploration revealed a rich tapestry of variables potentially influencing wage levels. LASSO's inherent ability to perform feature selection by penalizing the absolute size of the regression coefficients allows us to distill this complexity into a more interpretable model. This approach is crucial for identifying the most significant predictors of wage without manually sifting through each variable, which is particularly beneficial in understanding key impacts such as education level and region on wage discrepancies. [@Zhao2006]
+-   **Feature Selection**: Initial dataset exploration revealed a rich
+    tapestry of variables potentially influencing wage levels. LASSO's
+    inherent ability to perform feature selection by penalizing the
+    absolute size of the regression coefficients allows us to distill
+    this complexity into a more interpretable model. This approach is
+    crucial for identifying the most significant predictors of wage
+    without manually sifting through each variable, which is
+    particularly beneficial in understanding key impacts such as
+    education level and region on wage discrepancies. [@Zhao2006]
 
--   **Handling Multicollinearity**: Demographic analyses hinted at possible multicollinearity among predictors, such as the interplay between education, work experience, and region. LASSO addresses this by shrinking less important coefficients to zero, thereby mitigating the adverse effects of multicollinearity on model performance. This adjustment is crucial for ensuring the stability of our estimates. [@Tibshirani1996]
+-   **Handling Multicollinearity**: Demographic analyses hinted at
+    possible multicollinearity among predictors, such as the interplay
+    between education, work experience, and region. LASSO addresses this
+    by shrinking less important coefficients to zero, thereby mitigating
+    the adverse effects of multicollinearity on model performance. This
+    adjustment is crucial for ensuring the stability of our estimates.
+    [@Tibshirani1996]
 
--   **Model Simplicity and Interpretability**: Given our goal to derive actionable insights into wage determination, model interpretability is crucial. LASSO aids in achieving a balance between model complexity and simplicity, ensuring that the final model is both accurate and understandable. This balance facilitates straightforward policy recommendations. [@Fan2011]
+-   **Model Simplicity and Interpretability**: Given our goal to derive
+    actionable insights into wage determination, model interpretability
+    is crucial. LASSO aids in achieving a balance between model
+    complexity and simplicity, ensuring that the final model is both
+    accurate and understandable. This balance facilitates
+    straightforward policy recommendations. [@Fan2011]
 
--   **Predictive Accuracy**: Beyond understanding the factors influencing wages in 1976, we aim to build a model with strong predictive capabilities. LASSO's regularization aspect helps prevent overfitting to the training data, enhancing the model's generalization ability to new, unseen data. This predictive accuracy is tested through k-fold cross-validation, which has been crucial in optimizing the regularization parameter (lambda) and confirming the model's efficacy on unseen data. [@James2013]
+-   **Predictive Accuracy**: Beyond understanding the factors
+    influencing wages in 1976, we aim to build a model with strong
+    predictive capabilities. LASSO's regularization aspect helps prevent
+    overfitting to the training data, enhancing the model's
+    generalization ability to new, unseen data. This predictive accuracy
+    is tested through k-fold cross-validation, which has been crucial in
+    optimizing the regularization parameter (lambda) and confirming the
+    model's efficacy on unseen data. [@James2013]
 
--   **Comparison with Linear Regression**: By employing k-fold cross-validation, we also compared the performance of LASSO with that of Multiple Linear Regression (MLR). This comparison highlighted LASSO's superiority in handling multicollinearity and feature selection, particularly influencing the robustness of coefficients associated with key predictors such as educational attainment and professional experience.
+-   **Comparison with Linear Regression**: By employing k-fold
+    cross-validation, we also compared the performance of LASSO with
+    that of Multiple Linear Regression (MLR). This comparison
+    highlighted LASSO's superiority in handling multicollinearity and
+    feature selection, particularly influencing the robustness of
+    coefficients associated with key predictors such as educational
+    attainment and professional experience.
 
-Given these considerations, LASSO regression stands out as a fitting methodological choice for our analysis. It offers a pathway to navigate the dataset's complexities, yielding a model that is both insightful and robust, well-suited for making informed decisions on wage policy.
+Given these considerations, LASSO regression stands out as a fitting
+methodological choice for our analysis. It offers a pathway to navigate
+the dataset's complexities, yielding a model that is both insightful and
+robust, well-suited for making informed decisions on wage policy.
 
 ## Statistical Modeling
 
-Given the robust nature of LASSO (Least Absolute Shrinkage and Selection Operator) regression for handling complex datasets, it becomes an indispensable tool in our analysis of the RetSchool dataset. Here, we focus on refining our approach through meticulous data preparation and precise model fitting.
+Given the robust nature of LASSO (Least Absolute Shrinkage and Selection
+Operator) regression for handling complex datasets, it becomes an
+indispensable tool in our analysis of the RetSchool dataset. Here, we
+focus on refining our approach through meticulous data preparation and
+precise model fitting.
 
 **Data Preparation and Feature Scaling**
 
-A critical preparatory step in our analysis is the scaling of features. The necessity of this step stems from LASSO regression's sensitivity to variable scales, which influences the penalty imposed on each coefficient.
+A critical preparatory step in our analysis is the scaling of features.
+The necessity of this step stems from LASSO regression's sensitivity to
+variable scales, which influences the penalty imposed on each
+coefficient.
 
 ```{r feature-scaling-setup, include=FALSE}
 library(caret)
@@ -310,9 +537,17 @@ features_scaled <- predict(preProcValues, features)
 
 **Demonstrating the Impact of Feature Scaling**
 
-Feature scaling is a critical step in the preprocessing phase, particularly when using LASSO, as it ensures that the regularization penalty is applied uniformly across all features regardless of their scale. This uniformity is crucial for preventing any one feature from dominating due to its range of values rather than its relationship with the response variable.
+Feature scaling is a critical step in the preprocessing phase,
+particularly when using LASSO, as it ensures that the regularization
+penalty is applied uniformly across all features regardless of their
+scale. This uniformity is crucial for preventing any one feature from
+dominating due to its range of values rather than its relationship with
+the response variable.
 
-To illustrate the importance of this process, we examine how the distribution of a key variable, `exp76`, changes before and after feature scaling. This comparison vividly shows the effect of scaling on the model’s ability to equitably penalize all predictors.
+To illustrate the importance of this process, we examine how the
+distribution of a key variable, `exp76`, changes before and after
+feature scaling. This comparison vividly shows the effect of scaling on
+the model’s ability to equitably penalize all predictors.
 
 ```{r data-feature-visualization, fig.cap="Figure 4: Distribution of Feature 'exp76' Before and After Scaling"}
 # Selecting a feature for comparison
@@ -335,11 +570,21 @@ p_before_scaling + p_after_scaling + plot_layout(ncol = 2)
 
 ```
 
-The before-and-after comparison of the feature scaling process underscores the transformation that occurs when features are normalized. This transformation is pivotal for models like LASSO regression, which rely on regularization techniques sensitive to the scale of the input variables. Scaling ensures that the regularization penalty is applied uniformly across all features, thereby enhancing the model's ability to identify truly significant predictors while avoiding undue influence from variables simply because of their scale.[Figure 4](#fig:data-feature-visualization)
+The before-and-after comparison of the feature scaling process
+underscores the transformation that occurs when features are normalized.
+This transformation is pivotal for models like LASSO regression, which
+rely on regularization techniques sensitive to the scale of the input
+variables. Scaling ensures that the regularization penalty is applied
+uniformly across all features, thereby enhancing the model's ability to
+identify truly significant predictors while avoiding undue influence
+from variables simply because of their scale.[Figure
+4](#fig:data-feature-visualization)
 
-**Visualizing the Impact of ($\lambda$) on Cross-Validation Error**
+**Visualizing the Impact of (**$\lambda$) on Cross-Validation Error
 
-Understanding how different values of ($\lambda$) influence the efficacy of a model is pivotal in regularization techniques like LASSO. Here, we explore the outcomes of cross-validation to elucidate this relationship.
+Understanding how different values of ($\lambda$) influence the efficacy
+of a model is pivotal in regularization techniques like LASSO. Here, we
+explore the outcomes of cross-validation to elucidate this relationship.
 
 ```{r cross-validation-visualization, echo=TRUE, fig.cap="Figure 5: Cross-Validation Curve"}
 library(glmnet)
@@ -374,18 +619,39 @@ ggplot(cv_data, aes(x = lambda, y = mse)) +
         axis.text = element_text(size = 12))
 ```
 
-This plot provides a clear visualization of how the choice of ($\lambda$) affects the mean squared error (MSE) during model training. As ($\lambda$) increases, the regularization effect strengthens, potentially leading to underfitting if ($\lambda$) is too large, or overfitting if ($\lambda$) is too small. The red vertical line indicates the ($\lambda$) value that results in the minimum MSE, representing the optimal balance between bias and variance.[Figure 5](#fig:cross-validation-visualization)
+This plot provides a clear visualization of how the choice of
+($\lambda$) affects the mean squared error (MSE) during model training.
+As ($\lambda$) increases, the regularization effect strengthens,
+potentially leading to underfitting if ($\lambda$) is too large, or
+overfitting if ($\lambda$) is too small. The red vertical line indicates
+the ($\lambda$) value that results in the minimum MSE, representing the
+optimal balance between bias and variance.[Figure
+5](#fig:cross-validation-visualization)
 
--   **Optimal (**$\lambda$) (lambda.min): The value that minimizes cross-validation error, indicating an optimal compromise between model simplicity and predictive accuracy. This point suggests the most efficient trade-off in the regularization path where the model neither overfits nor underfits the data.
+-   **Optimal (**$\lambda$) (lambda.min): The value that minimizes
+    cross-validation error, indicating an optimal compromise between
+    model simplicity and predictive accuracy. This point suggests the
+    most efficient trade-off in the regularization path where the model
+    neither overfits nor underfits the data.
 
--   **(**$\lambda$) within one standard error (lambda.1se): This represents a more conservative choice of ($\lambda$), potentially yielding a simpler model with a slight increase in error, which might be preferable for enhancing model robustness against variability in new data.
+-   **(**$\lambda$) within one standard error (lambda.1se): This
+    represents a more conservative choice of ($\lambda$), potentially
+    yielding a simpler model with a slight increase in error, which
+    might be preferable for enhancing model robustness against
+    variability in new data.
 
-These findings align with the established practices in statistical learning, where ($\lambda$) selection is crucial for model performance. The choice of ($\lambda$) directly impacts the complexity of the model and its ability to generalize. [@ZouHastie2005].
+These findings align with the established practices in statistical
+learning, where ($\lambda$) selection is crucial for model performance.
+The choice of ($\lambda$) directly impacts the complexity of the model
+and its ability to generalize. [@ZouHastie2005].
 
 **Model Coefficients and Interpretation**
 
-Our LASSO regression model, selected through rigorous regularization parameter optimization, offers a clear picture of the factors influencing wages in 1976. This model effectively zeroes out less significant predictors, enhancing clarity and focus in our analysis [Figure 6](#fig:optimal-coefficients-visualization).
-
+Our LASSO regression model, selected through rigorous regularization
+parameter optimization, offers a clear picture of the factors
+influencing wages in 1976. This model effectively zeroes out less
+significant predictors, enhancing clarity and focus in our analysis
+[Figure 6](#fig:optimal-coefficients-visualization).
 
 ```{r optimal-coefficients-visualization, echo=TRUE, message=FALSE, warning=FALSE, fig.cap="Figure 6: Visualization of LASSO Coefficients"}
 library(knitr)
@@ -427,32 +693,74 @@ if (exists("cv_outcome")) {
 
 **Significant Predictors and Their Effects**
 
-The LASSO model has provided several important insights into the factors influencing wages, as outlined below:
+The LASSO model has provided several important insights into the factors
+influencing wages, as outlined below:
 
--   **Intercept**: Sets the baseline for wage predictions, adjusting for average predictor levels. `r coef(cv_outcome, s = "lambda.min")[1, ]`
--   **Educational Attainment (`grade76`)**: Each additional year of education correlates with wage increases, validating the value of education. Coefficient: `r coef(cv_outcome, s = "lambda.min")["grade76", ]` [@Smith2019]
--   **Racial Disparity (`black`)**: Identifies a wage penalty for black individuals, highlighting racial inequalities. Coefficient: `r coef(cv_outcome, s = "lambda.min")["black", ]` [@Johnson2021]
--   **Geographic Influence (`south76`)**: Associates living in the South with lower wages, suggesting regional economic disparities. Coefficient: `r coef(cv_outcome, s = "lambda.min")["south76", ]` [@Davis2020]
--   **Urban Premium (`smsa76`)**: Urban residency correlates with higher wages, showing the economic benefits of metropolitan living. Coefficient: `r coef(cv_outcome, s = "lambda.min")["smsa76", ]` [@Lee2018]
--   **Long-term Urban Advantage (`smsa66`)**: Supports the ongoing benefits of urban living. Coefficient: `r coef(cv_outcome, s = "lambda.min")["smsa66", ]` [@Lee2018]
--   **Stable Family Environment (`momdad14`)**: Indicates higher wages for those living with both parents at age 14, underscoring the importance of a stable childhood environment. Coefficient: `r coef(cv_outcome, s = "lambda.min")["momdad14", ]` [@Martin2020]
--   **Parental Education (`momed`)**: Higher maternal education levels lead to higher wages, highlighting the influence of parental education. Coefficient: `r coef(cv_outcome, s = "lambda.min")["momed", ]` [@Nelson2019]
--   **Experience and Age (`age76`)**: Demonstrates that older age, which typically includes more experience, results in higher wages. Coefficient: `r coef(cv_outcome, s = "lambda.min")["age76", ]` [@Klein2017]
--   **Higher Education Indicator (`col4`)**: Suggests a modest link between college education and higher wages. Coefficient: `r coef(cv_outcome, s = "lambda.min")["col4", ]` [@Harris2018]
+-   **Intercept**: Sets the baseline for wage predictions, adjusting for
+    average predictor levels.
+    `r coef(cv_outcome, s = "lambda.min")[1, ]`
+-   **Educational Attainment (`grade76`)**: Each additional year of
+    education correlates with wage increases, validating the value of
+    education. Coefficient:
+    `r coef(cv_outcome, s = "lambda.min")["grade76", ]` [@Smith2019]
+-   **Racial Disparity (`black`)**: Identifies a wage penalty for black
+    individuals, highlighting racial inequalities. Coefficient:
+    `r coef(cv_outcome, s = "lambda.min")["black", ]` [@Johnson2021]
+-   **Geographic Influence (`south76`)**: Associates living in the South
+    with lower wages, suggesting regional economic disparities.
+    Coefficient: `r coef(cv_outcome, s = "lambda.min")["south76", ]`
+    [@Davis2020]
+-   **Urban Premium (`smsa76`)**: Urban residency correlates with higher
+    wages, showing the economic benefits of metropolitan living.
+    Coefficient: `r coef(cv_outcome, s = "lambda.min")["smsa76", ]`
+    [@Lee2018]
+-   **Long-term Urban Advantage (`smsa66`)**: Supports the ongoing
+    benefits of urban living. Coefficient:
+    `r coef(cv_outcome, s = "lambda.min")["smsa66", ]` [@Lee2018]
+-   **Stable Family Environment (`momdad14`)**: Indicates higher wages
+    for those living with both parents at age 14, underscoring the
+    importance of a stable childhood environment. Coefficient:
+    `r coef(cv_outcome, s = "lambda.min")["momdad14", ]` [@Martin2020]
+-   **Parental Education (`momed`)**: Higher maternal education levels
+    lead to higher wages, highlighting the influence of parental
+    education. Coefficient:
+    `r coef(cv_outcome, s = "lambda.min")["momed", ]` [@Nelson2019]
+-   **Experience and Age (`age76`)**: Demonstrates that older age, which
+    typically includes more experience, results in higher wages.
+    Coefficient: `r coef(cv_outcome, s = "lambda.min")["age76", ]`
+    [@Klein2017]
+-   **Higher Education Indicator (`col4`)**: Suggests a modest link
+    between college education and higher wages. Coefficient:
+    `r coef(cv_outcome, s = "lambda.min")["col4", ]` [@Harris2018]
 
 **Variables with Minimal Impact**
 
-Several variables demonstrated minimal to no influence on wages, exemplifying Lasso's ability to streamline the model by eliminating non-impactful predictors. These include `exp76`, `region`, `sinmom14`, `nodaded`, `nomomed`, `daded`, and `famed`. This reduction in variables enhances the interpretability of our model without compromising the accuracy of our predictions.
+Several variables demonstrated minimal to no influence on wages,
+exemplifying Lasso's ability to streamline the model by eliminating
+non-impactful predictors. These include `exp76`, `region`, `sinmom14`,
+`nodaded`, `nomomed`, `daded`, and `famed`. This reduction in variables
+enhances the interpretability of our model without compromising the
+accuracy of our predictions.
 
 ## Results & Conclusion
 
 **Comparative Analysis of Coefficient Impact**
 
-Upon determining the significant and non-significant predictors through Lasso Regression, we further explored these findings by comparing them with the results obtained from Multiple Linear Regression (MLR). This comparison not only illuminates the differences in predictive power between the two models but also underscores the regularization effect of Lasso, which minimizes the influence of variables that do not significantly impact the dependent variable.
+Upon determining the significant and non-significant predictors through
+Lasso Regression, we further explored these findings by comparing them
+with the results obtained from Multiple Linear Regression (MLR). This
+comparison not only illuminates the differences in predictive power
+between the two models but also underscores the regularization effect of
+Lasso, which minimizes the influence of variables that do not
+significantly impact the dependent variable.
 
 **Significant Predictors of Wages**
 
-The following analysis compares the coefficients from both models, revealing the predictors that significantly impact wage levels. This comparison not only highlights the predictive power of each model but also emphasizes the regularization effect of LASSO in reducing the influence of less significant variables:
+The following analysis compares the coefficients from both models,
+revealing the predictors that significantly impact wage levels. This
+comparison not only highlights the predictive power of each model but
+also emphasizes the regularization effect of LASSO in reducing the
+influence of less significant variables:
 
 ```{r mlr-model}
 library(glmnet)
@@ -499,11 +807,17 @@ kable(coefficients_comparison, format = "html", caption = "Comparison of MLR and
   scroll_box(width = "100%", height = "500px")
 ```
 
-The table elucidates the influence of various predictors on wages, identified by both modeling approaches. LASSO, in particular, emphasizes key aspects of educational attainment, racial disparities, and geographic factors, showcasing its strength in handling complex datasets with interrelated predictors..
+The table elucidates the influence of various predictors on wages,
+identified by both modeling approaches. LASSO, in particular, emphasizes
+key aspects of educational attainment, racial disparities, and
+geographic factors, showcasing its strength in handling complex datasets
+with interrelated predictors..
 
 **Visual Comparison of Model Outcomes**
 
-Visualizing the differences in coefficients between Multiple Linear Regression (MLR) and LASSO can provide an intuitive understanding of how LASSO modifies the influence of each predictor.
+Visualizing the differences in coefficients between Multiple Linear
+Regression (MLR) and LASSO can provide an intuitive understanding of how
+LASSO modifies the influence of each predictor.
 
 ```{r visualization, echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 7: Comparison of Coefficients from MLR and LASSO"}
 library(ggplot2)
@@ -523,63 +837,112 @@ ggplot(coefficients_long, aes(x = Predictor, y = Coefficient, fill = Model)) +
   theme(axis.text.x = element_text(angle = 65, hjust = 1))
 ```
 
-The graph titled "[Figure 7](#fig:visualization) Comparison of Coefficients from MLR and LASSO" effectively illustrates the impact of LASSO's regularization on the predictors' coefficients compared to MLR. Here are some key observations:
+The graph titled "[Figure 7](#fig:visualization) Comparison of
+Coefficients from MLR and LASSO" effectively illustrates the impact of
+LASSO's regularization on the predictors' coefficients compared to MLR.
+Here are some key observations:
 
--   **Reduction in Coefficient Magnitude**: The graph often shows LASSO coefficients as smaller than those of MLR, indicating a reduction in the effect of many predictors due to LASSO's shrinkage capability. This suggests a more conservative estimation which helps in mitigating overfitting [@Hastie2009].
+-   **Reduction in Coefficient Magnitude**: The graph often shows LASSO
+    coefficients as smaller than those of MLR, indicating a reduction in
+    the effect of many predictors due to LASSO's shrinkage capability.
+    This suggests a more conservative estimation which helps in
+    mitigating overfitting [@Hastie2009].
 
--   **Feature Elimination**: Some predictors have coefficients reduced to zero in the LASSO model but not in MLR. This highlights LASSO's feature selection ability, emphasizing its utility in high-dimensional data scenarios where model simplification is crucial [@Tibshirani1996].
+-   **Feature Elimination**: Some predictors have coefficients reduced
+    to zero in the LASSO model but not in MLR. This highlights LASSO's
+    feature selection ability, emphasizing its utility in
+    high-dimensional data scenarios where model simplification is
+    crucial [@Tibshirani1996].
 
--   **Consistent Influencers**: Predictors whose coefficients remain relatively stable across both models are likely to be robust determinants of the outcome, validating their relevance regardless of the regularization [@Friedman2010].
+-   **Consistent Influencers**: Predictors whose coefficients remain
+    relatively stable across both models are likely to be robust
+    determinants of the outcome, validating their relevance regardless
+    of the regularization [@Friedman2010].
 
--   **Interpretability and Decision Making**: By focusing only on significant predictors, LASSO enhances model interpretability, making it easier for stakeholders to understand and make informed decisions based on the model's findings [@ZouHastie2005].
+-   **Interpretability and Decision Making**: By focusing only on
+    significant predictors, LASSO enhances model interpretability,
+    making it easier for stakeholders to understand and make informed
+    decisions based on the model's findings [@ZouHastie2005].
 
 **Advantages of LASSO Over Multiple Linear Regression**
 
-LASSO Regression (Least Absolute Shrinkage and Selection Operator) presents distinct advantages over traditional Multiple Linear Regression (MLR), especially beneficial for analyzing high-dimensional data:
+LASSO Regression (Least Absolute Shrinkage and Selection Operator)
+presents distinct advantages over traditional Multiple Linear Regression
+(MLR), especially beneficial for analyzing high-dimensional data:
 
--   **Feature Selection:** In contrast to MLR, which invariably incorporates every predictor into the model, LASSO selectively shrinks less impactful coefficients to zero. This automatic feature selection inherently streamlines the model by focusing solely on the most pertinent predictors, thereby diminishing model complexity and enhancing effectiveness [@Friedman2010].
+-   **Feature Selection:** In contrast to MLR, which invariably
+    incorporates every predictor into the model, LASSO selectively
+    shrinks less impactful coefficients to zero. This automatic feature
+    selection inherently streamlines the model by focusing solely on the
+    most pertinent predictors, thereby diminishing model complexity and
+    enhancing effectiveness [@Friedman2010].
 
--   **Collinearity Management:** LASSO effectively mitigates multicollinearity—a prevalent challenge in datasets with numerous correlated variables—through its penalization of coefficient magnitudes. This regularization technique notably reduces the variance of coefficient estimates, which tend to be disproportionately amplified by high inter-predictor correlation [@Tibshirani1996].
+-   **Collinearity Management:** LASSO effectively mitigates
+    multicollinearity—a prevalent challenge in datasets with numerous
+    correlated variables—through its penalization of coefficient
+    magnitudes. This regularization technique notably reduces the
+    variance of coefficient estimates, which tend to be
+    disproportionately amplified by high inter-predictor correlation
+    [@Tibshirani1996].
 
--   **Enhanced Interpretability:** By condensing the model to incorporate only significant predictors, LASSO substantially augments model interpretability. This simplification aids stakeholders in more easily comprehending the model’s outputs and the impacts exerted by each predictor [@Hastie2015].
+-   **Enhanced Interpretability:** By condensing the model to
+    incorporate only significant predictors, LASSO substantially
+    augments model interpretability. This simplification aids
+    stakeholders in more easily comprehending the model’s outputs and
+    the impacts exerted by each predictor [@Hastie2015].
 
 **Conclusion and Future Insights**
 
-The deployment of LASSO regression to explore wage determinants in 1976 elucidates its superior analytical prowess, notably in managing multicollinearity and augmenting model interpretability. This study accentuates LASSO's critical role in econometric analysis by effectively distinguishing major wage influencers such as educational attainment, racial disparities, geographic factors, and family background [@Tibshirani1996].
+The deployment of LASSO regression to explore wage determinants in 1976
+elucidates its superior analytical prowess, notably in managing
+multicollinearity and augmenting model interpretability. This study
+accentuates LASSO's critical role in econometric analysis by effectively
+distinguishing major wage influencers such as educational attainment,
+racial disparities, geographic factors, and family background
+[@Tibshirani1996].
 
 **Key Policy Insights from LASSO Analysis**
 
--   **Educational Initiatives**: The analysis underscores a substantial return on educational investments, advocating for focused funding in educational infrastructure, particularly in underrepresented regions, to elevate economic statuses [@Hastie2015].
--   **Combatting Racial Inequality**: The findings highlight the negative impact of racial disparities on wages, necessitating comprehensive policy interventions to eradicate racial bias in hiring practices [@Friedman2010].
--   **Balancing Urban-Rural Development**: LASSO identifies the economic benefits associated with urban environments, promoting policies aimed at narrowing the urban-rural wage divide [@ZouHastie2005].
--   **Supporting Family Stability**: A positive correlation between stable family environments and higher wages calls for enhanced social policies that foster supportive family dynamics [@He2013].
+-   **Educational Initiatives**: The analysis underscores a substantial
+    return on educational investments, advocating for focused funding in
+    educational infrastructure, particularly in underrepresented
+    regions, to elevate economic statuses [@Hastie2015].
+-   **Combatting Racial Inequality**: The findings highlight the
+    negative impact of racial disparities on wages, necessitating
+    comprehensive policy interventions to eradicate racial bias in
+    hiring practices [@Friedman2010].
+-   **Balancing Urban-Rural Development**: LASSO identifies the economic
+    benefits associated with urban environments, promoting policies
+    aimed at narrowing the urban-rural wage divide [@ZouHastie2005].
+-   **Supporting Family Stability**: A positive correlation between
+    stable family environments and higher wages calls for enhanced
+    social policies that foster supportive family dynamics [@He2013].
 
 **Methodological Strengths of LASSO**
 
 LASSO regression demonstrates exceptional capabilities in:
 
--   **Preventing Overfitting**: By imposing penalties on large coefficients, LASSO effectively prevents overfitting, rendering the model robust against irrelevant predictors [@Tibshirani1996].
--   **Managing Collinearity**: It adeptly diminishes the effects of collinear predictors without disregarding their cumulative impact, thus ensuring stable model estimates [@Hastie2015].
--   **Enhancing Model Interpretability**: By reducing the number of predictors, LASSO simplifies the model, which is crucial for clear communication and informed decision-making [@Friedman2010].
+-   **Preventing Overfitting**: By imposing penalties on large
+    coefficients, LASSO effectively prevents overfitting, rendering the
+    model robust against irrelevant predictors [@Tibshirani1996].
+-   **Managing Collinearity**: It adeptly diminishes the effects of
+    collinear predictors without disregarding their cumulative impact,
+    thus ensuring stable model estimates [@Hastie2015].
+-   **Enhancing Model Interpretability**: By reducing the number of
+    predictors, LASSO simplifies the model, which is crucial for clear
+    communication and informed decision-making
+    [Slides](indextohtmlfile)@Friedman2010\].
 
 **Looking Ahead**
 
-The insights garnered from this investigation not only deepen our comprehension of historical economic conditions but also arm policymakers with effective tools to address current and future economic disparities. The capacity of LASSO to handle complex, high-dimensional datasets secures its ongoing relevance in economic research and establishes it as a fundamental technique for data-driven policy development.
+The insights garnered from this investigation not only deepen our
+comprehension of historical economic conditions but also arm
+policymakers with effective tools to address current and future economic
+disparities. The capacity of LASSO to handle complex, high-dimensional
+datasets secures its ongoing relevance in economic research and
+establishes it as a fundamental technique for data-driven policy
+development.
 
-This thorough application of LASSO regression underscores its essential role in contemporary econometrics, promising a future where data-driven insights catalyze more equitable economic development.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+This thorough application of LASSO regression underscores its essential
+role in contemporary econometrics, promising a future where data-driven
+insights catalyze more equitable economic development.
