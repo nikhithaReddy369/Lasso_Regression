@@ -932,8 +932,7 @@ LASSO regression demonstrates exceptional capabilities in:
     thus ensuring stable model estimates [@Hastie2015].
 -   **Enhancing Model Interpretability**: By reducing the number of
     predictors, LASSO simplifies the model, which is crucial for clear
-    communication and informed decision-making
-    [Slides](indextohtmlfile)@Friedman2010\].
+    communication and informed decision-making [@Friedman2010].
 
 **Looking Ahead**
 
