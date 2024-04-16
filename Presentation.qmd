@@ -118,7 +118,7 @@ This part of our presentation dives into the `RetSchool` dataset, which contains
 Explore the demographic and background details within the dataset:
 
 | Category                     | Variable   | Description                                                                   |
-|------------------------------|------------|-------------------------------------------------------------------------------|
+|------------------|------------------|------------------------------------|
 | **Work Experience**          | `exp76`    | Tracks years of work experience by individuals.                               |
 | **Family Background**        | `momdad14` | Indicates living with both parents at age 14.                                 |
 |                              | `sinmom14` | Indicates living with a single mother at age 14.                              |
