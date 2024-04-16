@@ -9,7 +9,7 @@ date: "`r format(Sys.Date(), '%B %d, %Y')`"
 format:
   revealjs:
     slideNumber: true
-    width: 1280
+    width: 1240
     height: 720
     margin: 0.1
     minScale: 0.2
@@ -24,11 +24,11 @@ editor: visual
 fig-cap: true
 ---
 
-## Slide 1: Title Slide
+## Slide 1: 
 
 ### Innovative Data Exploration with LASSO
 
-#### Unveiling Patterns in Earnings and Education
+### Unveiling Patterns in Earnings and Education
 
 **Authors:**\
 - Nikhitha Amireddy\
