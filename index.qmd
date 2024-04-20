@@ -457,56 +457,21 @@ educational and economic opportunities.
 
 **Why LASSO for the RetSchool Dataset?**
 
-LASSO (Least Absolute Shrinkage and Selection Operator) regression
-emerges as a particularly apt choice for our analysis due to several
-compelling reasons:
+LASSO (Least Absolute Shrinkage and Selection Operator) regression emerges as a particularly apt choice for our analysis due to several compelling reasons:
 
--   **Feature Selection**: Initial dataset exploration revealed a rich
-    tapestry of variables potentially influencing wage levels. LASSO's
-    inherent ability to perform feature selection by penalizing the
-    absolute size of the regression coefficients allows us to distill
-    this complexity into a more interpretable model. This approach is
-    crucial for identifying the most significant predictors of wage
-    without manually sifting through each variable, which is
-    particularly beneficial in understanding key impacts such as
-    education level and region on wage discrepancies. [@Zhao2006]
+-   **Feature Selection**: Initial dataset exploration revealed a rich tapestry of variables potentially influencing wage levels. LASSO's inherent ability to perform feature selection by penalizing the absolute size of the regression coefficients allows us to distill this complexity into a more interpretable model. This approach is crucial for identifying the most significant predictors of wage without manually sifting through each variable, which is particularly beneficial in understanding key impacts such as education level and region on wage discrepancies. [@Zhao2006]
 
--   **Handling Multicollinearity**: Demographic analyses hinted at
-    possible multicollinearity among predictors, such as the interplay
-    between education, work experience, and region. LASSO addresses this
-    by shrinking less important coefficients to zero, thereby mitigating
-    the adverse effects of multicollinearity on model performance. This
-    adjustment is crucial for ensuring the stability of our estimates.
-    [@Tibshirani1996]
+-   **Handling Multicollinearity**: Demographic analyses hinted at possible multicollinearity among predictors, such as the interplay between education, work experience, and region. LASSO addresses this by shrinking less important coefficients to zero, thereby mitigating the adverse effects of multicollinearity on model performance. This adjustment is crucial for ensuring the stability of our estimates. [@Tibshirani1996]
 
--   **Model Simplicity and Interpretability**: Given our goal to derive
-    actionable insights into wage determination, model interpretability
-    is crucial. LASSO aids in achieving a balance between model
-    complexity and simplicity, ensuring that the final model is both
-    accurate and understandable. This balance facilitates
-    straightforward policy recommendations. [@Fan2011]
+-   **Model Simplicity and Interpretability**: Given our goal to derive actionable insights into wage determination, model interpretability is crucial. LASSO aids in achieving a balance between model complexity and simplicity, ensuring that the final model is both accurate and understandable. This balance facilitates straightforward policy recommendations. [@Fan2011]
 
--   **Predictive Accuracy**: Beyond understanding the factors
-    influencing wages in 1976, we aim to build a model with strong
-    predictive capabilities. LASSO's regularization aspect helps prevent
-    overfitting to the training data, enhancing the model's
-    generalization ability to new, unseen data. This predictive accuracy
-    is tested through k-fold cross-validation, which has been crucial in
-    optimizing the regularization parameter (lambda) and confirming the
-    model's efficacy on unseen data. [@James2013]
+-   **Predictive Accuracy**: Beyond understanding the factors influencing wages in 1976, we aim to build a model with strong predictive capabilities. LASSO's regularization aspect helps prevent overfitting to the training data, enhancing the model's generalization ability to new, unseen data. This predictive accuracy is tested through k-fold cross-validation, which has been crucial in optimizing the regularization parameter (lambda) and confirming the model's efficacy on unseen data. [@James2013]
 
--   **Comparison with Linear Regression**: By employing k-fold
-    cross-validation, we also compared the performance of LASSO with
-    that of Multiple Linear Regression (MLR). This comparison
-    highlighted LASSO's superiority in handling multicollinearity and
-    feature selection, particularly influencing the robustness of
-    coefficients associated with key predictors such as educational
-    attainment and professional experience.
+-   **Comparison with Linear Regression**: By employing k-fold cross-validation, we also compared the performance of LASSO with that of Multiple Linear Regression (MLR). This comparison highlighted LASSO's superiority in handling multicollinearity and feature selection, particularly influencing the robustness of coefficients associated with key predictors such as educational attainment and professional experience.
 
-Given these considerations, LASSO regression stands out as a fitting
-methodological choice for our analysis. It offers a pathway to navigate
-the dataset's complexities, yielding a model that is both insightful and
-robust, well-suited for making informed decisions on wage policy.
+Given these considerations, LASSO regression stands out as a fitting methodological choice for our analysis. It offers a pathway to navigate the dataset's complexities, yielding a model that is both insightful and robust, well-suited for making informed decisions on wage policy.
+
+
 
 ## Statistical Modeling
 
@@ -893,57 +858,57 @@ presents distinct advantages over traditional Multiple Linear Regression
     stakeholders in more easily comprehending the model’s outputs and
     the impacts exerted by each predictor [@Hastie2015].
 
-**Conclusion and Future Insights**
+**Conclusion and Implications**
 
-The deployment of LASSO regression to explore wage determinants in 1976
-elucidates its superior analytical prowess, notably in managing
-multicollinearity and augmenting model interpretability. This study
-accentuates LASSO's critical role in econometric analysis by effectively
-distinguishing major wage influencers such as educational attainment,
-racial disparities, geographic factors, and family background
-[@Tibshirani1996].
+The application of LASSO regression in this study has elucidated several critical insights regarding the determinants of wages in 1976. Notably, the analysis confirms the continuous impact of key variables such as educational attainment (`grade76`) and age (`age76`) on wages. These variables demonstrate a robust, linear relationship with wage outcomes, suggesting their predictive importance is maintained even under regularization pressures that reduce overfitting.
 
-**Key Policy Insights from LASSO Analysis**
+**Continuity of Influential Variables**
+Our findings suggest a continuous relationship for the most influential variables. This continuity indicates that incremental changes in education and age correspond to proportional changes in wages, without abrupt shifts or discontinuities. Such insights underscore the importance of these factors in economic models focusing on wage determination.
 
--   **Educational Initiatives**: The analysis underscores a substantial
-    return on educational investments, advocating for focused funding in
-    educational infrastructure, particularly in underrepresented
-    regions, to elevate economic statuses [@Hastie2015].
--   **Combatting Racial Inequality**: The findings highlight the
-    negative impact of racial disparities on wages, necessitating
-    comprehensive policy interventions to eradicate racial bias in
-    hiring practices [@Friedman2010].
--   **Balancing Urban-Rural Development**: LASSO identifies the economic
-    benefits associated with urban environments, promoting policies
-    aimed at narrowing the urban-rural wage divide [@ZouHastie2005].
--   **Supporting Family Stability**: A positive correlation between
-    stable family environments and higher wages calls for enhanced
-    social policies that foster supportive family dynamics [@He2013].
+**Variable Selection and Model Simplicity**
+The LASSO model's ability to retain significant predictors while excluding less impactful ones enhances the model's simplicity and interpretability. This selective shrinkage underscores the robustness of the included variables and their direct relevance to wage prediction.
 
-**Methodological Strengths of LASSO**
+**Future Research Directions**
+Future analyses could explore the potential non-linear interactions between variables that LASSO reduced to zero to understand their conditional effects on wages. Additionally, integrating more contemporary data could provide insights into how the influence of these variables has evolved over time.
 
-LASSO regression demonstrates exceptional capabilities in:
+**Visualizing the Impact of Continuous Variables**
+To better communicate the effect of continuous variables on wage outcomes, we can visualize the relationship between the most significant predictors and wages. The following graph illustrates how incremental changes in `grade76` and `age76` relate to changes in wages.
 
--   **Preventing Overfitting**: By imposing penalties on large
-    coefficients, LASSO effectively prevents overfitting, rendering the
-    model robust against irrelevant predictors [@Tibshirani1996].
--   **Managing Collinearity**: It adeptly diminishes the effects of
-    collinear predictors without disregarding their cumulative impact,
-    thus ensuring stable model estimates [@Hastie2015].
--   **Enhancing Model Interpretability**: By reducing the number of
-    predictors, LASSO simplifies the model, which is crucial for clear
-    communication and informed decision-making [@Friedman2010].
+```{r continuous-impact, fig.cap="Impact of Continuous Variables on Wages"}
+plot_grade76 <- ggplot(df_clean, aes(x = grade76, y = wage76)) +
+  geom_point(aes(color = age76), alpha = 0.6) +
+  geom_smooth(method = "lm", color = "blue", se = TRUE) +
+  labs(title = "Impact of Education on Wages by Age",
+       subtitle = "Each point represents an observation colored by age",
+       x = "Years of Education (grade76)",
+       y = "Wage in 1976",
+       color = "Age") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
-**Looking Ahead**
+# Create a scatter plot of age76 vs. wage76 with a regression line
+plot_age76 <- ggplot(df_clean, aes(x = age76, y = wage76)) +
+  geom_point(aes(color = grade76), alpha = 0.6) +
+  geom_smooth(method = "lm", color = "red", se = TRUE) +
+  labs(title = "Impact of Age on Wages by Education",
+       subtitle = "Each point represents an observation colored by years of education",
+       x = "Age in 1976",
+       y = "Wage in 1976",
+       color = "Education Level (grade76)") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
 
-The insights garnered from this investigation not only deepen our
-comprehension of historical economic conditions but also arm
-policymakers with effective tools to address current and future economic
-disparities. The capacity of LASSO to handle complex, high-dimensional
-datasets secures its ongoing relevance in economic research and
-establishes it as a fundamental technique for data-driven policy
-development.
+# Optionally, you can use gridExtra to arrange the two plots side by side
+library(gridExtra)
+grid.arrange(plot_grade76, plot_age76, ncol = 2)
+```
 
-This thorough application of LASSO regression underscores its essential
-role in contemporary econometrics, promising a future where data-driven
-insights catalyze more equitable economic development.
+The visualizations presented clearly demonstrate the nuanced **interactions between educational attainment, age, and wages**. 
+
+- **Impact of Education on Wages**: The first graph illustrates a **positive correlation** between years of education and wage levels, with age subtly influencing this effect. This suggests a direct benefit of higher education on earning potential.
+  
+- **Impact of Age on Wages**: The second graph shows that wages generally **increase with age**, and this increase is moderated by educational levels. This indicates that as individuals advance in age, their accumulated experience and education translate into higher earnings.
+
+These findings highlight the **continuous influence** of both age and education on wage outcomes. Investments in education not only contribute to higher initial earning potential but also enhance wage growth over an individual's career. The use of color gradients in the plots further elucidates the **intersectionality of age and education**, emphasizing that the benefits of education on wages are more pronounced at certain life stages.
+
+This comprehensive analysis confirms the significant continuous predictors identified by the LASSO model and underscores the importance of considering **multiple demographic factors** in economic analyses of wages. The interplay of these factors reveals complex but clear patterns that should inform both educational policy and career development strategies.
