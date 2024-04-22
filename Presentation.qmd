@@ -170,20 +170,99 @@ Understanding the variables in the `RetSchool` dataset, crucial for analyzing so
 
 Initial data cleaning included addressing missing values through imputation or removal to refine the dataset for detailed analysis.
 
+```{r}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, results = 'hide')
+library(tidyverse)
+library(ggplot2)
+library(corrplot)
+library(gridExtra)
+df <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/RetSchool.csv", show_col_types = FALSE)
+df_clean <- df %>%
+  mutate(
+    grade76 = ifelse(is.na(grade76), median(grade76, na.rm = TRUE), grade76),
+    exp76 = ifelse(is.na(exp76), median(exp76, na.rm = TRUE), exp76)
+  ) %>%
+  na.omit()
+cat("Rows after cleaning and imputation:", nrow(df_clean), "\n")
+```
+
 ### Work Experience Distribution
 
-- **Visualization**: The right-skewed distribution of `exp76` suggests a young, less experienced workforce.
-- **Implications**: Reflects entry-level workers predominating in 1976, impacting wage levels and economic conditions.
+```{r work-distribution, fig.cap="Figure 1: Work Experience Distribution in 1976"}
+library(ggplot2)
+# Generate the plot
+p_experience <- ggplot(df_clean, aes(x = exp76)) +
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "orange", color = "black") +
+  geom_density(color = "purple", fill = "purple", alpha = 0.2) +
+  labs(title = "Work Experience Distribution in 1976", x = "Years of Experience", y = "Density")
+p_experience
+# Save the plot as an image
+ggsave("p_experience.png", plot = p_experience, width = 10, height = 5, dpi = 300)
+```
+
+-**Visualization**: The right-skewed distribution of `exp76` suggests a young, less experienced workforce.
+-**Implications**: Reflects entry-level workers predominating in 1976, impacting wage levels and economic conditions.
+
 
 ### Wage Distribution
 
-- **Visualization**: A histogram and density plot show most workers earned lower wages, with a minority earning significantly more.
-- **Economic Insights**: Highlights income disparities and provides insights into the financial stability of the population.
+```{r wage-distribution, fig.cap="Figure 2: Wage Distribution in 1976"}
+p_wage <- ggplot(df_clean, aes(x = wage76)) +
+  geom_histogram(aes(y = ..density..), binwidth = 1, fill = "blue", color = "black") +
+  geom_density(color = "red", fill = "red", alpha = 0.2) +
+  labs(title = "Wage Distribution in 1976", 
+       x = "Wage (Dollars)", 
+       y = "Density",
+       subtitle = "Histogram and density plot showing the distribution of wages") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold"), 
+        plot.subtitle = element_text(size = 12))
+p_wage
+ggsave("p_wage.png", plot = p_wage, width = 10, height = 5, dpi = 300)
+```
+
+-**Visualization**: A histogram and density plot show most workers earned lower wages, with a minority earning significantly more.
+
+-**Economic Insights**: Highlights income disparities and provides insights into the financial stability of the population.
 
 ### Correlation Matrix
 
-- **Analysis Tool**: Visualizes relationships between key variables like `wage76`, `grade76`, `exp76`, and `age76`.
-- **Findings**: Identifies strong predictors of wages and helps understand economic dynamics of the era.
+```{r correlation-matrix,  echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Figure 3: Correlation Matrix of Selected Variables"}
+library(corrplot)
+library(dplyr)
+
+# Calculate the correlation matrix for selected variables, omitting missing values
+df_selected <- df_clean %>% select(wage76, grade76, exp76, age76) %>% na.omit()
+cor_matrix <- cor(df_selected)
+
+# Open a PNG device
+png(filename = "corrplot_plot.png", width = 1000, height = 800, res = 300)
+
+# Generate and display the correlation matrix plot
+corrplot(cor_matrix, method = "color", 
+         addCoef.col = "black",  
+         type = "upper",         
+         tl.col = "black",       
+         tl.srt = 45,            
+         tl.cex = 0.6,           
+         number.cex = 0.6,       
+         mar = c(0, 0, 2, 0))
+
+# Close the device to save the plot
+dev.off()
+corrplot(cor_matrix, method = "color", 
+         addCoef.col = "black",  
+         type = "upper",         
+         tl.col = "black",       
+         tl.srt = 45,            
+         tl.cex = 0.6,           
+         number.cex = 0.6,       
+         mar = c(0, 0, 2, 0))
+```
+
+-**Analysis Tool**: Visualizes relationships between key variables like `wage76`, `grade76`, `exp76`, and `age76`.
+
+-**Findings**: Identifies strong predictors of wages and helps understand economic dynamics of the era.
 
 :::
 
@@ -331,12 +410,16 @@ Before fitting the LASSO model, it's essential to standardize the features to ha
 library(caret)
 library(glmnet)
 
-# Preparing data for LASSO
+# Selecting only numeric features and excluding the target variable 'wage76'
 numeric_features <- select(df_clean, where(is.numeric), -wage76)
+
+# Converting the selected features into a matrix, as required by glmnet
 features <- data.matrix(numeric_features)
 preProcValues <- preProcess(features, method = c("center", "scale"))
 features_scaled <- predict(preProcValues, features)
+
 ```
+
 
 ### Optimal Lambda Selection
 Using cross-validation to select the best lambda value that minimizes prediction error and prevents overfitting.

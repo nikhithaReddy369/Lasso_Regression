@@ -231,20 +231,7 @@ The right-skewed distribution of `exp76` in the `RetSchool` dataset indicates a 
 
 #### Wage Distribution Analysis
 
-```{r wage-distribution, fig.cap="Figure 2: Wage Distribution in 1976"}
-p_wage <- ggplot(df_clean, aes(x = wage76)) +
-  geom_histogram(aes(y = ..density..), binwidth = 1, fill = "blue", color = "black") +
-  geom_density(color = "red", fill = "red", alpha = 0.2) +
-  labs(title = "Wage Distribution in 1976", 
-       x = "Wage (Dollars)", 
-       y = "Density",
-       subtitle = "Histogram and density plot showing the distribution of wages") +
-  theme_minimal() +
-  theme(plot.title = element_text(size = 16, face = "bold"), 
-        plot.subtitle = element_text(size = 12))
-p_wage
-ggsave("p_wage.png", plot = p_wage, width = 10, height = 5, dpi = 300)
-```
+
 The histogram and density plot for `wage76` reveal the distribution of wages among workers in 1976, showing a typical pattern that indicates economic inequalities [Figure 2: Wage Distribution in 1976](p_wage.png):
 
 - **General Trend**: The distribution suggests that most workers earned lower wages, while a smaller group had significantly higher earnings. This spread highlights the income disparities among different economic groups.
