@@ -209,7 +209,6 @@ y <- df_clean$wage76
 
 ### Work Experience Distribution
 
-```
 ```{r work-distribution, fig.cap="Figure 1: Work Experience Distribution in 1976"}
 library(ggplot2)
 # Generate the plot
@@ -738,6 +737,7 @@ library(gridExtra)
 grade76_plot <- grid.arrange(plot_grade76, plot_age76, ncol = 2)
 ggsave("grade76_plot.png", plot = grade76_plot, width = 10, height = 5, dpi = 300)
 ```
+
 These visual aids [Figure 9:Impact of Continuous Variables on Wages](grade76_plot.png) are crucial for demonstrating how incremental changes in age and education relate to changes in wages, providing a compelling argument for the continuous benefits of education.
 
 ### Implications and Future Directions
@@ -745,8 +745,6 @@ These visual aids [Figure 9:Impact of Continuous Variables on Wages](grade76_plo
 This analysis provides valuable insights for policymakers and educational institutions, suggesting that enhancing access to education can lead to significant economic benefits. Future research could explore the long-term trends in these variables or investigate other factors that might influence wages, such as technological changes or economic conditions.
 
 In conclusion, the detailed examination of the Return to School dataset using LASSO regression offers actionable insights that could significantly influence future educational investments and economic policy planning. Our study confirms the powerful impact of demographic factors on wages and sets the stage for further research in this vital area.
-
-
 
 
 
