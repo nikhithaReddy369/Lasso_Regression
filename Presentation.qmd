@@ -2,9 +2,9 @@
 title: "Innovative Data Exploration with LASSO: Unveiling Patterns in Earnings and Education"
 authors:
   - name: Muhammad Usman Aslam
-  - name: Ishrath Jahan
   - name: Sai Kumar Miryala
   - name: Nikhitha Amireddy
+  - name: Ishrath Jahan
   
 date: 'today'
 format:
