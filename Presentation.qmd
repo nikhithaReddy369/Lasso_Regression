@@ -117,15 +117,14 @@ The choice of the regularization parameter λ is crucial in LASSO regression:
 ## Outline of the Project
 
 
-## Data Description : Overview of `RetSchool` Dataset Variables
+## Data Description 
 
 ::: {.panel-tabset}
 
-### Data Description
+### Overview of `RetSchool` Dataset Variables
 
 Understanding the variables in the `RetSchool` dataset, crucial for analyzing socio-economic and educational influences on wages in 1976.
 
-### Variable Table
 
 | Variable   | Description                         | Type        | Relevance                                              |
 |------------|-------------------------------------|-------------|--------------------------------------------------------|
@@ -145,7 +144,7 @@ Understanding the variables in the `RetSchool` dataset, crucial for analyzing so
 
 :::
 
-## Exploring and Analyzing the `RetSchool` Dataset
+## Exploring and Analyzing the Dataset
 
 ::: {.panel-tabset}
 
