@@ -369,176 +369,210 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <p>This table categorizes the variables based on their type and relevance to our study, setting the stage for a detailed exploration of how these factors interplay to shape economic outcomes during the mid-1970s.</p>
 <p><strong>Data Cleaning and Exploration</strong></p>
 <p>Initial exploration of the <code>RetSchool</code> dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="st">'hide'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/RetSchool.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(grade76), <span class="fu">median</span>(grade76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), grade76),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(exp76), <span class="fu">median</span>(exp76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), exp76)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows after cleaning and imputation:"</span>, <span class="fu">nrow</span>(df_clean), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows after cleaning and imputation: 3078 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the response variable y</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df_clean<span class="sc">$</span>wage76</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 </section>
 <section id="distribution-of-key-variables" class="level3">
 <h3 class="anchored" data-anchor-id="distribution-of-key-variables">Distribution of Key Variables</h3>
 </section>
 <section id="work-experience-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="work-experience-distribution">Work Experience Distribution</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/work-distribution-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 1: Work Experience Distribution in 1976</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The right-skewed distribution of <code>exp76</code> in the <code>RetSchool</code> dataset indicates a predominantly young and less experienced workforce in 1976. This skewness suggests a workforce that was entering or early in their careers. For more details, see <a href="/p_experience.png">Figure 1: Work Experience Distribution in 1976</a> the distribution of work experience in 1976 indicates a predominantly young workforce:</p>
-<ul>
-<li><strong>Younger Workforce</strong>: A significant entry of younger individuals into the job market, possibly influenced by demographic shifts or growth in new industries.</li>
-<li><strong>Impact on Wages</strong>: Lower experience levels correspond with lower wages, contributing to observed wage disparities.</li>
-<li><strong>Economic Context</strong>: The skew provides insights into the economic environment of the era, reflecting labor market conditions and potential impacts of educational and economic policies.</li>
-</ul>
-<section id="wage-distribution-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="wage-distribution-analysis">Wage Distribution Analysis</h4>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/wage-distribution-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 2: Wage Distribution in 1976</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The histogram and density plot for <code>wage76</code> reveal the distribution of wages among workers in 1976, showing a typical pattern that indicates economic inequalities <a href="p_wage.png">Figure 2: Wage Distribution in 1976</a>:</p>
-<ul>
-<li><p><strong>General Trend</strong>: The distribution suggests that most workers earned lower wages, while a smaller group had significantly higher earnings. This spread highlights the income disparities among different economic groups.</p></li>
-<li><p><strong>Skewness</strong>: A right-skewed distribution indicates that while the majority of the workforce earned below the median wage level, there was a smaller segment with much higher wages. This skewness is critical for understanding the extent of wage disparities.</p></li>
-<li><p><strong>Economic Well-Being Insights</strong>: By examining where most wages lie, we gain insights into the economic well-being of the population. This analysis provides a clearer picture of the economic conditions in 1976, reflecting the standard of living and financial stability of the workers during that time.</p></li>
-</ul>
-</section>
-<section id="correlation-matrix" class="level4">
-<h4 class="anchored" data-anchor-id="correlation-matrix">Correlation Matrix</h4>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/correlation-matrix-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Figure 3: Correlation Matrix of Selected Variables</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>The correlation matrix is a powerful tool used to visualize and quantify the relationships between key variables such as <code>wage76</code>, <code>grade76</code>, <code>exp76</code>, and <code>age76</code> in the <code>RetSchool</code> dataset. Here’s what we learn from it <a href="corrplot_plot.png">Figure 3: Correlation Matrix of Selected Variables</a>:</p>
-<ul>
-<li><p><strong>Visual and Statistical Insights</strong>: The matrix uses color intensity to indicate the strength of the relationships between variables. Correlation coefficients displayed in the matrix range from -1 to 1, where values near ±1 indicate strong positive or negative correlations, and values near 0 indicate weak or no linear relationship.</p></li>
-<li><p><strong>Influential Factors on Wages</strong>: The correlations help identify significant predictors of wages:</p>
-<ul>
-<li>A strong positive correlation between <code>wage76</code> and <code>grade76</code> suggests that higher educational attainment is likely linked to higher wages.</li>
-<li>The relationship between <code>wage76</code> and <code>exp76</code> indicates how accumulated work experience correlates with wage levels, potentially showing that more experience leads to higher earnings.</li>
-</ul></li>
-<li><p><strong>Economic Analysis Applications</strong>: By analyzing these correlations, we gain insights into the economic dynamics affecting the workforce in 1976. This helps in understanding how education, experience, and age were interacting to shape the economic landscape and influence wage disparities at that time.</p></li>
-</ul>
-<p><strong>Why LASSO for the RetSchool Dataset?</strong></p>
-<p>LASSO regression is particularly well-suited for our study on wage disparities due to its robust features that simplify complex data analysis:</p>
-<ul>
-<li><p><strong>Feature Selection</strong>: Our initial look at the data showed many variables that could affect wages. LASSO helps by automatically selecting the most important factors, such as education level and region. This selection makes the model easier to understand and focuses on what really affects wages. <span class="citation" data-cites="Zhao2006">(<a href="#ref-Zhao2006" role="doc-biblioref">Zhao and Yu 2006</a>)</span></p></li>
-<li><p><strong>Handling Multicollinearity</strong>: Our analysis indicated that some variables, like education and work experience, might be overlapping in their effects on wages. LASSO tackles this issue by reducing the influence of less critical variables to zero. This is key to making sure our model remains stable and reliable. <span class="citation" data-cites="Tibshirani1996">(<a href="#ref-Tibshirani1996" role="doc-biblioref">Tibshirani 1996</a>)</span></p></li>
-<li><p><strong>Simplicity and Clarity</strong>: We want our model not just to be accurate, but also easy to interpret. LASSO strikes a good balance by simplifying the model, which helps in formulating clear and actionable insights for wage-related policies. <span class="citation" data-cites="Fan2011">(<a href="#ref-Fan2011" role="doc-biblioref">Fan and Lv 2011</a>)</span></p></li>
-<li><p><strong>Predictive Accuracy</strong>: Beyond just analyzing historical data, we aim to predict future trends accurately. LASSO improves the model’s ability to perform well with new, unseen data by avoiding overfitting. We use a method called k-fold cross-validation to fine-tune the model, ensuring it predicts accurately outside our sample. <span class="citation" data-cites="James2013">(<a href="#ref-James2013" role="doc-biblioref">James et al. 2013</a>)</span></p></li>
-<li><p><strong>Comparison with Traditional Regression</strong>: We compared LASSO with regular linear regression to test its effectiveness. The results showed that LASSO was better at managing complex issues like multicollinearity and selecting key features, which are essential for robust analysis of wage factors.</p></li>
-</ul>
-</section>
-</section>
-<section id="understanding-wages-as-a-continuous-variable" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-wages-as-a-continuous-variable">Understanding Wages as a Continuous Variable</h3>
-<p>Through our LASSO analysis, we also confirmed that <code>wage76</code>, our main variable of interest, is continuous. This was evident as LASSO helped highlight the relationships between wages and various predictors without breaking them into arbitrary categories, preserving the natural continuous scale of wage data. This continuous perspective is crucial for accurate modeling and meaningful conclusions about how various factors influence wages.</p>
-<p>Given these strengths, LASSO regression is an ideal choice for navigating the complexities of the RetSchool dataset, providing a clear, robust model that is well-suited for making informed decisions on wage policy and understanding the economic landscape of 1976.</p>
-</section>
-</section>
-<section id="statistical-modeling" class="level2">
-<h2 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h2>
-<p>Given the robust nature of LASSO (Least Absolute Shrinkage and Selection Operator) regression for handling complex datasets, it becomes an indispensable tool in our analysis of the RetSchool dataset. Here, we focus on refining our approach through meticulous data preparation and precise model fitting.</p>
-<section id="understanding-key-variables" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-key-variables">Understanding Key Variables</h3>
-<p>The main goal of our analysis is to figure out what drives differences in wages in 1976. To do this, we look at various socio-economic factors that might impact wages.</p>
-<section id="predictor-variables" class="level4">
-<h4 class="anchored" data-anchor-id="predictor-variables">Predictor Variables:</h4>
-<ul>
-<li><strong>Educational Background (<code>grade76</code>, <code>col4</code>)</strong>: Education level, which we expect to significantly affect wages. Higher education often correlates with higher earnings.</li>
-<li><strong>Work Experience (<code>exp76</code>)</strong>: The number of years a person has worked, which should relate directly to their skills and salary potential.</li>
-<li><strong>Demographic and Regional Factors (<code>age76</code>, <code>black</code>, <code>south76</code>, <code>region</code>, <code>smsa76</code>)</strong>: Includes age, race, geographical location, and whether a person lived in an urban area, all of which can influence wages.</li>
-</ul>
-</section>
-<section id="target-variable" class="level4">
-<h4 class="anchored" data-anchor-id="target-variable">Target Variable:</h4>
-<ul>
-<li><strong>Wage (<code>wage76</code>)</strong>: This is the main variable we are studying—it represents the income of individuals in 1976 and varies continuously across the dataset.</li>
-</ul>
-</section>
-</section>
-<section id="visualizing-key-variables" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-key-variables">Visualizing Key Variables</h3>
-<p>Understanding how these variables interact is easier when we visualize their distributions and relationships <a href="d_plot.png">Figure 4:Visualizations of Key Variables</a>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/visualizations-key-variables-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 4: Visualizations of Key Variables</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="data-preparation-and-feature-scaling" class="level3">
-<h3 class="anchored" data-anchor-id="data-preparation-and-feature-scaling">Data Preparation and Feature Scaling</h3>
-<p>Feature scaling is a critical preparatory step in our analysis, essential for the application of LASSO regression. LASSO’s approach to regularization is sensitive to the scale of variables, as it penalizes the absolute size of the regression coefficients. This sensitivity can lead to disproportionate influence from variables with larger numeric ranges, skewing the model and potentially leading to misleading conclusions about the factors influencing wages.</p>
-<p><strong>Demonstrating the Impact of Feature Scaling</strong> We focus specifically on scaling <code>exp76</code>—years of experience—because it is a key predictor of wages, which is our continuous outcome variable. Proper scaling is vital to fairly assess how work experience impacts wages, alongside other factors such as education and demographic variables.</p>
-<p>To illustrate the importance of this process, consider the variable <code>exp76</code>. Before scaling, <code>exp76</code> might display a wide range of values that reflect the diverse work experiences in our dataset. However, without scaling, this range could disproportionately affect the LASSO model’s ability to apply regularization fairly across all predictors <a href="combined_plot.png">Figure 5: Distribution of Feature ‘exp76’ Before and After Scaling</a>.</p>
-<div class="cell" data-lable="fig:data-feature-visualization">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/data-feature-visualization-1.png" class="img-fluid figure-img" width="960"></p>
-<figcaption>Figure 5: Distribution of Feature ‘exp76’ Before and After Scaling</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>After scaling, <code>exp76</code> is transformed to have a standard scale similar to other variables in the model. This normalization allows for a fair comparison and interaction within the model, ensuring that no single variable unduly influences the outcome due to its scale.</p>
-<p>The transformation that occurs when features like <code>exp76</code> are normalized is pivotal for models like LASSO regression, which rely on regularization techniques sensitive to the scale of input variables. By ensuring that the regularization penalty is applied uniformly across all features, scaling enhances the model’s ability to identify truly significant predictors and avoids undue influence from variables simply because of their scale.</p>
-<p>This step is crucial for maintaining the integrity and accuracy of our analysis, particularly in studies focused on understanding continuous outcomes such as wage disparities, where the precise quantification of each variable’s impact is essential.</p>
-<p><strong>Visualizing the Impact of (<span class="math inline">\(\lambda\)</span>) on Model Performance</strong></p>
-<p>The regularization parameter (<span class="math inline">\(\lambda\)</span>) in LASSO regression critically influences model accuracy by balancing model complexity and predictive performance. Selecting the optimal (<span class="math inline">\(\lambda\)</span>) is essential to minimize overfitting and ensure the model generalizes well <a href="Cross_Validation_plot.png">Figure 6: Cross-Validation CurveFigure 6: Cross-Validation Curve</a>.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cv_outcome <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(features_scaled, y, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a data frame from the glmnet cross-validation output</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cv_outcome<span class="sc">$</span>cvm)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cv_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mse"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda_min <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda.min)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda_1se <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda<span class="fl">.1</span>se)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with ggplot2</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Cross_Validation_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cv_data, <span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> mse)) <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> cv_data<span class="sc">$</span>lambda_min, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> cv_data<span class="sc">$</span>lambda_1se, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cross-Validation Curve for LASSO Regression"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dashed lines represent the lambda.min and lambda.1se"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Log(Lambda)"</span>,</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Mean Squared Error"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Red: lambda.min, Green: lambda.1se"</span>) <span class="sc">+</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Cross_Validation_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<pre><code>::: {.cell}
+::: {.cell-output-display}
+![Figure 1: Work Experience Distribution in 1976](index_files/figure-html/work-distribution-1.png){width=672}
+:::
+:::
+
+
+
+The right-skewed distribution of `exp76` in the `RetSchool` dataset indicates a predominantly young and less experienced workforce in 1976. This skewness suggests a workforce that was entering or early in their careers. For more details, see [Figure 1: Work Experience Distribution in 1976](/p_experience.png) the distribution of work experience in 1976 indicates a predominantly young workforce:
+
+- **Younger Workforce**: A significant entry of younger individuals into the job market, possibly influenced by demographic shifts or growth in new industries.
+- **Impact on Wages**: Lower experience levels correspond with lower wages, contributing to observed wage disparities.
+- **Economic Context**: The skew provides insights into the economic environment of the era, reflecting labor market conditions and potential impacts of educational and economic policies.
+
+#### Wage Distribution Analysis
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Figure 2: Wage Distribution in 1976](index_files/figure-html/wage-distribution-1.png){width=672}
+:::
+:::
+
+The histogram and density plot for `wage76` reveal the distribution of wages among workers in 1976, showing a typical pattern that indicates economic inequalities [Figure 2: Wage Distribution in 1976](p_wage.png):
+
+- **General Trend**: The distribution suggests that most workers earned lower wages, while a smaller group had significantly higher earnings. This spread highlights the income disparities among different economic groups.
+  
+- **Skewness**: A right-skewed distribution indicates that while the majority of the workforce earned below the median wage level, there was a smaller segment with much higher wages. This skewness is critical for understanding the extent of wage disparities.
+  
+- **Economic Well-Being Insights**: By examining where most wages lie, we gain insights into the economic well-being of the population. This analysis provides a clearer picture of the economic conditions in 1976, reflecting the standard of living and financial stability of the workers during that time.
+
+
+#### Correlation Matrix
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Figure 3: Correlation Matrix of Selected Variables](index_files/figure-html/correlation-matrix-1.png){width=672}
+:::
+:::
+
+The correlation matrix is a powerful tool used to visualize and quantify the relationships between key variables such as `wage76`, `grade76`, `exp76`, and `age76` in the `RetSchool` dataset. Here’s what we learn from it [Figure 3: Correlation Matrix of Selected Variables](corrplot_plot.png):
+
+- **Visual and Statistical Insights**: The matrix uses color intensity to indicate the strength of the relationships between variables. Correlation coefficients displayed in the matrix range from -1 to 1, where values near ±1 indicate strong positive or negative correlations, and values near 0 indicate weak or no linear relationship.
+
+- **Influential Factors on Wages**: The correlations help identify significant predictors of wages:
+  - A strong positive correlation between `wage76` and `grade76` suggests that higher educational attainment is likely linked to higher wages.
+  - The relationship between `wage76` and `exp76` indicates how accumulated work experience correlates with wage levels, potentially showing that more experience leads to higher earnings.
+
+- **Economic Analysis Applications**: By analyzing these correlations, we gain insights into the economic dynamics affecting the workforce in 1976. This helps in understanding how education, experience, and age were interacting to shape the economic landscape and influence wage disparities at that time.
+
+**Why LASSO for the RetSchool Dataset?**
+
+
+LASSO regression is particularly well-suited for our study on wage disparities due to its robust features that simplify complex data analysis:
+
+- **Feature Selection**: Our initial look at the data showed many variables that could affect wages. LASSO helps by automatically selecting the most important factors, such as education level and region. This selection makes the model easier to understand and focuses on what really affects wages. [@Zhao2006]
+
+- **Handling Multicollinearity**: Our analysis indicated that some variables, like education and work experience, might be overlapping in their effects on wages. LASSO tackles this issue by reducing the influence of less critical variables to zero. This is key to making sure our model remains stable and reliable. [@Tibshirani1996]
+
+- **Simplicity and Clarity**: We want our model not just to be accurate, but also easy to interpret. LASSO strikes a good balance by simplifying the model, which helps in formulating clear and actionable insights for wage-related policies. [@Fan2011]
+
+- **Predictive Accuracy**: Beyond just analyzing historical data, we aim to predict future trends accurately. LASSO improves the model’s ability to perform well with new, unseen data by avoiding overfitting. We use a method called k-fold cross-validation to fine-tune the model, ensuring it predicts accurately outside our sample. [@James2013]
+
+- **Comparison with Traditional Regression**: We compared LASSO with regular linear regression to test its effectiveness. The results showed that LASSO was better at managing complex issues like multicollinearity and selecting key features, which are essential for robust analysis of wage factors. 
+
+### Understanding Wages as a Continuous Variable
+
+Through our LASSO analysis, we also confirmed that `wage76`, our main variable of interest, is continuous. This was evident as LASSO helped highlight the relationships between wages and various predictors without breaking them into arbitrary categories, preserving the natural continuous scale of wage data. This continuous perspective is crucial for accurate modeling and meaningful conclusions about how various factors influence wages.
+
+Given these strengths, LASSO regression is an ideal choice for navigating the complexities of the RetSchool dataset, providing a clear, robust model that is well-suited for making informed decisions on wage policy and understanding the economic landscape of 1976.
+
+
+## Statistical Modeling
+
+Given the robust nature of LASSO (Least Absolute Shrinkage and Selection Operator) regression for handling complex datasets, it becomes an indispensable tool in our analysis of the RetSchool dataset. Here, we focus on refining our approach through meticulous data preparation and precise model fitting.
+
+### Understanding Key Variables
+
+The main goal of our analysis is to figure out what drives differences in wages in 1976. To do this, we look at various socio-economic factors that might impact wages.
+
+#### Predictor Variables:
+
+- **Educational Background (`grade76`, `col4`)**: Education level, which we expect to significantly affect wages. Higher education often correlates with higher earnings.
+- **Work Experience (`exp76`)**: The number of years a person has worked, which should relate directly to their skills and salary potential.
+- **Demographic and Regional Factors (`age76`, `black`, `south76`, `region`, `smsa76`)**: Includes age, race, geographical location, and whether a person lived in an urban area, all of which can influence wages.
+
+#### Target Variable:
+
+- **Wage (`wage76`)**: This is the main variable we are studying—it represents the income of individuals in 1976 and varies continuously across the dataset.
+
+### Visualizing Key Variables
+
+Understanding how these variables interact is easier when we visualize their distributions and relationships [Figure 4:Visualizations of Key Variables](d_plot.png).
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Figure 4: Visualizations of Key Variables](index_files/figure-html/visualizations-key-variables-1.png){width=960}
+:::
+:::
+
+
+
+
+### Data Preparation and Feature Scaling
+
+Feature scaling is a critical preparatory step in our analysis, essential for the application of LASSO regression. LASSO's approach to regularization is sensitive to the scale of variables, as it penalizes the absolute size of the regression coefficients. This sensitivity can lead to disproportionate influence from variables with larger numeric ranges, skewing the model and potentially leading to misleading conclusions about the factors influencing wages.
+
+
+
+
+
+**Demonstrating the Impact of Feature Scaling**
+We focus specifically on scaling `exp76`—years of experience—because it is a key predictor of wages, which is our continuous outcome variable. Proper scaling is vital to fairly assess how work experience impacts wages, alongside other factors such as education and demographic variables.
+
+To illustrate the importance of this process, consider the variable `exp76`. Before scaling, `exp76` might display a wide range of values that reflect the diverse work experiences in our dataset. However, without scaling, this range could disproportionately affect the LASSO model’s ability to apply regularization fairly across all predictors [Figure 5: Distribution of Feature 'exp76' Before and After Scaling](combined_plot.png).
+
+
+::: {.cell lable='fig:data-feature-visualization'}
+::: {.cell-output-display}
+![Figure 5: Distribution of Feature 'exp76' Before and After Scaling](index_files/figure-html/data-feature-visualization-1.png){width=960}
+:::
+:::
+
+
+After scaling, `exp76` is transformed to have a standard scale similar to other variables in the model. This normalization allows for a fair comparison and interaction within the model, ensuring that no single variable unduly influences the outcome due to its scale. 
+
+The transformation that occurs when features like `exp76` are normalized is pivotal for models like LASSO regression, which rely on regularization techniques sensitive to the scale of input variables. By ensuring that the regularization penalty is applied uniformly across all features, scaling enhances the model's ability to identify truly significant predictors and avoids undue influence from variables simply because of their scale.
+
+This step is crucial for maintaining the integrity and accuracy of our analysis, particularly in studies focused on understanding continuous outcomes such as wage disparities, where the precise quantification of each variable’s impact is essential.
+
+**Visualizing the Impact of ($\lambda$) on Model Performance**
+
+The regularization parameter ($\lambda$) in LASSO regression critically influences model accuracy by balancing model complexity and predictive performance. Selecting the optimal ($\lambda$) is essential to minimize overfitting and ensure the model generalizes well [Figure 6: Cross-Validation CurveFigure 6: Cross-Validation Curve](Cross_Validation_plot.png).
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+library(glmnet)
+library(ggplot2)
+library(dplyr)
+
+set.seed(123) # For reproducibility
+cv_outcome &lt;- cv.glmnet(features_scaled, y, alpha = 1, nfolds = 10)
+
+# Creating a data frame from the glmnet cross-validation output
+cv_data &lt;- as.data.frame(cv_outcome$cvm)
+names(cv_data) &lt;- c("mse")
+cv_data$lambda &lt;- log(cv_outcome$lambda)
+cv_data$lambda_min &lt;- log(cv_outcome$lambda.min)
+cv_data$lambda_1se &lt;- log(cv_outcome$lambda.1se)
+
+# Plotting with ggplot2
+Cross_Validation_plot &lt;- ggplot(cv_data, aes(x = lambda, y = mse)) +
+  geom_line(color = "blue", linewidth = 1) +
+  geom_vline(xintercept = cv_data$lambda_min, linetype = "dashed", color = "red", linewidth = 1) +
+  geom_vline(xintercept = cv_data$lambda_1se, linetype = "dashed", color = "green", linewidth = 1) +
+  labs(title = "Cross-Validation Curve for LASSO Regression",
+       subtitle = "Dashed lines represent the lambda.min and lambda.1se",
+       x = "Log(Lambda)",
+       y = "Mean Squared Error",
+       caption = "Red: lambda.min, Green: lambda.1se") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 20, face = "bold"),
+        plot.subtitle = element_text(size = 14),
+        plot.caption = element_text(size = 12),
+        axis.title = element_text(size = 16),
+        axis.text = element_text(size = 12))
+Cross_Validation_plot</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -549,9 +583,9 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"Cross_Validation_plot.png"</span>, <span class="at">plot =</span> Cross_Validation_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"Cross_Validation_plot.png"</span>, <span class="at">plot =</span> Cross_Validation_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
+<p>:::</p>
 </section>
 <section id="role-of-cross-validation-in-determining-lambda" class="level3">
 <h3 class="anchored" data-anchor-id="role-of-cross-validation-in-determining-lambda">Role of Cross-Validation in Determining (<span class="math inline">\(\lambda\)</span>)</h3>
@@ -572,42 +606,42 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure the cv_outcome object is available and correctly specified</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"cv_outcome"</span>)) {</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract coefficients using a safe method</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  coef_optimal <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>(cv_outcome, <span class="at">s =</span> <span class="st">"lambda.min"</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Failed to extract coefficients: "</span>, e<span class="sc">$</span>message)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>  <span class="co"># Return NULL if there's an error</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(coef_optimal) <span class="sc">&amp;&amp;</span> <span class="fu">inherits</span>(coef_optimal, <span class="st">"dgCMatrix"</span>)) {</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the matrix to a data frame for better handling</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    coef_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(coef_optimal)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    coef_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coef_matrix, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    coef_df<span class="sc">$</span>Variable <span class="ot">&lt;-</span> <span class="fu">rownames</span>(coef_matrix)  <span class="co"># Add variable names as a new column</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(coef_df) <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># Clean up row names</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename the coefficient column for clarity</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(coef_df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Coefficient"</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    cv_outcome_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coef_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Variable, Coefficient), <span class="at">y =</span> Coefficient, <span class="at">fill =</span> Coefficient <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># Makes the plot horizontal for better readability</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Visualization of LASSO Coefficients"</span>, <span class="at">x =</span> <span class="st">"Predictors"</span>, <span class="at">y =</span> <span class="st">"Coefficient Value"</span>) <span class="sc">+</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">name =</span> <span class="st">"Sign of Coefficient"</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)) <span class="sc">+</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Coefficient data is not available or invalid."</span>)</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"cv_outcome is not available. Please check model fitting."</span>)</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"cv_outcome_plot.png"</span>, <span class="at">plot =</span> cv_outcome_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure the cv_outcome object is available and correctly specified</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"cv_outcome"</span>)) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract coefficients using a safe method</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  coef_optimal <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>(cv_outcome, <span class="at">s =</span> <span class="st">"lambda.min"</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Failed to extract coefficients: "</span>, e<span class="sc">$</span>message)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>  <span class="co"># Return NULL if there's an error</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(coef_optimal) <span class="sc">&amp;&amp;</span> <span class="fu">inherits</span>(coef_optimal, <span class="st">"dgCMatrix"</span>)) {</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the matrix to a data frame for better handling</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    coef_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(coef_optimal)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    coef_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coef_matrix, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    coef_df<span class="sc">$</span>Variable <span class="ot">&lt;-</span> <span class="fu">rownames</span>(coef_matrix)  <span class="co"># Add variable names as a new column</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(coef_df) <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># Clean up row names</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename the coefficient column for clarity</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(coef_df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Coefficient"</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    cv_outcome_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coef_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Variable, Coefficient), <span class="at">y =</span> Coefficient, <span class="at">fill =</span> Coefficient <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># Makes the plot horizontal for better readability</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Visualization of LASSO Coefficients"</span>, <span class="at">x =</span> <span class="st">"Predictors"</span>, <span class="at">y =</span> <span class="st">"Coefficient Value"</span>) <span class="sc">+</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">name =</span> <span class="st">"Sign of Coefficient"</span>,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)) <span class="sc">+</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Coefficient data is not available or invalid."</span>)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"cv_outcome is not available. Please check model fitting."</span>)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"cv_outcome_plot.png"</span>, <span class="at">plot =</span> cv_outcome_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Significant Predictors and Their Effects</strong></p>

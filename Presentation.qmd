@@ -33,19 +33,6 @@ LASSO regression, also known as L1 regularization, is a popular technique used i
 
 Primary goal of LASSO is to shrink some coefficients to exactly zero, effectively performing variable selection by excluding irrelevant predictors from the model which helps to find a balance between model simplicity and accuracy.
 
-
-## Advantages of LASSO Regression
-
-LASSO regression is highly valued in fields ranging from healthcare to finance due to its ability to simplify complex models without sacrificing accuracy. The method's key strengths include:
-
-- **Feature Selection**: LASSO can set some coefficients exactly to zero, effectively choosing the most relevant variables from many possibilities. This automatic feature selection helps focus the model on the truly impactful factors. [@Park2008]
-
-- **Model Interpretability**: By eliminating irrelevant variables, LASSO makes the resulting models easier to understand and communicate, enhancing their practical use. [@Belloni2013]
-
-- **Mitigation of Multicollinearity**: LASSO addresses issues that arise when predictor variables are highly correlated. It selects one variable from a group of closely related variables, which simplifies the model and avoids redundancy. [@Efron2004]
-
-
-
 ## Applications Across Fields 
 
 LASSO regression’s versatility across multiple fields illustrates its capability to manage complex datasets effectively, particularly with continuous outcomes.
@@ -69,9 +56,23 @@ McEligot et al. (2020)[@McEligot2020] employed logistic LASSO to explore how die
 
 :::
 
+## Advantages of LASSO Regression
+
+LASSO regression is highly valued in fields ranging from healthcare to finance due to its ability to simplify complex models without sacrificing accuracy. This method's key strengths include:
+
+-**Feature Selection**: LASSO can set some coefficients exactly to zero, effectively choosing the most relevant variables from many possibilities. This automatic feature selection helps focus the model on the truly impactful factors. [@Park2008]
+
+-**Model Interpretability**: By eliminating irrelevant variables, LASSO makes the resulting models easier to understand and communicate, enhancing their practical use. [@Belloni2013]
+
+-**Mitigation of Multicollinearity**: LASSO addresses issues that arise when predictor variables are highly correlated. It selects one variable from a group of closely related variables, which simplifies the model and avoids redundancy. [@Efron2004]
+
+
 
 ## Methodology Overview
 
+::: {.panel-tabset}
+
+### Mathematical Equation
 
 LASSO enhances linear regression by adding a penalty on the size of the coefficients, aiding in feature selection and improving model interpretability.
 
@@ -80,10 +81,14 @@ LASSO's objective function:
 $$
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
 $$
-
 - **Goal**: Minimize Residual Sum of Squares(RSS) with a penalty on the absolute values of coefficients.
-- **Parameter λ**: Balances model complexity against overfitting.
 
+-**Parameter λ**: Balances model complexity against overfitting.
+
+### Parameters
+
+
+:::
 
 ## How LASSO Regression Works?
 
@@ -101,17 +106,30 @@ y is the dependent variable (target).
 x₁, x₂, ..., xₚ are the independent variables (features).
 ε represents the error term.
 
-### L1 regularization and Shrinking coefficients
+### Role of $\lambda$
 
 LASSO regression introduces an additional penalty term based on the absolute values of the coefficients.
 
 The choice of the regularization parameter λ is crucial in LASSO regression:
 
-- At $\lambda = 0$, LASSO equals an ordinary least squares regression, offering no coefficient shrinkage.
+-At λ=0, LASSO equals an ordinary least squares regression, offering no coefficient shrinkage.
 
--  When λ is sufficiently large, some coefficients are driven to exactly zero. This property of LASSO makes it useful for feature selection, as the variables with zero coefficients are effectively removed from the model.
+-**Variable Selection**: As λ increases, more coefficients shrink to zero.
 
-- The optimal λ is usually determined through cross-validation, ensuring the model strikes the right balance between bias and variance.
+-**Optimization**: Achieved through cross-validation to find the optimal λ.
+
+### The Shrinkage Effect and Its Benefits
+
+-**Feature Selection**: Reduces coefficients of non-essential predictors to zero.
+
+-**Regularization**: Enhances model generalizability, critical for complex datasets.
+
+### Practical Application and Model Comparison
+
+-**Fields of Application**: Finance, healthcare, where accurate prediction is crucial.
+
+-**Comparison with MLR**: Demonstrates LASSO's superiority in handling high-dimensional data by selectively including only relevant variables.
+
 :::
 
 ## Outline of the Project
@@ -212,11 +230,9 @@ Initial data cleaning included addressing missing values through imputation or r
 
 :::
 
-**Summary**: LASSO regression offers tailored advantages for the RetSchool dataset, providing robust, clear, and predictive insights into wage disparities, making it an excellent tool for detailed economic analysis and policy formulation.
+## Statistical Modeling
 
-
-
-## Statistical Modeling: Overview of Statistical Modeling with LASSO
+**Overview of Statistical Modeling with LASSO**
 
 LASSO (Least Absolute Shrinkage and Selection Operator) regression is utilized for its robustness in handling complex datasets, making it ideal for the RetSchool dataset analysis.
 
@@ -241,9 +257,7 @@ LASSO (Least Absolute Shrinkage and Selection Operator) regression is utilized f
 
 
 
-## Visualizing and Preparing Data
-
-### Data Visualization
+## Data Visualization
 
 Visualizations help illustrate the distributions and relationships within our data, providing insights into the factors influencing wages.
 
@@ -528,17 +542,19 @@ grid.arrange(plot_grade76, plot_age76, ncol = 2)
 - **Educational Impact on Earnings**: Higher education levels correlate strongly with higher wages, underscoring the substantial returns on educational investments.
 - **Age and Earnings Correlation**: The analysis shows that older age groups tend to earn more, likely due to accumulated experience and education.
 
-### Advantages of LASSO Regression
-
-LASSO has streamlined our analysis, making complex data more interpretable while ensuring robust predictions:
-- **Selective Feature Retention**: Focuses analysis on significant variables, improving clarity.
-- **Mitigation of Overfitting**: Enhances prediction reliability by avoiding overfitting.
 
 ### Visualization of Impacts
 
 Visual aids demonstrate the continuous benefits of increased education and experience:
-- **Educational Benefits**: Incremental educational achievements consistently lead to increased earnings.
-- **Experience Value**: Wage increments associated with age highlight the value of accumulated experience.
+
+-**Educational Benefits**: Incremental educational achievements consistently lead to increased earnings.
+
+-**Experience Value**: Wage increments associated with age highlight the value of accumulated experience.
+
+### Summary
+
+LASSO regression offers tailored advantages for the RetSchool dataset, providing robust, clear, and predictive insights into wage disparities, making it an excellent tool for detailed economic analysis and policy formulation.
+
 
 ### Future Research Directions
 
