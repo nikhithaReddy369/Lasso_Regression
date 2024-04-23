@@ -648,15 +648,14 @@ non-impactful predictors. These include `exp76`, `region`, `sinmom14`, `nodaded`
 
 Our analysis with the LASSO model has effectively highlighted the most significant factors influencing wages.
 
-However, to deepen our understanding of these results, we also employed Multiple Linear Regression (MLR) as a comparative tool. 
+However, to deepen our understanding of these results, we employed Multiple Linear Regression (MLR) as a comparative tool. 
 
 This step allows us to observe the differences in how each model handles the complexity of the dataset and the continuous nature of the wage variable.
 
 
--**LASSO Regression**: Applies a penalty to reduce the influence of less significant predictors, enhancing model simplicity and accuracy.
+-**LASSO Regression**: Applies a penalty term to reduce the influence of less significant predictors, enhancing model simplicity and accuracy.
 
 -**MLR**: Provides a baseline by including all predictors without regularization, illustrating potential overfitting issues.
-
 
 
 ## Comparative Analysis on LASSO and MLR Models
@@ -665,15 +664,17 @@ This step allows us to observe the differences in how each model handles the com
 
 ### Visual Outcome of LASSO Vs MLR analysis
 
-Here we analyze both LASSO and Multiple Linear Regression (MLR) to demonstrate how each model manages the complex and continuous nature of the wage variable:
+
+The analysis of both LASSO and MLR models sheds light on the robustness of each predictor's impact on wages. Here, we provide a side-by-side view of the coefficients, illustrating how each model values the same predictors.
 
 Both models are applied to the same cleaned dataset to ensure a fair comparison:
 
-```{r mlr-model}
+```{r mlr-model, message=TRUE, warning=TRUE, results='asis'}
 library(glmnet)
 library(caret)
 library(knitr)
-library(kableExtra)
+library(readr)
+library(dplyr)
 
 # Ensure df_clean is prepared as earlier described
 df_clean <- read_csv("RetSchool.csv", show_col_types = FALSE) %>%
@@ -708,17 +709,10 @@ coefficients_comparison <- data.frame(
   Coefficient_LASSO = as.numeric(non_zero_lasso)
 )
 
-# Display the comparison using knitr
-kable(coefficients_comparison, format = "html", caption = "Comparison of MLR and LASSO Coefficients", align = 'c') %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, font_size = 12) %>%
-  scroll_box(width = "100%", height = "500px")
-
+kable(coefficients_comparison, format = "html", caption = "Comparison of MLR and LASSO Coefficients", align = 'c')
 ```
 
-
 ### Significant Predictors of Wages
-
-The analysis of both LASSO and MLR models sheds light on the robustness of each predictor's impact on wages. Here, we provide a side-by-side view of the coefficients, illustrating how each model values the same predictors:
 
 -**Consistency and Differences**: Where LASSO might zero out a predictor, MLR may still attribute it with a significant coefficient. Such differences are key in understanding the potential for overfitting in MLR versus the more conservative and potentially more reliable predictions from LASSO.
 
@@ -822,7 +816,11 @@ grade76_plot <- grid.arrange(plot_grade76, plot_age76, ncol = 2)
 
 ### Future Research Directions
 
-This study opens the door for further research into additional socioeconomic factors that could affect wage disparities. Future studies could explore the impact of technological advances, economic policies, and other demographic changes on wage trends. Such research would help extend our understanding of the dynamics between education and wages over longer periods and under varying economic conditions.
+-This study opens the door for further research into additional socioeconomic factors that could affect wage disparities. 
+
+-Future studies could explore the impact of technological advances, economic policies, and other demographic changes on wage trends. 
+
+-Such research would help extend our understanding of the dynamics between education and wages over longer periods and under varying economic conditions.
 
 :::
 
