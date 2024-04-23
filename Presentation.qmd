@@ -60,11 +60,13 @@ McEligot et al. (2020)[@McEligot2020] employed logistic LASSO to explore how die
 
 LASSO regression is highly valued in fields ranging from healthcare to finance due to its ability to simplify complex models without sacrificing accuracy. This method's key strengths include:
 
--**Feature Selection**: LASSO can set some coefficients exactly to zero, effectively choosing the most relevant variables from many possibilities. This automatic feature selection helps focus the model on the truly impactful factors. [@Park2008]
+-**Feature Selection**: Feature selection helps focus the model on the truly impactful factors. [@Park2008]
 
 -**Model Interpretability**: By eliminating irrelevant variables, LASSO makes the resulting models easier to understand and communicate, enhancing their practical use. [@Belloni2013]
 
--**Mitigation of Multicollinearity**: LASSO addresses issues that arise when predictor variables are highly correlated. It selects one variable from a group of closely related variables, which simplifies the model and avoids redundancy. [@Efron2004]
+-**Mitigation of Multicollinearity**: LASSO addresses issues that arise when predictor variables are highly correlated. 
+
+-It selects one variable from a group of closely related variables, which simplifies the model and avoids redundancy. [@Efron2004]
 
 
 
@@ -77,7 +79,6 @@ LASSO's objective function:
 $$
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
 $$
-- **Goal**: Minimize Residual Sum of Squares(RSS) with a penalty on the absolute values of coefficients.
 
 **Components of the Formula**:
 
@@ -136,17 +137,9 @@ The choice of the regularization parameter λ is crucial in LASSO regression:
 
 :::
 
-## Outline of the Project
+## Objective
 
 Our project aims to explore the impact of various factors on wages using the RetSchool dataset, focusing on how education and demographic variables influence earnings in 1976. We have chosen LASSO regression to address our research questions due to its unique capabilities in dealing with complex datasets and its methodological strengths in feature selection and model accuracy.
-
-**Research Questions Addressed**
-
-- What factors most significantly affect wages in 1976?
-
-- How do education and demographic variables influence wage disparities?
-
-- Can we predict wage outcomes based on these variables effectively using a simplified model?
 
 
 ## Dataset Description 
@@ -285,29 +278,11 @@ corrplot(cor_matrix, method = "color",
 
 -**Solution**: By penalizing the coefficients of correlated predictors, LASSO ensures a more stable and reliable model, addressing multicollinearity without requiring manual intervention.
 
-### Simplified Model Interpretation
-
--**Goal**: To develop a statistically robust model that stakeholders can easily understand and use.
-
--**Outcome**: LASSO's regularization promotes model simplicity and clarity, providing straightforward insights that are essential for policy-making and strategic educational planning.
-
 ### Improved Predictive Accuracy
 
 -**Technique**: Incorporates k-fold cross-validation within the LASSO framework to fine-tune the regularization parameter, optimizing model accuracy.
 
 -**Advantage**: Enhances predictive reliability, crucial for accurately forecasting wage trends based on educational variables, thereby preventing model overfitting.
-
-### Superior to Traditional Regression Methods
-
--**Analysis**: Compared to traditional regression methods, LASSO effectively manages large datasets with many predictors.
-
--**Result**: Demonstrates superior capacity for feature selection and multicollinearity management, making it indispensable for in-depth wage analysis in educational data.
-
-### Maintaining Integrity of Continuous Variables
-
--**Variable `wage76`**: Identified as a continuous variable, which benefits significantly from LASSO’s ability to handle continuous data without categorization.
-
--**Importance**: Ensures that the nuances and variations in wage data are accurately modeled, providing a deeper understanding of the economic factors at play.
 
 :::
 
@@ -325,7 +300,6 @@ Proper data preparation is critical to ensure the robustness of the statistical 
 
 ### Visualization of Data Cleaning
 
-Visual checks and plots were used to compare the distribution of variables before and after cleaning. These visualizations help confirm that the data cleaning process preserved the underlying structure of the data while improving the quality for analysis.
 
 ```{r setup_2}
 library(tidyverse)
@@ -501,7 +475,7 @@ Selecting the optimal regularization parameter, λ, is crucial for balancing the
 
 **Cross-Validation Technique**
 
-Cross-validation technique is used to determine the λ that minimizes prediction error. This technique ensures the model performs well on unseen data by validating the model across multiple data subsets.
+It is used to determine the λ that minimizes prediction error. This technique ensures the model performs well on unseen data by validating the model across multiple data subsets.
 
 ```{r cross-validation-visualization, fig.cap="Figure 6: Cross-Validation Curve",fig.width=10, fig.height=5}
 library(glmnet)
@@ -592,34 +566,6 @@ if (exists("cv_outcome")) {
   message("cv_outcome is not available. Please check model fitting.")
 }
 ```
-
-### Significant Predictors and Their Effects
-
-The LASSO model has highlighted key factors that influence wages, efficiently pinpointing the most impactful variables:
-
--**Baseline Wages**: The intercept sets the starting point for wage predictions, adjusted for average levels of predictors.
-
--**Educational Attainment (`grade76`)**: Higher education levels are strongly associated with increased wages, confirming the significant return on investment in education.
-
--**Racial Disparity (`black`)**: There is a noticeable wage gap affecting black individuals, indicating persistent racial inequalities in earnings.
-
--**Geographic Influence (`south76`)**: Residing in the South is linked to lower wages, reflecting regional economic differences.
-
--**Urban Premium (`smsa76`)** and **Long-term Urban Advantage (`smsa66`)**: Both highlight the wage benefits of living in urban areas, both currently and historically.
-
--**Family Stability (`momdad14`)**: Growing up with both parents is correlated with higher wages, suggesting the economic benefits of a stable family during childhood.
-
--**Parental Education (`momed`)**: Higher maternal education levels positively affect wages, underscoring the influence of parental education.
-
--**Age and Experience (`age76`)**: Older age, often accompanied by more experience, typically leads to higher wages, reflecting the value of longevity in the workforce.
-
--**Higher Education (`col4`)**: Possessing a college degree shows a positive but modest correlation with higher wages.
-
-
-**Variables with Minimal Impact**
-
-Several variables demonstrated minimal to no influence on wages, exemplifying Lasso's ability to streamline the model by eliminating
-non-impactful predictors. These include `exp76`, `region`, `sinmom14`, `nodaded`, `nomomed`, `daded`, and `famed`. This reduction in variables enhances the interpretability of our model without compromising the accuracy of our predictions.
 
 
 :::
@@ -800,7 +746,7 @@ grade76_plot <- grid.arrange(plot_grade76, plot_age76, ncol = 2)
 
 -Future studies could explore the impact of technological advances, economic policies, and other demographic changes on wage trends. 
 
--Such research would help extend our understanding of the dynamics between education and wages over longer periods and under varying economic conditions.
+-There research would help extend our understanding of the dynamics between education and wages over longer periods and under varying economic conditions.
 
 :::
 
