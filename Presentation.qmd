@@ -670,8 +670,6 @@ Predictors_plot
 
 ## Results 
 
-::: {.panel-tabset}
-
 ### Application to the Return to School Dataset
 
 Exploring the specific implications of our findings within the context of the Return to School dataset:
@@ -682,15 +680,6 @@ Exploring the specific implications of our findings within the context of the Re
 
 -**How We Did It**: Using LASSO and MLR, we were able to discern which variables significantly impact wages, with LASSO providing a more streamlined model that avoids overfitting and highlights the most impactful factors.
 
-### Implications of Findings
-
-This analysis not only enhances academic understanding but also provides concrete data to inform policy makers:
-
--**Policy Recommendations**: Insights from the study can guide the development of policies aimed at addressing the root causes of wage disparities identified through the model.
-
--**Educational Impact**: By understanding which educational factors influence earnings, institutions can tailor programs to enhance the economic outcomes of their students.
-
-:::
 
 
 
