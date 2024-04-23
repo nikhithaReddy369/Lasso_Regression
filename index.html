@@ -877,14 +877,22 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">name =</span> <span class="st">"Sign of Coefficient"</span>,</span>
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)) <span class="sc">+</span></span>
 <span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Coefficient data is not available or invalid."</span>)</span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"cv_outcome is not available. Please check model fitting."</span>)</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"cv_outcome_plot.png"</span>, <span class="at">plot =</span> cv_outcome_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    cv_outcome_plot</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Coefficient data is not available or invalid."</span>)</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"cv_outcome is not available. Please check model fitting."</span>)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/optimal-coefficients-visualization-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Figure 7: Visualization of LASSO Coefficients</figcaption>
+</figure>
+</div>
+</div>
 </div>
 <p><strong>Significant Predictors and Their Effects</strong></p>
 <p>The LASSO model has highlighted key factors that influence wages, efficiently pinpointing the most impactful variables:</p>
@@ -966,26 +974,32 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <h3 class="anchored" data-anchor-id="significant-predictors-of-wages">Significant Predictors of Wages</h3>
 <p>The analysis of both LASSO and MLR models sheds light on the robustness of each predictor’s impact on wages. Here, we provide a side-by-side view of the coefficients, illustrating how each model values the same predictors:</p>
 <ul>
-<li><strong>Consistency and Differences</strong>: Where LASSO might zero out a predictor, MLR may still attribute it with a significant coefficient. Such differences are key in understanding the potential for overfitting in MLR versus the more conservative and potentially more reliable predictions from LASSO.</li>
-<li><strong>Focus on Continuous Outcomes</strong>: Both models emphasize the importance of continuous predictors like <code>age76</code> and <code>grade76</code>, but LASSO does so while maintaining model parsimony, avoiding the pitfalls of including too many variables as MLR might.</li>
+<li><p><strong>Consistency and Differences</strong>: Where LASSO might zero out a predictor, MLR may still attribute it with a significant coefficient. Such differences are key in understanding the potential for overfitting in MLR versus the more conservative and potentially more reliable predictions from LASSO.</p></li>
+<li><p><strong>Focus on Continuous Outcomes</strong>: Both models emphasize the importance of continuous predictors like <code>age76</code> and <code>grade76</code>, but LASSO does so while maintaining model parsimony, avoiding the pitfalls of including too many variables as MLR might.</p></li>
 </ul>
 <p><strong>Visual Comparison of Model Outcomes</strong></p>
 <p>Visualizing the differences between the coefficients in Multiple Linear Regression (MLR) and LASSO offers a clear, intuitive understanding of how regularization in LASSO affects each predictor’s influence compared to traditional regression methods.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/visualization-1.png" class="img-fluid figure-img" width="960"></p>
+<figcaption>Figure 8: Comparison of Coefficients from MLR and LASSO</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>The chart below, titled “<a href="Predictors_plot.png">Figure 8: Comparison of Coefficients from MLR and LASSO</a>,” illustrates how LASSO’s regularization alters the coefficients:</p>
-<ul>
-<li><p><strong>Reduction in Coefficient Size</strong>: Often, LASSO’s coefficients are smaller than those in MLR. This reduction indicates that LASSO, through its shrinkage technique, lessens the influence of many predictors on the wage outcome. It’s a conservative approach that helps prevent the model from fitting too closely to the training data, thus reducing the risk of overfitting.</p></li>
-<li><p><strong>Selective Feature Retention</strong>: LASSO may reduce some predictors’ coefficients to zero—effectively removing them from the model—if they are not statistically significant. This feature selection is critical in complex datasets like RetSchool, where simplifying the model can lead to clearer, more actionable insights.</p></li>
-<li><p><strong>Stability Across Models</strong>: Predictors whose coefficients are consistent across both MLR and LASSO are likely very reliable indicators of wage variations, underscoring their importance regardless of the modeling approach used.</p></li>
-<li><p><strong>Enhanced Interpretability</strong>: LASSO improves the model’s clarity by focusing only on significant predictors. This makes it easier for analysts and decision-makers to understand which factors truly influence wages, facilitating more informed decisions.</p></li>
-</ul>
+<p>-<strong>Reduction in Coefficient Size</strong>: Often, LASSO’s coefficients are smaller than those in MLR. This reduction indicates that LASSO, through its shrinkage technique, lessens the influence of many predictors on the wage outcome. It’s a conservative approach that helps prevent the model from fitting too closely to the training data, thus reducing the risk of overfitting.</p>
+<p>-<strong>Selective Feature Retention</strong>: LASSO may reduce some predictors’ coefficients to zero—effectively removing them from the model—if they are not statistically significant. This feature selection is critical in complex datasets like RetSchool, where simplifying the model can lead to clearer, more actionable insights.</p>
+<p>-<strong>Stability Across Models</strong>: Predictors whose coefficients are consistent across both MLR and LASSO are likely very reliable indicators of wage variations, underscoring their importance regardless of the modeling approach used.</p>
+<p>-<strong>Enhanced Interpretability</strong>: LASSO improves the model’s clarity by focusing only on significant predictors. This makes it easier for analysts and decision-makers to understand which factors truly influence wages, facilitating more informed decisions.</p>
 <section id="advantages-of-lasso-over-mlr-in-educational-data-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="advantages-of-lasso-over-mlr-in-educational-data-analysis">Advantages of LASSO Over MLR in Educational Data Analysis</h4>
 <p>In the context of the RetSchool dataset, which explores factors influencing educational returns in the labor market, LASSO offers several distinct advantages:</p>
-<ul>
-<li><p><strong>Effective Feature Selection</strong>: Unlike MLR, which might incorporate every predictor into the analysis, LASSO strategically eliminates less relevant variables. This focus helps distill the model to the most impactful factors, reducing complexity and improving the clarity of results.</p></li>
-<li><p><strong>Managing Multicollinearity</strong>: LASSO addresses the challenge of multicollinearity common in educational data, where variables such as years of education, urban residency, and parental background might be interrelated. By penalizing coefficients, LASSO minimizes redundant information, ensuring that each included predictor contributes uniquely to understanding wage disparities.</p></li>
-<li><p><strong>Improving Model Interpretability</strong>: The simplification LASSO brings allows stakeholders to better understand the dynamics within the data. For example, it becomes clearer how factors like education level, race, and geographic location impact wages independently of each other.</p></li>
-</ul>
+<p>-<strong>Effective Feature Selection</strong>: Unlike MLR, which might incorporate every predictor into the analysis, LASSO strategically eliminates less relevant variables. This focus helps distill the model to the most impactful factors, reducing complexity and improving the clarity of results.</p>
+<p>-<strong>Managing Multicollinearity</strong>: LASSO addresses the challenge of multicollinearity common in educational data, where variables such as years of education, urban residency, and parental background might be interrelated. By penalizing coefficients, LASSO minimizes redundant information, ensuring that each included predictor contributes uniquely to understanding wage disparities.</p>
+<p>-<strong>Improving Model Interpretability</strong>: The simplification LASSO brings allows stakeholders to better understand the dynamics within the data. For example, it becomes clearer how factors like education level, race, and geographic location impact wages independently of each other.</p>
 </section>
 </section>
 <section id="conclusion-and-insights-from-the-return-to-school-dataset" class="level3">
@@ -994,17 +1008,21 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <section id="key-insights" class="level4">
 <h4 class="anchored" data-anchor-id="key-insights">Key Insights:</h4>
 <ul>
-<li><strong>Educational Impact on Earnings</strong>: Higher educational levels consistently lead to increased wages, affirming that education is a crucial investment with substantial returns.</li>
-<li><strong>Age and Earnings</strong>: Older individuals generally earn more, likely reflecting the combined effects of increased experience and education over time.</li>
+<li><p><strong>Educational Impact on Earnings</strong>: Higher educational levels consistently lead to increased wages, affirming that education is a crucial investment with substantial returns.</p></li>
+<li><p><strong>Age and Earnings</strong>: Older individuals generally earn more, likely reflecting the combined effects of increased experience and education over time.</p></li>
 </ul>
 </section>
 <section id="advantages-of-using-lasso-regression" class="level4">
 <h4 class="anchored" data-anchor-id="advantages-of-using-lasso-regression">Advantages of Using LASSO Regression:</h4>
-<p>LASSO regression has effectively simplified the analysis by focusing on the most impactful factors, reducing complexity and enhancing our model’s interpretability: - <strong>Selective Feature Retention</strong>: By minimizing the influence of less significant variables, LASSO has allowed us to concentrate on factors that truly affect wages. - <strong>Overfitting Mitigation</strong>: This approach ensures our predictions are robust, avoiding the common pitfall of overfitting associated with more traditional regression models.</p>
+<p>LASSO regression has effectively simplified the analysis by focusing on the most impactful factors, reducing complexity and enhancing our model’s interpretability:</p>
+<p>-<strong>Selective Feature Retention</strong>: By minimizing the influence of less significant variables, LASSO has allowed us to concentrate on factors that truly affect wages.</p>
+<p>-<strong>Overfitting Mitigation</strong>: This approach ensures our predictions are robust, avoiding the common pitfall of overfitting associated with more traditional regression models.</p>
 </section>
 <section id="visualization-of-continuous-variables" class="level4">
 <h4 class="anchored" data-anchor-id="visualization-of-continuous-variables">Visualization of Continuous Variables:</h4>
-<p>We have illustrated the impacts of education and age through detailed visualizations: - <strong>Impact of Education</strong>: Demonstrates a clear, positive correlation between education and wages, with incremental educational achievements leading to higher earnings. - <strong>Role of Age in Earnings</strong>: Shows that wage increases with age, highlighting the value of experience and possibly greater educational attainment over time.</p>
+<p>We have illustrated the impacts of education and age through detailed visualizations:</p>
+<p>-<strong>Impact of Education</strong>: Demonstrates a clear, positive correlation between education and wages, with incremental educational achievements leading to higher earnings.</p>
+<p>-<strong>Role of Age in Earnings</strong>: Shows that wage increases with age, highlighting the value of experience and possibly greater educational attainment over time.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>

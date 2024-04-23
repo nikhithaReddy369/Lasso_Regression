@@ -517,11 +517,9 @@ print(combined_plot)
 
 ## Cross Validation for Optimal $\lambda$
 
-::: {.panel-tabset}
-
-### Cross-Validation Technique
-
 Selecting the optimal regularization parameter, λ, is crucial for balancing the complexity and accuracy of the LASSO model.
+
+**Cross-Validation Technique**
 
 Cross-validation technique is used to determine the λ that minimizes prediction error. This technique ensures the model performs well on unseen data by validating the model across multiple data subsets.
 
@@ -562,7 +560,11 @@ Cross_Validation_plot
 ```
 
 
-### Model Coefficients and Interpretation
+## Model Coefficients and Interpretation
+
+::: {.panel-tabset}
+
+### Interpretation
 
 Analyzing the coefficients after fitting the model with the optimal λ reveals which variables significantly influence the dependent variable.
 
@@ -571,8 +573,6 @@ Analyzing the coefficients after fitting the model with the optimal λ reveals w
 - **Interpretation of Results**: The size and direction of these coefficients provide insights into how each predictor affects wage levels.
 
 ### Visualization of Model Outcomes
-
-Visual representations are used to effectively communicate the impact of significant predictors, providing a clear and intuitive understanding of the model's outcomes.
 
 ```{r optimal-coefficients-visualization,  fig.cap="Figure 7: Visualization of LASSO Coefficients"}
 library(knitr)
@@ -604,6 +604,7 @@ if (exists("cv_outcome")) {
         scale_fill_manual(values = c("red", "blue"), name = "Sign of Coefficient",
                           labels = c("Negative", "Positive")) +
         theme_minimal()
+    cv_outcome_plot
   } else {
     message("Coefficient data is not available or invalid.")
   }
@@ -612,29 +613,59 @@ if (exists("cv_outcome")) {
 }
 ```
 
-- **Goals of Visualization**: To present complex statistical results in a visually engaging and easily understandable format.
-- **Insights Provided**:
-  - **Scaling Importance**: Confirms that the analysis is unbiased and equitable.
-  - **Lambda Optimization**: Demonstrates the effectiveness of our model fitting process, ensuring a balance between simplicity and predictive accuracy.
-  - **Predictor Impact**: Illustrates how specific factors like education and demographics influence wages, guiding policy and decision-making.
+### Significant Predictors and Their Effects
+
+The LASSO model has highlighted key factors that influence wages, efficiently pinpointing the most impactful variables:
+
+-**Baseline Wages**: The intercept sets the starting point for wage predictions, adjusted for average levels of predictors.
+
+-**Educational Attainment (`grade76`)**: Higher education levels are strongly associated with increased wages, confirming the significant return on investment in education.
+
+-**Racial Disparity (`black`)**: There is a noticeable wage gap affecting black individuals, indicating persistent racial inequalities in earnings.
+
+-**Geographic Influence (`south76`)**: Residing in the South is linked to lower wages, reflecting regional economic differences.
+
+-**Urban Premium (`smsa76`)** and **Long-term Urban Advantage (`smsa66`)**: Both highlight the wage benefits of living in urban areas, both currently and historically.
+
+-**Family Stability (`momdad14`)**: Growing up with both parents is correlated with higher wages, suggesting the economic benefits of a stable family during childhood.
+
+-**Parental Education (`momed`)**: Higher maternal education levels positively affect wages, underscoring the influence of parental education.
+
+-**Age and Experience (`age76`)**: Older age, often accompanied by more experience, typically leads to higher wages, reflecting the value of longevity in the workforce.
+
+-**Higher Education (`col4`)**: Possessing a college degree shows a positive but modest correlation with higher wages.
+
+
+**Variables with Minimal Impact**
+
+Several variables demonstrated minimal to no influence on wages, exemplifying Lasso's ability to streamline the model by eliminating
+non-impactful predictors. These include `exp76`, `region`, `sinmom14`, `nodaded`, `nomomed`, `daded`, and `famed`. This reduction in variables enhances the interpretability of our model without compromising the accuracy of our predictions.
+
 
 :::
 
-## Results
+## LASSO VS MLR
 
-Understanding the impact of coefficient differences between LASSO and MLR models offers deeper insights into the complexities of the dataset and the efficacy of regularization.
+Our analysis with the LASSO model has effectively highlighted the most significant factors influencing wages.
 
-::: {.panel-tabset}
+However, to deepen our understanding of these results, we also employed Multiple Linear Regression (MLR) as a comparative tool. 
 
-### Comparative Analysis of LASSO and MLR Models
+This step allows us to observe the differences in how each model handles the complexity of the dataset and the continuous nature of the wage variable.
 
-We analyze both LASSO and Multiple Linear Regression (MLR) to demonstrate how each model manages the complex and continuous nature of the wage variable:
 
 -**LASSO Regression**: Applies a penalty to reduce the influence of less significant predictors, enhancing model simplicity and accuracy.
 
 -**MLR**: Provides a baseline by including all predictors without regularization, illustrating potential overfitting issues.
 
-### Fitting Models and Extracting Coefficients
+
+
+## Comparative Analysis on LASSO and MLR Models
+
+::: {.panel-tabset}
+
+### Visual Outcome of LASSO Vs MLR analysis
+
+Here we analyze both LASSO and Multiple Linear Regression (MLR) to demonstrate how each model manages the complex and continuous nature of the wage variable:
 
 Both models are applied to the same cleaned dataset to ensure a fair comparison:
 
@@ -681,35 +712,26 @@ coefficients_comparison <- data.frame(
 kable(coefficients_comparison, format = "html", caption = "Comparison of MLR and LASSO Coefficients", align = 'c') %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"), full_width = F, font_size = 12) %>%
   scroll_box(width = "100%", height = "500px")
+
 ```
 
 
-- **Model Fitting**: Each model is fitted using standardized features to prevent scale disparities from affecting the results.
-- **Coefficient Extraction and Comparison**: We compare the significance and magnitude of coefficients from both models to identify key predictors and assess the impact of regularization.
+### Significant Predictors of Wages
 
+The analysis of both LASSO and MLR models sheds light on the robustness of each predictor's impact on wages. Here, we provide a side-by-side view of the coefficients, illustrating how each model values the same predictors:
 
-### Key Insights from Comparative Analysis
+-**Consistency and Differences**: Where LASSO might zero out a predictor, MLR may still attribute it with a significant coefficient. Such differences are key in understanding the potential for overfitting in MLR versus the more conservative and potentially more reliable predictions from LASSO.
 
-- **Model Efficiency**: LASSO's ability to simplify the model by eliminating non-significant predictors helps in reducing overfitting and enhancing interpretability.
-- **Predictive Performance**: By comparing the predictive accuracy of both models, we evaluate which model provides more reliable and robust predictions for wage data.
+-**Focus on Continuous Outcomes**: Both models emphasize the importance of continuous predictors like `age76` and `grade76`, but LASSO does so while maintaining model parsimony, avoiding the pitfalls of including too many variables as MLR might.
 
 :::
 
 
-## Significant Predictors and Model Insights
-
-The comparison of LASSO and MLR models highlights crucial predictors influencing wages, enhancing our understanding of the robustness of each statistical modeling approach.
+## Results 
 
 ::: {.panel-tabset}
 
-### Insights from Coefficient Analysis
-
-A detailed examination of how variables are weighted differently by each model reveals significant insights:
-
-- **Baseline and Overfitting**: MLR often shows a tendency to overfit with complex datasets by retaining all predictors.
-- **Variable Importance**: LASSO highlights truly impactful variables by assigning zero to less important predictors, focusing analysis on factors that significantly affect wages.
-
-### Visual Comparison of Model Outcomes
+### Visual Comparison of Model Outcomes 
 
 A visual representation of coefficient differences effectively illustrates the impact of regularization:
 
@@ -729,6 +751,8 @@ Predictors_plot <- ggplot(coefficients_long, aes(x = Predictor, y = Coefficient,
   scale_fill_manual(values = c("skyblue", "orange"), labels = c("MLR", "LASSO")) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 65, hjust = 1))
+
+Predictors_plot
 ```
 
 
@@ -739,18 +763,19 @@ Predictors_plot <- ggplot(coefficients_long, aes(x = Predictor, y = Coefficient,
 
 Exploring the specific implications of our findings within the context of the Return to School dataset:
 
-- **What We Analyzed**: We focused on understanding how various educational, demographic, and work experience factors influence wage disparities in 1976.
+-**What We Analyzed**: We focused on understanding how various educational, demographic, and work experience factors influence wage disparities in 1976.
 
-- **Why It Matters**: This analysis is crucial for identifying key areas where educational and economic policies can be targeted to reduce wage inequality.
+-**Why It Matters**: This analysis is crucial for identifying key areas where educational and economic policies can be targeted to reduce wage inequality.
 
-- **How We Did It**: Using LASSO and MLR, we were able to discern which variables significantly impact wages, with LASSO providing a more streamlined model that avoids overfitting and highlights the most impactful factors.
+-**How We Did It**: Using LASSO and MLR, we were able to discern which variables significantly impact wages, with LASSO providing a more streamlined model that avoids overfitting and highlights the most impactful factors.
 
 ### Implications of Findings
 
 This analysis not only enhances academic understanding but also provides concrete data to inform policy makers:
 
-- **Policy Recommendations**: Insights from the study can guide the development of policies aimed at addressing the root causes of wage disparities identified through the model.
-- **Educational Impact**: By understanding which educational factors influence earnings, institutions can tailor programs to enhance the economic outcomes of their students.
+-**Policy Recommendations**: Insights from the study can guide the development of policies aimed at addressing the root causes of wage disparities identified through the model.
+
+-**Educational Impact**: By understanding which educational factors influence earnings, institutions can tailor programs to enhance the economic outcomes of their students.
 
 :::
 
@@ -795,25 +820,16 @@ grade76_plot <- grid.arrange(plot_grade76, plot_age76, ncol = 2)
 - **Educational Impact on Earnings**: We found a strong correlation between higher education levels and higher wages, underscoring the substantial returns on educational investments. This insight supports the argument for increasing access to higher education as a means to elevate income levels.
 - **Age and Earnings Correlation**: Our results show that older age groups tend to earn more, which reflects the cumulative benefits of experience and ongoing education over time.
 
-### Advantages of LASSO Regression
-
-- **Selective Feature Retention**: The LASSO model has proven effective in enhancing the clarity and focus of our analysis by selectively retaining features that have a significant impact on wages, thereby making the model not only easier to interpret but also more robust in its predictions.
-- **Mitigation of Overfitting**: By penalizing less significant predictors, LASSO helps maintain the reliability of our predictions, ensuring that our model performs well even on unseen data, which is crucial for making sound policy decisions.
-
 ### Future Research Directions
 
 This study opens the door for further research into additional socioeconomic factors that could affect wage disparities. Future studies could explore the impact of technological advances, economic policies, and other demographic changes on wage trends. Such research would help extend our understanding of the dynamics between education and wages over longer periods and under varying economic conditions.
 
-### Appreciation and Open for Questions
-
-We appreciate your attention and interest in our findings. We are now open to any questions you may have or discussions you would like to engage in. Your feedback and suggestions for further research areas are highly welcome.
-
-
-
-
 :::
 
 
+## Appreciation and Open for Questions
+
+Thank you Dr.Cohen for your guidance and support throughout the semester. We appreciate everyone for your attention and interest in our findings. We are now open to any questions you may have or discussions you would like to engage in. Your feedback and suggestions for further research areas are highly welcome.
 
 
 
