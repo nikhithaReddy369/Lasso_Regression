@@ -978,6 +978,29 @@ accuracy of our predictions.
 
 ## Results & Conclusion
 
+### Explaining the Linear Relationship between the target variables and predictors
+
+```{r}
+library(ggplot2)
+
+# Plotting wage76 against grade76 with a linear regression line
+plot_grade76 <- ggplot(df_clean, aes(x = grade76, y = wage76)) +
+  geom_point(aes(color = grade76), alpha = 0.6) +  # Color points by grade76 for additional visual differentiation
+  geom_smooth(method = "lm", color = "blue", se = TRUE) +  # Add linear regression line with confidence interval
+  labs(title = "Impact of Grade on Wages",
+       x = "Highest Grade Completed (grade76)",
+       y = "Wage in 1976 (wage76)") +
+  theme_minimal() +
+  theme(legend.position = "none")  # No need for a legend in this context
+
+# Print the plot
+print(plot_grade76)
+```
+
+Graph 1: Impact of Grade on Wages 
+
+Graph 1 clearly explains the linear relationship for the wages(target variable) and grade76(predictor)
+
 ### Comparative Analysis of Coefficient Impact
 
 Our analysis with the LASSO model has effectively highlighted the most

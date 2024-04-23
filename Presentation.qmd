@@ -334,9 +334,6 @@ library(gridExtra)
 
 # Load data
 df <- read_csv("RetSchool.csv", show_col_types = FALSE)
-
-summary(df)
-
 # Record initial number of rows
 initial_count <- nrow(df)
 
