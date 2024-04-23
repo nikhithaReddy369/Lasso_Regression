@@ -294,9 +294,9 @@ corrplot(cor_matrix, method = "color",
 
 Proper data preparation is critical to ensure the robustness of the statistical analysis:
 
-- **Handling Missing Data**: Key variables with missing data, such as educational background and work experience, were imputed using the median of available data to minimize the impact of outliers.
+-**Handling Missing Data**: Key variables with missing data, such as educational background and work experience, were imputed using the median of available data to minimize the impact of outliers.
 
-- **Removing Incomplete Records**: After imputation, records that still contained missing values were removed to maintain the integrity and accuracy of the model analysis.
+-**Removing Incomplete Records**: After imputation, records that still contained missing values were removed to maintain the integrity and accuracy of the model analysis.
 
 ### Visualization of Data Cleaning
 
@@ -566,7 +566,7 @@ if (exists("cv_outcome")) {
   message("cv_outcome is not available. Please check model fitting.")
 }
 ```
-
+A positive coefficient indicates a direct relationship "where increases in the predictor correspond to increases in the target". Conversely, a negative coefficient signifies an inverse relationship.
 
 :::
 
@@ -580,7 +580,6 @@ However, to deepen our understanding of these results, we employed Multiple Line
 
 -**MLR**: Provides a baseline by including all predictors without regularization, illustrating potential overfitting issues.
 
-
 ## Comparative Analysis on LASSO and MLR Models
 
 ::: {.panel-tabset}
@@ -588,9 +587,6 @@ However, to deepen our understanding of these results, we employed Multiple Line
 ### Visual Outcome of LASSO Vs MLR analysis
 
 Both models are applied to the same cleaned dataset to ensure a fair comparison.
-
-This step allows us to observe the differences in how each model handles the complexity of the dataset and the continuous nature of the wage variable.
-
 
 ```{r mlr-model, message=TRUE, warning=TRUE, results='asis'}
 library(glmnet)
@@ -635,22 +631,16 @@ coefficients_comparison <- data.frame(
 kable(coefficients_comparison, format = "html", caption = "Comparison of MLR and LASSO Coefficients", align = 'c')
 ```
 
-### Significant Predictors of Wages
+-**Intercept**
 
--**Consistency and Differences**: Where LASSO might zero out a predictor, MLR may still attribute it with a significant coefficient. Such differences are key in understanding the potential for overfitting in MLR versus the more conservative and potentially more reliable predictions from LASSO.
+-MLR: 0.0041560
 
--**Focus on Continuous Outcomes**: Both models emphasize the importance of continuous predictors like `age76` and `grade76`, but LASSO does so while maintaining model simplicity and accuracy, avoiding the pitfalls of including too many variables as MLR might.
+-LASSO: 0.1035662
 
-:::
+-**Explanation**: The intercept represents the expected value of wage76 when all other predictors are zero. The significant increase in the intercept from MLR to LASSO suggests that LASSO adjusts to better account for the average baseline wage across all observations.
 
 
-## Results 
-
-::: {.panel-tabset}
-
-### Visual Comparison of Model Outcomes 
-
-A visual representation of coefficient differences effectively illustrates the impact of regularization:
+### Graphical Representation of the outcomes
 
 ```{r visualization, echo=FALSE, fig.cap="Figure 8: Comparison of Coefficients from MLR and LASSO"}
 library(ggplot2)
@@ -672,9 +662,15 @@ Predictors_plot <- ggplot(coefficients_long, aes(x = Predictor, y = Coefficient,
 Predictors_plot
 ```
 
+-**Stability Across Models**: Predictors whose coefficients are consistent across both MLR and LASSO are likely very reliable indicators of wage variations, underscoring their importance regardless of the modeling approach used.
 
-- **Graphical Analysis**: Charts display how each model values predictors, clarifying the practical effects of LASSO's regularization.
-- **Model Interpretation**: These visuals aid in understanding which predictors are deemed most influential by each model and why.
+
+:::
+
+
+## Results 
+
+::: {.panel-tabset}
 
 ### Application to the Return to School Dataset
 
@@ -742,8 +738,6 @@ grade76_plot <- grid.arrange(plot_grade76, plot_age76, ncol = 2)
 -This study opens the door for further research into additional socioeconomic factors that could affect wage disparities. 
 
 -Future studies could explore the impact of technological advances, economic policies, and other demographic changes on wage trends. 
-
--There research would help extend our understanding of the dynamics between education and wages over longer periods and under varying economic conditions.
 
 :::
 
