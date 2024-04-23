@@ -70,10 +70,6 @@ LASSO regression is highly valued in fields ranging from healthcare to finance d
 
 ## Methodology Overview
 
-::: {.panel-tabset}
-
-### Mathematical Equation
-
 LASSO enhances linear regression by adding a penalty on the size of the coefficients, aiding in feature selection and improving model interpretability.
 
 LASSO's objective function:
@@ -83,35 +79,20 @@ $$
 $$
 - **Goal**: Minimize Residual Sum of Squares(RSS) with a penalty on the absolute values of coefficients.
 
--**Parameter λ**: Balances model complexity against overfitting.
+**Components of the Formula**:
 
-### Components of the Formula
+-**1. Beta Coefficients ($\beta$)**: These are the parameters of the model, where $\beta_0$ is the intercept, and $\beta_j$ are the coefficients for the predictors.
 
-**1. Beta Coefficients ($\beta$)**
+-**2. Observed Values ($y_i$)**: These are the responses observed for each observation in the dataset.
 
--These are the parameters of the model, where $\beta_0$ is the intercept, and $\beta_j$ are the coefficients for the predictors.
+-**3. Predictor Values ($x_{ij}$)**: These are the values of the predictors for each observation.
 
-**2. Observed Values ($y_i$)**
+-**4. Residual Sum of Squares (RSS)**: It measures the discrepancies between observed values and predictions, normalized by $\frac{1}{2n}$ for computational convenience.
 
--These are the responses observed for each observation in the dataset.
+-**5. Regularization Parameter ($\lambda$)**: This parameter controls the trade-off between fitting the model accurately and keeping the model coefficients small and balances model complexity against overfitting
 
-**3. Predictor Values ($x_{ij}$)**
+-**6. L1 Penalty**: This term encourages the sparsity of the model by allowing some coefficients to shrink to zero.
 
--These are the values of the predictors for each observation.
-
-**4. Residual Sum of Squares (RSS)**
-
--It measures the discrepancies between observed values and predictions, normalized by $\frac{1}{2n}$ for computational convenience.
-
-**5. Regularization Parameter ($\lambda$)**
-
--This parameter controls the trade-off between fitting the model accurately and keeping the model coefficients small.
-
-**6. L1 Penalty**
-
--This term encourages the sparsity of the model by allowing some coefficients to shrink to zero.
-
-:::
 
 ## How LASSO Regression Works?
 
@@ -353,6 +334,8 @@ library(gridExtra)
 
 # Load data
 df <- read_csv("RetSchool.csv", show_col_types = FALSE)
+
+summary(df)
 
 # Record initial number of rows
 initial_count <- nrow(df)
