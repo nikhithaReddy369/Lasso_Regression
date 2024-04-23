@@ -197,15 +197,57 @@ window.Quarto = {
 </section>
 <section id="mathematical-formulation" class="level3">
 <h3 class="anchored" data-anchor-id="mathematical-formulation">Mathematical Formulation</h3>
-<p>The core of LASSO regression is captured by the following objective function:</p>
+<p>The <strong>LASSO (Least Absolute Shrinkage and Selection Operator) regression</strong> aims to create a model that balances the fit with its complexity, which helps in avoiding overfitting. The function is given by:</p>
 <p><span class="math display">\[
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
 \]</span></p>
-<p>This formula aims to minimize the residual sum of squares (RSS) while imposing a penalty proportional to the sum of the absolute values of the coefficients, regulated by the parameter <span class="math inline">\(\lambda\)</span>. This balancing act helps manage model complexity and prevents overfitting, especially important in datasets with many predictors. <span class="citation" data-cites="Zhao2006 Friedman2010">(<a href="#ref-Zhao2006" role="doc-biblioref">Zhao and Yu 2006</a>; <a href="#ref-Friedman2010" role="doc-biblioref">Friedman, Hastie, and Tibshirani 2010</a>)</span></p>
+<section id="components-of-the-formula" class="level4">
+<h4 class="anchored" data-anchor-id="components-of-the-formula">Components of the Formula</h4>
+<section id="beta-coefficients-beta" class="level6">
+<h6 class="anchored" data-anchor-id="beta-coefficients-beta">1. Beta Coefficients (<span class="math inline">\(\beta\)</span>)</h6>
+<ul>
+<li>These are the parameters of the model, where <span class="math inline">\(\beta_0\)</span> is the intercept, and <span class="math inline">\(\beta_j\)</span> are the coefficients for the predictors.</li>
+</ul>
 </section>
-<section id="understanding-the-outcome-variable" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-the-outcome-variable">Understanding the Outcome Variable</h3>
-<p>A crucial aspect of our methodology was determining the nature of our outcome variable, <code>wage76</code>, which we identified as continuous. This was based on statistical analysis and visualization of the data, showing a range of wage values without distinct groupings or categories. This understanding is vital as it dictates the choice of LASSO regression, which is well-suited for models with continuous outcomes due to its ability to perform regularization and feature selection effectively.</p>
+<section id="observed-values-y_i" class="level6">
+<h6 class="anchored" data-anchor-id="observed-values-y_i">2. Observed Values (<span class="math inline">\(y_i\)</span>)</h6>
+<ul>
+<li>These are the responses observed for each observation in the dataset.</li>
+</ul>
+</section>
+<section id="predictor-values-x_ij" class="level6">
+<h6 class="anchored" data-anchor-id="predictor-values-x_ij">3. Predictor Values (<span class="math inline">\(x_{ij}\)</span>)</h6>
+<ul>
+<li>These are the values of the predictors for each observation.</li>
+</ul>
+</section>
+<section id="residual-sum-of-squares-rss" class="level6">
+<h6 class="anchored" data-anchor-id="residual-sum-of-squares-rss">4. Residual Sum of Squares (RSS)</h6>
+<ul>
+<li>It measures the discrepancies between observed values and predictions, normalized by <span class="math inline">\(\frac{1}{2n}\)</span> for computational convenience.</li>
+</ul>
+</section>
+<section id="regularization-parameter-lambda" class="level6">
+<h6 class="anchored" data-anchor-id="regularization-parameter-lambda">5. Regularization Parameter (<span class="math inline">\(\lambda\)</span>)</h6>
+<ul>
+<li>This parameter controls the trade-off between fitting the model accurately and keeping the model coefficients small.</li>
+</ul>
+</section>
+<section id="l1-penalty" class="level6">
+<h6 class="anchored" data-anchor-id="l1-penalty">6. L1 Penalty</h6>
+<ul>
+<li>This term encourages the sparsity of the model by allowing some coefficients to shrink to zero.</li>
+</ul>
+</section>
+<section id="optimization-goal" class="level5">
+<h5 class="anchored" data-anchor-id="optimization-goal">Optimization Goal</h5>
+<p>The goal is to find coefficients that minimize the objective function, balancing between model accuracy and complexity.</p>
+</section>
+<section id="practical-implication" class="level5">
+<h5 class="anchored" data-anchor-id="practical-implication">Practical Implication</h5>
+<p>Adjusting <span class="math inline">\(\lambda\)</span> helps in controlling the model complexity and the number of predictors included in the model, making it simpler and possibly more interpretable.</p>
+</section>
+</section>
 </section>
 <section id="the-shrinkage-effect-and-its-benefits" class="level3">
 <h3 class="anchored" data-anchor-id="the-shrinkage-effect-and-its-benefits">The Shrinkage Effect and Its Benefits</h3>
@@ -226,8 +268,7 @@ window.Quarto = {
 </section>
 <section id="practical-application-and-model-comparison" class="level3">
 <h3 class="anchored" data-anchor-id="practical-application-and-model-comparison">Practical Application and Model Comparison</h3>
-<p>In practice, LASSO’s ability to discern key predictors makes it invaluable across various fields, including finance and healthcare, where precise models can significantly impact decision-making.</p>
-<p>Additionally, comparing LASSO with Multiple Linear Regression (MLR) illustrates its superiority in handling datasets with numerous predictors. While MLR provides a baseline by fitting data without regularization, LASSO advances this by selectively including only the most relevant variables, thereby preventing overfitting and enhancing the model’s predictive accuracy. <span class="citation" data-cites="Park2008 Belloni2013">(<a href="#ref-Park2008" role="doc-biblioref">Park and Hastie 2008</a>; <a href="#ref-Belloni2013" role="doc-biblioref">Belloni and Chernozhukov 2013</a>)</span></p>
+<p>In practice, LASSO’s ability to discern key predictors makes it invaluable across various fields, including finance and healthcare, where precise models can significantly impact decision-making. Additionally, comparing LASSO with Multiple Linear Regression (MLR) illustrates its superiority in handling datasets with numerous predictors. While MLR provides a baseline by fitting data without regularization, LASSO advances this by selectively including only the most relevant variables, thereby preventing overfitting and enhancing the model’s predictive accuracy. <span class="citation" data-cites="Park2008 Belloni2013">(<a href="#ref-Park2008" role="doc-biblioref">Park and Hastie 2008</a>; <a href="#ref-Belloni2013" role="doc-biblioref">Belloni and Chernozhukov 2013</a>)</span></p>
 </section>
 <section id="advantages-of-lasso-regression" class="level3">
 <h3 class="anchored" data-anchor-id="advantages-of-lasso-regression">Advantages of LASSO Regression</h3>
@@ -367,32 +408,17 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </tbody>
 </table>
 <p>This table categorizes the variables based on their type and relevance to our study, setting the stage for a detailed exploration of how these factors interplay to shape economic outcomes during the mid-1970s.</p>
-<p><strong>Data Cleaning and Exploration</strong></p>
+<p><strong>Data Exploration</strong></p>
 <p>Initial exploration of the <code>RetSchool</code> dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="st">'hide'</span>)</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">results =</span> <span class="st">'hide'</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/RetSchool.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(grade76), <span class="fu">median</span>(grade76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), grade76),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(exp76), <span class="fu">median</span>(exp76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), exp76)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rows after cleaning and imputation:"</span>, <span class="fu">nrow</span>(df_clean), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows after cleaning and imputation: 3078 </code></pre>
-</div>
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the response variable y</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df_clean<span class="sc">$</span>wage76</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/RetSchool.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -402,6 +428,16 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <section id="work-experience-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="work-experience-distribution">Work Experience Distribution</h3>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the plot</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p_experience <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> exp76)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"purple"</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Work Experience Distribution in 1976"</span>, <span class="at">x =</span> <span class="st">"Years of Experience"</span>, <span class="at">y =</span> <span class="st">"Density"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>p_experience</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -410,6 +446,11 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot as an image</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"p_experience.png"</span>, <span class="at">plot =</span> p_experience, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>The right-skewed distribution of <code>exp76</code> in the <code>RetSchool</code> dataset indicates a predominantly young and less experienced workforce in 1976. This skewness suggests a workforce that was entering or early in their careers. For more details, see <a href="/p_experience.png">Figure 1: Work Experience Distribution in 1976</a> the distribution of work experience in 1976 indicates a predominantly young workforce:</p>
 <ul>
@@ -420,6 +461,20 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <section id="wage-distribution-analysis" class="level4">
 <h4 class="anchored" data-anchor-id="wage-distribution-analysis">Wage Distribution Analysis</h4>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p_wage <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> wage76)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">"red"</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Wage Distribution in 1976"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Wage (Dollars)"</span>, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Histogram and density plot showing the distribution of wages"</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>), </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>p_wage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -428,6 +483,10 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"p_wage.png"</span>, <span class="at">plot =</span> p_wage, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>The histogram and density plot for <code>wage76</code> reveal the distribution of wages among workers in 1976, showing a typical pattern that indicates economic inequalities <a href="p_wage.png">Figure 2: Wage Distribution in 1976</a>:</p>
 <ul>
@@ -477,29 +536,129 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </section>
 <section id="statistical-modeling" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h2>
-<p>Given the robust nature of LASSO (Least Absolute Shrinkage and Selection Operator) regression for handling complex datasets, it becomes an indispensable tool in our analysis of the RetSchool dataset. Here, we focus on refining our approach through meticulous data preparation and precise model fitting.</p>
-<section id="understanding-key-variables" class="level3">
-<h3 class="anchored" data-anchor-id="understanding-key-variables">Understanding Key Variables</h3>
-<p>The main goal of our analysis is to figure out what drives differences in wages in 1976. To do this, we look at various socio-economic factors that might impact wages.</p>
-<section id="predictor-variables" class="level4">
-<h4 class="anchored" data-anchor-id="predictor-variables">Predictor Variables:</h4>
+<section id="data-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="data-preparation">Data Preparation</h3>
+<p>Before we start analyzing with our LASSO regression model, it’s important to prepare our data properly. Good data leads to good analysis, which means our findings will be more reliable.</p>
+<section id="data-cleaning-and-imputation" class="level4">
+<h4 class="anchored" data-anchor-id="data-cleaning-and-imputation">Data Cleaning and Imputation</h4>
+<p>Our dataset, called RetSchool, needs some tidying up to make sure our model works well. Here’s what we did:</p>
 <ul>
-<li><strong>Educational Background (<code>grade76</code>, <code>col4</code>)</strong>: Education level, which we expect to significantly affect wages. Higher education often correlates with higher earnings.</li>
-<li><strong>Work Experience (<code>exp76</code>)</strong>: The number of years a person has worked, which should relate directly to their skills and salary potential.</li>
-<li><strong>Demographic and Regional Factors (<code>age76</code>, <code>black</code>, <code>south76</code>, <code>region</code>, <code>smsa76</code>)</strong>: Includes age, race, geographical location, and whether a person lived in an urban area, all of which can influence wages.</li>
+<li><p><strong>Handling Missing Data</strong>: Some important information like educational background (<code>grade76</code>) and work experience (<code>exp76</code>) were missing in some records. We filled these gaps using the median of each variable, because the median is good at dealing with data that has outliers.</p></li>
+<li><p><strong>Removing Incomplete Records</strong>: Even after filling in some missing values, some data was still incomplete. We decided to remove these records to keep our analysis strong and accurate.</p></li>
 </ul>
+<p>This cleaning makes sure our dataset is solid, without any misleading gaps or errors that could twist our results.</p>
+</section>
+<section id="visualization-of-data-cleaning" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-of-data-cleaning">Visualization of Data Cleaning</h4>
+<p>To show how our cleaning efforts have improved the dataset, we would normally visualize the distribution of important variables before and after the cleaning. This visual check helps us see the effect of our preparations and ensures the data quality is up to mark for further analysis.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RetSchool.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Record initial number of rows</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>initial_count <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Cleaning</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(grade76), <span class="fu">median</span>(grade76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), grade76),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">exp76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(exp76), <span class="fu">median</span>(exp76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), exp76)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Record cleaned number of rows</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>cleaned_count <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df_clean)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame for visualization</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>counts_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">Stage =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Before Cleaning"</span>, <span class="st">"After Cleaning"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Before Cleaning"</span>, <span class="st">"After Cleaning"</span>)),</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">Rows =</span> <span class="fu">c</span>(initial_count, cleaned_count)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize row counts before and after cleaning</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>p_row_counts <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(counts_df, <span class="fu">aes</span>(<span class="at">x =</span> Stage, <span class="at">y =</span> Rows, <span class="at">fill =</span> Stage)) <span class="sc">+</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"green"</span>)) <span class="sc">+</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Row Counts Before and After Data Cleaning"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Number of Rows"</span>) <span class="sc">+</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the plot</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p_row_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/setup_2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="selection-of-target-and-predictor-variables" class="level3">
+<h3 class="anchored" data-anchor-id="selection-of-target-and-predictor-variables">Selection of Target and Predictor Variables</h3>
+<section id="understanding-the-research-focus" class="level4">
+<h4 class="anchored" data-anchor-id="understanding-the-research-focus">Understanding the Research Focus</h4>
+<p>The core objective of our study using the RetSchool dataset is to explore the factors that influenced wage disparities in 1976. This objective guides our selection of the target and predictor variables, focusing on elements that potentially affect economic outcomes of that period.</p>
 </section>
 <section id="target-variable" class="level4">
-<h4 class="anchored" data-anchor-id="target-variable">Target Variable:</h4>
+<h4 class="anchored" data-anchor-id="target-variable">Target Variable</h4>
 <ul>
-<li><strong>Wage (<code>wage76</code>)</strong>: This is the main variable we are studying—it represents the income of individuals in 1976 and varies continuously across the dataset.</li>
+<li><strong>Wage (<code>wage76</code>)</strong>: The primary variable of interest, <code>wage76</code>, represents the wages earned by individuals in 1976. It is chosen as the target variable because it directly quantifies economic compensation, making it essential for analyzing wage disparities. This variable’s role is to serve as the response in our LASSO regression model, helping us understand how various factors might influence earnings during the studied period.</li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming df_clean is your cleaned dataset</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df_clean<span class="sc">$</span>wage76</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="predictor-variables" class="level4">
+<h4 class="anchored" data-anchor-id="predictor-variables">Predictor Variables</h4>
+<p>A set of predictors has been selected based on their theoretical relevance to wage determination:</p>
+<ul>
+<li><strong>Educational Background (<code>grade76</code>, <code>col4</code>)</strong>: These predictors are expected to impact wages significantly, as higher educational attainment is commonly associated with higher income levels.</li>
+<li><strong>Work Experience (<code>exp76</code>)</strong>: The number of years of work experience is included as a predictor under the assumption that more experience typically correlates with higher wages.</li>
+<li><strong>Demographic and Regional Factors</strong>: Variables such as age, race, and geographic location are included to assess their impact on wages, acknowledging that socio-economic diversity and regional economic conditions play crucial roles in wage determination.</li>
 </ul>
 </section>
-</section>
-<section id="visualizing-key-variables" class="level3">
-<h3 class="anchored" data-anchor-id="visualizing-key-variables">Visualizing Key Variables</h3>
-<p>Understanding how these variables interact is easier when we visualize their distributions and relationships <a href="d_plot.png">Figure 4:Visualizations of Key Variables</a>.</p>
+<section id="visualizing-key-variables" class="level4">
+<h4 class="anchored" data-anchor-id="visualizing-key-variables">Visualizing Key Variables</h4>
+<p>With the data now clean and the variables of interest identified, visualizing these can provide deeper insights into their distribution and relationships within the dataset. This helps in understanding the dynamics and potential influences on wages in 1976 <a href="d_plot.png">Figure 4:Visualizations of Key Variables</a>.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wage Distribution</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>p_wage <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> wage76)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Wages in 1976"</span>, <span class="at">x =</span> <span class="st">"Wage"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Education Distribution</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>p_education <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> grade76)) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>, <span class="at">fill =</span> <span class="st">"green"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Education Levels in 1976"</span>, <span class="at">x =</span> <span class="st">"Education Level"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Experience Distribution</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>p_experience <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> exp76)) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"red"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Work Experience in 1976"</span>, <span class="at">x =</span> <span class="st">"Years of Experience"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine plots using patchwork</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">&lt;-</span> p_wage <span class="sc">+</span> p_education <span class="sc">+</span> p_experience <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>d_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -508,14 +667,97 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the combined plot</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"d_plot.png"</span>, <span class="at">plot =</span> d_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
-<section id="data-preparation-and-feature-scaling" class="level3">
-<h3 class="anchored" data-anchor-id="data-preparation-and-feature-scaling">Data Preparation and Feature Scaling</h3>
+</section>
+<section id="why-lasso-regression" class="level3">
+<h3 class="anchored" data-anchor-id="why-lasso-regression">Why LASSO Regression?</h3>
+<p>Transitioning from variable selection to modeling, it is essential to choose a regression technique that effectively handles the intricacies of our dataset. LASSO regression stands out as a particularly apt choice for several reasons:</p>
+<section id="suitability-of-lasso-regression" class="level4">
+<h4 class="anchored" data-anchor-id="suitability-of-lasso-regression">Suitability of LASSO Regression</h4>
+<p>Given the complexity of the RetSchool dataset, which includes a variety of predictors with potential multicollinearity and overfitting issues, LASSO regression is an ideal choice. LASSO’s capability to perform variable selection and regularization simultaneously allows us to focus on the most impactful predictors while reducing overfitting, enhancing both the interpretability and accuracy of our model.</p>
+<p>LASSO is especially beneficial in scenarios where the number of predictors is large in comparison to the number of observations, or when certain predictors are highly correlated with each other. By penalizing the absolute size of the regression coefficients, LASSO helps in:</p>
+<ul>
+<li><strong>Reducing Model Complexity</strong>: It simplifies the model by shrinking less important variable’s coefficients to zero, thus effectively selecting a simpler model that avoids overfitting.</li>
+<li><strong>Enhancing Interpretability</strong>: Models with fewer variables are easier to understand and communicate, which is crucial for making actionable insights.</li>
+</ul>
+</section>
+<section id="preparing-for-lasso-regression" class="level4">
+<h4 class="anchored" data-anchor-id="preparing-for-lasso-regression">Preparing for LASSO Regression</h4>
+<p>Before implementing LASSO, it is crucial to scale the features due to LASSO’s sensitivity to the scale of input variables. Feature scaling ensures that the regularization penalty is applied uniformly across all predictors.</p>
+<section id="feature-scaling" class="level5">
+<h5 class="anchored" data-anchor-id="feature-scaling">Feature Scaling</h5>
 <p>Feature scaling is a critical preparatory step in our analysis, essential for the application of LASSO regression. LASSO’s approach to regularization is sensitive to the scale of variables, as it penalizes the absolute size of the regression coefficients. This sensitivity can lead to disproportionate influence from variables with larger numeric ranges, skewing the model and potentially leading to misleading conclusions about the factors influencing wages.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting only numeric features and excluding the target variable 'wage76'</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>numeric_features <span class="ot">&lt;-</span> <span class="fu">select</span>(df_clean, <span class="fu">where</span>(is.numeric), <span class="sc">-</span>wage76)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Converting the selected features into a matrix, as required by glmnet</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>features <span class="ot">&lt;-</span> <span class="fu">data.matrix</span>(numeric_features)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>preProcValues <span class="ot">&lt;-</span> <span class="fu">preProcess</span>(features, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"center"</span>, <span class="st">"scale"</span>))</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>features_scaled <span class="ot">&lt;-</span> <span class="fu">predict</span>(preProcValues, features)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p><strong>Demonstrating the Impact of Feature Scaling</strong> We focus specifically on scaling <code>exp76</code>—years of experience—because it is a key predictor of wages, which is our continuous outcome variable. Proper scaling is vital to fairly assess how work experience impacts wages, alongside other factors such as education and demographic variables.</p>
 <p>To illustrate the importance of this process, consider the variable <code>exp76</code>. Before scaling, <code>exp76</code> might display a wide range of values that reflect the diverse work experiences in our dataset. However, without scaling, this range could disproportionately affect the LASSO model’s ability to apply regularization fairly across all predictors <a href="combined_plot.png">Figure 5: Distribution of Feature ‘exp76’ Before and After Scaling</a>.</p>
 <div class="cell" data-lable="fig:data-feature-visualization">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)  <span class="co"># Ensure this package is installed for plot_layout</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting a feature for comparison</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>feature_name <span class="ot">&lt;-</span> <span class="st">"exp76"</span>  <span class="co"># Example feature</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the distribution before scaling</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>p_before_scaling <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">get</span>(feature_name))) <span class="sc">+</span>  <span class="co"># Using get() for dynamic variable name</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"#F8766D"</span>, <span class="at">color =</span> <span class="st">"#FFFFFF"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Distribution of"</span>, feature_name, <span class="st">"Before Scaling"</span>),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Years of Experience"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">"lines"</span>))  <span class="co"># Increase margins around the plot</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting the scaled values for the selected feature</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>scaled_feature <span class="ot">&lt;-</span> features_scaled[, feature_name]</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the distribution after scaling</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>p_after_scaling <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">scaled_feature =</span> scaled_feature), <span class="fu">aes</span>(<span class="at">x =</span> scaled_feature)) <span class="sc">+</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">"#00BFC4"</span>, <span class="at">color =</span> <span class="st">"#FFFFFF"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Distribution of"</span>, feature_name, <span class="st">"After Scaling"</span>),</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Scaled Years of Experience"</span>,</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.margin =</span> <span class="fu">unit</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="st">"lines"</span>))  <span class="co"># Maintain consistent margins</span></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots side by side</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> p_before_scaling <span class="sc">+</span> p_after_scaling <span class="sc">+</span> <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -524,6 +766,10 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"combined_plot.png"</span>, <span class="at">plot =</span> combined_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>After scaling, <code>exp76</code> is transformed to have a standard scale similar to other variables in the model. This normalization allows for a fair comparison and interaction within the model, ensuring that no single variable unduly influences the outcome due to its scale.</p>
 <p>The transformation that occurs when features like <code>exp76</code> are normalized is pivotal for models like LASSO regression, which rely on regularization techniques sensitive to the scale of input variables. By ensuring that the regularization penalty is applied uniformly across all features, scaling enhances the model’s ability to identify truly significant predictors and avoids undue influence from variables simply because of their scale.</p>
@@ -533,37 +779,39 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>cv_outcome <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(features_scaled, y, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a data frame from the glmnet cross-validation output</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cv_outcome<span class="sc">$</span>cvm)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cv_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mse"</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda_min <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda.min)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda_1se <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda<span class="fl">.1</span>se)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with ggplot2</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Cross_Validation_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cv_data, <span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> mse)) <span class="sc">+</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> cv_data<span class="sc">$</span>lambda_min, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> cv_data<span class="sc">$</span>lambda_1se, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cross-Validation Curve for LASSO Regression"</span>,</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dashed lines represent the lambda.min and lambda.1se"</span>,</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Log(Lambda)"</span>,</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Mean Squared Error"</span>,</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Red: lambda.min, Green: lambda.1se"</span>) <span class="sc">+</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>Cross_Validation_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the response variable y</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df_clean<span class="sc">$</span>wage76</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># For reproducibility</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>cv_outcome <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(features_scaled, y, <span class="at">alpha =</span> <span class="dv">1</span>, <span class="at">nfolds =</span> <span class="dv">10</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a data frame from the glmnet cross-validation output</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>cv_data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(cv_outcome<span class="sc">$</span>cvm)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cv_data) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mse"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda_min <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda.min)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>cv_data<span class="sc">$</span>lambda_1se <span class="ot">&lt;-</span> <span class="fu">log</span>(cv_outcome<span class="sc">$</span>lambda<span class="fl">.1</span>se)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with ggplot2</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>Cross_Validation_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cv_data, <span class="fu">aes</span>(<span class="at">x =</span> lambda, <span class="at">y =</span> mse)) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> cv_data<span class="sc">$</span>lambda_min, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> cv_data<span class="sc">$</span>lambda_1se, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"green"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cross-Validation Curve for LASSO Regression"</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Dashed lines represent the lambda.min and lambda.1se"</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Log(Lambda)"</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Mean Squared Error"</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Red: lambda.min, Green: lambda.1se"</span>) <span class="sc">+</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>))</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>Cross_Validation_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -575,21 +823,23 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"Cross_Validation_plot.png"</span>, <span class="at">plot =</span> Cross_Validation_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"Cross_Validation_plot.png"</span>, <span class="at">plot =</span> Cross_Validation_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="role-of-cross-validation-in-determining-lambda" class="level3">
-<h3 class="anchored" data-anchor-id="role-of-cross-validation-in-determining-lambda">Role of Cross-Validation in Determining (<span class="math inline">\(\lambda\)</span>)</h3>
+<section id="role-of-cross-validation-in-determining-lambda" class="level5">
+<h5 class="anchored" data-anchor-id="role-of-cross-validation-in-determining-lambda">Role of Cross-Validation in Determining (<span class="math inline">\(\lambda\)</span>)</h5>
 <p>Cross-validation is essential for selecting the right (<span class="math inline">\(\lambda\)</span>) in LASSO regression. It helps balance the model by preventing overfitting with low (<span class="math inline">\(\lambda\)</span>) values and underfitting with high (<span class="math inline">\(\lambda\)</span>) values. This method splits the data into subsets, testing how each (<span class="math inline">\(\lambda\)</span>) performs, thus ensuring the model’s effectiveness on new, unseen data.</p>
 </section>
-<section id="optimal-lambda-choices" class="level3">
-<h3 class="anchored" data-anchor-id="optimal-lambda-choices">Optimal (<span class="math inline">\(\lambda\)</span>) Choices</h3>
+<section id="optimal-lambda-choices" class="level5">
+<h5 class="anchored" data-anchor-id="optimal-lambda-choices">Optimal (<span class="math inline">\(\lambda\)</span>) Choices</h5>
 <p>Cross-validation identifies crucial (<span class="math inline">\(\lambda\)</span>) values for optimal model performance:</p>
 <ul>
 <li><strong>Optimal (<span class="math inline">\(\lambda\)</span>) (<code>lambda.min</code>)</strong>: Achieves the lowest mean squared error (MSE), indicating the best balance between accuracy and complexity.</li>
 <li><strong>Conservative (<span class="math inline">\(\lambda\)</span>) (<code>lambda.1se</code>)</strong>: Slightly higher than <code>lambda.min</code>, it provides a simpler model that is robust and stable, useful for generalizing well to new data.</li>
 </ul>
+</section>
+</section>
 </section>
 <section id="model-coefficients-and-interpretation" class="level3">
 <h3 class="anchored" data-anchor-id="model-coefficients-and-interpretation">Model Coefficients and Interpretation</h3>
@@ -598,42 +848,42 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure the cv_outcome object is available and correctly specified</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"cv_outcome"</span>)) {</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract coefficients using a safe method</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  coef_optimal <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>(cv_outcome, <span class="at">s =</span> <span class="st">"lambda.min"</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Failed to extract coefficients: "</span>, e<span class="sc">$</span>message)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>  <span class="co"># Return NULL if there's an error</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(coef_optimal) <span class="sc">&amp;&amp;</span> <span class="fu">inherits</span>(coef_optimal, <span class="st">"dgCMatrix"</span>)) {</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the matrix to a data frame for better handling</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    coef_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(coef_optimal)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    coef_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coef_matrix, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    coef_df<span class="sc">$</span>Variable <span class="ot">&lt;-</span> <span class="fu">rownames</span>(coef_matrix)  <span class="co"># Add variable names as a new column</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(coef_df) <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># Clean up row names</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename the coefficient column for clarity</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(coef_df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Coefficient"</span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    cv_outcome_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coef_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Variable, Coefficient), <span class="at">y =</span> Coefficient, <span class="at">fill =</span> Coefficient <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># Makes the plot horizontal for better readability</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Visualization of LASSO Coefficients"</span>, <span class="at">x =</span> <span class="st">"Predictors"</span>, <span class="at">y =</span> <span class="st">"Coefficient Value"</span>) <span class="sc">+</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">name =</span> <span class="st">"Sign of Coefficient"</span>,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)) <span class="sc">+</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Coefficient data is not available or invalid."</span>)</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"cv_outcome is not available. Please check model fitting."</span>)</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"cv_outcome_plot.png"</span>, <span class="at">plot =</span> cv_outcome_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure the cv_outcome object is available and correctly specified</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"cv_outcome"</span>)) {</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract coefficients using a safe method</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  coef_optimal <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>(cv_outcome, <span class="at">s =</span> <span class="st">"lambda.min"</span>, <span class="at">exact =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Failed to extract coefficients: "</span>, e<span class="sc">$</span>message)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>  <span class="co"># Return NULL if there's an error</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(coef_optimal) <span class="sc">&amp;&amp;</span> <span class="fu">inherits</span>(coef_optimal, <span class="st">"dgCMatrix"</span>)) {</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert the matrix to a data frame for better handling</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    coef_matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(coef_optimal)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    coef_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coef_matrix, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    coef_df<span class="sc">$</span>Variable <span class="ot">&lt;-</span> <span class="fu">rownames</span>(coef_matrix)  <span class="co"># Add variable names as a new column</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(coef_df) <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># Clean up row names</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Rename the coefficient column for clarity</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(coef_df)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"Coefficient"</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    cv_outcome_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coef_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(Variable, Coefficient), <span class="at">y =</span> Coefficient, <span class="at">fill =</span> Coefficient <span class="sc">&gt;</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># Makes the plot horizontal for better readability</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Visualization of LASSO Coefficients"</span>, <span class="at">x =</span> <span class="st">"Predictors"</span>, <span class="at">y =</span> <span class="st">"Coefficient Value"</span>) <span class="sc">+</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">name =</span> <span class="st">"Sign of Coefficient"</span>,</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)) <span class="sc">+</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">"Coefficient data is not available or invalid."</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">message</span>(<span class="st">"cv_outcome is not available. Please check model fitting."</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"cv_outcome_plot.png"</span>, <span class="at">plot =</span> cv_outcome_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p><strong>Significant Predictors and Their Effects</strong></p>
@@ -658,6 +908,53 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <section id="comparative-analysis-of-coefficient-impact" class="level3">
 <h3 class="anchored" data-anchor-id="comparative-analysis-of-coefficient-impact">Comparative Analysis of Coefficient Impact</h3>
 <p>Our analysis with the LASSO model has effectively highlighted the most significant factors influencing wages, using a method that focuses on simplicity and accuracy by penalizing less impactful predictors. However, to deepen our understanding of these results, we also employed Multiple Linear Regression (MLR) as a comparative tool. This step allows us to observe the differences in how each model handles the complexity of the dataset and the continuous nature of the wage variable.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure df_clean is prepared as earlier described</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"RetSchool.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">grade76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(grade76), <span class="fu">median</span>(grade76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), grade76),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">exp76 =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(exp76), <span class="fu">median</span>(exp76, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), exp76)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitting Multiple Linear Regression (MLR)</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>model_mlr <span class="ot">&lt;-</span> <span class="fu">lm</span>(wage76 <span class="sc">~</span> ., <span class="at">data =</span> df_clean)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients from the MLR model</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>coefficients_mlr <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_mlr)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitting LASSO model</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  <span class="co"># for reproducibility</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>features_scaled <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(df_clean[<span class="fu">setdiff</span>(<span class="fu">names</span>(df_clean), <span class="st">"wage76"</span>)])</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>cv_outcome <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(features_scaled, df_clean<span class="sc">$</span>wage76, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracting coefficients from the LASSO model using predict with s="lambda.min"</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>lasso_coefs <span class="ot">&lt;-</span> <span class="fu">predict</span>(cv_outcome, <span class="at">type=</span><span class="st">"coefficients"</span>, <span class="at">s =</span> <span class="st">"lambda.min"</span>)[<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(features_scaled),,drop<span class="ot">=</span><span class="cn">FALSE</span>]</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter non-zero coefficients</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>non_zero_lasso <span class="ot">&lt;-</span> lasso_coefs[lasso_coefs[,<span class="dv">1</span>] <span class="sc">!=</span> <span class="dv">0</span>, , drop<span class="ot">=</span><span class="cn">FALSE</span>]</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Align MLR coefficients with non-zero LASSO coefficients</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>non_zero_names <span class="ot">&lt;-</span> <span class="fu">rownames</span>(non_zero_lasso)</span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>matching_mlr_coefs <span class="ot">&lt;-</span> coefficients_mlr[non_zero_names]</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame for comparison</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>coefficients_comparison <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">Predictor =</span> non_zero_names,</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coefficient_MLR =</span> <span class="fu">as.numeric</span>(matching_mlr_coefs),</span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coefficient_LASSO =</span> <span class="fu">as.numeric</span>(non_zero_lasso)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the comparison using knitr</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(coefficients_comparison, <span class="at">format =</span> <span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Comparison of MLR and LASSO Coefficients"</span>, <span class="at">align =</span> <span class="st">'c'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>), <span class="at">full_width =</span> F, <span class="at">font_size =</span> <span class="dv">12</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"500px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <p>Comparing LASSO to MLR provides several benefits:</p>
 <ul>
 <li><strong>Baseline Comparison</strong>: MLR, which does not include a regularization term, serves as a baseline to appreciate how much LASSO’s penalties affect the coefficients of each predictor.</li>
@@ -697,26 +994,45 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 <section id="key-insights" class="level4">
 <h4 class="anchored" data-anchor-id="key-insights">Key Insights:</h4>
 <ul>
-<li><p><strong>Educational Impact on Earnings</strong>: Higher educational levels consistently lead to increased wages, affirming that education is a crucial investment with substantial returns.</p></li>
-<li><p><strong>Age and Earnings</strong>: Older individuals generally earn more, likely reflecting the combined effects of increased experience and education over time.</p></li>
+<li><strong>Educational Impact on Earnings</strong>: Higher educational levels consistently lead to increased wages, affirming that education is a crucial investment with substantial returns.</li>
+<li><strong>Age and Earnings</strong>: Older individuals generally earn more, likely reflecting the combined effects of increased experience and education over time.</li>
 </ul>
 </section>
 <section id="advantages-of-using-lasso-regression" class="level4">
 <h4 class="anchored" data-anchor-id="advantages-of-using-lasso-regression">Advantages of Using LASSO Regression:</h4>
-<p>LASSO regression has effectively simplified the analysis by focusing on the most impactful factors, reducing complexity and enhancing our model’s interpretability:</p>
-<ul>
-<li><p><strong>Selective Feature Retention</strong>: By minimizing the influence of less significant variables, LASSO has allowed us to concentrate on factors that truly affect wages.</p></li>
-<li><p><strong>Overfitting Mitigation</strong>: This approach ensures our predictions are robust, avoiding the common pitfall of overfitting associated with more traditional regression models.</p></li>
-</ul>
+<p>LASSO regression has effectively simplified the analysis by focusing on the most impactful factors, reducing complexity and enhancing our model’s interpretability: - <strong>Selective Feature Retention</strong>: By minimizing the influence of less significant variables, LASSO has allowed us to concentrate on factors that truly affect wages. - <strong>Overfitting Mitigation</strong>: This approach ensures our predictions are robust, avoiding the common pitfall of overfitting associated with more traditional regression models.</p>
 </section>
 <section id="visualization-of-continuous-variables" class="level4">
 <h4 class="anchored" data-anchor-id="visualization-of-continuous-variables">Visualization of Continuous Variables:</h4>
-<p>We have illustrated the impacts of education and age through detailed visualizations:</p>
-<ul>
-<li><p><strong>Impact of Education</strong>: Demonstrates a clear, positive correlation between education and wages, with incremental educational achievements leading to higher earnings.</p></li>
-<li><p><strong>Role of Age in Earnings</strong>: Shows that wage increases with age, highlighting the value of experience and possibly greater educational attainment over time.</p></li>
-</ul>
+<p>We have illustrated the impacts of education and age through detailed visualizations: - <strong>Impact of Education</strong>: Demonstrates a clear, positive correlation between education and wages, with incremental educational achievements leading to higher earnings. - <strong>Role of Age in Earnings</strong>: Shows that wage increases with age, highlighting the value of experience and possibly greater educational attainment over time.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>plot_grade76 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> grade76, <span class="at">y =</span> wage76)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> age76), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Impact of Education on Wages by Age"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Each point represents an observation colored by age"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Years of Education (grade76)"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Wage in 1976"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Age"</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot of age76 vs. wage76 with a regression line</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plot_age76 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> age76, <span class="at">y =</span> wage76)) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> grade76), <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Impact of Age on Wages by Education"</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Each point represents an observation colored by years of education"</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Age in 1976"</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Wage in 1976"</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Education Level (grade76)"</span>) <span class="sc">+</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>grade76_plot <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(plot_grade76, plot_age76, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -725,6 +1041,10 @@ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \ldots + \beta_n x_n + \epsilon
 </figure>
 </div>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"grade76_plot.png"</span>, <span class="at">plot =</span> grade76_plot, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>These visual aids <a href="grade76_plot.png">Figure 9:Impact of Continuous Variables on Wages</a> are crucial for demonstrating how incremental changes in age and education relate to changes in wages, providing a compelling argument for the continuous benefits of education.</p>
 </section>

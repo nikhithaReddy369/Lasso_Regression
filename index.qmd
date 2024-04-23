@@ -85,17 +85,45 @@ LASSO (Least Absolute Shrinkage and Selection Operator) regression, introduced b
 
 ### Mathematical Formulation
 
-The core of LASSO regression is captured by the following objective function:
+The **LASSO (Least Absolute Shrinkage and Selection Operator) regression** aims to create a model that balances the fit with its complexity, which helps in avoiding overfitting. The function is given by:
 
 $$
 \min_{\beta} \left\{ \frac{1}{2n} \sum_{i=1}^{n} (y_i - \beta_0 - \sum_{j=1}^{p} \beta_j x_{ij})^2 + \lambda \sum_{j=1}^{p} |\beta_j| \right\}
 $$
 
-This formula aims to minimize the residual sum of squares (RSS) while imposing a penalty proportional to the sum of the absolute values of the coefficients, regulated by the parameter $\lambda$. This balancing act helps manage model complexity and prevents overfitting, especially important in datasets with many predictors. [@Zhao2006; @Friedman2010]
+####  Components of the Formula
 
-### Understanding the Outcome Variable
+######  1. Beta Coefficients ($\beta$)
 
-A crucial aspect of our methodology was determining the nature of our outcome variable, `wage76`, which we identified as continuous. This was based on statistical analysis and visualization of the data, showing a range of wage values without distinct groupings or categories. This understanding is vital as it dictates the choice of LASSO regression, which is well-suited for models with continuous outcomes due to its ability to perform regularization and feature selection effectively.
+- These are the parameters of the model, where $\beta_0$ is the intercept, and $\beta_j$ are the coefficients for the predictors.
+
+######  2. Observed Values ($y_i$)
+
+- These are the responses observed for each observation in the dataset.
+
+######  3. Predictor Values ($x_{ij}$)
+
+- These are the values of the predictors for each observation.
+
+######  4. Residual Sum of Squares (RSS)
+
+- It measures the discrepancies between observed values and predictions, normalized by $\frac{1}{2n}$ for computational convenience.
+
+######  5. Regularization Parameter ($\lambda$)
+
+- This parameter controls the trade-off between fitting the model accurately and keeping the model coefficients small.
+
+######  6. L1 Penalty
+
+- This term encourages the sparsity of the model by allowing some coefficients to shrink to zero.
+
+#####  Optimization Goal
+
+The goal is to find coefficients that minimize the objective function, balancing between model accuracy and complexity.
+
+#####  Practical Implication
+
+Adjusting $\lambda$ helps in controlling the model complexity and the number of predictors included in the model, making it simpler and possibly more interpretable.
 
 ### The Shrinkage Effect and Its Benefits
 
@@ -114,9 +142,7 @@ Selecting an appropriate $\lambda$ is key:
 
 ### Practical Application and Model Comparison
 
-In practice, LASSO's ability to discern key predictors makes it invaluable across various fields, including finance and healthcare, where precise models can significantly impact decision-making.
-
-Additionally, comparing LASSO with Multiple Linear Regression (MLR) illustrates its superiority in handling datasets with numerous predictors. While MLR provides a baseline by fitting data without regularization, LASSO advances this by selectively including only the most relevant variables, thereby preventing overfitting and enhancing the model's predictive accuracy. [@Park2008; @Belloni2013]
+In practice, LASSO's ability to discern key predictors makes it invaluable across various fields, including finance and healthcare, where precise models can significantly impact decision-making. Additionally, comparing LASSO with Multiple Linear Regression (MLR) illustrates its superiority in handling datasets with numerous predictors. While MLR provides a baseline by fitting data without regularization, LASSO advances this by selectively including only the most relevant variables, thereby preventing overfitting and enhancing the model's predictive accuracy. [@Park2008; @Belloni2013]
 
 
 ### Advantages of LASSO Regression
@@ -181,28 +207,19 @@ Understanding the variables in the `RetSchool` dataset is crucial for our analys
 
 This table categorizes the variables based on their type and relevance to our study, setting the stage for a detailed exploration of how these factors interplay to shape economic outcomes during the mid-1970s.
 
-**Data Cleaning and Exploration**
+**Data Exploration**
 
 
 Initial exploration of the `RetSchool` dataset revealed a diverse range of variables, necessitating meticulous data cleaning to ensure accuracy in our subsequent analyses. Missing values were addressed through imputation or removal, refining our dataset for a comprehensive examination.
 
 
 ```{r setup, include=TRUE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, results = 'hide')
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, results = 'hide')
 library(tidyverse)
 library(ggplot2)
 library(corrplot)
 library(gridExtra)
 df <- read_csv("https://vincentarelbundock.github.io/Rdatasets/csv/Ecdat/RetSchool.csv", show_col_types = FALSE)
-df_clean <- df %>%
-  mutate(
-    grade76 = ifelse(is.na(grade76), median(grade76, na.rm = TRUE), grade76),
-    exp76 = ifelse(is.na(exp76), median(exp76, na.rm = TRUE), exp76)
-  ) %>%
-  na.omit()
-cat("Rows after cleaning and imputation:", nrow(df_clean), "\n")
-# Define the response variable y
-y <- df_clean$wage76
 ```
 
 ### Distribution of Key Variables
@@ -212,7 +229,7 @@ y <- df_clean$wage76
 ```{r work-distribution, fig.cap="Figure 1: Work Experience Distribution in 1976"}
 library(ggplot2)
 # Generate the plot
-p_experience <- ggplot(df_clean, aes(x = exp76)) +
+p_experience <- ggplot(df, aes(x = exp76)) +
   geom_histogram(aes(y = ..density..), bins = 30, fill = "orange", color = "black") +
   geom_density(color = "purple", fill = "purple", alpha = 0.2) +
   labs(title = "Work Experience Distribution in 1976", x = "Years of Experience", y = "Density")
@@ -231,7 +248,20 @@ The right-skewed distribution of `exp76` in the `RetSchool` dataset indicates a 
 
 #### Wage Distribution Analysis
 
-
+```{r wage-distribution, fig.cap="Figure 2: Wage Distribution in 1976"}
+p_wage <- ggplot(df, aes(x = wage76)) +
+  geom_histogram(aes(y = ..density..), binwidth = 1, fill = "blue", color = "black") +
+  geom_density(color = "red", fill = "red", alpha = 0.2) +
+  labs(title = "Wage Distribution in 1976", 
+       x = "Wage (Dollars)", 
+       y = "Density",
+       subtitle = "Histogram and density plot showing the distribution of wages") +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 16, face = "bold"), 
+        plot.subtitle = element_text(size = 12))
+p_wage
+ggsave("p_wage.png", plot = p_wage, width = 10, height = 5, dpi = 300)
+```
 The histogram and density plot for `wage76` reveal the distribution of wages among workers in 1976, showing a typical pattern that indicates economic inequalities [Figure 2: Wage Distribution in 1976](p_wage.png):
 
 - **General Trend**: The distribution suggests that most workers earned lower wages, while a smaller group had significantly higher earnings. This spread highlights the income disparities among different economic groups.
@@ -248,7 +278,7 @@ library(corrplot)
 library(dplyr)
 
 # Calculate the correlation matrix for selected variables, omitting missing values
-df_selected <- df_clean %>% select(wage76, grade76, exp76, age76) %>% na.omit()
+df_selected <- df %>% select(wage76, grade76, exp76, age76) %>% na.omit()
 cor_matrix <- cor(df_selected)
 
 # Open a PNG device
@@ -309,25 +339,90 @@ Given these strengths, LASSO regression is an ideal choice for navigating the co
 
 ## Statistical Modeling
 
-Given the robust nature of LASSO (Least Absolute Shrinkage and Selection Operator) regression for handling complex datasets, it becomes an indispensable tool in our analysis of the RetSchool dataset. Here, we focus on refining our approach through meticulous data preparation and precise model fitting.
+### Data Preparation
 
-### Understanding Key Variables
+Before we start analyzing with our LASSO regression model, it's important to prepare our data properly. Good data leads to good analysis, which means our findings will be more reliable.
 
-The main goal of our analysis is to figure out what drives differences in wages in 1976. To do this, we look at various socio-economic factors that might impact wages.
+#### Data Cleaning and Imputation
 
-#### Predictor Variables:
+Our dataset, called RetSchool, needs some tidying up to make sure our model works well. Here’s what we did:
 
-- **Educational Background (`grade76`, `col4`)**: Education level, which we expect to significantly affect wages. Higher education often correlates with higher earnings.
-- **Work Experience (`exp76`)**: The number of years a person has worked, which should relate directly to their skills and salary potential.
-- **Demographic and Regional Factors (`age76`, `black`, `south76`, `region`, `smsa76`)**: Includes age, race, geographical location, and whether a person lived in an urban area, all of which can influence wages.
+- **Handling Missing Data**: Some important information like educational background (`grade76`) and work experience (`exp76`) were missing in some records. We filled these gaps using the median of each variable, because the median is good at dealing with data that has outliers.
 
-#### Target Variable:
+- **Removing Incomplete Records**: Even after filling in some missing values, some data was still incomplete. We decided to remove these records to keep our analysis strong and accurate.
 
-- **Wage (`wage76`)**: This is the main variable we are studying—it represents the income of individuals in 1976 and varies continuously across the dataset.
+This cleaning makes sure our dataset is solid, without any misleading gaps or errors that could twist our results.
 
-### Visualizing Key Variables
+#### Visualization of Data Cleaning
 
-Understanding how these variables interact is easier when we visualize their distributions and relationships [Figure 4:Visualizations of Key Variables](d_plot.png).
+To show how our cleaning efforts have improved the dataset, we would normally visualize the distribution of important variables before and after the cleaning. This visual check helps us see the effect of our preparations and ensures the data quality is up to mark for further analysis.
+
+```{r setup_2}
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+
+# Load data
+df <- read_csv("RetSchool.csv", show_col_types = FALSE)
+
+# Record initial number of rows
+initial_count <- nrow(df)
+
+# Data Cleaning
+df_clean <- df %>%
+  mutate(
+    grade76 = ifelse(is.na(grade76), median(grade76, na.rm = TRUE), grade76),
+    exp76 = ifelse(is.na(exp76), median(exp76, na.rm = TRUE), exp76)
+  ) %>%
+  na.omit()
+
+# Record cleaned number of rows
+cleaned_count <- nrow(df_clean)
+
+# Data frame for visualization
+counts_df <- tibble(
+  Stage = factor(c("Before Cleaning", "After Cleaning"), levels = c("Before Cleaning", "After Cleaning")),
+  Rows = c(initial_count, cleaned_count)
+)
+
+# Visualize row counts before and after cleaning
+p_row_counts <- ggplot(counts_df, aes(x = Stage, y = Rows, fill = Stage)) +
+  geom_bar(stat = "identity", width = 0.5, show.legend = FALSE) +
+  scale_fill_manual(values = c("blue", "green")) +
+  labs(title = "Row Counts Before and After Data Cleaning", x = NULL, y = "Number of Rows") +
+  theme_minimal()
+
+# Print the plot
+print(p_row_counts)
+
+```
+
+### Selection of Target and Predictor Variables
+
+#### Understanding the Research Focus
+
+The core objective of our study using the RetSchool dataset is to explore the factors that influenced wage disparities in 1976. This objective guides our selection of the target and predictor variables, focusing on elements that potentially affect economic outcomes of that period.
+
+#### Target Variable
+
+- **Wage (`wage76`)**: The primary variable of interest, `wage76`, represents the wages earned by individuals in 1976. It is chosen as the target variable because it directly quantifies economic compensation, making it essential for analyzing wage disparities. This variable's role is to serve as the response in our LASSO regression model, helping us understand how various factors might influence earnings during the studied period.
+
+```{r define-response-variable}
+# Assuming df_clean is your cleaned dataset
+y <- df_clean$wage76
+```
+
+#### Predictor Variables
+A set of predictors has been selected based on their theoretical relevance to wage determination:
+
+- **Educational Background (`grade76`, `col4`)**: These predictors are expected to impact wages significantly, as higher educational attainment is commonly associated with higher income levels.
+- **Work Experience (`exp76`)**: The number of years of work experience is included as a predictor under the assumption that more experience typically correlates with higher wages.
+- **Demographic and Regional Factors**: Variables such as age, race, and geographic location are included to assess their impact on wages, acknowledging that socio-economic diversity and regional economic conditions play crucial roles in wage determination.
+
+
+#### Visualizing Key Variables
+
+With the data now clean and the variables of interest identified, visualizing these can provide deeper insights into their distribution and relationships within the dataset. This helps in understanding the dynamics and potential influences on wages in 1976 [Figure 4:Visualizations of Key Variables](d_plot.png).
 
 ```{r visualizations-key-variables, fig.cap="Figure 4: Visualizations of Key Variables", fig.width=10, fig.height=5}
 library(ggplot2)
@@ -357,14 +452,30 @@ d_plot
 # Save the combined plot
 ggsave("d_plot.png", plot = d_plot, width = 10, height = 5, dpi = 300)
 ```
+### Why LASSO Regression?
+
+Transitioning from variable selection to modeling, it is essential to choose a regression technique that effectively handles the intricacies of our dataset. LASSO regression stands out as a particularly apt choice for several reasons:
+
+#### Suitability of LASSO Regression
+
+Given the complexity of the RetSchool dataset, which includes a variety of predictors with potential multicollinearity and overfitting issues, LASSO regression is an ideal choice. LASSO's capability to perform variable selection and regularization simultaneously allows us to focus on the most impactful predictors while reducing overfitting, enhancing both the interpretability and accuracy of our model.
+
+LASSO is especially beneficial in scenarios where the number of predictors is large in comparison to the number of observations, or when certain predictors are highly correlated with each other. By penalizing the absolute size of the regression coefficients, LASSO helps in:
+
+- **Reducing Model Complexity**: It simplifies the model by shrinking less important variable's coefficients to zero, thus effectively selecting a simpler model that avoids overfitting.
+- **Enhancing Interpretability**: Models with fewer variables are easier to understand and communicate, which is crucial for making actionable insights.
+
+#### Preparing for LASSO Regression
+
+Before implementing LASSO, it is crucial to scale the features due to LASSO's sensitivity to the scale of input variables. Feature scaling ensures that the regularization penalty is applied uniformly across all predictors.
 
 
-
-### Data Preparation and Feature Scaling
+##### Feature Scaling
 
 Feature scaling is a critical preparatory step in our analysis, essential for the application of LASSO regression. LASSO's approach to regularization is sensitive to the scale of variables, as it penalizes the absolute size of the regression coefficients. This sensitivity can lead to disproportionate influence from variables with larger numeric ranges, skewing the model and potentially leading to misleading conclusions about the factors influencing wages.
 
-```{r feature-scaling-setup, include=FALSE}
+
+```{r feature-scaling-setup}
 library(caret)
 library(glmnet)
 
@@ -383,7 +494,7 @@ We focus specifically on scaling `exp76`—years of experience—because it is a
 
 To illustrate the importance of this process, consider the variable `exp76`. Before scaling, `exp76` might display a wide range of values that reflect the diverse work experiences in our dataset. However, without scaling, this range could disproportionately affect the LASSO model’s ability to apply regularization fairly across all predictors [Figure 5: Distribution of Feature 'exp76' Before and After Scaling](combined_plot.png).
 
-```{r data-feature-visualization, fig.cap="Figure 5: Distribution of Feature 'exp76' Before and After Scaling",fig.width=10, fig.height=5, lable="fig:data-feature-visualization"}
+```{r data-feature-visualization, fig.cap="Figure 5: Distribution of Feature 'exp76' Before and After Scaling",fig.width=10, fig.height=5, lable="fig:data-feature-visualization", include=TRUE}
 library(ggplot2)
 library(gridExtra)  # Ensure this package is installed for plot_layout
 
@@ -449,6 +560,8 @@ library(glmnet)
 library(ggplot2)
 library(dplyr)
 
+# Define the response variable y
+y <- df_clean$wage76
 set.seed(123) # For reproducibility
 cv_outcome <- cv.glmnet(features_scaled, y, alpha = 1, nfolds = 10)
 
@@ -479,11 +592,11 @@ Cross_Validation_plot
 ggsave("Cross_Validation_plot.png", plot = Cross_Validation_plot, width = 10, height = 5, dpi = 300)
 ```
 
-### Role of Cross-Validation in Determining ($\lambda$)
+##### Role of Cross-Validation in Determining ($\lambda$)
 
 Cross-validation is essential for selecting the right ($\lambda$) in LASSO regression. It helps balance the model by preventing overfitting with low ($\lambda$) values and underfitting with high ($\lambda$) values. This method splits the data into subsets, testing how each ($\lambda$) performs, thus ensuring the model's effectiveness on new, unseen data.
 
-### Optimal ($\lambda$) Choices
+##### Optimal ($\lambda$) Choices
 
 Cross-validation identifies crucial ($\lambda$) values for optimal model performance:
 
@@ -677,22 +790,16 @@ Our application of LASSO regression has uncovered significant factors that influ
 
 #### Key Insights:
 - **Educational Impact on Earnings**: Higher educational levels consistently lead to increased wages, affirming that education is a crucial investment with substantial returns.
-
 - **Age and Earnings**: Older individuals generally earn more, likely reflecting the combined effects of increased experience and education over time.
 
 #### Advantages of Using LASSO Regression:
-
 LASSO regression has effectively simplified the analysis by focusing on the most impactful factors, reducing complexity and enhancing our model’s interpretability:
-
 - **Selective Feature Retention**: By minimizing the influence of less significant variables, LASSO has allowed us to concentrate on factors that truly affect wages.
-
 - **Overfitting Mitigation**: This approach ensures our predictions are robust, avoiding the common pitfall of overfitting associated with more traditional regression models.
 
 #### Visualization of Continuous Variables:
 We have illustrated the impacts of education and age through detailed visualizations:
-
 - **Impact of Education**: Demonstrates a clear, positive correlation between education and wages, with incremental educational achievements leading to higher earnings.
-
 - **Role of Age in Earnings**: Shows that wage increases with age, highlighting the value of experience and possibly greater educational attainment over time.
 
 
@@ -724,7 +831,6 @@ library(gridExtra)
 grade76_plot <- grid.arrange(plot_grade76, plot_age76, ncol = 2)
 ggsave("grade76_plot.png", plot = grade76_plot, width = 10, height = 5, dpi = 300)
 ```
-
 These visual aids [Figure 9:Impact of Continuous Variables on Wages](grade76_plot.png) are crucial for demonstrating how incremental changes in age and education relate to changes in wages, providing a compelling argument for the continuous benefits of education.
 
 ### Implications and Future Directions
@@ -732,14 +838,3 @@ These visual aids [Figure 9:Impact of Continuous Variables on Wages](grade76_plo
 This analysis provides valuable insights for policymakers and educational institutions, suggesting that enhancing access to education can lead to significant economic benefits. Future research could explore the long-term trends in these variables or investigate other factors that might influence wages, such as technological changes or economic conditions.
 
 In conclusion, the detailed examination of the Return to School dataset using LASSO regression offers actionable insights that could significantly influence future educational investments and economic policy planning. Our study confirms the powerful impact of demographic factors on wages and sets the stage for further research in this vital area.
-
-
-
-
-
-
-
-
-
-
-
